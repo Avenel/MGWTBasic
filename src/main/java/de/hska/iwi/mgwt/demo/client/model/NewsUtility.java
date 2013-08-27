@@ -32,7 +32,7 @@ public class NewsUtility {
 			n.setId("1");
 			n.setTitle("Neuer Koch");
 			n.setContent("insert content here");
-			n.setOrganisation("Mensa");
+			n.setOrganisation("[Mensa]");
 			n.setDate(new Date());
 			newsList.add(n);
 			
@@ -40,7 +40,7 @@ public class NewsUtility {
 			n.setId("2");
 			n.setTitle("Ehrung Thilo Enters");
 			n.setContent("insert content here");
-			n.setOrganisation("IWI");
+			n.setOrganisation("[IWI]");
 			n.setDate(new Date());
 			newsList.add(n);
 			
@@ -48,15 +48,15 @@ public class NewsUtility {
 			n.setId("3");
 			n.setTitle("Kanzlerin wird 50");
 			n.setContent("insert content here");
-			n.setOrganisation("R");
+			n.setOrganisation("[R]");
 			n.setDate(new Date());
 			newsList.add(n);
 			
 			n = new News();
 			n.setId("4");
-			n.setTitle("Werden wir alle dümmer?");
+			n.setTitle("Werden wir alle duemmer?");
 			n.setContent("insert content here");
-			n.setOrganisation("IWI");
+			n.setOrganisation("[IWI]");
 			n.setDate(new Date());
 			newsList.add(n);
 			
@@ -64,7 +64,7 @@ public class NewsUtility {
 			n.setId("5");
 			n.setTitle("Reinigungspersonal vermisst Tasche");
 			n.setContent("insert content here");
-			n.setOrganisation("Mensa");
+			n.setOrganisation("[Mensa]");
 			n.setDate(new Date());
 			newsList.add(n);
 		}

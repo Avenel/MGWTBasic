@@ -18,7 +18,7 @@ import de.hska.iwi.mgwt.demo.client.model.News;
 public class HomeViewImpl implements HomeView {
 
 	private LayoutPanel main;
-	private CellList<News> cellist;
+	private CellList<News> cellList;
 
 	public HomeViewImpl() {
 		main = new LayoutPanel();
@@ -27,11 +27,10 @@ public class HomeViewImpl implements HomeView {
 		headerPanel.setCenter("Schwarzes Brett");
 		main.add(headerPanel);
 		
-		this.cellist = new CellList<News>(new NewsCell());
-		main.add(this.cellist);
+		this.cellList = new CellList<News>(new NewsCell());
 		
 		TabPanel tabPanel = new TabPanel();
-		tabPanel.add(new FeaturedTabBarButton(), new Label("Aktuelles"));
+		tabPanel.add(new FeaturedTabBarButton(), this.cellList);
 		tabPanel.add(new FavoritesTabBarButton(), new Label("Student"));
 		tabPanel.add(new HistoryTabBarButton(), new Label("Vorlesung"));
 		main.add(tabPanel);
@@ -44,12 +43,12 @@ public class HomeViewImpl implements HomeView {
 
 	@Override
 	public void render(List<News> newsList) {
-		this.cellist.render(newsList);	
+		this.cellList.render(newsList);	
 	}
 
 	@Override
 	public HasCellSelectedHandler getList() {
-		return this.cellist;
+		return this.cellList;
 	}
 
 }
