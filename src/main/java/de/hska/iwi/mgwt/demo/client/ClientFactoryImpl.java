@@ -15,10 +15,20 @@
  */
 package de.hska.iwi.mgwt.demo.client;
 
+import com.google.gwt.event.logical.shared.SelectionEvent;
+import com.google.gwt.event.logical.shared.SelectionHandler;
+import com.google.gwt.place.shared.Place;
+import com.google.gwt.place.shared.PlaceChangeEvent;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.SimpleEventBus;
+import com.googlecode.mgwt.mvp.client.AnimatableDisplay;
+import com.googlecode.mgwt.ui.client.MGWTStyle;
+import com.googlecode.mgwt.ui.client.theme.base.TabBarCss;
+import com.googlecode.mgwt.ui.client.widget.tabbar.RootTabPanel;
+import com.googlecode.mgwt.ui.client.widget.tabbar.TabBarButton;
 
+import de.hska.iwi.mgwt.demo.client.activities.HomePlace;
 import de.hska.iwi.mgwt.demo.client.activities.HomeView;
 import de.hska.iwi.mgwt.demo.client.activities.HomeViewImpl;
 
@@ -31,6 +41,7 @@ public class ClientFactoryImpl implements ClientFactory {
 	private EventBus eventBus;
 	private PlaceController placeController;
 	private HomeViewImpl homeView;
+	private RootTabPanel rootTabPanel;
 
 	public ClientFactoryImpl() {
 		eventBus = new SimpleEventBus();
@@ -53,9 +64,35 @@ public class ClientFactoryImpl implements ClientFactory {
 	public HomeView getHomeView() {
 		if (this.homeView == null) {
 			this.homeView = new HomeViewImpl();
+			this.homeView.addContentToRootTabPanel(this.rootTabPanel);
+		}
+
+		return this.homeView;
+	}
+
+	@Override
+	public RootTabPanel getRootTabPanel(AnimatableDisplay display) {
+		if (this.rootTabPanel == null) {
+			TabBarCss tabBarCss = MGWTStyle.getTheme().getMGWTClientBundle()
+					.getTabBarCss();
+			this.rootTabPanel = new RootTabPanel(tabBarCss, display);
+			this.rootTabPanel.setDisplayTabBarOnTop(false);
+
+			TabBarButton tabBarButtonAktuelles = new TabBarButton(MGWTStyle
+					.getTheme().getMGWTClientBundle().tabBarMostViewedImage());
+			TabBarButton tabBarButtonStudent = new TabBarButton(MGWTStyle
+					.getTheme().getMGWTClientBundle().tabBarFavoritesImage());
+			TabBarButton tabBarButtonVorlesung = new TabBarButton(MGWTStyle
+					.getTheme().getMGWTClientBundle().tabBarHistoryImage());
+
+			this.rootTabPanel.add(tabBarButtonAktuelles);
+			this.rootTabPanel.add(tabBarButtonStudent);
+			this.rootTabPanel.add(tabBarButtonVorlesung);
+
+			this.rootTabPanel.setSelectedChild(0);
 		}
 		
-		return this.homeView;
+		return this.rootTabPanel;
 	}
 
 }

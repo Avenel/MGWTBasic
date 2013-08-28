@@ -17,6 +17,8 @@ package de.hska.iwi.mgwt.demo.client;
 
 import com.google.gwt.place.shared.PlaceController;
 import com.google.web.bindery.event.shared.EventBus;
+import com.googlecode.mgwt.mvp.client.AnimatableDisplay;
+import com.googlecode.mgwt.ui.client.widget.tabbar.RootTabPanel;
 
 import de.hska.iwi.mgwt.demo.client.activities.HomeView;
 
@@ -28,5 +30,7 @@ public interface ClientFactory {
 	public PlaceController getPlaceController();
 	
 	public HomeView getHomeView();
+	
+	public RootTabPanel getRootTabPanel(AnimatableDisplay display);
 
 }
