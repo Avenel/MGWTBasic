@@ -12,7 +12,7 @@ public class PhoneAnimationMapper implements AnimationMapper {
 
 	@Override
 	public Animation getAnimation(Place oldPlace, Place newPlace) {
-		return Animation.SLIDE;
+		return Animation.POP;
 	}
 
 }

@@ -18,10 +18,6 @@ package de.hska.iwi.mgwt.demo.client;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.GWT.UncaughtExceptionHandler;
-import com.google.gwt.event.logical.shared.SelectionEvent;
-import com.google.gwt.event.logical.shared.SelectionHandler;
-import com.google.gwt.place.shared.Place;
-import com.google.gwt.place.shared.PlaceChangeEvent;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
@@ -30,12 +26,7 @@ import com.googlecode.mgwt.mvp.client.AnimatableDisplay;
 import com.googlecode.mgwt.mvp.client.AnimatingActivityManager;
 import com.googlecode.mgwt.ui.client.MGWT;
 import com.googlecode.mgwt.ui.client.MGWTSettings;
-import com.googlecode.mgwt.ui.client.MGWTStyle;
-import com.googlecode.mgwt.ui.client.theme.base.TabBarCss;
 import com.googlecode.mgwt.ui.client.widget.tabbar.RootTabPanel;
-import com.googlecode.mgwt.ui.client.widget.tabbar.TabBarButton;
-
-import de.hska.iwi.mgwt.demo.client.activities.HomePlace;
 
 /**
  * @author Daniel Kurka
@@ -66,48 +57,10 @@ public class MgwtAppEntryPoint implements EntryPoint {
 
 	}
 
-	private void createPhoneDisplay(ClientFactory clientFactory) {
-		AnimatableDisplay display = GWT.create(AnimatableDisplay.class);
-
-		PhoneActivityMapper appActivityMapper = new PhoneActivityMapper(
-				clientFactory);
-
-		PhoneAnimationMapper appAnimationMapper = new PhoneAnimationMapper();
-
-		final AnimatingActivityManager activityManager = new AnimatingActivityManager(
-				appActivityMapper, appAnimationMapper,
-				clientFactory.getEventBus());
-
-		activityManager.setDisplay(display);
-
-		RootPanel.get().add(clientFactory.getRootTabPanel(display));
-		RootPanel.get().add(display);
-
-		clientFactory.getRootTabPanel(display).addSelectionHandler(
-			new SelectionHandler<Integer>() {
-				@Override
-				public void onSelection(SelectionEvent<Integer> event) {
-					Place newPlace;
-					switch (event.getSelectedItem()) {
-					case 0:
-						newPlace = new HomePlace();
-						break;
-					case 1:
-						newPlace = new HomePlace();
-						break;
-					case 2:
-						newPlace = new HomePlace();
-						break;
-					default:
-						newPlace = null;
-						break;
-					}
-					if (newPlace != null) {
-						activityManager.onPlaceChange(new PlaceChangeEvent(
-								newPlace));
-					}
-				}
-			});
+	private void createPhoneDisplay(ClientFactory clientFactory) {		
+		// Add RootTabPanel
+		RootPanel.get().add(clientFactory.getDisplay());
+		RootPanel.get().add(clientFactory.getRootTabPanel());
 	}
 
 	@Override

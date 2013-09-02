@@ -31,6 +31,8 @@ public interface ClientFactory {
 	
 	public HomeView getHomeView();
 	
-	public RootTabPanel getRootTabPanel(AnimatableDisplay display);
+	public RootTabPanel getRootTabPanel();
+
+	public AnimatableDisplay getDisplay();
 
 }

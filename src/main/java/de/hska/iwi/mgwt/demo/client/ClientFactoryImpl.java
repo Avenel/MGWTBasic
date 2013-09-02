@@ -15,16 +15,27 @@
  */
 package de.hska.iwi.mgwt.demo.client;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.event.logical.shared.SelectionHandler;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceChangeEvent;
 import com.google.gwt.place.shared.PlaceController;
+import com.google.gwt.user.client.Window;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.SimpleEventBus;
+import com.googlecode.mgwt.dom.client.event.touch.TouchCancelEvent;
+import com.googlecode.mgwt.dom.client.event.touch.TouchEndEvent;
+import com.googlecode.mgwt.dom.client.event.touch.TouchHandler;
+import com.googlecode.mgwt.dom.client.event.touch.TouchMoveEvent;
+import com.googlecode.mgwt.dom.client.event.touch.TouchStartEvent;
 import com.googlecode.mgwt.mvp.client.AnimatableDisplay;
+import com.googlecode.mgwt.mvp.client.AnimatingActivityManager;
 import com.googlecode.mgwt.ui.client.MGWTStyle;
 import com.googlecode.mgwt.ui.client.theme.base.TabBarCss;
+import com.googlecode.mgwt.ui.client.widget.tabbar.FavoritesTabBarButton;
+import com.googlecode.mgwt.ui.client.widget.tabbar.HistoryTabBarButton;
+import com.googlecode.mgwt.ui.client.widget.tabbar.MostViewedTabBarButton;
 import com.googlecode.mgwt.ui.client.widget.tabbar.RootTabPanel;
 import com.googlecode.mgwt.ui.client.widget.tabbar.TabBarButton;
 
@@ -42,12 +53,20 @@ public class ClientFactoryImpl implements ClientFactory {
 	private PlaceController placeController;
 	private HomeViewImpl homeView;
 	private RootTabPanel rootTabPanel;
-
+	private AnimatableDisplay display;
+	private PhoneActivityMapper appActivityMapper;
+	private PhoneAnimationMapper appAnimationMapper;
+	private AnimatingActivityManager activityManager;
+	
 	public ClientFactoryImpl() {
 		eventBus = new SimpleEventBus();
-
-		placeController = new PlaceController(eventBus);
-
+		this.display = GWT.create(AnimatableDisplay.class);
+		this.placeController = new PlaceController(eventBus);	
+		this.appActivityMapper = new PhoneActivityMapper(this);
+		this.appAnimationMapper = new PhoneAnimationMapper();
+		this.activityManager = new AnimatingActivityManager(
+				appActivityMapper, appAnimationMapper, this.eventBus);
+		this.activityManager.setDisplay(this.display);
 	}
 
 	@Override
@@ -71,28 +90,55 @@ public class ClientFactoryImpl implements ClientFactory {
 	}
 
 	@Override
-	public RootTabPanel getRootTabPanel(AnimatableDisplay display) {
+	public RootTabPanel getRootTabPanel() {
 		if (this.rootTabPanel == null) {
 			TabBarCss tabBarCss = MGWTStyle.getTheme().getMGWTClientBundle()
 					.getTabBarCss();
-			this.rootTabPanel = new RootTabPanel(tabBarCss, display);
+			this.rootTabPanel = new RootTabPanel(tabBarCss, this.display);
 			this.rootTabPanel.setDisplayTabBarOnTop(false);
 
-			TabBarButton tabBarButtonAktuelles = new TabBarButton(MGWTStyle
-					.getTheme().getMGWTClientBundle().tabBarMostViewedImage());
-			TabBarButton tabBarButtonStudent = new TabBarButton(MGWTStyle
-					.getTheme().getMGWTClientBundle().tabBarFavoritesImage());
-			TabBarButton tabBarButtonVorlesung = new TabBarButton(MGWTStyle
-					.getTheme().getMGWTClientBundle().tabBarHistoryImage());
-
+			TabBarButton tabBarButtonAktuelles = new MostViewedTabBarButton();
+			TabBarButton tabBarButtonStudent = new FavoritesTabBarButton();
+			TabBarButton tabBarButtonVorlesung = new HistoryTabBarButton();
+			
 			this.rootTabPanel.add(tabBarButtonAktuelles);
 			this.rootTabPanel.add(tabBarButtonStudent);
 			this.rootTabPanel.add(tabBarButtonVorlesung);
 
+			this.rootTabPanel
+					.addSelectionHandler(new SelectionHandler<Integer>() {
+						@Override
+						public void onSelection(SelectionEvent<Integer> event) {
+							Place newPlace;
+							switch (event.getSelectedItem()) {
+							case 0:
+								newPlace = new HomePlace();
+								break;
+							case 1:
+								newPlace = new HomePlace();
+								break;
+							case 2:
+								newPlace = new HomePlace();
+								break;
+							default:
+								newPlace = null;
+								break;
+							}
+							if (newPlace != null) {
+								activityManager.onPlaceChange(new PlaceChangeEvent(newPlace));
+							}
+						}
+					});
+
 			this.rootTabPanel.setSelectedChild(0);
 		}
-		
+
 		return this.rootTabPanel;
+	}
+
+	@Override
+	public AnimatableDisplay getDisplay() {
+		return this.display;
 	}
 
 }
