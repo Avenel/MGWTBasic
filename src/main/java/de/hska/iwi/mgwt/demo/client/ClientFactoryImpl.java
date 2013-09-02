@@ -42,6 +42,12 @@ import com.googlecode.mgwt.ui.client.widget.tabbar.TabBarButton;
 import de.hska.iwi.mgwt.demo.client.activities.HomePlace;
 import de.hska.iwi.mgwt.demo.client.activities.HomeView;
 import de.hska.iwi.mgwt.demo.client.activities.HomeViewImpl;
+import de.hska.iwi.mgwt.demo.client.activities.LecturePlace;
+import de.hska.iwi.mgwt.demo.client.activities.LectureView;
+import de.hska.iwi.mgwt.demo.client.activities.LectureViewImpl;
+import de.hska.iwi.mgwt.demo.client.activities.StudentPlace;
+import de.hska.iwi.mgwt.demo.client.activities.StudentView;
+import de.hska.iwi.mgwt.demo.client.activities.StudentViewImpl;
 
 /**
  * @author Daniel Kurka
@@ -52,6 +58,8 @@ public class ClientFactoryImpl implements ClientFactory {
 	private EventBus eventBus;
 	private PlaceController placeController;
 	private HomeViewImpl homeView;
+	private StudentViewImpl studentView;
+	private LectureViewImpl lectureView;
 	private RootTabPanel rootTabPanel;
 	private AnimatableDisplay display;
 	private PhoneActivityMapper appActivityMapper;
@@ -88,6 +96,26 @@ public class ClientFactoryImpl implements ClientFactory {
 
 		return this.homeView;
 	}
+	
+	@Override
+	public StudentView getStudentView() {
+		if (this.studentView == null) {
+			this.studentView = new StudentViewImpl();
+			this.studentView.addContentToRootTabPanel(this.rootTabPanel);
+		}
+
+		return this.studentView;
+	}
+	
+	@Override
+	public LectureView getLectureView() {
+		if (this.lectureView == null) {
+			this.lectureView = new LectureViewImpl();
+			this.lectureView.addContentToRootTabPanel(this.rootTabPanel);
+		}
+
+		return this.lectureView;
+	}
 
 	@Override
 	public RootTabPanel getRootTabPanel() {
@@ -115,10 +143,10 @@ public class ClientFactoryImpl implements ClientFactory {
 								newPlace = new HomePlace();
 								break;
 							case 1:
-								newPlace = new HomePlace();
+								newPlace = new StudentPlace();
 								break;
 							case 2:
-								newPlace = new HomePlace();
+								newPlace = new LecturePlace();
 								break;
 							default:
 								newPlace = null;
