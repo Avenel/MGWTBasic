@@ -29,6 +29,9 @@ import com.googlecode.mgwt.dom.client.event.touch.TouchEndEvent;
 import com.googlecode.mgwt.dom.client.event.touch.TouchHandler;
 import com.googlecode.mgwt.dom.client.event.touch.TouchMoveEvent;
 import com.googlecode.mgwt.dom.client.event.touch.TouchStartEvent;
+import com.googlecode.mgwt.dom.client.recognizer.swipe.SwipeEndEvent;
+import com.googlecode.mgwt.dom.client.recognizer.swipe.SwipeEndHandler;
+import com.googlecode.mgwt.dom.client.recognizer.swipe.SwipeEvent;
 import com.googlecode.mgwt.mvp.client.AnimatableDisplay;
 import com.googlecode.mgwt.mvp.client.AnimatingActivityManager;
 import com.googlecode.mgwt.ui.client.MGWTStyle;
@@ -38,6 +41,7 @@ import com.googlecode.mgwt.ui.client.widget.tabbar.HistoryTabBarButton;
 import com.googlecode.mgwt.ui.client.widget.tabbar.MostViewedTabBarButton;
 import com.googlecode.mgwt.ui.client.widget.tabbar.RootTabPanel;
 import com.googlecode.mgwt.ui.client.widget.tabbar.TabBarButton;
+import com.googlecode.mgwt.ui.client.widget.touch.TouchDelegate;
 
 import de.hska.iwi.mgwt.demo.client.activities.HomePlace;
 import de.hska.iwi.mgwt.demo.client.activities.HomeView;
@@ -66,15 +70,57 @@ public class ClientFactoryImpl implements ClientFactory {
 	private PhoneAnimationMapper appAnimationMapper;
 	private AnimatingActivityManager activityManager;
 	
+	private int selectedChild = 0;
+
 	public ClientFactoryImpl() {
 		eventBus = new SimpleEventBus();
 		this.display = GWT.create(AnimatableDisplay.class);
-		this.placeController = new PlaceController(eventBus);	
+		this.placeController = new PlaceController(eventBus);
 		this.appActivityMapper = new PhoneActivityMapper(this);
 		this.appAnimationMapper = new PhoneAnimationMapper();
-		this.activityManager = new AnimatingActivityManager(
-				appActivityMapper, appAnimationMapper, this.eventBus);
+		this.activityManager = new AnimatingActivityManager(appActivityMapper,
+				appAnimationMapper, this.eventBus);
 		this.activityManager.setDisplay(this.display);
+
+		TouchDelegate touchDel = new TouchDelegate(display.asWidget());
+
+		touchDel.addSwipeEndHandler(new SwipeEndHandler() {
+			@Override
+			public void onSwipeEnd(SwipeEndEvent event) {
+				if (event.getDirection() == SwipeEvent.DIRECTION.RIGHT_TO_LEFT) {
+					selectedChild++;
+					if (selectedChild == 3) selectedChild = 0;
+					rootTabPanel.setSelectedChild(selectedChild);
+				} else if (event.getDirection() == SwipeEvent.DIRECTION.LEFT_TO_RIGHT) {
+					selectedChild--;
+					if (selectedChild == -1) selectedChild = 2;
+					rootTabPanel.setSelectedChild(selectedChild);
+				}
+				Place newPlace;
+				switch (selectedChild) {
+				case 0:
+					newPlace = new HomePlace();
+					selectedChild = 0;
+					break;
+				case 1:
+					newPlace = new StudentPlace();
+					selectedChild = 1;
+					break;
+				case 2:
+					newPlace = new LecturePlace();
+					selectedChild = 2;
+					break;
+				default:
+					newPlace = null;
+					break;
+				}
+				if (newPlace != null) {
+					activityManager
+							.onPlaceChange(new PlaceChangeEvent(
+									newPlace));
+				}
+			}
+		});
 	}
 
 	@Override
@@ -96,7 +142,7 @@ public class ClientFactoryImpl implements ClientFactory {
 
 		return this.homeView;
 	}
-	
+
 	@Override
 	public StudentView getStudentView() {
 		if (this.studentView == null) {
@@ -106,7 +152,7 @@ public class ClientFactoryImpl implements ClientFactory {
 
 		return this.studentView;
 	}
-	
+
 	@Override
 	public LectureView getLectureView() {
 		if (this.lectureView == null) {
@@ -128,7 +174,7 @@ public class ClientFactoryImpl implements ClientFactory {
 			TabBarButton tabBarButtonAktuelles = new MostViewedTabBarButton();
 			TabBarButton tabBarButtonStudent = new FavoritesTabBarButton();
 			TabBarButton tabBarButtonVorlesung = new HistoryTabBarButton();
-			
+
 			this.rootTabPanel.add(tabBarButtonAktuelles);
 			this.rootTabPanel.add(tabBarButtonStudent);
 			this.rootTabPanel.add(tabBarButtonVorlesung);
@@ -141,19 +187,24 @@ public class ClientFactoryImpl implements ClientFactory {
 							switch (event.getSelectedItem()) {
 							case 0:
 								newPlace = new HomePlace();
+								selectedChild = 0;
 								break;
 							case 1:
 								newPlace = new StudentPlace();
+								selectedChild = 1;
 								break;
 							case 2:
 								newPlace = new LecturePlace();
+								selectedChild = 2;
 								break;
 							default:
 								newPlace = null;
 								break;
 							}
 							if (newPlace != null) {
-								activityManager.onPlaceChange(new PlaceChangeEvent(newPlace));
+								activityManager
+										.onPlaceChange(new PlaceChangeEvent(
+												newPlace));
 							}
 						}
 					});
