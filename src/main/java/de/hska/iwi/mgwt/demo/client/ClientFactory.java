@@ -22,6 +22,7 @@ import com.googlecode.mgwt.ui.client.widget.tabbar.RootTabPanel;
 
 import de.hska.iwi.mgwt.demo.client.activities.HomeView;
 import de.hska.iwi.mgwt.demo.client.activities.LectureView;
+import de.hska.iwi.mgwt.demo.client.activities.NewsDetailView;
 import de.hska.iwi.mgwt.demo.client.activities.StudentView;
 
 
@@ -35,10 +36,12 @@ public interface ClientFactory {
 	
 	public StudentView getStudentView();
 	
+	public LectureView getLectureView();
+	
+	public NewsDetailView getNewsDetailView();
+	
 	public RootTabPanel getRootTabPanel();
 
 	public AnimatableDisplay getDisplay();
-
-	public LectureView getLectureView();
 
 }

@@ -1,7 +1,5 @@
 package de.hska.iwi.mgwt.demo.client.activities;
 
-import java.util.List;
-
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
@@ -12,36 +10,26 @@ import de.hska.iwi.mgwt.demo.client.ClientFactory;
 import de.hska.iwi.mgwt.demo.client.model.News;
 import de.hska.iwi.mgwt.demo.client.model.NewsUtility;
 
-public class HomeActivity extends MGWTAbstractActivity {
+public class NewsDetailActivity extends MGWTAbstractActivity {
 	
 	private final ClientFactory clientFactory;
 	
-	private List<News> currentModel;
+	private News currentModel;
 	
-	public HomeActivity(ClientFactory clientFactory) {
+	public NewsDetailActivity(ClientFactory clientFactory, String id) {
 		this.clientFactory = clientFactory;
+		this.currentModel = NewsUtility.getNewsById(id);
 	}
 	
 	@Override 
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
-		HomeView view = this.clientFactory.getHomeView();
+		NewsDetailView view = this.clientFactory.getNewsDetailView();
+		view.setTitle(currentModel.getTitle());
+		view.setContent(currentModel.getContent());
 		
-		this.currentModel = NewsUtility.getSortedNewsList();
-		
-		view.render(currentModel);
-		
-		addHandlerRegistration(view.getList().addCellSelectedHandler(new CellSelectedHandler() {
-
-			@Override
-			public void onCellSelected(CellSelectedEvent event) {
-				News selectedNews = currentModel.get(event.getIndex());
-				NewsDetailPlace newsDetailPlace = new NewsDetailPlace(selectedNews.getId());
-				clientFactory.getPlaceController().goTo(newsDetailPlace);
-			}
-			
-		}));
+		view.addContentToRootTabPanel(this.clientFactory.getRootTabPanel());
 		
 		panel.setWidget(view);
 	}
-	
+
 }

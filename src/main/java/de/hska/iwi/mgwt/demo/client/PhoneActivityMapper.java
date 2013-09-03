@@ -9,6 +9,8 @@ import de.hska.iwi.mgwt.demo.client.activities.HomeActivity;
 import de.hska.iwi.mgwt.demo.client.activities.HomePlace;
 import de.hska.iwi.mgwt.demo.client.activities.LectureActivity;
 import de.hska.iwi.mgwt.demo.client.activities.LecturePlace;
+import de.hska.iwi.mgwt.demo.client.activities.NewsDetailActivity;
+import de.hska.iwi.mgwt.demo.client.activities.NewsDetailPlace;
 import de.hska.iwi.mgwt.demo.client.activities.StudentActivity;
 import de.hska.iwi.mgwt.demo.client.activities.StudentPlace;
 
@@ -34,6 +36,9 @@ public class PhoneActivityMapper implements ActivityMapper {
 		}
 		if (place.getClass().equals(LecturePlace.class)) {
 			return new LectureActivity(clientFactory);
+		}
+		if (place.getClass().equals(NewsDetailPlace.class)) {
+			return new NewsDetailActivity(clientFactory, ((NewsDetailPlace) place).getId());
 		}
 		
 		return new HomeActivity(clientFactory);

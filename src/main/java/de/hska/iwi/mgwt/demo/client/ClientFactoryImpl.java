@@ -39,6 +39,8 @@ import de.hska.iwi.mgwt.demo.client.activities.HomeView;
 import de.hska.iwi.mgwt.demo.client.activities.HomeViewImpl;
 import de.hska.iwi.mgwt.demo.client.activities.LectureView;
 import de.hska.iwi.mgwt.demo.client.activities.LectureViewImpl;
+import de.hska.iwi.mgwt.demo.client.activities.NewsDetailView;
+import de.hska.iwi.mgwt.demo.client.activities.NewsDetailViewImpl;
 import de.hska.iwi.mgwt.demo.client.activities.StudentView;
 import de.hska.iwi.mgwt.demo.client.activities.StudentViewImpl;
 import de.hska.iwi.mgwt.demo.events.ChangePage;
@@ -54,6 +56,7 @@ public class ClientFactoryImpl implements ClientFactory {
 	private HomeViewImpl homeView;
 	private StudentViewImpl studentView;
 	private LectureViewImpl lectureView;
+	private NewsDetailViewImpl newsDetailView;
 	private RootTabPanel rootTabPanel;
 	private AnimatableDisplay display;
 	private PhoneActivityMapper appActivityMapper;
@@ -61,6 +64,7 @@ public class ClientFactoryImpl implements ClientFactory {
 	private AnimatingActivityManager activityManager;
 	
 	private int selectedChild = 0;
+	
 
 	public ClientFactoryImpl() {
 		eventBus = new SimpleEventBus();
@@ -132,6 +136,15 @@ public class ClientFactoryImpl implements ClientFactory {
 		return this.lectureView;
 	}
 
+	@Override
+	public NewsDetailView getNewsDetailView() {
+		if (this.newsDetailView == null) {
+			this.newsDetailView = new NewsDetailViewImpl();
+		}
+
+		return this.newsDetailView;
+	}
+	
 	@Override
 	public RootTabPanel getRootTabPanel() {
 		if (this.rootTabPanel == null) {
