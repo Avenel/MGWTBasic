@@ -18,17 +18,9 @@ package de.hska.iwi.mgwt.demo.client;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.event.logical.shared.SelectionHandler;
-import com.google.gwt.place.shared.Place;
-import com.google.gwt.place.shared.PlaceChangeEvent;
 import com.google.gwt.place.shared.PlaceController;
-import com.google.gwt.user.client.Window;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.SimpleEventBus;
-import com.googlecode.mgwt.dom.client.event.touch.TouchCancelEvent;
-import com.googlecode.mgwt.dom.client.event.touch.TouchEndEvent;
-import com.googlecode.mgwt.dom.client.event.touch.TouchHandler;
-import com.googlecode.mgwt.dom.client.event.touch.TouchMoveEvent;
-import com.googlecode.mgwt.dom.client.event.touch.TouchStartEvent;
 import com.googlecode.mgwt.dom.client.recognizer.swipe.SwipeEndEvent;
 import com.googlecode.mgwt.dom.client.recognizer.swipe.SwipeEndHandler;
 import com.googlecode.mgwt.dom.client.recognizer.swipe.SwipeEvent;
@@ -43,15 +35,13 @@ import com.googlecode.mgwt.ui.client.widget.tabbar.RootTabPanel;
 import com.googlecode.mgwt.ui.client.widget.tabbar.TabBarButton;
 import com.googlecode.mgwt.ui.client.widget.touch.TouchDelegate;
 
-import de.hska.iwi.mgwt.demo.client.activities.HomePlace;
 import de.hska.iwi.mgwt.demo.client.activities.HomeView;
 import de.hska.iwi.mgwt.demo.client.activities.HomeViewImpl;
-import de.hska.iwi.mgwt.demo.client.activities.LecturePlace;
 import de.hska.iwi.mgwt.demo.client.activities.LectureView;
 import de.hska.iwi.mgwt.demo.client.activities.LectureViewImpl;
-import de.hska.iwi.mgwt.demo.client.activities.StudentPlace;
 import de.hska.iwi.mgwt.demo.client.activities.StudentView;
 import de.hska.iwi.mgwt.demo.client.activities.StudentViewImpl;
+import de.hska.iwi.mgwt.demo.events.ChangePage;
 
 /**
  * @author Daniel Kurka
@@ -89,36 +79,15 @@ public class ClientFactoryImpl implements ClientFactory {
 			public void onSwipeEnd(SwipeEndEvent event) {
 				if (event.getDirection() == SwipeEvent.DIRECTION.RIGHT_TO_LEFT) {
 					selectedChild++;
-					if (selectedChild == 3) selectedChild = 0;
+					if (selectedChild == ChangePage.pageCount) selectedChild = 0;
 					rootTabPanel.setSelectedChild(selectedChild);
 				} else if (event.getDirection() == SwipeEvent.DIRECTION.LEFT_TO_RIGHT) {
 					selectedChild--;
-					if (selectedChild == -1) selectedChild = 2;
+					if (selectedChild == -1) selectedChild = ChangePage.pageCount-1;
 					rootTabPanel.setSelectedChild(selectedChild);
 				}
-				Place newPlace;
-				switch (selectedChild) {
-				case 0:
-					newPlace = new HomePlace();
-					selectedChild = 0;
-					break;
-				case 1:
-					newPlace = new StudentPlace();
-					selectedChild = 1;
-					break;
-				case 2:
-					newPlace = new LecturePlace();
-					selectedChild = 2;
-					break;
-				default:
-					newPlace = null;
-					break;
-				}
-				if (newPlace != null) {
-					activityManager
-							.onPlaceChange(new PlaceChangeEvent(
-									newPlace));
-				}
+				
+				ChangePage.changePageTo(selectedChild, activityManager);
 			}
 		});
 	}
@@ -183,29 +152,7 @@ public class ClientFactoryImpl implements ClientFactory {
 					.addSelectionHandler(new SelectionHandler<Integer>() {
 						@Override
 						public void onSelection(SelectionEvent<Integer> event) {
-							Place newPlace;
-							switch (event.getSelectedItem()) {
-							case 0:
-								newPlace = new HomePlace();
-								selectedChild = 0;
-								break;
-							case 1:
-								newPlace = new StudentPlace();
-								selectedChild = 1;
-								break;
-							case 2:
-								newPlace = new LecturePlace();
-								selectedChild = 2;
-								break;
-							default:
-								newPlace = null;
-								break;
-							}
-							if (newPlace != null) {
-								activityManager
-										.onPlaceChange(new PlaceChangeEvent(
-												newPlace));
-							}
+							ChangePage.changePageTo(event.getSelectedItem(), activityManager);
 						}
 					});
 
