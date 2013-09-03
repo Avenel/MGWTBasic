@@ -17,15 +17,12 @@ public class ChangePage {
 		switch (selection) {
 		case 0:
 			newPlace = new HomePlace();
-			selection = 0;
 			break;
 		case 1:
 			newPlace = new StudentPlace();
-			selection = 1;
 			break;
 		case 2:
 			newPlace = new LecturePlace();
-			selection = 2;
 			break;
 		default:
 			newPlace = null;
