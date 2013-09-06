@@ -19,13 +19,16 @@ import com.google.gwt.place.shared.PlaceHistoryMapper;
 import com.google.gwt.place.shared.WithTokenizers;
 
 import de.hska.iwi.mgwt.demo.client.activities.HomePlace.HomePlaceTokenizer;
+import de.hska.iwi.mgwt.demo.client.activities.LecturePlace;
 import de.hska.iwi.mgwt.demo.client.activities.NewsDetailPlace;
 import de.hska.iwi.mgwt.demo.client.activities.NewsDetailPlace.NewsDetailPlaceTokenizer;
+import de.hska.iwi.mgwt.demo.client.activities.StudentPlace;
 
 /**
  * @author Daniel Kurka
  * 
  */
-@WithTokenizers({ HomePlaceTokenizer.class, NewsDetailPlace.NewsDetailPlaceTokenizer.class})
+@WithTokenizers({ HomePlaceTokenizer.class, NewsDetailPlace.NewsDetailPlaceTokenizer.class, StudentPlace.StudentPlaceTokenizer.class, 
+					LecturePlace.LecturePlaceTokenizer.class})
 public interface AppPlaceHistoryMapper extends PlaceHistoryMapper {
 }

@@ -91,7 +91,7 @@ public class ClientFactoryImpl implements ClientFactory {
 					rootTabPanel.setSelectedChild(selectedChild);
 				}
 				
-				ChangePage.changePageTo(selectedChild, activityManager);
+				ChangePage.changePageTo(selectedChild, activityManager, getPlaceController());
 			}
 		});
 	}
@@ -165,7 +165,7 @@ public class ClientFactoryImpl implements ClientFactory {
 					.addSelectionHandler(new SelectionHandler<Integer>() {
 						@Override
 						public void onSelection(SelectionEvent<Integer> event) {
-							ChangePage.changePageTo(event.getSelectedItem(), activityManager);
+							ChangePage.changePageTo(event.getSelectedItem(), activityManager, getPlaceController());
 						}
 					});
 
