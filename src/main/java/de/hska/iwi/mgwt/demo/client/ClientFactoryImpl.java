@@ -154,9 +154,12 @@ public class ClientFactoryImpl implements ClientFactory {
 			this.rootTabPanel.setDisplayTabBarOnTop(false);
 
 			TabBarButton tabBarButtonAktuelles = new MostViewedTabBarButton();
+			tabBarButtonAktuelles.setText("Aktuelles");
 			TabBarButton tabBarButtonStudent = new FavoritesTabBarButton();
+			tabBarButtonStudent.setText("Student");
 			TabBarButton tabBarButtonVorlesung = new HistoryTabBarButton();
-
+			tabBarButtonVorlesung.setText("Vorlesung");
+			
 			this.rootTabPanel.add(tabBarButtonAktuelles);
 			this.rootTabPanel.add(tabBarButtonStudent);
 			this.rootTabPanel.add(tabBarButtonVorlesung);
