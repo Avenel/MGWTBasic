@@ -41,8 +41,16 @@ public class NewsUtility {
 		
 		if (newsList == null) {
 			newsList = new ArrayList<News>();
+			// adding user feedback, fetching data
+			News news = new News();
+			news.setId("1");
+			news.setTitle("Fetching Data ...");
+			news.setContent("Fetching data ...");
+			news.setOrganisation("Loading...");
+			news.setDate(new Date());
+			newsList.add(news);
 
-			String url = "http://localhost:3000/news?format=json";
+			String url = "http://192.168.2.8:3000/news?format=json";
 			RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 					URL.encode(url));
 
@@ -77,7 +85,8 @@ public class NewsUtility {
 							if (jsonValue.isObject().get("id").isNumber() == null) {
 								Window.alert("Error parsing the JSON (isNumber)");
 							}
-
+							
+							newsList = new ArrayList<News>();
 							for (int i=0; i < jsonArray.size(); i++) {
 								News news = News.fromJson(jsonArray.get(i).isObject());
 								newsList.add(news);
