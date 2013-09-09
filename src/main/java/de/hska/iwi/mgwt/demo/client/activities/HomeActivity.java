@@ -26,9 +26,11 @@ public class HomeActivity extends MGWTAbstractActivity {
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
 		HomeView view = this.clientFactory.getHomeView();
 		
+		NewsUtility.subscribe(view.getCellList());
 		this.currentModel = NewsUtility.getSortedNewsList();
 		
 		view.render(currentModel);
+		panel.setWidget(view);
 		
 		addHandlerRegistration(view.getList().addCellSelectedHandler(new CellSelectedHandler() {
 
@@ -40,8 +42,6 @@ public class HomeActivity extends MGWTAbstractActivity {
 			}
 			
 		}));
-		
-		panel.setWidget(view);
 	}
 	
 }

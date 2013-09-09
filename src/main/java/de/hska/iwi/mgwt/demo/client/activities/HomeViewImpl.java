@@ -52,4 +52,9 @@ public class HomeViewImpl implements HomeView {
 		rtp.getAnimatableDisplay().setFirstWidget(main);
 	}
 
+	@Override
+	public CellList getCellList() {
+		return this.cellList;
+	}
+
 }
