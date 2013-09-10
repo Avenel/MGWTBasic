@@ -9,6 +9,7 @@ import com.googlecode.mgwt.mvp.client.AnimationEndCallback;
 import com.googlecode.mgwt.ui.client.widget.CellList;
 import com.googlecode.mgwt.ui.client.widget.HeaderPanel;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
+import com.googlecode.mgwt.ui.client.widget.ScrollPanel;
 import com.googlecode.mgwt.ui.client.widget.celllist.HasCellSelectedHandler;
 import com.googlecode.mgwt.ui.client.widget.tabbar.MostViewedTabBarButton;
 import com.googlecode.mgwt.ui.client.widget.tabbar.RootTabPanel;
@@ -28,8 +29,11 @@ public class HomeViewImpl implements HomeView {
 		headerPanel.setCenter("Schwarzes Brett");
 		main.add(headerPanel);
 		
+		ScrollPanel panel = new ScrollPanel();
+		main.add(panel);
+		
 		this.cellList = new CellList<News>(new NewsCell());
-		main.add(cellList);
+		panel.add(cellList);
 	}
 	
 	@Override
