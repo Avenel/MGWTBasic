@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
@@ -20,12 +22,13 @@ import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
 import com.googlecode.mgwt.ui.client.widget.CellList;
 
 import de.hska.iwi.mgwt.demo.client.activities.HomeActivity;
+import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
 
-public class NewsUtility {
+public class NewsUtility extends Observable {
 
 	private static List<News> newsList;
 	private static HashMap<String, News> newsMap;
-	private static List<MGWTAbstractActivity> subscribers;
+	private static List<ObserverActivity> subscribers;
 	
 	public static List<News> getSortedNewsList() {
 		init();
@@ -102,8 +105,8 @@ public class NewsUtility {
 							}
 							
 							// Update subscribers
-							for (MGWTAbstractActivity w : subscribers) {
-								((HomeActivity) w).update(newsList);
+							for (ObserverActivity o : subscribers) {
+								o.update(newsList);// update(this, newsList);
 							}
 							
 						} else {
@@ -120,11 +123,12 @@ public class NewsUtility {
 		}
 	}
 	
-	public static void subscribe(MGWTAbstractActivity homeActivity) {
+	public static void subscribe(ObserverActivity homeActivity) {
 		if (subscribers == null) {
-			subscribers = new ArrayList<MGWTAbstractActivity>();
+			subscribers = new ArrayList<ObserverActivity>();
 		}
 		subscribers.add(homeActivity);
 	}
+	
 
 }

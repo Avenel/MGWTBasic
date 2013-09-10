@@ -1,6 +1,8 @@
 package de.hska.iwi.mgwt.demo.client.activities;
 
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
@@ -12,7 +14,7 @@ import de.hska.iwi.mgwt.demo.client.ClientFactory;
 import de.hska.iwi.mgwt.demo.client.model.News;
 import de.hska.iwi.mgwt.demo.client.model.NewsUtility;
 
-public class HomeActivity extends MGWTAbstractActivity {
+public class HomeActivity extends MGWTAbstractActivity implements ObserverActivity {
 	
 	private final ClientFactory clientFactory;
 	
@@ -53,8 +55,10 @@ public class HomeActivity extends MGWTAbstractActivity {
 		this.currentModel = currentModel;
 	}
 	
-	public void update(List<News> currentModel) {
-		this.setCurrentModel(currentModel);
+
+	@Override
+	public void update(Object arg) {
+		this.setCurrentModel((List<News>)arg);
 		view.render(currentModel);
 	}
 	
