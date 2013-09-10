@@ -1,11 +1,8 @@
 package de.hska.iwi.mgwt.demo.client.activities;
 
 import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
-import com.googlecode.mgwt.ui.client.widget.celllist.CellSelectedEvent;
-import com.googlecode.mgwt.ui.client.widget.celllist.CellSelectedHandler;
 
 import de.hska.iwi.mgwt.demo.client.ClientFactory;
 import de.hska.iwi.mgwt.demo.client.model.News;

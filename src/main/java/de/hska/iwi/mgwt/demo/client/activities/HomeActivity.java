@@ -1,8 +1,6 @@
 package de.hska.iwi.mgwt.demo.client.activities;
 
 import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;

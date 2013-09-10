@@ -89,6 +89,8 @@ public class ClientFactoryImpl implements ClientFactory {
 					selectedChild--;
 					if (selectedChild == -1) selectedChild = ChangePage.pageCount-1;
 					rootTabPanel.setSelectedChild(selectedChild);
+				} else {
+					return;
 				}
 				
 				ChangePage.changePageTo(selectedChild, activityManager, getPlaceController());

@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
 
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
@@ -17,14 +15,10 @@ import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.Widget;
-import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
-import com.googlecode.mgwt.ui.client.widget.CellList;
 
-import de.hska.iwi.mgwt.demo.client.activities.HomeActivity;
 import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
 
-public class NewsUtility extends Observable {
+public class NewsUtility {
 
 	private static List<News> newsList;
 	private static HashMap<String, News> newsMap;

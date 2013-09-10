@@ -3,7 +3,6 @@ package de.hska.iwi.mgwt.demo.client.activities;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.HeadingElement;
 import com.google.gwt.dom.client.Text;
-import com.google.gwt.dom.client.TitleElement;
 import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.mgwt.ui.client.widget.HeaderPanel;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
