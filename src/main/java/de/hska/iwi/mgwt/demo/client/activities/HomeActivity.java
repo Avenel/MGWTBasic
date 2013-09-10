@@ -17,6 +17,7 @@ public class HomeActivity extends MGWTAbstractActivity {
 	private final ClientFactory clientFactory;
 	
 	private List<News> currentModel;
+	private HomeView view;
 	
 	public HomeActivity(ClientFactory clientFactory) {
 		this.clientFactory = clientFactory;
@@ -24,9 +25,9 @@ public class HomeActivity extends MGWTAbstractActivity {
 	
 	@Override 
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
-		HomeView view = this.clientFactory.getHomeView();
+		view = this.clientFactory.getHomeView();
 		
-		NewsUtility.subscribe(view.getCellList());
+		NewsUtility.subscribe(this);
 		this.currentModel = NewsUtility.getSortedNewsList();
 		
 		view.render(currentModel);
@@ -42,6 +43,19 @@ public class HomeActivity extends MGWTAbstractActivity {
 			}
 			
 		}));
+	}
+
+	public List<News> getCurrentModel() {
+		return currentModel;
+	}
+
+	public void setCurrentModel(List<News> currentModel) {
+		this.currentModel = currentModel;
+	}
+	
+	public void update(List<News> currentModel) {
+		this.setCurrentModel(currentModel);
+		view.render(currentModel);
 	}
 	
 }

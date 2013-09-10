@@ -16,13 +16,16 @@ import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
+import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
 import com.googlecode.mgwt.ui.client.widget.CellList;
+
+import de.hska.iwi.mgwt.demo.client.activities.HomeActivity;
 
 public class NewsUtility {
 
 	private static List<News> newsList;
 	private static HashMap<String, News> newsMap;
-	private static List<Widget> subscribers;
+	private static List<MGWTAbstractActivity> subscribers;
 	
 	public static List<News> getSortedNewsList() {
 		init();
@@ -99,10 +102,8 @@ public class NewsUtility {
 							}
 							
 							// Update subscribers
-							for (Widget w : subscribers) {
-								if (w instanceof CellList) {
-									((CellList<News>) w).render(newsList);
-								}
+							for (MGWTAbstractActivity w : subscribers) {
+								((HomeActivity) w).update(newsList);
 							}
 							
 						} else {
@@ -119,11 +120,11 @@ public class NewsUtility {
 		}
 	}
 	
-	public static void subscribe(Widget w) {
+	public static void subscribe(MGWTAbstractActivity homeActivity) {
 		if (subscribers == null) {
-			subscribers = new ArrayList<Widget>();
+			subscribers = new ArrayList<MGWTAbstractActivity>();
 		}
-		subscribers.add(w);
+		subscribers.add(homeActivity);
 	}
 
 }
