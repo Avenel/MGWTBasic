@@ -12,7 +12,11 @@ import de.hska.iwi.mgwt.demo.client.model.News;
 public interface HomeView extends IsWidget {
 	
 	public void render(List<News> newsList);
-	public HasCellSelectedHandler getList();
+	public HasCellSelectedHandler getListIM();
+	public HasCellSelectedHandler getListIB();
+	public HasCellSelectedHandler getListIWI();
 	public void addContentToRootTabPanel (RootTabPanel rtp);
-	public CellList getCellList();
+	public CellList<News> getCellListIM();
+	public CellList<News> getCellListIB();
+	public CellList<News> getCellListIWI();
 }
