@@ -50,7 +50,7 @@ public class NewsUtility {
 			news.setDate(new Date());
 			newsList.add(news);
 
-			String url = "http://192.168.2.8:3000/news?format=json";
+			String url = "http://newsserver.herokuapp.com/news?format=json";
 			RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 					URL.encode(url));
 
