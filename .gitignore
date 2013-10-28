@@ -218,3 +218,8 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+/target
+
+
+# gwt unit-cache
+/gwt-unitCache

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
 import com.googlecode.mgwt.ui.client.widget.celllist.CellSelectedEvent;
@@ -13,8 +14,7 @@ import de.hska.iwi.mgwt.demo.client.ClientFactory;
 import de.hska.iwi.mgwt.demo.client.model.News;
 import de.hska.iwi.mgwt.demo.client.model.NewsUtility;
 
-public class HomeActivity extends MGWTAbstractActivity implements
-		ObserverActivity {
+public class HomeActivity extends MGWTAbstractActivity implements ObserverActivity {
 
 	private final ClientFactory clientFactory;
 
@@ -38,49 +38,41 @@ public class HomeActivity extends MGWTAbstractActivity implements
 		panel.setWidget(view);
 
 		// IM Handler
-		addHandlerRegistration(view.getListIM().addCellSelectedHandler(
-				new CellSelectedHandler() {
+		addHandlerRegistration(view.getListIM().addCellSelectedHandler(new CellSelectedHandler() {
 
-					@Override
-					public void onCellSelected(CellSelectedEvent event) {
-						News selectedNews = currentModel.get(event.getIndex());
-						NewsDetailPlace newsDetailPlace = new NewsDetailPlace(
-								selectedNews.getId());
-						clientFactory.getPlaceController()
-								.goTo(newsDetailPlace);
-					}
+			@Override
+			public void onCellSelected(CellSelectedEvent event) {
+				News selectedNews = currentModel.get(event.getIndex());
+				Window.alert(selectedNews.getTitle());
+				NewsDetailPlace newsDetailPlace = new NewsDetailPlace(selectedNews.getId());
+				clientFactory.getPlaceController().goTo(newsDetailPlace);
+			}
 
-				}));
+		}));
 
 		// IB Handler
-		addHandlerRegistration(view.getListIB().addCellSelectedHandler(
-				new CellSelectedHandler() {
+		addHandlerRegistration(view.getListIB().addCellSelectedHandler(new CellSelectedHandler() {
 
-					@Override
-					public void onCellSelected(CellSelectedEvent event) {
-						News selectedNews = currentModel.get(event.getIndex() + startIndexIB - 1);
-						NewsDetailPlace newsDetailPlace = new NewsDetailPlace(
-								selectedNews.getId());
-						clientFactory.getPlaceController()
-								.goTo(newsDetailPlace);
-					}
+			@Override
+			public void onCellSelected(CellSelectedEvent event) {
+				News selectedNews = currentModel.get(event.getIndex() + startIndexIB - 1);
+				NewsDetailPlace newsDetailPlace = new NewsDetailPlace(selectedNews.getId());
+				clientFactory.getPlaceController().goTo(newsDetailPlace);
+			}
 
-				}));
+		}));
 
 		// IM Handler
-		addHandlerRegistration(view.getListIWI().addCellSelectedHandler(
-				new CellSelectedHandler() {
+		addHandlerRegistration(view.getListIWI().addCellSelectedHandler(new CellSelectedHandler() {
 
-					@Override
-					public void onCellSelected(CellSelectedEvent event) {
-						News selectedNews = currentModel.get(event.getIndex() + startIndexIWI - 1);
-						NewsDetailPlace newsDetailPlace = new NewsDetailPlace(
-								selectedNews.getId());
-						clientFactory.getPlaceController()
-								.goTo(newsDetailPlace);
-					}
+			@Override
+			public void onCellSelected(CellSelectedEvent event) {
+				News selectedNews = currentModel.get(event.getIndex() + startIndexIWI - 1);
+				NewsDetailPlace newsDetailPlace = new NewsDetailPlace(selectedNews.getId());
+				clientFactory.getPlaceController().goTo(newsDetailPlace);
+			}
 
-				}));
+		}));
 	}
 
 	public List<News> getCurrentModel() {
@@ -95,7 +87,7 @@ public class HomeActivity extends MGWTAbstractActivity implements
 			if (this.startIndexIB != 0 && this.startIndexIWI != 0) {
 				break;
 			}
-			
+
 			if (news.getOrganisation().equals("[IB]") && this.startIndexIB == 0) {
 				this.startIndexIB = i;
 			}
@@ -106,7 +98,7 @@ public class HomeActivity extends MGWTAbstractActivity implements
 
 			i++;
 		}
-		
+
 		System.out.println("currentModelSize: " + currentModel.size());
 		System.out.println("startIndexIB: " + this.startIndexIB);
 		System.out.println("startIndexIWI: " + this.startIndexIWI);
