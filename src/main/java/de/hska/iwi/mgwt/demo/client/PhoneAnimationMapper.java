@@ -10,10 +10,17 @@ import de.hska.iwi.mgwt.demo.client.activities.LecturePlace;
 import de.hska.iwi.mgwt.demo.client.activities.StudentPlace;
 
 /**
- * 
+ * Maps Animation <-> Place 
+ * @author Martin
+ *
  */
 public class PhoneAnimationMapper implements AnimationMapper {
 
+	/**
+	 * Maps animations between page changes. 
+	 * Used animations: POP: startup
+	 * 					SLIDE(_REVERSE): Place changes 
+	 */
 	@Override
 	public Animation getAnimation(Place oldPlace, Place newPlace) {
 		boolean reverse = false;

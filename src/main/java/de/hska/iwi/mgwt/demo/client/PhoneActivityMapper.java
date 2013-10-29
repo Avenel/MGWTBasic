@@ -18,16 +18,26 @@ import de.hska.iwi.mgwt.demo.client.activities.StudentPlace;
 
 
 /**
- * 
+ * Maps Actity <-> Place.
+ * @author Martin
  */
 public class PhoneActivityMapper implements ActivityMapper {
 
 	private final ClientFactory clientFactory;
 
+	/**
+	 * Public constructor. Initializes clientFactory.
+	 * @param clientFactory
+	 */
 	public PhoneActivityMapper(ClientFactory clientFactory) {
 		this.clientFactory = clientFactory;
 	}
 
+	/**
+	 * Get the activity corresponding to the given place.
+	 * @return Activity: {	HomeActivity, StudentActivity, LectureActivity, NewsDetailActivity,
+	 * 						RegisterSeminarActivity}, default: HomeActivity.
+	 */
 	@Override
 	public Activity getActivity(Place place) {
 		if (place.getClass().equals(HomePlace.class)) {
