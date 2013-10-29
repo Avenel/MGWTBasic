@@ -11,5 +11,6 @@ import de.hska.iwi.mgwt.demo.client.model.MenuItem;
 public interface StudentView extends IsWidget {
 	public void addContentToRootTabPanel (RootTabPanel rtp);
 	public void render(List<MenuItem> menuItems);
-	public HasCellSelectedHandler getMenuItemsList();
+	public HasCellSelectedHandler getMenuItemsListRegister();
+	public HasCellSelectedHandler getMenuItemsListManage();
 }

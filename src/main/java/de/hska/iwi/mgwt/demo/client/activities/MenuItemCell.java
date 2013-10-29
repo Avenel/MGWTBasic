@@ -21,16 +21,12 @@ public class MenuItemCell implements Cell<MenuItem> {
 
 	@Override
 	public boolean canBeSelected(MenuItem item) {
-		if(item.getId().equals("seminar")){
-			return true;
-		}
-		return false;
+		return true;
 	}
 
 	@Override
 	public void render(SafeHtmlBuilder safeHtmlBuilder, MenuItem item) {
 		SafeHtml content = TEMPLATE.content(item.getDisplayText());
-
 		safeHtmlBuilder.append(content);
 
 	}

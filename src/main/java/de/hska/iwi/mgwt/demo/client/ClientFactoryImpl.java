@@ -41,6 +41,8 @@ import de.hska.iwi.mgwt.demo.client.activities.LectureView;
 import de.hska.iwi.mgwt.demo.client.activities.LectureViewImpl;
 import de.hska.iwi.mgwt.demo.client.activities.NewsDetailView;
 import de.hska.iwi.mgwt.demo.client.activities.NewsDetailViewImpl;
+import de.hska.iwi.mgwt.demo.client.activities.RegisterSeminarView;
+import de.hska.iwi.mgwt.demo.client.activities.RegisterSeminarViewImpl;
 import de.hska.iwi.mgwt.demo.client.activities.StudentView;
 import de.hska.iwi.mgwt.demo.client.activities.StudentViewImpl;
 import de.hska.iwi.mgwt.demo.events.ChangePage;
@@ -57,6 +59,7 @@ public class ClientFactoryImpl implements ClientFactory {
 	private StudentViewImpl studentView;
 	private LectureViewImpl lectureView;
 	private NewsDetailViewImpl newsDetailView;
+	private RegisterSeminarViewImpl registerSeminarView;
 	private RootTabPanel rootTabPanel;
 	private AnimatableDisplay display;
 	private PhoneActivityMapper appActivityMapper;
@@ -148,6 +151,15 @@ public class ClientFactoryImpl implements ClientFactory {
 	}
 	
 	@Override
+	public RegisterSeminarView getRegisterSeminarView() {
+		if (registerSeminarView == null) {
+			registerSeminarView = new RegisterSeminarViewImpl();
+		}
+
+		return  registerSeminarView;
+	}
+	
+	@Override
 	public RootTabPanel getRootTabPanel() {
 		if (this.rootTabPanel == null) {
 			TabBarCss tabBarCss = MGWTStyle.getTheme().getMGWTClientBundle()
@@ -184,5 +196,7 @@ public class ClientFactoryImpl implements ClientFactory {
 	public AnimatableDisplay getDisplay() {
 		return this.display;
 	}
+
+	
 
 }
