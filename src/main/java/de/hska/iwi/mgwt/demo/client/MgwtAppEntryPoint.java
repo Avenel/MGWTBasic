@@ -29,11 +29,16 @@ import com.googlecode.mgwt.ui.client.MGWTSettings;
 import com.googlecode.mgwt.ui.client.widget.tabbar.RootTabPanel;
 
 /**
+ * Represents the entry point for mgwt. Initialize and start the
+ * application.
  * @author Daniel Kurka
  * 
  */
 public class MgwtAppEntryPoint implements EntryPoint {
 
+	/**
+	 * Setup ClientFactory, AppPlaceHistoryMapper and Display.
+	 */
 	private void start() {
 
 		// set viewport and other settings for mobile
@@ -57,12 +62,19 @@ public class MgwtAppEntryPoint implements EntryPoint {
 
 	}
 
+	/**
+	 * Setup PhoneDisplay. Adding RootTabPanel to display.
+	 * @param clientFactory
+	 */
 	private void createPhoneDisplay(ClientFactory clientFactory) {		
 		// Add RootTabPanel
 		RootPanel.get().add(clientFactory.getDisplay());
 		RootPanel.get().add(clientFactory.getRootTabPanel());
 	}
 
+	/**
+	 * Starts the application.
+	 */
 	@Override
 	public void onModuleLoad() {
 

@@ -48,6 +48,7 @@ import de.hska.iwi.mgwt.demo.client.activities.StudentViewImpl;
 import de.hska.iwi.mgwt.demo.events.ChangePage;
 
 /**
+ * Factory for EventBus, PlaceController, Views, RootTabPanel and Animateable Display.
  * @author Daniel Kurka
  * 
  */
@@ -69,8 +70,12 @@ public class ClientFactoryImpl implements ClientFactory {
 	private int selectedChild = 0;
 	
 
+	/**
+	 * Public constructor. Initializes eventbus, display, placeController, mapper 
+	 * and the swipeEventHandler for the rootTabPanel.
+	 */
 	public ClientFactoryImpl() {
-		eventBus = new SimpleEventBus();
+		this.eventBus = new SimpleEventBus();
 		this.display = GWT.create(AnimatableDisplay.class);
 		this.placeController = new PlaceController(eventBus);
 		this.appActivityMapper = new PhoneActivityMapper(this);

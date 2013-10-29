@@ -26,25 +26,65 @@ import de.hska.iwi.mgwt.demo.client.activities.NewsDetailView;
 import de.hska.iwi.mgwt.demo.client.activities.RegisterSeminarView;
 import de.hska.iwi.mgwt.demo.client.activities.StudentView;
 
-
+/**
+ * Factory for EventBus, PlaceController, Views, RootTabPanel and Animateable Display.
+ * @author Martin
+ *
+ */
 public interface ClientFactory {
 
+	/**
+	 * Get Event Bus.
+	 * @return EventBus
+	 */
 	public EventBus getEventBus();
 
+	/**
+	 * Get PlaceController.
+	 * @return PlaceController
+	 */
 	public PlaceController getPlaceController();
 	
+	/**
+	 * Get HomeView.
+	 * @return HomeView
+	 */
 	public HomeView getHomeView();
 	
+	/**
+	 * Get StudentView.
+	 * @return StudentView
+	 */
 	public StudentView getStudentView();
 	
+	/**
+	 * Get LectureView.
+	 * @return LectureView
+	 */
 	public LectureView getLectureView();
 	
+	/**
+	 * Get NewsDetailView.
+	 * @return NewsDetailView
+	 */
 	public NewsDetailView getNewsDetailView();
 	
+	/**
+	 * Get RegisterSeminarView.
+	 * @return RegisterSeminarView
+	 */
 	public RegisterSeminarView getRegisterSeminarView();
 	
+	/**
+	 * Get RootTabPanel. Initializes RootTabPanel with tabs "Student", "Vorlesung" and "News".
+	 * @return RootTabPanel
+	 */
 	public RootTabPanel getRootTabPanel();
 
+	/**
+	 * Get AnimateableDisplay.
+	 * @return AnimateableDisplay
+	 */
 	public AnimatableDisplay getDisplay();
 
 }

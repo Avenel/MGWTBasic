@@ -25,6 +25,7 @@ import de.hska.iwi.mgwt.demo.client.activities.NewsDetailPlace.NewsDetailPlaceTo
 import de.hska.iwi.mgwt.demo.client.activities.StudentPlace;
 
 /**
+ * Place History Mapper. Mapps History<->Place.
  * @author Daniel Kurka
  * 
  */
