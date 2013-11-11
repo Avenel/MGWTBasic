@@ -1,4 +1,4 @@
-package de.hska.iwi.mgwt.demo.client.activities;
+package de.hska.iwi.mgwt.demo.client.activities.student;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,11 +85,6 @@ public class StudentViewImpl implements StudentView {
 		this.cellListStudentLifeMenuItemsManage.render(menuItemsManage);
 		
 
-	}
-
-	@Override
-	public void addContentToRootTabPanel(RootTabPanel rtp) {
-		rtp.getAnimatableDisplay().setFirstWidget(this.main);
 	}
 	
 	@Override

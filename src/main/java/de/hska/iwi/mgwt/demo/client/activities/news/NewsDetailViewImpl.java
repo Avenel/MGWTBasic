@@ -1,4 +1,4 @@
-package de.hska.iwi.mgwt.demo.client.activities;
+package de.hska.iwi.mgwt.demo.client.activities.news;
 
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.HeadingElement;
@@ -41,10 +41,4 @@ public class NewsDetailViewImpl implements NewsDetailView {
 	public void setContent(String content) {
 		this.content = content;
 	}
-
-	@Override
-	public void addContentToRootTabPanel(RootTabPanel rtp) {
-		rtp.getAnimatableDisplay().setFirstWidget(this.main);
-	}
-
 }

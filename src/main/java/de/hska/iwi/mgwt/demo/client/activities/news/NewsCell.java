@@ -1,4 +1,4 @@
-package de.hska.iwi.mgwt.demo.client.activities;
+package de.hska.iwi.mgwt.demo.client.activities.news;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.i18n.client.DateTimeFormat;

@@ -6,9 +6,9 @@ import com.google.gwt.place.shared.PlaceController;
 import com.googlecode.mgwt.mvp.client.AnimatingActivityManager;
 
 import de.hska.iwi.mgwt.demo.client.ClientFactory;
-import de.hska.iwi.mgwt.demo.client.activities.HomePlace;
-import de.hska.iwi.mgwt.demo.client.activities.LecturePlace;
-import de.hska.iwi.mgwt.demo.client.activities.StudentPlace;
+import de.hska.iwi.mgwt.demo.client.activities.lecture.LecturePlace;
+import de.hska.iwi.mgwt.demo.client.activities.news.NewsPlace;
+import de.hska.iwi.mgwt.demo.client.activities.student.StudentPlace;
 
 public class ChangePage {
 
@@ -18,7 +18,7 @@ public class ChangePage {
 		Place newPlace;
 		switch (selection) {
 		case 0:
-			newPlace = new HomePlace();
+			newPlace = new NewsPlace();
 			break;
 		case 1:
 			newPlace = new StudentPlace();

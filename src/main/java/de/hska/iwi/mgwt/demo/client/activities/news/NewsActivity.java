@@ -1,4 +1,4 @@
-package de.hska.iwi.mgwt.demo.client.activities;
+package de.hska.iwi.mgwt.demo.client.activities.news;
 
 import java.util.List;
 
@@ -11,25 +11,26 @@ import com.googlecode.mgwt.ui.client.widget.celllist.CellSelectedEvent;
 import com.googlecode.mgwt.ui.client.widget.celllist.CellSelectedHandler;
 
 import de.hska.iwi.mgwt.demo.client.ClientFactory;
+import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
 import de.hska.iwi.mgwt.demo.client.model.News;
 import de.hska.iwi.mgwt.demo.client.model.NewsUtility;
 
-public class HomeActivity extends MGWTAbstractActivity implements ObserverActivity {
+public class NewsActivity extends MGWTAbstractActivity implements ObserverActivity {
 
 	private final ClientFactory clientFactory;
 
 	private List<News> currentModel;
-	private HomeView view;
+	private NewsView view;
 	private int startIndexIB = 0;
 	private int startIndexIWI = 0;
 
-	public HomeActivity(ClientFactory clientFactory) {
+	public NewsActivity(ClientFactory clientFactory) {
 		this.clientFactory = clientFactory;
 	}
 
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
-		view = this.clientFactory.getHomeView();
+		view = this.clientFactory.getNewsView();
 
 		NewsUtility.subscribe(this);
 		this.setCurrentModel(NewsUtility.getSortedNewsList());

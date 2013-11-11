@@ -1,4 +1,4 @@
-package de.hska.iwi.mgwt.demo.client.activities;
+package de.hska.iwi.mgwt.demo.client.activities.lecture;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.mgwt.ui.client.widget.HeaderPanel;
@@ -20,9 +20,5 @@ public class LectureViewImpl implements LectureView {
 		return this.main;
 	}
 
-	@Override
-	public void addContentToRootTabPanel(RootTabPanel rtp) {
-		rtp.getAnimatableDisplay().setFirstWidget(this.main);
-	}
 
 }

@@ -54,22 +54,18 @@ public class MgwtAppEntryPoint implements EntryPoint {
 
 		historyHandler.register(clientFactory.getPlaceController(),
 				clientFactory.getEventBus(),
-				new de.hska.iwi.mgwt.demo.client.activities.HomePlace());
+				new de.hska.iwi.mgwt.demo.client.activities.home.HomePlace());
 
 		createPhoneDisplay(clientFactory);
 
 		historyHandler.handleCurrentHistory();
-
 	}
 
 	/**
-	 * Setup PhoneDisplay. Adding RootTabPanel to display.
+	 * Setup PhoneDisplay.
 	 * @param clientFactory
 	 */
-	private void createPhoneDisplay(ClientFactory clientFactory) {		
-		// Add RootTabPanel
-		RootPanel.get().add(clientFactory.getDisplay());
-		RootPanel.get().add(clientFactory.getRootTabPanel());
+	private void createPhoneDisplay(ClientFactory clientFactory) {
 	}
 
 	/**

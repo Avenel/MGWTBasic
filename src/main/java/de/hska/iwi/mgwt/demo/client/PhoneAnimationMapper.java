@@ -5,9 +5,9 @@ import com.google.gwt.place.shared.Place;
 import com.googlecode.mgwt.mvp.client.Animation;
 import com.googlecode.mgwt.mvp.client.AnimationMapper;
 
-import de.hska.iwi.mgwt.demo.client.activities.HomePlace;
-import de.hska.iwi.mgwt.demo.client.activities.LecturePlace;
-import de.hska.iwi.mgwt.demo.client.activities.StudentPlace;
+import de.hska.iwi.mgwt.demo.client.activities.lecture.LecturePlace;
+import de.hska.iwi.mgwt.demo.client.activities.news.NewsPlace;
+import de.hska.iwi.mgwt.demo.client.activities.student.StudentPlace;
 
 /**
  * Maps Animation <-> Place 
@@ -27,11 +27,11 @@ public class PhoneAnimationMapper implements AnimationMapper {
 		
 		if (oldPlace == null || newPlace == null) return Animation.POP;
 		
-		if (oldPlace.getClass().equals(HomePlace.class) && 
+		if (oldPlace.getClass().equals(NewsPlace.class) && 
 				newPlace.getClass().equals(LecturePlace.class)) reverse = true;
 		
 		if (oldPlace.getClass().equals(StudentPlace.class) && 
-				newPlace.getClass().equals(HomePlace.class)) reverse = true;
+				newPlace.getClass().equals(NewsPlace.class)) reverse = true;
 		
 		if (oldPlace.getClass().equals(LecturePlace.class) && 
 				newPlace.getClass().equals(StudentPlace.class)) reverse = true;

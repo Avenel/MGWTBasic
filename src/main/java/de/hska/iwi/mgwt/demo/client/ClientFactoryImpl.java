@@ -19,6 +19,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.event.logical.shared.SelectionHandler;
 import com.google.gwt.place.shared.PlaceController;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.SimpleEventBus;
 import com.googlecode.mgwt.dom.client.recognizer.swipe.SwipeEndEvent;
@@ -35,16 +36,18 @@ import com.googlecode.mgwt.ui.client.widget.tabbar.RootTabPanel;
 import com.googlecode.mgwt.ui.client.widget.tabbar.TabBarButton;
 import com.googlecode.mgwt.ui.client.widget.touch.TouchDelegate;
 
-import de.hska.iwi.mgwt.demo.client.activities.HomeView;
-import de.hska.iwi.mgwt.demo.client.activities.HomeViewImpl;
-import de.hska.iwi.mgwt.demo.client.activities.LectureView;
-import de.hska.iwi.mgwt.demo.client.activities.LectureViewImpl;
-import de.hska.iwi.mgwt.demo.client.activities.NewsDetailView;
-import de.hska.iwi.mgwt.demo.client.activities.NewsDetailViewImpl;
-import de.hska.iwi.mgwt.demo.client.activities.RegisterSeminarView;
-import de.hska.iwi.mgwt.demo.client.activities.RegisterSeminarViewImpl;
-import de.hska.iwi.mgwt.demo.client.activities.StudentView;
-import de.hska.iwi.mgwt.demo.client.activities.StudentViewImpl;
+import de.hska.iwi.mgwt.demo.client.activities.home.HomeView;
+import de.hska.iwi.mgwt.demo.client.activities.home.HomeViewImpl;
+import de.hska.iwi.mgwt.demo.client.activities.lecture.LectureView;
+import de.hska.iwi.mgwt.demo.client.activities.lecture.LectureViewImpl;
+import de.hska.iwi.mgwt.demo.client.activities.news.NewsDetailView;
+import de.hska.iwi.mgwt.demo.client.activities.news.NewsDetailViewImpl;
+import de.hska.iwi.mgwt.demo.client.activities.news.NewsView;
+import de.hska.iwi.mgwt.demo.client.activities.news.NewsViewImpl;
+import de.hska.iwi.mgwt.demo.client.activities.student.RegisterSeminarView;
+import de.hska.iwi.mgwt.demo.client.activities.student.RegisterSeminarViewImpl;
+import de.hska.iwi.mgwt.demo.client.activities.student.StudentView;
+import de.hska.iwi.mgwt.demo.client.activities.student.StudentViewImpl;
 import de.hska.iwi.mgwt.demo.events.ChangePage;
 
 /**
@@ -57,6 +60,7 @@ public class ClientFactoryImpl implements ClientFactory {
 	private EventBus eventBus;
 	private PlaceController placeController;
 	private HomeViewImpl homeView;
+	private NewsViewImpl newsView;
 	private StudentViewImpl studentView;
 	private LectureViewImpl lectureView;
 	private NewsDetailViewImpl newsDetailView;
@@ -83,27 +87,7 @@ public class ClientFactoryImpl implements ClientFactory {
 		this.activityManager = new AnimatingActivityManager(appActivityMapper,
 				appAnimationMapper, this.eventBus);
 		this.activityManager.setDisplay(this.display);
-
-		TouchDelegate touchDel = new TouchDelegate(display.asWidget());
-
-		touchDel.addSwipeEndHandler(new SwipeEndHandler() {
-			@Override
-			public void onSwipeEnd(SwipeEndEvent event) {
-				if (event.getDirection() == SwipeEvent.DIRECTION.RIGHT_TO_LEFT) {
-					selectedChild++;
-					if (selectedChild == ChangePage.pageCount) selectedChild = 0;
-					rootTabPanel.setSelectedChild(selectedChild);
-				} else if (event.getDirection() == SwipeEvent.DIRECTION.LEFT_TO_RIGHT) {
-					selectedChild--;
-					if (selectedChild == -1) selectedChild = ChangePage.pageCount-1;
-					rootTabPanel.setSelectedChild(selectedChild);
-				} else {
-					return;
-				}
-				
-				ChangePage.changePageTo(selectedChild, activityManager, getPlaceController());
-			}
-		});
+		RootPanel.get().add(display);
 	}
 
 	@Override
@@ -115,22 +99,29 @@ public class ClientFactoryImpl implements ClientFactory {
 	public PlaceController getPlaceController() {
 		return placeController;
 	}
-
+	
 	@Override
 	public HomeView getHomeView() {
 		if (this.homeView == null) {
 			this.homeView = new HomeViewImpl();
-			this.homeView.addContentToRootTabPanel(this.rootTabPanel);
+		}
+		
+		return this.homeView;
+	}
+
+	@Override
+	public NewsView getNewsView() {
+		if (this.newsView == null) {
+			this.newsView = new NewsViewImpl();
 		}
 
-		return this.homeView;
+		return this.newsView;
 	}
 
 	@Override
 	public StudentView getStudentView() {
 		if (this.studentView == null) {
 			this.studentView = new StudentViewImpl();
-			this.studentView.addContentToRootTabPanel(this.rootTabPanel);
 		}
 
 		return this.studentView;
@@ -140,7 +131,6 @@ public class ClientFactoryImpl implements ClientFactory {
 	public LectureView getLectureView() {
 		if (this.lectureView == null) {
 			this.lectureView = new LectureViewImpl();
-			this.lectureView.addContentToRootTabPanel(this.rootTabPanel);
 		}
 
 		return this.lectureView;
@@ -164,44 +154,15 @@ public class ClientFactoryImpl implements ClientFactory {
 		return  registerSeminarView;
 	}
 	
-	@Override
-	public RootTabPanel getRootTabPanel() {
-		if (this.rootTabPanel == null) {
-			TabBarCss tabBarCss = MGWTStyle.getTheme().getMGWTClientBundle()
-					.getTabBarCss();
-			this.rootTabPanel = new RootTabPanel(tabBarCss, this.display);
-			this.rootTabPanel.setDisplayTabBarOnTop(false);
-
-			TabBarButton tabBarButtonAktuelles = new MostViewedTabBarButton();
-			tabBarButtonAktuelles.setText("Aktuelles");
-			TabBarButton tabBarButtonStudent = new FavoritesTabBarButton();
-			tabBarButtonStudent.setText("Student");
-			TabBarButton tabBarButtonVorlesung = new HistoryTabBarButton();
-			tabBarButtonVorlesung.setText("Vorlesung");
-			
-			this.rootTabPanel.add(tabBarButtonAktuelles);
-			this.rootTabPanel.add(tabBarButtonStudent);
-			this.rootTabPanel.add(tabBarButtonVorlesung);
-
-			this.rootTabPanel
-					.addSelectionHandler(new SelectionHandler<Integer>() {
-						@Override
-						public void onSelection(SelectionEvent<Integer> event) {
-							ChangePage.changePageTo(event.getSelectedItem(), activityManager, getPlaceController());
-						}
-					});
-
-			this.rootTabPanel.setSelectedChild(0);
-		}
-
-		return this.rootTabPanel;
-	}
 
 	@Override
 	public AnimatableDisplay getDisplay() {
 		return this.display;
 	}
 
-	
+	@Override
+	public AnimatingActivityManager getAnimatingActivityManager() {
+		return this.activityManager;
+	}
 
 }

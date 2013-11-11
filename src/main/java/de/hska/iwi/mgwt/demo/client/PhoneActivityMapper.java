@@ -5,16 +5,18 @@ import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.place.shared.Place;
 
-import de.hska.iwi.mgwt.demo.client.activities.HomeActivity;
-import de.hska.iwi.mgwt.demo.client.activities.HomePlace;
-import de.hska.iwi.mgwt.demo.client.activities.LectureActivity;
-import de.hska.iwi.mgwt.demo.client.activities.LecturePlace;
-import de.hska.iwi.mgwt.demo.client.activities.NewsDetailActivity;
-import de.hska.iwi.mgwt.demo.client.activities.NewsDetailPlace;
-import de.hska.iwi.mgwt.demo.client.activities.RegisterSeminarActivity;
-import de.hska.iwi.mgwt.demo.client.activities.RegisterSeminarPlace;
-import de.hska.iwi.mgwt.demo.client.activities.StudentActivity;
-import de.hska.iwi.mgwt.demo.client.activities.StudentPlace;
+import de.hska.iwi.mgwt.demo.client.activities.home.HomeActivity;
+import de.hska.iwi.mgwt.demo.client.activities.home.HomePlace;
+import de.hska.iwi.mgwt.demo.client.activities.lecture.LectureActivity;
+import de.hska.iwi.mgwt.demo.client.activities.lecture.LecturePlace;
+import de.hska.iwi.mgwt.demo.client.activities.news.NewsActivity;
+import de.hska.iwi.mgwt.demo.client.activities.news.NewsDetailActivity;
+import de.hska.iwi.mgwt.demo.client.activities.news.NewsDetailPlace;
+import de.hska.iwi.mgwt.demo.client.activities.news.NewsPlace;
+import de.hska.iwi.mgwt.demo.client.activities.student.RegisterSeminarActivity;
+import de.hska.iwi.mgwt.demo.client.activities.student.RegisterSeminarPlace;
+import de.hska.iwi.mgwt.demo.client.activities.student.StudentActivity;
+import de.hska.iwi.mgwt.demo.client.activities.student.StudentPlace;
 
 
 /**
@@ -43,6 +45,9 @@ public class PhoneActivityMapper implements ActivityMapper {
 		if (place.getClass().equals(HomePlace.class)) {
 			return new HomeActivity(clientFactory);
 		}
+		if (place.getClass().equals(NewsPlace.class)) {
+			return new NewsActivity(clientFactory);
+		}
 		if (place.getClass().equals(StudentPlace.class)) {
 			return new StudentActivity(clientFactory);
 		}
@@ -56,6 +61,6 @@ public class PhoneActivityMapper implements ActivityMapper {
 			return new RegisterSeminarActivity(clientFactory);
 		}
 		
-		return new HomeActivity(clientFactory);
+		return new NewsActivity(clientFactory);
 	}
 }

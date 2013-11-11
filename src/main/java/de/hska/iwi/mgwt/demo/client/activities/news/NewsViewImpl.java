@@ -1,4 +1,4 @@
-package de.hska.iwi.mgwt.demo.client.activities;
+package de.hska.iwi.mgwt.demo.client.activities.news;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,14 +19,14 @@ import com.googlecode.mgwt.ui.client.widget.tabbar.TabPanel;
 
 import de.hska.iwi.mgwt.demo.client.model.News;
 
-public class HomeViewImpl implements HomeView {
+public class NewsViewImpl implements NewsView {
 
 	private LayoutPanel main;
 	private CellList<News> cellListIM;
 	private CellList<News> cellListIB;
 	private CellList<News> cellListIWI;
 
-	public HomeViewImpl() {
+	public NewsViewImpl() {
 		main = new LayoutPanel();
 		
 		HeaderPanel headerPanel = new HeaderPanel();
@@ -88,12 +88,6 @@ public class HomeViewImpl implements HomeView {
 		this.cellListIM.render(newsListIM);
 		this.cellListIB.render(newsListIB);	
 		this.cellListIWI.render(newsListIWI);	
-	}
-
-
-	@Override
-	public void addContentToRootTabPanel(RootTabPanel rtp) {
-		rtp.getAnimatableDisplay().setFirstWidget(main);
 	}
 
 	@Override

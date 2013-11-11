@@ -1,4 +1,4 @@
-package de.hska.iwi.mgwt.demo.client.activities;
+package de.hska.iwi.mgwt.demo.client.activities.student;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -37,11 +37,6 @@ public class RegisterSeminarActivity extends MGWTAbstractActivity {
 		view = this.clientFactory.getRegisterSeminarView();
 
 		seminarEntries = new ArrayList<String>();
-
-		view.addContentToRootTabPanel(this.clientFactory.getRootTabPanel());
-
-		// Set right tab, if one pressed back button
-		clientFactory.getRootTabPanel().setSelectedChild(0);
 
 		panel.setWidget(view);
 

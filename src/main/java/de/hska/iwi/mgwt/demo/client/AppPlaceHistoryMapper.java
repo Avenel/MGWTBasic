@@ -18,18 +18,20 @@ package de.hska.iwi.mgwt.demo.client;
 import com.google.gwt.place.shared.PlaceHistoryMapper;
 import com.google.gwt.place.shared.WithTokenizers;
 
-import de.hska.iwi.mgwt.demo.client.activities.HomePlace.HomePlaceTokenizer;
-import de.hska.iwi.mgwt.demo.client.activities.LecturePlace;
-import de.hska.iwi.mgwt.demo.client.activities.NewsDetailPlace;
-import de.hska.iwi.mgwt.demo.client.activities.NewsDetailPlace.NewsDetailPlaceTokenizer;
-import de.hska.iwi.mgwt.demo.client.activities.StudentPlace;
+import de.hska.iwi.mgwt.demo.client.activities.home.HomePlace.HomePlaceTokenizer;
+import de.hska.iwi.mgwt.demo.client.activities.lecture.LecturePlace;
+import de.hska.iwi.mgwt.demo.client.activities.news.NewsDetailPlace;
+import de.hska.iwi.mgwt.demo.client.activities.news.NewsDetailPlace.NewsDetailPlaceTokenizer;
+import de.hska.iwi.mgwt.demo.client.activities.news.NewsPlace;
+import de.hska.iwi.mgwt.demo.client.activities.news.NewsPlace.NewsPlaceTokenizer;
+import de.hska.iwi.mgwt.demo.client.activities.student.StudentPlace;
 
 /**
  * Place History Mapper. Mapps History<->Place.
  * @author Daniel Kurka
  * 
  */
-@WithTokenizers({ HomePlaceTokenizer.class, NewsDetailPlace.NewsDetailPlaceTokenizer.class, StudentPlace.StudentPlaceTokenizer.class, 
+@WithTokenizers({ HomePlaceTokenizer.class, NewsPlaceTokenizer.class, NewsDetailPlace.NewsDetailPlaceTokenizer.class, StudentPlace.StudentPlaceTokenizer.class, 
 					LecturePlace.LecturePlaceTokenizer.class})
 public interface AppPlaceHistoryMapper extends PlaceHistoryMapper {
 }

@@ -1,4 +1,4 @@
-package de.hska.iwi.mgwt.demo.client.activities;
+package de.hska.iwi.mgwt.demo.client.activities.news;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
@@ -24,12 +24,7 @@ public class NewsDetailActivity extends MGWTAbstractActivity {
 		NewsDetailView view = this.clientFactory.getNewsDetailView();
 		view.setTitle(currentModel.getTitle());
 		view.setContent(currentModel.getContent());
-		
-		view.addContentToRootTabPanel(this.clientFactory.getRootTabPanel());
-		
-		// Set right tab, if one pressed back button
-		clientFactory.getRootTabPanel().setSelectedChild(0);
-		
+	
 		panel.setWidget(view);
 	}
 

@@ -1,4 +1,4 @@
-package de.hska.iwi.mgwt.demo.client.activities;
+package de.hska.iwi.mgwt.demo.client.activities.home;
 
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceTokenizer;
@@ -16,7 +16,6 @@ public class HomePlace extends Place {
 		public String getToken(HomePlace place) {
 			return "";
 		}
-
 	}
-
+	
 }

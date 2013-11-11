@@ -1,4 +1,4 @@
-package de.hska.iwi.mgwt.demo.client.activities;
+package de.hska.iwi.mgwt.demo.client.activities.news;
 
 import java.util.List;
 
@@ -9,13 +9,12 @@ import com.googlecode.mgwt.ui.client.widget.tabbar.RootTabPanel;
 
 import de.hska.iwi.mgwt.demo.client.model.News;
 
-public interface HomeView extends IsWidget {
+public interface NewsView extends IsWidget {
 	
 	public void render(List<News> newsList);
 	public HasCellSelectedHandler getListIM();
 	public HasCellSelectedHandler getListIB();
 	public HasCellSelectedHandler getListIWI();
-	public void addContentToRootTabPanel (RootTabPanel rtp);
 	public CellList<News> getCellListIM();
 	public CellList<News> getCellListIB();
 	public CellList<News> getCellListIWI();
