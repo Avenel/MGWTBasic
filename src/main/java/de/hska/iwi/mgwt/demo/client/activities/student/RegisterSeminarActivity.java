@@ -5,9 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
-import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.mgwt.dom.client.event.tap.TapEvent;
 import com.googlecode.mgwt.dom.client.event.tap.TapHandler;
@@ -61,6 +59,7 @@ public class RegisterSeminarActivity extends MGWTAbstractActivity {
 						if (textBox.getName().equals("professor")) {
 							newSeminar.setProfessor(textBox.getText());
 						}
+						newSeminar.setStatus(1);
 
 					}
 

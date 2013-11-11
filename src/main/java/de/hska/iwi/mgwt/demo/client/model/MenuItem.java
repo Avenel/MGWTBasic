@@ -6,14 +6,7 @@ public class MenuItem {
 	private String displayText;
 	private String type; 
 	
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
+	
 	public MenuItem(String id, String displayText, String type){
 		this.id= id;
 		this.displayText= displayText;
@@ -33,5 +26,13 @@ public class MenuItem {
 	public void setDisplayText(String displayText) {
 		this.displayText = displayText;
 	}
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
 
 }

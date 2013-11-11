@@ -9,11 +9,6 @@ import com.googlecode.mgwt.ui.client.widget.HeaderPanel;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
 import com.googlecode.mgwt.ui.client.widget.ScrollPanel;
 import com.googlecode.mgwt.ui.client.widget.celllist.HasCellSelectedHandler;
-import com.googlecode.mgwt.ui.client.widget.tabbar.FavoritesTabBarButton;
-import com.googlecode.mgwt.ui.client.widget.tabbar.MostViewedTabBarButton;
-import com.googlecode.mgwt.ui.client.widget.tabbar.RootTabPanel;
-import com.googlecode.mgwt.ui.client.widget.tabbar.TabBarButton;
-import com.googlecode.mgwt.ui.client.widget.tabbar.TabPanel;
 
 import de.hska.iwi.mgwt.demo.client.model.MenuItem;
 
@@ -30,7 +25,7 @@ public class StudentViewImpl implements StudentView {
 		//RootPanel.get().add(animationHelper);
 
 		HeaderPanel headerPanel = new HeaderPanel();
-		headerPanel.setCenter("Studentenleben");
+		headerPanel.setCenter("Prozesse");
 		this.main.add(headerPanel);
 		
 		this.cellListStudentLifeMenuItemsRegister = new CellList<MenuItem>(new MenuItemCell());
@@ -41,19 +36,11 @@ public class StudentViewImpl implements StudentView {
 		ScrollPanel menuPanelManage = new ScrollPanel();
 		menuPanelManage.add(cellListStudentLifeMenuItemsManage);
 		
-		TabPanel tabPanel = new TabPanel();
-		TabBarButton tabBarButtonAktuellesIM = new MostViewedTabBarButton();
-		tabBarButtonAktuellesIM.setText("Anmelden");
-		TabBarButton tabBarButtonAktuellesIB = new FavoritesTabBarButton();
-		tabBarButtonAktuellesIB.setText("Verwalten");
 		
-		tabPanel.add(tabBarButtonAktuellesIM, menuPanelRegister);
-		tabPanel.add(tabBarButtonAktuellesIB, menuPanelManage);
-
 		
 		//animationHelper.goTo(main, Animation.SLIDE);
 		
-		main.add(tabPanel);
+		main.add(menuPanelRegister);
 
 	}
 

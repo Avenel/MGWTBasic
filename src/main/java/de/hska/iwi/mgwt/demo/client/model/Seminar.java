@@ -4,7 +4,14 @@ public class Seminar {
 	private String professor;
 	private String topic;
 	private String term;
+	private int status;
 	
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
 	public String getProfessor() {
 		return professor;
 	}
@@ -23,4 +30,5 @@ public class Seminar {
 	public void setTerm(String term) {
 		this.term = term;
 	}
+	
 }

@@ -2,7 +2,6 @@ package de.hska.iwi.mgwt.demo.client.activities.student;
 
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
-import com.googlecode.mgwt.dom.client.event.tap.TapHandler;
 import com.googlecode.mgwt.ui.client.widget.Button;
 import com.googlecode.mgwt.ui.client.widget.HeaderPanel;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
@@ -20,7 +19,7 @@ public class RegisterSeminarViewImpl implements RegisterSeminarView {
 		main = new LayoutPanel();
 
 		HeaderPanel headerPanel = new HeaderPanel();
-		headerPanel.setCenter("Anmelden: Seminar");
+		headerPanel.setCenter("Seminararbeiten");
 		main.add(headerPanel);
 
 		WidgetList widgetList = new WidgetList();
@@ -55,9 +54,9 @@ public class RegisterSeminarViewImpl implements RegisterSeminarView {
 		termBox.setName("term");
 		termFieldLayout.add(termBox);
 		widgetList.add(termFieldLayout);
-		
+//		
 		registerButton= new Button();
-		registerButton.setText("Anmelden");
+		registerButton.setText("Arbeit anmelden");
 		widgetList.add(registerButton);
 		
 		

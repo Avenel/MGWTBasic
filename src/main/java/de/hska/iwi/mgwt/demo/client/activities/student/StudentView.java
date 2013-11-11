@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.google.gwt.user.client.ui.IsWidget;
 import com.googlecode.mgwt.ui.client.widget.celllist.HasCellSelectedHandler;
-import com.googlecode.mgwt.ui.client.widget.tabbar.RootTabPanel;
 
 import de.hska.iwi.mgwt.demo.client.model.MenuItem;
 

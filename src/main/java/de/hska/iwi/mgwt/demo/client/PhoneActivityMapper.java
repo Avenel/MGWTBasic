@@ -13,6 +13,8 @@ import de.hska.iwi.mgwt.demo.client.activities.news.NewsActivity;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsDetailActivity;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsDetailPlace;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsPlace;
+import de.hska.iwi.mgwt.demo.client.activities.student.ProcessSeminarActivity;
+import de.hska.iwi.mgwt.demo.client.activities.student.ProcessSeminarPlace;
 import de.hska.iwi.mgwt.demo.client.activities.student.RegisterSeminarActivity;
 import de.hska.iwi.mgwt.demo.client.activities.student.RegisterSeminarPlace;
 import de.hska.iwi.mgwt.demo.client.activities.student.StudentActivity;
@@ -38,7 +40,7 @@ public class PhoneActivityMapper implements ActivityMapper {
 	/**
 	 * Get the activity corresponding to the given place.
 	 * @return Activity: {	HomeActivity, StudentActivity, LectureActivity, NewsDetailActivity,
-	 * 						RegisterSeminarActivity}, default: HomeActivity.
+	 * 						ProcessSeminarActivity,RegisterSeminarActivity}, default: HomeActivity.
 	 */
 	@Override
 	public Activity getActivity(Place place) {
@@ -56,6 +58,9 @@ public class PhoneActivityMapper implements ActivityMapper {
 		}
 		if (place.getClass().equals(NewsDetailPlace.class)) {
 			return new NewsDetailActivity(clientFactory, ((NewsDetailPlace) place).getId());
+		}
+		if (place.getClass().equals(ProcessSeminarPlace.class)) {
+			return new ProcessSeminarActivity(clientFactory);
 		}
 		if (place.getClass().equals(RegisterSeminarPlace.class)) {
 			return new RegisterSeminarActivity(clientFactory);
