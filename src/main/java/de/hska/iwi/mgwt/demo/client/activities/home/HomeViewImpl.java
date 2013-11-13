@@ -32,14 +32,14 @@ public class HomeViewImpl implements HomeView{
 		main = new LayoutPanel();
 		
 		HeaderPanel headerPanel = new HeaderPanel();
-		headerPanel.setCenter("Hochschule Karlsruhe - IWII");
+		headerPanel.setCenter("HSKA - IWII");
 		main.add(headerPanel);
 		
 		// "nice" navigationbar
 		ArrayList<MenueItem> menueItems = new ArrayList<MenueItem>();
-		menueItems.add(new MenueItem("Aktuelles", ""));
-		menueItems.add(new MenueItem("Prozesse", ""));
-		menueItems.add(new MenueItem("Vorlesungen", ""));
+		menueItems.add(new MenueItem("Aktuelles", "assets/icons/WebNews.png"));
+		menueItems.add(new MenueItem("Prozesse", "assets/icons/Process.png"));
+		menueItems.add(new MenueItem("Vorlesungen", "assets/icons/UniHut.png"));
 		
 		navigation = new NavigationBar(menueItems);
 		main.add(navigation.asWidget());

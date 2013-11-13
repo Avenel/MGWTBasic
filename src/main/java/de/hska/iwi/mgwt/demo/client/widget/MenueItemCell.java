@@ -16,7 +16,7 @@ public class MenueItemCell implements Cell<MenueItem> {
 	private static Template TEMPLATE = GWT.create(Template.class);
 	
 	public interface Template extends SafeHtmlTemplates {
-		@SafeHtmlTemplates.Template("<div style='float:left'><img src='{0}'><p>{1}</p></div>")
+		@SafeHtmlTemplates.Template("<div style='float:left'><img src='{0}' width='25px' height='25px'></div><p style='margin-left:35px'>{1}</p></div>")
 		SafeHtml content(String iconURL, String title);
 	}
 	
