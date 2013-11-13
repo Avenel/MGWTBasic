@@ -3,8 +3,12 @@ package de.hska.iwi.mgwt.demo.client.activities.student;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.Widget;
+import com.googlecode.mgwt.dom.client.event.tap.TapEvent;
+import com.googlecode.mgwt.dom.client.event.tap.TapHandler;
 import com.googlecode.mgwt.ui.client.widget.CellList;
+import com.googlecode.mgwt.ui.client.widget.HeaderButton;
 import com.googlecode.mgwt.ui.client.widget.HeaderPanel;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
 import com.googlecode.mgwt.ui.client.widget.ScrollPanel;
@@ -28,6 +32,19 @@ public class StudentViewImpl implements StudentView {
 		headerPanel.setCenter("Prozesse");
 		this.main.add(headerPanel);
 		
+		HeaderButton backButton = new HeaderButton();
+		backButton.setBackButton(true);
+		backButton.setText("Back");
+		headerPanel.setLeftWidget(backButton);
+		
+		// handle history back
+		backButton.addTapHandler(new TapHandler(){
+			@Override
+			public void onTap(TapEvent event) {
+				History.back();
+			}
+		});
+		
 		this.cellListStudentLifeMenuItemsRegister = new CellList<MenuItem>(new MenuItemCell());
 		ScrollPanel menuPanelRegister = new ScrollPanel();
 		menuPanelRegister.add(cellListStudentLifeMenuItemsRegister);
@@ -36,19 +53,13 @@ public class StudentViewImpl implements StudentView {
 		ScrollPanel menuPanelManage = new ScrollPanel();
 		menuPanelManage.add(cellListStudentLifeMenuItemsManage);
 		
-		
-		
-		//animationHelper.goTo(main, Animation.SLIDE);
-		
 		main.add(menuPanelRegister);
 
 	}
 
 	@Override
 	public Widget asWidget() {
-		
 		return main;
-
 	}
 
 	@Override
@@ -65,13 +76,9 @@ public class StudentViewImpl implements StudentView {
 			}
 			
 		}
-		
-		
 
 		this.cellListStudentLifeMenuItemsRegister.render(menuItemsRegister);
 		this.cellListStudentLifeMenuItemsManage.render(menuItemsManage);
-		
-
 	}
 	
 	@Override

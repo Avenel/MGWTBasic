@@ -6,6 +6,7 @@ import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.mgwt.dom.client.event.tap.TapEvent;
 import com.googlecode.mgwt.dom.client.event.tap.TapHandler;
 import com.googlecode.mgwt.ui.client.widget.Button;
+import com.googlecode.mgwt.ui.client.widget.HeaderButton;
 import com.googlecode.mgwt.ui.client.widget.HeaderPanel;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
 
@@ -33,6 +34,7 @@ public class HomeViewImpl implements HomeView{
 		
 		HeaderPanel headerPanel = new HeaderPanel();
 		headerPanel.setCenter("HSKA - IWII");
+		
 		main.add(headerPanel);
 		
 		// "nice" navigationbar
