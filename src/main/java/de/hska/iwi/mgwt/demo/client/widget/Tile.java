@@ -1,12 +1,14 @@
 package de.hska.iwi.mgwt.demo.client.widget;
 
+import com.google.gwt.dom.client.Style.BorderStyle;
 import com.google.gwt.dom.client.Style.TextAlign;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
+import com.googlecode.mgwt.dom.client.event.tap.TapEvent;
+import com.googlecode.mgwt.dom.client.event.tap.TapHandler;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
 
 /**
@@ -14,6 +16,7 @@ import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
  * On the front it has an icon and a title + information.
  * On the back it has more detailed information.
  * It flips after some time...
+ * 
  * @author Martin
  *
  */
@@ -40,10 +43,8 @@ public class Tile implements IsWidget {
 	}
 
 
-
 	@Override
 	public Widget asWidget() {
-	
 		this.frontPanel = new LayoutPanel();
 		
 		this.frontPanel.setWidth("80px");
@@ -51,6 +52,12 @@ public class Tile implements IsWidget {
 
 		this.frontPanel.getElement().getStyle().setBackgroundColor(this.color);
 		this.frontPanel.getElement().getStyle().setMarginTop(10, Unit.PX);
+		
+		this.frontPanel.getElement().getStyle().setBorderWidth(2, Unit.PX);
+		this.frontPanel.getElement().getStyle().setBorderStyle(BorderStyle.SOLID);
+		this.frontPanel.getElement().getStyle().setBorderColor("white");
+		this.frontPanel.getElement().getStyle().setProperty("borderRadius", "15px");
+		this.frontPanel.getElement().getStyle().setProperty("boxShadow", "4px 3px 3px #888");
 		
 		Image icon = new Image(this.iconURL);
 		icon.setWidth("50px");
@@ -63,12 +70,21 @@ public class Tile implements IsWidget {
 		Label titleBox = new Label();
 		titleBox.setText(this.title);
 		titleBox.setWidth("70x");
+		titleBox.getElement().getStyle().setColor("#454545");
 		titleBox.getElement().getStyle().setMarginLeft(5, Unit.PX);
 		titleBox.getElement().getStyle().setMarginRight(5, Unit.PX);
 		titleBox.getElement().getStyle().setTextAlign(TextAlign.CENTER);
 		this.frontPanel.add(titleBox);
 		
 		return this.frontPanel;
+	}
+	
+	/**
+	 * Setup tap handler for user interactions.
+	 * @param handler
+	 */
+	public void addTapHandler(TapHandler handler) {
+		this.frontPanel.addHandler(handler, TapEvent.getType());
 	}
 
 }

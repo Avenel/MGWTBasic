@@ -35,7 +35,6 @@ public class HomeViewImpl implements HomeView{
 	public Widget asWidget() {
 		main = new LayoutPanel();
 		
-		
 		// Header
 		HeaderPanel headerPanel = new HeaderPanel();
 		headerPanel.setCenter("HSKA - IWII");
@@ -51,13 +50,14 @@ public class HomeViewImpl implements HomeView{
 		// Setup Tiles
 		TileBoard tileBoard = new TileBoard();
 		
-		Tile newsTile = new Tile("assets/icons/WebNews.png", "Aktuelles", "tomato");
+		Tile newsTile = new Tile("assets/icons/WebNews.png", "Aktuelles", "#EDEDED");
+		
 		tileBoard.add(newsTile);
 		
-		Tile processTile = new Tile("assets/icons/Process.png", "Prozesse", "tomato");
+		Tile processTile = new Tile("assets/icons/Process.png", "Prozesse", "#EDEDED");
 		tileBoard.add(processTile);
 		
-		Tile lectureTile = new Tile("assets/icons/UniHut.png", "Vorlesung", "tomato");
+		Tile lectureTile = new Tile("assets/icons/UniHut.png", "Vorlesung", "#EDEDED");
 		tileBoard.add(lectureTile);
 	
 
