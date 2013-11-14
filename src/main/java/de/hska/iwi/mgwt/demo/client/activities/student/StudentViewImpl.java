@@ -15,6 +15,7 @@ import com.googlecode.mgwt.ui.client.widget.ScrollPanel;
 import com.googlecode.mgwt.ui.client.widget.celllist.HasCellSelectedHandler;
 
 import de.hska.iwi.mgwt.demo.client.model.MenuItem;
+import de.hska.iwi.mgwt.demo.client.widget.HeaderBackButton;
 
 public class StudentViewImpl implements StudentView {
 
@@ -32,18 +33,8 @@ public class StudentViewImpl implements StudentView {
 		headerPanel.setCenter("Prozesse");
 		this.main.add(headerPanel);
 		
-		HeaderButton backButton = new HeaderButton();
-		backButton.setBackButton(true);
-		backButton.setText("Back");
-		headerPanel.setLeftWidget(backButton);
-		
-		// handle history back
-		backButton.addTapHandler(new TapHandler(){
-			@Override
-			public void onTap(TapEvent event) {
-				History.back();
-			}
-		});
+		HeaderBackButton backButton = new HeaderBackButton();
+		headerPanel.setLeftWidget(backButton.asWidget());
 		
 		this.cellListStudentLifeMenuItemsRegister = new CellList<MenuItem>(new MenuItemCell());
 		ScrollPanel menuPanelRegister = new ScrollPanel();

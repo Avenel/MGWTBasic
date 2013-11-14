@@ -22,6 +22,7 @@ import com.googlecode.mgwt.ui.client.widget.tabbar.TabBarButton;
 import com.googlecode.mgwt.ui.client.widget.tabbar.TabPanel;
 
 import de.hska.iwi.mgwt.demo.client.model.News;
+import de.hska.iwi.mgwt.demo.client.widget.HeaderBackButton;
 
 public class NewsViewImpl implements NewsView {
 
@@ -37,18 +38,8 @@ public class NewsViewImpl implements NewsView {
 		headerPanel.setCenter("Schwarzes Brett");
 		main.add(headerPanel);
 	
-		HeaderButton backButton = new HeaderButton();
-		backButton.setBackButton(true);
-		backButton.setText("Back");
-		headerPanel.setLeftWidget(backButton);
-		
-		// handle history back
-		backButton.addTapHandler(new TapHandler(){
-			@Override
-			public void onTap(TapEvent event) {
-				History.back();
-			}
-		});
+		HeaderBackButton backButton = new HeaderBackButton();
+		headerPanel.setLeftWidget(backButton.asWidget());
 		
 		// Create 3 different cellists for each organisation
 		this.cellListIM = new CellList<News>(new NewsCell());

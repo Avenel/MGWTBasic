@@ -9,6 +9,8 @@ import com.googlecode.mgwt.ui.client.widget.HeaderPanel;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
 import com.googlecode.mgwt.ui.client.widget.tabbar.RootTabPanel;
 
+import de.hska.iwi.mgwt.demo.client.widget.HeaderBackButton;
+
 public class LectureViewImpl implements LectureView {
 
 	private LayoutPanel main;
@@ -21,19 +23,8 @@ public class LectureViewImpl implements LectureView {
 		headerPanel.setCenter("Vorlesung");
 		this.main.add(headerPanel);
 		
-		HeaderButton backButton = new HeaderButton();
-		backButton.setBackButton(true);
-		backButton.setText("Back");
-
-		// handle history back
-		backButton.addTapHandler(new TapHandler(){
-			@Override
-			public void onTap(TapEvent event) {
-				History.back();
-			}
-		});
-		
-		headerPanel.setLeftWidget(backButton);
+		HeaderBackButton backButton = new HeaderBackButton();
+		headerPanel.setLeftWidget(backButton.asWidget());
 		
 		return this.main;
 	}

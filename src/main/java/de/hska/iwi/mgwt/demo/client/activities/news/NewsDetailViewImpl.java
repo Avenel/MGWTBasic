@@ -12,6 +12,8 @@ import com.googlecode.mgwt.ui.client.widget.HeaderPanel;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
 import com.googlecode.mgwt.ui.client.widget.tabbar.RootTabPanel;
 
+import de.hska.iwi.mgwt.demo.client.widget.HeaderBackButton;
+
 public class NewsDetailViewImpl implements NewsDetailView {
 	
 	private LayoutPanel main;
@@ -26,18 +28,8 @@ public class NewsDetailViewImpl implements NewsDetailView {
 		headerPanel.setCenter("NewsDetail");
 		this.main.add(headerPanel);
 		
-		HeaderButton backButton = new HeaderButton();
-		backButton.setBackButton(true);
-		backButton.setText("Back");
-		headerPanel.setLeftWidget(backButton);
-		
-		// handle history back
-		backButton.addTapHandler(new TapHandler(){
-			@Override
-			public void onTap(TapEvent event) {
-				History.back();
-			}
-		});
+		HeaderBackButton backButton = new HeaderBackButton();
+		headerPanel.setLeftWidget(backButton.asWidget());
 		
 		HeadingElement title = Document.get().createHElement(1);
 		title.setInnerText(this.title);

@@ -13,6 +13,8 @@ import com.googlecode.mgwt.ui.client.widget.MTextBox;
 import com.googlecode.mgwt.ui.client.widget.WidgetList;
 import com.googlecode.mgwt.ui.client.widget.tabbar.RootTabPanel;
 
+import de.hska.iwi.mgwt.demo.client.widget.HeaderBackButton;
+
 public class RegisterSeminarViewImpl implements RegisterSeminarView {
 
 	private LayoutPanel main;
@@ -26,18 +28,8 @@ public class RegisterSeminarViewImpl implements RegisterSeminarView {
 		headerPanel.setCenter("Seminararbeiten");
 		main.add(headerPanel);
 
-		HeaderButton backButton = new HeaderButton();
-		backButton.setBackButton(true);
-		backButton.setText("Back");
-		headerPanel.setLeftWidget(backButton);
-		
-		// handle history back
-		backButton.addTapHandler(new TapHandler(){
-			@Override
-			public void onTap(TapEvent event) {
-				History.back();
-			}
-		});
+		HeaderBackButton backButton = new HeaderBackButton();
+		headerPanel.setLeftWidget(backButton.asWidget());
 		
 		WidgetList widgetList = new WidgetList();
 		widgetList.setRound(true);
