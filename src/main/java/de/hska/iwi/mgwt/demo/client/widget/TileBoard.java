@@ -30,7 +30,7 @@ public class TileBoard implements IsWidget {
 //		this.tileBoardPanel.getElement().getStyle().setProperty("display", "flex");
 		
 		this.tileBoardPanel.getElement().getStyle().setProperty("WebkitFlexFlow", "row wrap");
-		this.tileBoardPanel.getElement().getStyle().setProperty("WebkitJustifyContent", "space-around");
+		this.tileBoardPanel.getElement().getStyle().setProperty("WebkitJustifyContent", "center");
 		this.tileBoardPanel.getElement().getStyle().setProperty("WebkitAlignContent", "flex-start");
 	}
 	

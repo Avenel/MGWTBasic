@@ -51,7 +51,7 @@ public class Tile implements IsWidget {
 		this.frontPanel.setHeight("80px");
 
 		this.frontPanel.getElement().getStyle().setBackgroundColor(this.color);
-		this.frontPanel.getElement().getStyle().setMarginTop(10, Unit.PX);
+		this.frontPanel.getElement().getStyle().setMargin(10, Unit.PX);
 		
 		this.frontPanel.getElement().getStyle().setBorderWidth(2, Unit.PX);
 		this.frontPanel.getElement().getStyle().setBorderStyle(BorderStyle.SOLID);

@@ -60,6 +60,8 @@ public class HomeViewImpl implements HomeView{
 		Tile lectureTile = new Tile("assets/icons/UniHut.png", "Vorlesung", "#EDEDED");
 		tileBoard.add(lectureTile);
 	
+		Tile mensaTile = new Tile("assets/icons/MensaWhite.png", "Mensa", "#EDEDED");
+		tileBoard.add(mensaTile);
 
 		scrollPanel.add(tileBoard.asWidget());
 		carousel.add(scrollPanel);
