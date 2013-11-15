@@ -7,7 +7,7 @@
 
 .mgwt-List > li {
 	color:#DB0134;
-	font-family: Helvetica, sans-serif;
+	font-family: "HelveticaNeue";
 	border-color:#E0E0E0;
 	border-width:1px;
 }
@@ -21,6 +21,8 @@
 }
 
 .mgwt-List-selected {
+	color: white;
+	background-color: #DB0134;
 	
 }
 
