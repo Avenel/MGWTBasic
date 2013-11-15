@@ -1,9 +1,18 @@
 /*standard mgwt button*/
 .mgwt-Button {
+	color: #DB0134;
+	background-image:none;
+	border-color:#DB0134;
+	border-width:2px;
 }
 
 /*style if button is pressed*/
 .mgwt-Button-active {
+	color: white;
+	background-image:none;
+	background-color:#DB0134;
+	border-color:#DB0134;
+	border-width:2px;
 }
 
 /* style for important button*/
@@ -27,5 +36,5 @@
 }
 /*style for a round button */
 .mgwt-Button-round {
-
+	
 }

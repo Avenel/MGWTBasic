@@ -1,13 +1,15 @@
 .mgwt-List {
-	
+
 }
 
 .mgwt-List-round {
-	
 }
 
 .mgwt-List > li {
-	
+	color:#DB0134;
+	font-family: Helvetica, sans-serif;
+	border-color:#E0E0E0;
+	border-width:1px;
 }
 
 .mgwt-List-round > .mgwt-List-first {
@@ -37,7 +39,6 @@
 
 
 .mgwt-FormList-Element{
-	
 	
 }
 	
