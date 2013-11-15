@@ -21,12 +21,11 @@ import com.google.gwt.core.client.GWT.UncaughtExceptionHandler;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.RootPanel;
-import com.googlecode.mgwt.mvp.client.AnimatableDisplay;
-import com.googlecode.mgwt.mvp.client.AnimatingActivityManager;
 import com.googlecode.mgwt.ui.client.MGWT;
 import com.googlecode.mgwt.ui.client.MGWTSettings;
-import com.googlecode.mgwt.ui.client.widget.tabbar.RootTabPanel;
+import com.googlecode.mgwt.ui.client.MGWTStyle;
+
+import de.hska.iwi.mgwt.demo.client.theme.CustomTheme;
 
 /**
  * Represents the entry point for mgwt. Initialize and start the
@@ -40,6 +39,8 @@ public class MgwtAppEntryPoint implements EntryPoint {
 	 * Setup ClientFactory, AppPlaceHistoryMapper and Display.
 	 */
 	private void start() {
+		
+		MGWTStyle.setTheme(new CustomTheme());
 
 		// set viewport and other settings for mobile
 		MGWT.applySettings(MGWTSettings.getAppSetting());

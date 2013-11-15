@@ -50,17 +50,17 @@ public class HomeViewImpl implements HomeView{
 		// Setup Tiles
 		TileBoard tileBoard = new TileBoard();
 		
-		Tile newsTile = new Tile("assets/icons/WebNews.png", "Aktuelles", "#EDEDED");
+		Tile newsTile = new Tile("assets/icons/WebNews.png", "Aktuelles");
 		
 		tileBoard.add(newsTile);
 		
-		Tile processTile = new Tile("assets/icons/Process.png", "Prozesse", "#EDEDED");
+		Tile processTile = new Tile("assets/icons/Process.png", "Prozesse");
 		tileBoard.add(processTile);
 		
-		Tile lectureTile = new Tile("assets/icons/UniHut.png", "Vorlesung", "#EDEDED");
+		Tile lectureTile = new Tile("assets/icons/UniHut.png", "Vorlesung");
 		tileBoard.add(lectureTile);
 	
-		Tile mensaTile = new Tile("assets/icons/MensaWhite.png", "Mensa", "#EDEDED");
+		Tile mensaTile = new Tile("assets/icons/MensaWhite.png", "Mensa");
 		tileBoard.add(mensaTile);
 
 		scrollPanel.add(tileBoard.asWidget());

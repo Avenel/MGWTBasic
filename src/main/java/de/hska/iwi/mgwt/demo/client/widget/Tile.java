@@ -35,11 +35,13 @@ public class Tile implements IsWidget {
 	 * @param title
 	 * @param color
 	 */
-	public Tile(String iconURL, String title, String color) {
+	public Tile(String iconURL, String title) {
 		super();
 		this.iconURL = iconURL;
 		this.title = title;
-		this.color = color;
+		
+		// official HS Karlsruhe color
+		this.color = "#DB0134";
 	}
 
 
@@ -47,33 +49,44 @@ public class Tile implements IsWidget {
 	public Widget asWidget() {
 		this.frontPanel = new LayoutPanel();
 		
+		// set size
 		this.frontPanel.setWidth("80px");
 		this.frontPanel.setHeight("80px");
 
+		// set background color
 		this.frontPanel.getElement().getStyle().setBackgroundColor(this.color);
 		this.frontPanel.getElement().getStyle().setMargin(10, Unit.PX);
 		
+		// setup border & border radius
 		this.frontPanel.getElement().getStyle().setBorderWidth(2, Unit.PX);
-		this.frontPanel.getElement().getStyle().setBorderStyle(BorderStyle.SOLID);
-		this.frontPanel.getElement().getStyle().setBorderColor("white");
+		this.frontPanel.getElement().getStyle().setBorderStyle(BorderStyle.NONE);
 		this.frontPanel.getElement().getStyle().setProperty("borderRadius", "15px");
-		this.frontPanel.getElement().getStyle().setProperty("boxShadow", "4px 3px 3px #888");
 		
+		// add icon
 		Image icon = new Image(this.iconURL);
 		icon.setWidth("50px");
-		icon.setHeight("50px");
+		
 		icon.getElement().getStyle().setMarginLeft(15, Unit.PX);
 		icon.getElement().getStyle().setMarginRight(15, Unit.PX);
 		icon.getElement().getStyle().setMarginTop(5, Unit.PX);
 		this.frontPanel.add(icon);
 		
+		// adding title
 		Label titleBox = new Label();
 		titleBox.setText(this.title);
 		titleBox.setWidth("70x");
-		titleBox.getElement().getStyle().setColor("#454545");
+		
+		// font style
+		titleBox.getElement().getStyle().setFontSize(12, Unit.PX);
+		titleBox.getElement().getStyle().setProperty("fontFamily", "Helvetica, consolas");
+		titleBox.getElement().getStyle().setColor("#FFFFFF");
+		
+		// setup margin
 		titleBox.getElement().getStyle().setMarginLeft(5, Unit.PX);
 		titleBox.getElement().getStyle().setMarginRight(5, Unit.PX);
 		titleBox.getElement().getStyle().setTextAlign(TextAlign.CENTER);
+		
+		
 		this.frontPanel.add(titleBox);
 		
 		return this.frontPanel;
