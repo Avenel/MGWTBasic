@@ -23,15 +23,31 @@ public class TileBoard implements IsWidget {
 		this.tileBoardPanel.getElement().getStyle().setProperty("listStyle", "none");
 		
 		// setup flexible box model
-//		this.tileBoardPanel.getElement().getStyle().setProperty("display", "-webkit-box");
-//		this.tileBoardPanel.getElement().getStyle().setProperty("display", "-moz-box");
-//		this.tileBoardPanel.getElement().getStyle().setProperty("display", "-ms-flexbox");
+		/*
+		 * 	display: -webkit-flex;
+			display: -moz-flex;
+			display: flex;
+			-webkit-flex-flow: row wrap;
+			-moz-flex-flow: row wrap;
+			flex-flow: row wrap;
+		 */
 		this.tileBoardPanel.getElement().getStyle().setProperty("display", "-webkit-flex");
-//		this.tileBoardPanel.getElement().getStyle().setProperty("display", "flex");
+		this.tileBoardPanel.getElement().getStyle().setProperty("display", "-moz-flex");
+		this.tileBoardPanel.getElement().getStyle().setProperty("display", "flex");
 		
 		this.tileBoardPanel.getElement().getStyle().setProperty("WebkitFlexFlow", "row wrap");
+		this.tileBoardPanel.getElement().getStyle().setProperty("MozFlexFlow", "row wrap");
+		this.tileBoardPanel.getElement().getStyle().setProperty("FlexFlow", "row wrap");
+		
 		this.tileBoardPanel.getElement().getStyle().setProperty("WebkitJustifyContent", "center");
 		this.tileBoardPanel.getElement().getStyle().setProperty("WebkitAlignContent", "flex-start");
+		
+		
+//		this.tileBoardPanel.getElement().getStyle().setProperty("display", "-webkit-box");
+//		this.tileBoardPanel.getElement().getStyle().setProperty("display", "-moz-box");
+//		
+//		this.tileBoardPanel.getElement().getStyle().setProperty("display", "-ms-flexbox");
+//	
 	}
 	
 	@Override
