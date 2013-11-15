@@ -13,7 +13,7 @@ public class HeaderBackButton implements IsWidget {
 	public Widget asWidget() {
 		HeaderButton backButton = new HeaderButton();
 		backButton.setBackButton(true);
-		backButton.setText("Back");
+		backButton.setText("");
 
 		// handle history back
 		backButton.addTapHandler(new TapHandler(){

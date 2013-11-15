@@ -95,7 +95,7 @@ public class Tile implements IsWidget {
 		
 		// font style
 		titleBox.getElement().getStyle().setFontSize(12, Unit.PX);
-		titleBox.getElement().getStyle().setProperty("fontFamily", "Helvetica, consolas");
+		titleBox.getElement().getStyle().setProperty("fontFamily", "HelveticaNeue, consolas");
 		titleBox.getElement().getStyle().setColor("#FFFFFF");
 		
 		// setup margin

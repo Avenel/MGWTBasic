@@ -38,7 +38,7 @@ public class HomeViewImpl implements HomeView{
 		
 		// Header
 		HeaderPanel headerPanel = new HeaderPanel();
-		headerPanel.setCenter("HSKA - IWII");
+		headerPanel.setCenter("HS Karlsruhe IWII");
 		
 		main.add(headerPanel);
 		

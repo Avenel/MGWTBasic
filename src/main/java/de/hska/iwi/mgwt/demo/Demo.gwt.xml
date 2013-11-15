@@ -21,7 +21,7 @@
 	<set-property name="mgwt.os" value="android" />
 	
 	<!-- here you can turn off css obfuscation -->
-	<!--<set-configuration-property name="mgwt.css" value="pretty" /> -->
+	<set-configuration-property name="mgwt.css" value="pretty" />
 	
 	<entry-point class="de.hska.iwi.mgwt.demo.client.MgwtAppEntryPoint" />
 	

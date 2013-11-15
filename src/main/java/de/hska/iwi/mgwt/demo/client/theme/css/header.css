@@ -13,6 +13,7 @@
 }
 
 .mgwt-HeaderPanel-center {
+	font-size: 22px;
 	font-family: "HelveticaNeue";
 }
 
@@ -21,17 +22,31 @@
 }
 
 .mgwt-HeaderButton .mgwt-HeaderButton-text {
-	
+	background-color: #ED8689;
+	border: none;
+}
+
+.mgwt-HeaderButton-active .mgwt-HeaderButton-text {
+	background: #FEFEFE !important;
+	background-color: #FEFEFE;
+}
+
+.mgwt-HeaderButton-active .mgwt-HeaderButton-border-content {
+	background: #FEFEFE !important; 
+	background-color: #FEFEFE;
 }
 
 .mgwt-HeaderButton-back 
 
 .mgwt-HeaderButton-back .mgwt-HeaderButton-border-container {
-	
+	background-color: #ED8689;
+	border: none;
 }
 
 .mgwt-HeaderButton-back .mgwt-HeaderButton-border-content {
-	
+	background-color: #ED8689;
+	border: none;
+	height: 16px;
 }
 
 .mgwt-HeaderButton-forward .mgwt-HeaderButton-border-container {
@@ -75,9 +90,7 @@
 }
 
 .mgwt-DropDownMenu .mgwt-HeaderButton-active .mgwt-HeaderButton-text {
-	
 }
 
 .mgwt-DropDownMenu .mgwt-HeaderButton-active .mgwt-HeaderButton-border-content {
-	
 }
