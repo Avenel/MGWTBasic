@@ -13,12 +13,12 @@ import de.hska.iwi.mgwt.demo.client.activities.news.NewsActivity;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsDetailActivity;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsDetailPlace;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsPlace;
-import de.hska.iwi.mgwt.demo.client.activities.student.ProcessSeminarActivity;
-import de.hska.iwi.mgwt.demo.client.activities.student.ProcessSeminarPlace;
-import de.hska.iwi.mgwt.demo.client.activities.student.RegisterSeminarActivity;
-import de.hska.iwi.mgwt.demo.client.activities.student.RegisterSeminarPlace;
-import de.hska.iwi.mgwt.demo.client.activities.student.StudentActivity;
-import de.hska.iwi.mgwt.demo.client.activities.student.StudentPlace;
+import de.hska.iwi.mgwt.demo.client.activities.processes.StudentActivity;
+import de.hska.iwi.mgwt.demo.client.activities.processes.StudentPlace;
+import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.ProcessSeminarActivity;
+import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.ProcessSeminarPlace;
+import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.RegisterSeminarActivity;
+import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.RegisterSeminarPlace;
 
 
 /**

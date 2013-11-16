@@ -1,4 +1,4 @@
-package de.hska.iwi.mgwt.demo.client.activities.student;
+package de.hska.iwi.mgwt.demo.client.activities.processes.seminar;
 
 import java.util.ArrayList;
 import java.util.Iterator;

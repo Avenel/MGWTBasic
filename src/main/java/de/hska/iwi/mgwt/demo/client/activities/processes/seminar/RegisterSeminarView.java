@@ -1,4 +1,4 @@
-package de.hska.iwi.mgwt.demo.client.activities.student;
+package de.hska.iwi.mgwt.demo.client.activities.processes.seminar;
 
 import com.google.gwt.user.client.ui.IsWidget;
 import com.googlecode.mgwt.ui.client.widget.Button;

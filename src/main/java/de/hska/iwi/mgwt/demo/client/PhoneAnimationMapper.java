@@ -7,7 +7,7 @@ import com.googlecode.mgwt.mvp.client.AnimationMapper;
 
 import de.hska.iwi.mgwt.demo.client.activities.lecture.LecturePlace;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsPlace;
-import de.hska.iwi.mgwt.demo.client.activities.student.StudentPlace;
+import de.hska.iwi.mgwt.demo.client.activities.processes.StudentPlace;
 
 /**
  * Maps Animation <-> Place 

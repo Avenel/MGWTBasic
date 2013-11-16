@@ -33,12 +33,12 @@ import de.hska.iwi.mgwt.demo.client.activities.news.NewsDetailView;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsDetailViewImpl;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsView;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsViewImpl;
-import de.hska.iwi.mgwt.demo.client.activities.student.ProcessSeminarView;
-import de.hska.iwi.mgwt.demo.client.activities.student.ProcessSeminarViewImpl;
-import de.hska.iwi.mgwt.demo.client.activities.student.RegisterSeminarView;
-import de.hska.iwi.mgwt.demo.client.activities.student.RegisterSeminarViewImpl;
-import de.hska.iwi.mgwt.demo.client.activities.student.StudentView;
-import de.hska.iwi.mgwt.demo.client.activities.student.StudentViewImpl;
+import de.hska.iwi.mgwt.demo.client.activities.processes.StudentView;
+import de.hska.iwi.mgwt.demo.client.activities.processes.StudentViewImpl;
+import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.ProcessSeminarView;
+import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.ProcessSeminarViewImpl;
+import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.RegisterSeminarView;
+import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.RegisterSeminarViewImpl;
 
 /**
  * Factory for EventBus, PlaceController, Views, RootTabPanel and Animateable Display.

@@ -22,9 +22,9 @@ import de.hska.iwi.mgwt.demo.client.activities.home.HomePlace.HomePlaceTokenizer
 import de.hska.iwi.mgwt.demo.client.activities.lecture.LecturePlace;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsDetailPlace;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsPlace.NewsPlaceTokenizer;
-import de.hska.iwi.mgwt.demo.client.activities.student.ProcessSeminarPlace.ProcessSeminarPlaceTokenizer;
-import de.hska.iwi.mgwt.demo.client.activities.student.RegisterSeminarPlace.RegisterSeminarPlaceTokenizer;
-import de.hska.iwi.mgwt.demo.client.activities.student.StudentPlace;
+import de.hska.iwi.mgwt.demo.client.activities.processes.StudentPlace;
+import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.ProcessSeminarPlace.ProcessSeminarPlaceTokenizer;
+import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.RegisterSeminarPlace.RegisterSeminarPlaceTokenizer;
 
 /**
  * Place History Mapper. Mapps History<->Place.

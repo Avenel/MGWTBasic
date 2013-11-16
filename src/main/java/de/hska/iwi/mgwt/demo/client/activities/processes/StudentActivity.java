@@ -1,4 +1,4 @@
-package de.hska.iwi.mgwt.demo.client.activities.student;
+package de.hska.iwi.mgwt.demo.client.activities.processes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +11,7 @@ import com.googlecode.mgwt.ui.client.widget.celllist.CellSelectedEvent;
 import com.googlecode.mgwt.ui.client.widget.celllist.CellSelectedHandler;
 
 import de.hska.iwi.mgwt.demo.client.ClientFactory;
+import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.ProcessSeminarPlace;
 import de.hska.iwi.mgwt.demo.client.model.MenuItem;
 
 public class StudentActivity extends MGWTAbstractActivity {

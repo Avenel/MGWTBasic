@@ -1,4 +1,4 @@
-package de.hska.iwi.mgwt.demo.client.activities.student;
+package de.hska.iwi.mgwt.demo.client.activities.processes.seminar;
 
 import java.util.List;
 
@@ -33,7 +33,7 @@ public class ProcessSeminarViewImpl implements ProcessSeminarView {
 		HeaderBackButton backButton = new HeaderBackButton();
 		headerPanel.setLeftWidget(backButton.asWidget());
 		
-		this.cellListSeminars = new CellList<Seminar>(new SeminarCell());
+		this.cellListSeminars = new CellList<Seminar>(new SeminarCell("blubb"));
 		ScrollPanel panelIM = new ScrollPanel();
 		panelIM.add(cellListSeminars);
 
