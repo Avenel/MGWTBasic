@@ -47,6 +47,8 @@ body {
 	font-family: arial, serif;
 	border-top: 2px solid #4ED001;
 	opacity: 0.3;
+	position:absolute;
+	border-radius:2px;
 }
 
 .process-active {
@@ -58,7 +60,7 @@ body {
 	padding: 5px;
 	text-align: center;
 	/* line-height: 200px; */
-	font-size: 30px;
+	font-size: 25px;
 	-webkit-box-shadow: 1px 1px 0 black, 2px 2px 0 grey, 3px 3px 0 lightgrey;
 	margin-left: 1px;
 }
@@ -71,7 +73,7 @@ body {
 	padding: 5px;
 	text-align: center;
 	line-height: 200px;
-	font-size: 30px;
+	font-size: 20px;
 	border: 2px solid black;
 	margin-left: 5px;
 }
@@ -89,14 +91,14 @@ body {
 	border-left: 4px solid black;
 	height: 100%;
 	margin-left: 15px;
-	padding: 20px;
+	padding: 10px;
 }
 
 .line-done {
 	border-left: 4px solid #4ED001;
 	height: 100%;
 	margin-left: 15px;
-	padding: 20px;
+	padding: 10px;
 	opacity: 0.3;
 }
 
@@ -104,7 +106,7 @@ body {
 	width: 4px;
 	margin-left: 8px;
 	background-color: none;
-	padding: 20px;
+	padding: 10px;
 }
 
 .tileBoard .GOE-WOTBAJ {
@@ -121,7 +123,11 @@ body {
 }
 
 .processes-list > li{
+	position: relative;
 	padding:0px;
 	color:#DB0134;
+	display:inline;
+	white-space:nowrap;
+	text-align:left;
 }
 
