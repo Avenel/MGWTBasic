@@ -14,7 +14,7 @@ public class SeminarStorage {
 	}
 	
 	public static List<Seminar> getSeminarList(){
-		dummySeminar.setStatus(1);
+		dummySeminar.setStatus(6);
 		dummySeminar.setProfessor("Prof. Dr. Ditzinger");
 		dummySeminar.setTopic("Stromspartechniken: ARM");
 		dummySeminar.setTerm("WS 13/14");

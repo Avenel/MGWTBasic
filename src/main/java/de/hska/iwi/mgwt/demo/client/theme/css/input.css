@@ -12,6 +12,7 @@
 
 .mgwt-TextBox .mgwt-InputBox-box {
 	color: #DB0134;
+	margin-left:10px;
 }
 
 .mgwt-PasswordTextBox .mgwt-InputBox-box {

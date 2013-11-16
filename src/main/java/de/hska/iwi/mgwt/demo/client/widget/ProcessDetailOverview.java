@@ -2,6 +2,7 @@ package de.hska.iwi.mgwt.demo.client.widget;
 
 import java.util.List;
 
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Widget;
@@ -24,12 +25,13 @@ public class ProcessDetailOverview implements IsWidget {
 	@Override
 	public Widget asWidget() {
 		processes= new CellList<ProcessStep>(new ProcessOverviewCell(this.activeStep, this.maxStepIndex));
-		processes.getElement().getStyle().setPadding(0, Unit.PX);
+		
 		
 		return processes;
 	}
 	public void render(List<ProcessStep> steps){
 		processes.render(steps);
+		processes.getElement().setClassName("processes-list");
 	}
 	
 	
