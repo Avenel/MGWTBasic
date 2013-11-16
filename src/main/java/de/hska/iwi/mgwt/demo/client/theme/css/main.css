@@ -25,3 +25,11 @@ body {
 #test{
 	color: red;
 }
+
+.tileBoard .GOE-WOTBAJ {
+	position: relative;
+}
+
+.tileBoard .GOE-WOTBAJ .GOE-WOTBBJ {
+	position: relative;
+}

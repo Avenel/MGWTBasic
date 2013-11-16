@@ -21,6 +21,7 @@ public class TileBoard implements IsWidget {
 		this.tileBoardPanel.getElement().getStyle().setMargin(0, Unit.PX);
 		this.tileBoardPanel.getElement().getStyle().setPadding(0, Unit.PX);
 		this.tileBoardPanel.getElement().getStyle().setProperty("listStyle", "none");
+		this.tileBoardPanel.getElement().addClassName("tileBoard");
 		
 		// setup flexible box model
 		/*
