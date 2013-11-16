@@ -7,8 +7,11 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.googlecode.mgwt.dom.client.event.tap.TapEvent;
 import com.googlecode.mgwt.dom.client.event.tap.TapHandler;
 import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
+import com.googlecode.mgwt.ui.client.widget.celllist.CellSelectedEvent;
+import com.googlecode.mgwt.ui.client.widget.celllist.CellSelectedHandler;
 
 import de.hska.iwi.mgwt.demo.client.ClientFactory;
+import de.hska.iwi.mgwt.demo.client.activities.news.NewsDetailPlace;
 import de.hska.iwi.mgwt.demo.client.model.Seminar;
 import de.hska.iwi.mgwt.demo.client.model.SeminarStorage;
 
@@ -41,6 +44,15 @@ public class ProcessSeminarActivity extends MGWTAbstractActivity {
 				
 			}
 		})); 
+		addHandlerRegistration(view.getSeminarCellList().addCellSelectedHandler(new CellSelectedHandler() {
+
+			@Override
+			public void onCellSelected(CellSelectedEvent event) {
+				ProcessDetailSeminarPlace seminarProcessDetailPlace = new ProcessDetailSeminarPlace(event.getIndex()+"");
+				clientFactory.getPlaceController().goTo(seminarProcessDetailPlace);
+			}
+
+		}));
 
 	}
 

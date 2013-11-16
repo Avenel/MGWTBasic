@@ -64,5 +64,10 @@ public class ProcessSeminarViewImpl implements ProcessSeminarView {
 	public Button getRegisterButton() {
 		return registerButton;
 	}
+	
+	@Override
+	public CellList<Seminar> getSeminarCellList(){
+		return this.cellListSeminars;
+	}
 
 }

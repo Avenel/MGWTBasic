@@ -16,7 +16,7 @@ public class SeminarCell implements Cell<Seminar> {
 	private static Template TEMPLATE = GWT.create(Template.class);
 
 	public interface Template extends SafeHtmlTemplates {
-		@SafeHtmlTemplates.Template("<div id='test'><b>{0}: </b>{1}</div><div style='float:right'><i>{2}</i></div>")
+		@SafeHtmlTemplates.Template("<div style='float:left'><b>{0}: </b>{1}</div><div style='float:right'><i>{2}</i></div>")
 		
 		SafeHtml content(String professor, String topic, int status);
 	}

@@ -15,6 +15,8 @@
  */
 package de.hska.iwi.mgwt.demo.client;
 
+import java.util.List;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -22,7 +24,6 @@ import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.SimpleEventBus;
 import com.googlecode.mgwt.mvp.client.AnimatableDisplay;
 import com.googlecode.mgwt.mvp.client.AnimatingActivityManager;
-import com.googlecode.mgwt.ui.client.animation.AnimationHelper;
 import com.googlecode.mgwt.ui.client.widget.tabbar.RootTabPanel;
 
 import de.hska.iwi.mgwt.demo.client.activities.home.HomeView;
@@ -35,10 +36,13 @@ import de.hska.iwi.mgwt.demo.client.activities.news.NewsView;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsViewImpl;
 import de.hska.iwi.mgwt.demo.client.activities.processes.StudentView;
 import de.hska.iwi.mgwt.demo.client.activities.processes.StudentViewImpl;
+import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.ProcessDetailSeminarView;
+import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.ProcessDetailSeminarViewImpl;
 import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.ProcessSeminarView;
 import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.ProcessSeminarViewImpl;
 import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.RegisterSeminarView;
 import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.RegisterSeminarViewImpl;
+import de.hska.iwi.mgwt.demo.client.model.ProcessStep;
 
 /**
  * Factory for EventBus, PlaceController, Views, RootTabPanel and Animateable Display.
@@ -56,6 +60,7 @@ public class ClientFactoryImpl implements ClientFactory {
 	private NewsDetailViewImpl newsDetailView;
 	private RegisterSeminarViewImpl registerSeminarView;
 	private ProcessSeminarViewImpl processSeminarView;
+	private ProcessDetailSeminarViewImpl processDetailSeminarView;
 	private RootTabPanel rootTabPanel;
 	private AnimatableDisplay display;
 	private PhoneActivityMapper appActivityMapper;
@@ -144,6 +149,15 @@ public class ClientFactoryImpl implements ClientFactory {
 		}
 
 		return  processSeminarView;
+	}
+	
+	@Override
+	public ProcessDetailSeminarView getProcessDetailSeminarView(int activeStep,List<ProcessStep> steps) {
+		if (processDetailSeminarView == null) {
+			processDetailSeminarView = new ProcessDetailSeminarViewImpl(activeStep, steps);
+		}
+
+		return  processDetailSeminarView;
 	}
 	@Override
 	public RegisterSeminarView getRegisterSeminarView() {

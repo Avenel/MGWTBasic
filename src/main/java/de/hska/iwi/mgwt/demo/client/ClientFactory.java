@@ -15,19 +15,22 @@
  */
 package de.hska.iwi.mgwt.demo.client;
 
+import java.util.List;
+
 import com.google.gwt.place.shared.PlaceController;
 import com.google.web.bindery.event.shared.EventBus;
 import com.googlecode.mgwt.mvp.client.AnimatableDisplay;
 import com.googlecode.mgwt.mvp.client.AnimatingActivityManager;
-import com.googlecode.mgwt.ui.client.widget.tabbar.RootTabPanel;
 
 import de.hska.iwi.mgwt.demo.client.activities.home.HomeView;
 import de.hska.iwi.mgwt.demo.client.activities.lecture.LectureView;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsDetailView;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsView;
 import de.hska.iwi.mgwt.demo.client.activities.processes.StudentView;
+import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.ProcessDetailSeminarView;
 import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.ProcessSeminarView;
 import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.RegisterSeminarView;
+import de.hska.iwi.mgwt.demo.client.model.ProcessStep;
 
 /**
  * Factory for EventBus, PlaceController, Views, RootTabPanel and Animateable Display.
@@ -79,10 +82,16 @@ public interface ClientFactory {
 	public NewsDetailView getNewsDetailView();
 	
 	/**
-	 * Get RegisterSeminarView.
-	 * @return RegisterSeminarView
+	 * Get ProcessSeminarView.
+	 * @return ProcessSeminarView
 	 */
 	public ProcessSeminarView getProcessSeminarView();
+	
+	/**
+	 * Get ProcessDetailSeminarView.
+	 * @return ProcessDetailSeminarView
+	 */
+	public ProcessDetailSeminarView getProcessDetailSeminarView(int activeStep,List<ProcessStep> steps);
 	
 	/**
 	 * Get RegisterSeminarView.
