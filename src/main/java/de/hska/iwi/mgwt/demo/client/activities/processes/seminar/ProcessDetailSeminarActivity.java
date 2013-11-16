@@ -57,15 +57,7 @@ public class ProcessDetailSeminarActivity extends MGWTAbstractActivity {
 		view.render();
 		panel.setWidget(view);
 
-		addHandlerRegistration(view.getRegisterButton().addTapHandler(new TapHandler() {
-			
-			@Override
-			public void onTap(TapEvent event) {
-				RegisterSeminarPlace registerSeminarPlace = new RegisterSeminarPlace();
-				clientFactory.getPlaceController().goTo(registerSeminarPlace);
-				
-			}
-		})); 
+		
 
 	}
 

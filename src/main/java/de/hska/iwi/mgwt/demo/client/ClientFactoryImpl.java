@@ -153,9 +153,8 @@ public class ClientFactoryImpl implements ClientFactory {
 	
 	@Override
 	public ProcessDetailSeminarView getProcessDetailSeminarView(int activeStep,List<ProcessStep> steps) {
-		if (processDetailSeminarView == null) {
 			processDetailSeminarView = new ProcessDetailSeminarViewImpl(activeStep, steps);
-		}
+		
 
 		return  processDetailSeminarView;
 	}
