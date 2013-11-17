@@ -25,7 +25,7 @@ import de.hska.iwi.mgwt.demo.events.PageName;
  * @author Martin
  *
  */
-public class Tile implements IsWidget {
+public class Tile implements IsWidget, ObserverWidget {
 	
 	FocusPanel focusPanel;
 	
@@ -38,6 +38,8 @@ public class Tile implements IsWidget {
 	String title;
 	String color;
 	
+	Label updateBubble;
+	
 	// defines which page is behind this tile
 	PageName pageName;
 
@@ -45,6 +47,7 @@ public class Tile implements IsWidget {
 	
 	Timer flipTimer;
 	int flipTime;
+
 	
 	/**
 	 * Public constructor.
@@ -84,15 +87,16 @@ public class Tile implements IsWidget {
 		animationHelper = new AnimationHelper();
 
 		// set size
-		this.focusPanel.setWidth("80px");
-		this.focusPanel.setHeight("80px");
-		this.focusPanel.getElement().getStyle().setMargin(10, Unit.PX);
+		this.focusPanel.setWidth("100px");
+		this.focusPanel.setHeight("100px");
+		this.focusPanel.getElement().getStyle().setMarginTop(10, Unit.PX);
 		
 		// FRONT
 		this.frontPanel = new LayoutPanel();
 		
 		this.frontPanel.setWidth("80px");
 		this.frontPanel.setHeight("80px");
+		this.frontPanel.getElement().getStyle().setMarginTop(10, Unit.PX);
 		
 		// set background color
 		this.frontPanel.getElement().getStyle().setBackgroundColor(this.color);
@@ -129,13 +133,37 @@ public class Tile implements IsWidget {
 		
 		this.frontPanel.add(titleBox);
 		
+		// add updateBubble
+		updateBubble = new Label();
+		updateBubble.getElement().getStyle().setFontSize(12, Unit.PX);
+		updateBubble.getElement().getStyle().setProperty("fontFamily", "HelveticaNeue, consolas");
+		updateBubble.getElement().getStyle().setColor("#DB0134");
+		updateBubble.getElement().getStyle().setWidth(20, Unit.PX);
+		updateBubble.getElement().getStyle().setHeight(20, Unit.PX);
+		
+		updateBubble.getElement().getStyle().setProperty("top", "5px");
+		updateBubble.getElement().getStyle().setProperty("right", "15px");
+		updateBubble.getElement().getStyle().setProperty("position", "absolute");
+		updateBubble.getElement().getStyle().setTextAlign(TextAlign.CENTER);
+		updateBubble.getElement().getStyle().setLineHeight(20, Unit.PX);
+		
+		updateBubble.getElement().getStyle().setBorderWidth(1, Unit.PX);
+		updateBubble.getElement().getStyle().setBorderStyle(BorderStyle.SOLID);
+		updateBubble.getElement().getStyle().setProperty("borderRadius", "20px");
+		
+		updateBubble.getElement().getStyle().setBackgroundColor("#FEFEFE");
+		
+		updateBubble.setText("2");
+		
+		this.frontPanel.add(updateBubble);
+		
 		// BACK
 		this.backPanel = new LayoutPanel();
 		
 		// set size
 		this.backPanel.setWidth("80px");
 		this.backPanel.setHeight("80px");
-		
+		this.backPanel.getElement().getStyle().setMarginTop(10, Unit.PX);
 		
 		// set background color
 		this.backPanel.getElement().getStyle().setBackgroundColor(this.color);
@@ -162,6 +190,8 @@ public class Tile implements IsWidget {
 		this.focusPanel.addClickHandler(handler);
 	}
 
+	
+	
 
 	/**
 	 * Flips tile.
@@ -224,6 +254,16 @@ public class Tile implements IsWidget {
 
 	public void setBackPanel(LayoutPanel backPanel) {
 		this.backPanel = backPanel;
+	}
+
+
+	/**
+	 * Update tile. Update BackTile and/or "update bubble".
+	 */
+	@Override
+	public void update(Object arg) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
