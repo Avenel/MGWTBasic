@@ -124,8 +124,8 @@ body {
 
 .tileBoard .GOE-WOTBAJ {
 	position: relative;
- 	max-height: 80px!important; 
-	max-width: 80px!important;
+ 	max-height: 100px!important; 
+	max-width: 100px!important;
 }
 
 .tileBoard .GOE-WOTBAJ .GOE-WOTBBJ {
