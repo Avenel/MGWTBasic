@@ -4,6 +4,7 @@ import com.google.gwt.dom.client.Style.BorderStyle;
 import com.google.gwt.dom.client.Style.TextAlign;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.FocusPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.IsWidget;
@@ -42,7 +43,8 @@ public class Tile implements IsWidget {
 
 	AnimationHelper animationHelper;
 	
-	
+	Timer flipTimer;
+	int flipTime;
 	
 	/**
 	 * Public constructor.
@@ -59,6 +61,16 @@ public class Tile implements IsWidget {
 		
 		// official HS Karlsruhe color
 		this.color = "#DB0134";
+		
+		this.flipTimer = new Timer() {
+			@Override
+			public void run() {
+				flipWidget();
+			}
+		};
+		
+		this.flipTime = (int) (Math.random() * 5000.0) + 5000;
+		this.flipTimer.schedule(this.flipTime);
 	}
 
 
@@ -162,6 +174,7 @@ public class Tile implements IsWidget {
 		}
 		
 		this.animationHelper.goTo(this.currentPanel, Animation.FLIP);
+		this.flipTimer.schedule(this.flipTime);
 	}
 	
 	public PageName getPageName() {

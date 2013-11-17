@@ -1,6 +1,5 @@
 package de.hska.iwi.mgwt.demo.client.widget;
 
-import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;

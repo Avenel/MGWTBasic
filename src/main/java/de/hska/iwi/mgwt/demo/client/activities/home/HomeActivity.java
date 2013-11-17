@@ -4,9 +4,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
-import com.googlecode.mgwt.mvp.client.Animation;
 import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
-import com.googlecode.mgwt.ui.client.dialog.Dialogs;
 
 import de.hska.iwi.mgwt.demo.client.ClientFactory;
 import de.hska.iwi.mgwt.demo.client.widget.Tile;
@@ -37,8 +35,8 @@ public class HomeActivity extends MGWTAbstractActivity {
 			tile.addTapHandler(new ClickHandler() {
 				@Override
 				public void onClick(ClickEvent event) {
-					tile.flipWidget();
-//					ChangePage.changePageTo(tile.getPageName(), clientFactory.getAnimatingActivityManager(), clientFactory.getPlaceController());
+//					tile.flipWidget();
+					ChangePage.changePageTo(tile.getPageName(), clientFactory.getAnimatingActivityManager(), clientFactory.getPlaceController());
 				}
 			});
 		}

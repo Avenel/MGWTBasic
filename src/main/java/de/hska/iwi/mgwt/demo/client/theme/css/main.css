@@ -132,18 +132,21 @@ body {
 	position: relative;
 }
 
+
+/* Flip Animation */
 .GOE-WOTBFJ {
 	-webkit-perspective: 800!important;
 	-webkit-transition-duration: 350ms, 350ms!important;
 }
 
-.processes-list{
+
+.processes-list {
 	position: relative;
     list-style: none;
     border-collapse: collapse;
 }
 
-.processes-list > li{
+.processes-list > li {
 	position: relative;
 	padding:0px;
 	color:#DB0134;
