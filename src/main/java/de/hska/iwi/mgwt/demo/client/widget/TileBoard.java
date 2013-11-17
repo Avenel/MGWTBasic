@@ -16,32 +16,7 @@ public class TileBoard implements IsWidget {
 	
 	public TileBoard() {
 		this.tileBoardPanel = new LayoutPanel();
-		
-		// setup standard stuff like margin and padding
-		this.tileBoardPanel.getElement().getStyle().setMargin(0, Unit.PX);
-		this.tileBoardPanel.getElement().getStyle().setPadding(0, Unit.PX);
-		this.tileBoardPanel.getElement().getStyle().setProperty("listStyle", "none");
 		this.tileBoardPanel.getElement().addClassName("tileBoard");
-		
-		// setup flexible box model
-		/*
-		 * 	display: -webkit-flex;
-			display: -moz-flex;
-			display: flex;
-			-webkit-flex-flow: row wrap;
-			-moz-flex-flow: row wrap;
-			flex-flow: row wrap;
-		 */
-		this.tileBoardPanel.getElement().getStyle().setProperty("display", "-webkit-flex");
-		this.tileBoardPanel.getElement().getStyle().setProperty("display", "-moz-flex");
-		this.tileBoardPanel.getElement().getStyle().setProperty("display", "flex");
-		
-		this.tileBoardPanel.getElement().getStyle().setProperty("WebkitFlexFlow", "row wrap");
-		this.tileBoardPanel.getElement().getStyle().setProperty("MozFlexFlow", "row wrap");
-		this.tileBoardPanel.getElement().getStyle().setProperty("FlexFlow", "row wrap");
-		
-		this.tileBoardPanel.getElement().getStyle().setProperty("WebkitJustifyContent", "center");
-		this.tileBoardPanel.getElement().getStyle().setProperty("WebkitAlignContent", "flex-start");
 	}
 	
 	@Override

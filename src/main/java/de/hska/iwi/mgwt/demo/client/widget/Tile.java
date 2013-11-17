@@ -72,8 +72,8 @@ public class Tile implements IsWidget {
 		animationHelper = new AnimationHelper();
 
 		// set size
-		this.focusPanel.setWidth("90px");
-		this.focusPanel.setHeight("90px");
+		this.focusPanel.setWidth("80px");
+		this.focusPanel.setHeight("80px");
 		this.focusPanel.getElement().getStyle().setMargin(10, Unit.PX);
 		
 		// FRONT

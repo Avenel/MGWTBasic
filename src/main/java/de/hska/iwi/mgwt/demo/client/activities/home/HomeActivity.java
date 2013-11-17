@@ -10,6 +10,7 @@ import com.googlecode.mgwt.ui.client.dialog.Dialogs;
 
 import de.hska.iwi.mgwt.demo.client.ClientFactory;
 import de.hska.iwi.mgwt.demo.client.widget.Tile;
+import de.hska.iwi.mgwt.demo.events.ChangePage;
 
 /**
  * Implements the home activity. It is the entry point for the user

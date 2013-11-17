@@ -109,13 +109,34 @@ body {
 	padding: 10px;
 }
 
+.tileBoard {
+	margin: 0px!important;
+	padding: 0px!important;
+	display: -webkit-flex!important;
+	display: -moz-flex!important;
+	display: flex!important;
+	-webkit-flex-flow: row wrap!important;
+	-moz-flex-flow: row wrap!important;
+	flex-flow: row wrap!important;
+	-webkit-justify-content: center!important;
+	-webkit-align-content: flex-start!important;
+}
+
 .tileBoard .GOE-WOTBAJ {
 	position: relative;
+	max-height: 80px!important;
+	max-width: 80px!important;
 }
 
 .tileBoard .GOE-WOTBAJ .GOE-WOTBBJ {
 	position: relative;
 }
+
+.GOE-WOTBFJ {
+	-webkit-perspective: 800!important;
+	-webkit-transition-duration: 350ms, 350ms!important;
+}
+
 .processes-list{
 	position: relative;
     list-style: none;
