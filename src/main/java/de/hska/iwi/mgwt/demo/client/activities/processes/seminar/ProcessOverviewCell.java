@@ -38,7 +38,7 @@ public class ProcessOverviewCell implements Cell<ProcessStep> {
 		} else if (currentStepIndex == activeStep) {
 			content = TEMPLATE.content("line-done","process-active", step.getDisplayText(), "line");
 		} else if (currentStepIndex == maxStepIndex) {
-			content = TEMPLATE.content("line","process-due-line", step.getDisplayText(), "process-placeholder");
+			content = TEMPLATE.content("line","process-due-line", step.getDisplayText(), "line");
 		}  else if (currentStepIndex > activeStep) {
 			content = TEMPLATE.content("line", "process-due-line", step.getDisplayText(), "line");
 		}

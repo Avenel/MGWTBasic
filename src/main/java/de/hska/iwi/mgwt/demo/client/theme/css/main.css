@@ -39,13 +39,14 @@ body {
 }
 
 .process-done-line {
-	width: 4px;
-	margin-left: 11px;
+	width: 0px;
+	margin-left: 16px;
+	color:grey;
 	background-color: none;
-	padding-right: 8px;
+/* 	padding-right: 1px; */
 	text-align: center;
 	font-family: arial, serif;
-	border-top: 2px solid #4ED001;
+	border-top: 2px solid grey;
 	opacity: 0.3;
 	position:absolute;
 	border-radius:2px;
@@ -54,15 +55,16 @@ body {
 .process-active {
 	width: 20px;
 	height: 20px;
-	/*margin-left: 3px;*/
-	background-color: #DB0134;
+/* 	margin-right: 3px; */
+	background-color: white;
+	border:2px solid #DB0134;
 	border-radius: 50%;
-	padding: 5px;
+/* 	padding-left: 7px; */
 	text-align: center;
 	/* line-height: 200px; */
 	font-size: 25px;
 /* 	-webkit-box-shadow: 1px 1px 0 black, 2px 2px 0 grey, 3px 3px 0 lightgrey; */
-	margin-left: 1px;
+	margin-left: 5px;
 }
 
 .process-due {
@@ -79,27 +81,28 @@ body {
 }
 
 .process-due-line {
-	width: 4px;
-	margin-left: 11px;
+	width: 0px;
+	margin-left: 15px;
 	background-color: none;
-	padding-right: 8px;
+/* 	padding-right: 8px; */
 	font-family: arial, serif;
-	border-top: 2px solid darkgrey;
+	border-top: 2px solid #DB0134;
 	position:absolute;
 	border-radius:2px;
+	opacity:0.5;
 }
 
 .line {
-	border-left: 4px solid darkgrey;
+	border-left: 2px solid #DB0134;
 	height: 100%;
-	margin-left: 15px;
-	padding: 10px;
+	margin-left: 16px;
+	padding: 12px;
 }
 
 .line-done {
-	border-left: 4px solid #4ED001;
+	border-left: 2px solid grey;
 	height: 100%;
-	margin-left: 15px;
+	margin-left: 16px;
 	padding: 10px;
 	opacity: 0.3;
 }
