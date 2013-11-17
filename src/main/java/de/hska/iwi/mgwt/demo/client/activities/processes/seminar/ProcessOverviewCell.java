@@ -16,7 +16,7 @@ public class ProcessOverviewCell implements Cell<ProcessStep> {
 	private static Template TEMPLATE = GWT.create(Template.class);
 
 	public interface Template extends SafeHtmlTemplates {
-		@SafeHtmlTemplates.Template("<div class='{0}'></div><div class='{1}'><div style='float:left; margin-left:90px;padding-right:500px;'>{2}</div></div><div class='{3}'></div>")
+		@SafeHtmlTemplates.Template("<div class='{0}'></div><div class='{1}'><div style='float:left; margin-left:45px;padding-right:500px;'>{2}</div></div><div class='{3}'></div>")
 		SafeHtml content(String lineStatusBefore, String processStatus, String stepText, String lineStatusAfter);
 	}
 
