@@ -61,7 +61,7 @@ body {
 	text-align: center;
 	/* line-height: 200px; */
 	font-size: 25px;
-	-webkit-box-shadow: 1px 1px 0 black, 2px 2px 0 grey, 3px 3px 0 lightgrey;
+/* 	-webkit-box-shadow: 1px 1px 0 black, 2px 2px 0 grey, 3px 3px 0 lightgrey; */
 	margin-left: 1px;
 }
 
@@ -84,11 +84,11 @@ body {
 	background-color: none;
 	padding-right: 14px;
 	font-family: arial, serif;
-	border-top: 2px solid black;
+	border-top: 2px solid darkgrey;
 }
 
 .line {
-	border-left: 4px solid black;
+	border-left: 4px solid darkgrey;
 	height: 100%;
 	margin-left: 15px;
 	padding: 10px;
@@ -124,7 +124,7 @@ body {
 
 .tileBoard .GOE-WOTBAJ {
 	position: relative;
-	max-height: 80px!important;
+ 	max-height: 80px!important; 
 	max-width: 80px!important;
 }
 
