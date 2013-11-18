@@ -61,13 +61,10 @@ public class ClientFactoryImpl implements ClientFactory {
 	private RegisterSeminarViewImpl registerSeminarView;
 	private ProcessSeminarViewImpl processSeminarView;
 	private ProcessDetailSeminarViewImpl processDetailSeminarView;
-	private RootTabPanel rootTabPanel;
 	private AnimatableDisplay display;
 	private PhoneActivityMapper appActivityMapper;
 	private PhoneAnimationMapper appAnimationMapper;
 	private AnimatingActivityManager activityManager;
-	
-	private int selectedChild = 0;
 	
 
 	/**
@@ -152,12 +149,11 @@ public class ClientFactoryImpl implements ClientFactory {
 	}
 	
 	@Override
-	public ProcessDetailSeminarView getProcessDetailSeminarView(int activeStep,List<ProcessStep> steps) {
-			processDetailSeminarView = new ProcessDetailSeminarViewImpl(activeStep, steps);
-		
-
+	public ProcessDetailSeminarView getProcessDetailSeminarView(int activeStep,List<ProcessStep> steps, int id) {
+		processDetailSeminarView = new ProcessDetailSeminarViewImpl(activeStep, steps, id);
 		return  processDetailSeminarView;
 	}
+	
 	@Override
 	public RegisterSeminarView getRegisterSeminarView() {
 		if (registerSeminarView == null) {

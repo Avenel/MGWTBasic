@@ -28,14 +28,13 @@ public class ProcessDetailSeminarActivity extends MGWTAbstractActivity {
 	}
 	public ProcessDetailSeminarActivity(ClientFactory clientFactory, String id) {
 		this.clientFactory = clientFactory;
-		this.id=id;
-
+		this.id = id;
 	}
 
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
 
-		seminar=SeminarStorage.getSeminarList().get(Integer.parseInt(id));
+		seminar = SeminarStorage.getSeminarList().get(Integer.parseInt(id));
 		
 		
 		List<ProcessStep> steps= new ArrayList<ProcessStep>();
@@ -48,7 +47,7 @@ public class ProcessDetailSeminarActivity extends MGWTAbstractActivity {
 		steps.add(new ProcessStep("Note verfuegbar", 6, "Ihre Note kann eingesehen werden. Der Prozess ist abgeschlossen"));
 		
 		currentModel=steps;
-		view = this.clientFactory.getProcessDetailSeminarView(seminar.getStatus(),currentModel);
+		view = this.clientFactory.getProcessDetailSeminarView(seminar.getStatus(), currentModel, Integer.parseInt(id));
 		view.setTitle(seminar.getTopic());
 		
 

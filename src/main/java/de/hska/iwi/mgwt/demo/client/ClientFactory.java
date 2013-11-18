@@ -91,7 +91,7 @@ public interface ClientFactory {
 	 * Get ProcessDetailSeminarView.
 	 * @return ProcessDetailSeminarView
 	 */
-	public ProcessDetailSeminarView getProcessDetailSeminarView(int activeStep,List<ProcessStep> steps);
+	public ProcessDetailSeminarView getProcessDetailSeminarView(int activeStep,List<ProcessStep> steps, int id);
 	
 	/**
 	 * Get RegisterSeminarView.

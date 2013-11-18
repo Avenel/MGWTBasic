@@ -2,7 +2,10 @@
 	
 }
 
-.active{}
+.active{
+	 color: #FEFEFE;
+	 background: #DB0134!important;
+}
 
 .mgwt-DialogAnimationContainer-Shadow {
 	
@@ -17,19 +20,26 @@
 }
 
 .mgwt-DialogPanel {
-	
+	background: #FEFEFE;
+	border: none;
+	-webkit-box-shadow: none;
 }
 
 .mgwt-DialogPanel .container {
-	
+	background: #FEFEFE;
+	color: #DB0134;
+	text-shadow: none;
+	border: none;
 }
 
 .mgwt-DialogPanel .title {
-	
+	border-bottom: 2px solid #DB0134;
+	color: #DB0134;
 }
 
 .mgwt-DialogPanel .content {
-	
+	background: #FEFEFE;
+	color: #DB0134;
 }
 
 .mgwt-DialogPanel .footer {

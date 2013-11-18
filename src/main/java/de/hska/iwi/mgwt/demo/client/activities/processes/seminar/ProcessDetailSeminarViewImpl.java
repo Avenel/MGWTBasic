@@ -5,6 +5,7 @@ import java.util.List;
 import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.mgwt.dom.client.event.tap.TapEvent;
 import com.googlecode.mgwt.dom.client.event.tap.TapHandler;
+import com.googlecode.mgwt.ui.client.dialog.Dialogs;
 import com.googlecode.mgwt.ui.client.widget.Button;
 import com.googlecode.mgwt.ui.client.widget.HeaderPanel;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
@@ -17,7 +18,6 @@ import de.hska.iwi.mgwt.demo.client.widget.HeaderBackButton;
 import de.hska.iwi.mgwt.demo.client.widget.HeaderPinTileButton;
 import de.hska.iwi.mgwt.demo.client.widget.ProcessDetailOverview;
 import de.hska.iwi.mgwt.demo.client.widget.Tile;
-import de.hska.iwi.mgwt.demo.events.PageName;
 
 public class ProcessDetailSeminarViewImpl implements ProcessDetailSeminarView {
 
@@ -28,8 +28,9 @@ public class ProcessDetailSeminarViewImpl implements ProcessDetailSeminarView {
 	private HeaderPanel headerPanel;
 	private Button registerButton;
 	private ProcessDetailOverview processDetailOverviewWidget;
+	private HeaderPinTileButton pinTileButton;
 
-	public ProcessDetailSeminarViewImpl(int activeStep, List<ProcessStep> steps) {
+	public ProcessDetailSeminarViewImpl(int activeStep, List<ProcessStep> steps, final int id) {
 		this.activeStep = activeStep;
 		this.steps=steps;
 		
@@ -43,6 +44,19 @@ public class ProcessDetailSeminarViewImpl implements ProcessDetailSeminarView {
 		HeaderBackButton backButton = new HeaderBackButton();
 		headerPanel.setLeftWidget(backButton.asWidget());
 		
+		// PinTile to Home Button
+		pinTileButton = new HeaderPinTileButton(new TapHandler(){
+			@Override
+			public void onTap(TapEvent event) {
+				Tile seminarTile = new Tile("assets/icons/Process.png", "Seminare", new ProcessDetailSeminarPlace(String.valueOf(id)));
+				TileBoardManager.addTile(seminarTile);
+				pinTileButton.setPinned(true);
+				Dialogs.alert("Tile angepinnt", "Dieses Seminar wurde auf deinen Homescreen angepinnt!", null);
+				headerPanel.setRightWidget(null);
+			}
+		});
+		headerPanel.setRightWidget(pinTileButton.asWidget());
+		
 		this.processDetailOverviewWidget = new ProcessDetailOverview(this.activeStep, steps.size() - 1);
 		ScrollPanel panel = new ScrollPanel();
 		panel.add(processDetailOverviewWidget.asWidget());
@@ -55,9 +69,11 @@ public class ProcessDetailSeminarViewImpl implements ProcessDetailSeminarView {
 
 	@Override
 	public Widget asWidget() {
-
+		if (!this.pinTileButton.isPinned()) {
+			this.headerPanel.setRightWidget(pinTileButton.asWidget());
+		}
+		
 		headerPanel.setCenter(title);
-
 		return main;
 	}
 
@@ -67,7 +83,6 @@ public class ProcessDetailSeminarViewImpl implements ProcessDetailSeminarView {
 
 	@Override
 	public void render() {
-
 		processDetailOverviewWidget.render(steps);
 	}
 
@@ -79,7 +94,6 @@ public class ProcessDetailSeminarViewImpl implements ProcessDetailSeminarView {
 	@Override
 	public void setTitle(String title) {
 		this.title = title;
-
 	}
 
 }

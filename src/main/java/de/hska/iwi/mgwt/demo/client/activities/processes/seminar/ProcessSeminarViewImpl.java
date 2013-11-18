@@ -2,23 +2,21 @@ package de.hska.iwi.mgwt.demo.client.activities.processes.seminar;
 
 import java.util.List;
 
-import com.google.gwt.dom.client.Style.Display;
 import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.mgwt.dom.client.event.tap.TapEvent;
 import com.googlecode.mgwt.dom.client.event.tap.TapHandler;
+import com.googlecode.mgwt.ui.client.dialog.Dialogs;
 import com.googlecode.mgwt.ui.client.widget.Button;
 import com.googlecode.mgwt.ui.client.widget.CellList;
 import com.googlecode.mgwt.ui.client.widget.HeaderPanel;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
 import com.googlecode.mgwt.ui.client.widget.ScrollPanel;
-import com.googlecode.mgwt.ui.client.widget.tabbar.RootTabPanel;
 
 import de.hska.iwi.mgwt.demo.client.model.Seminar;
 import de.hska.iwi.mgwt.demo.client.model.TileBoardManager;
 import de.hska.iwi.mgwt.demo.client.widget.HeaderBackButton;
 import de.hska.iwi.mgwt.demo.client.widget.HeaderPinTileButton;
 import de.hska.iwi.mgwt.demo.client.widget.Tile;
-import de.hska.iwi.mgwt.demo.events.PageName;
 
 public class ProcessSeminarViewImpl implements ProcessSeminarView {
 
@@ -26,12 +24,16 @@ public class ProcessSeminarViewImpl implements ProcessSeminarView {
 	private Button registerButton;
 	private CellList<Seminar> cellListSeminars;
 	private HeaderPinTileButton pinTileButton;
+	private HeaderPanel headerPanel;
 	
+	/**
+	 * Public constructor.
+	 */
 	public ProcessSeminarViewImpl() {
 
 		main = new LayoutPanel();
 
-		HeaderPanel headerPanel = new HeaderPanel();
+		headerPanel = new HeaderPanel();
 		headerPanel.setCenter("Seminararbeiten");
 		main.add(headerPanel);
 	
@@ -47,6 +49,8 @@ public class ProcessSeminarViewImpl implements ProcessSeminarView {
 				Tile seminarTile = new Tile("assets/icons/Process.png", "Seminare", new ProcessSeminarPlace());
 				TileBoardManager.addTile(seminarTile);
 				pinTileButton.setPinned(true);
+				Dialogs.alert("Tile angepinnt", "Seminar Übersicht wurde auf deinen Homescreen angepinnt!", null);
+				headerPanel.setRightWidget(null);
 			}
 		});
 		headerPanel.setRightWidget(pinTileButton.asWidget());
@@ -65,18 +69,13 @@ public class ProcessSeminarViewImpl implements ProcessSeminarView {
 
 	@Override
 	public Widget asWidget() {
-		if (this.pinTileButton.isPinned()) {
-			this.pinTileButton.asWidget().getElement().getStyle().setDisplay(Display.NONE);
-		} else {
-			this.pinTileButton.asWidget().getElement().getStyle().setDisplay(Display.BLOCK);
+		if (!this.pinTileButton.isPinned()) {
+			this.headerPanel.setRightWidget(pinTileButton.asWidget());
 		}
 		
 		return main;
 	}
 
-	public void addContentToRootTabPanel(RootTabPanel rtp) {
-		rtp.getAnimatableDisplay().setFirstWidget(this.main);
-	}
 
 	@Override
 	public void render(List<Seminar> seminarList) {
