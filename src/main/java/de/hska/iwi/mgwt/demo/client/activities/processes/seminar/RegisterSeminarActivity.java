@@ -27,7 +27,6 @@ public class RegisterSeminarActivity extends MGWTAbstractActivity {
 
 	public RegisterSeminarActivity(ClientFactory clientFactory) {
 		this.clientFactory = clientFactory;
-
 	}
 
 	@Override

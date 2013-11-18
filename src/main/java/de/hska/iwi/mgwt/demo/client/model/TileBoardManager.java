@@ -8,6 +8,10 @@ import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.ui.Label;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
 
+import de.hska.iwi.mgwt.demo.client.activities.home.HomePlace;
+import de.hska.iwi.mgwt.demo.client.activities.lecture.LecturePlace;
+import de.hska.iwi.mgwt.demo.client.activities.news.NewsPlace;
+import de.hska.iwi.mgwt.demo.client.activities.processes.StudentPlace;
 import de.hska.iwi.mgwt.demo.client.widget.Tile;
 import de.hska.iwi.mgwt.demo.client.widget.TileBoard;
 import de.hska.iwi.mgwt.demo.events.PageName;
@@ -28,11 +32,11 @@ public class TileBoardManager {
 		tiles = new ArrayList<Tile>();
 		
 		// News Tile
-		Tile newsTile = new Tile("assets/icons/WebNews.png", "Aktuelles", PageName.HOME);
+		Tile newsTile = new Tile("assets/icons/WebNews.png", "Aktuelles", new NewsPlace());
 		tiles.add(newsTile);
 		
 		// Processes Tile
-		Tile processTile = new Tile("assets/icons/Process.png", "Prozesse", PageName.PROCESSES_MAIN);
+		Tile processTile = new Tile("assets/icons/Process.png", "Prozesse", new StudentPlace());
 		
 		// TODO showcase update
 		LayoutPanel updatePanel = new LayoutPanel();
@@ -61,11 +65,11 @@ public class TileBoardManager {
 		tiles.add(processTile);
 		
 		// Lecture Tile
-		Tile lectureTile = new Tile("assets/icons/UniHut.png", "Vorlesung", PageName.LECTURE_MAIN);
+		Tile lectureTile = new Tile("assets/icons/UniHut.png", "Vorlesung", new LecturePlace());
 		tiles.add(lectureTile);
 	
 		// Mensa Tile
-		Tile mensaTile = new Tile("assets/icons/MensaWhite.png", "Mensa", PageName.MENSA_MAIN);
+		Tile mensaTile = new Tile("assets/icons/MensaWhite.png", "Mensa", new HomePlace());
 		tiles.add(mensaTile);
 	}
 	

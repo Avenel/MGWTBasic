@@ -8,6 +8,7 @@ import com.googlecode.mgwt.ui.client.widget.HeaderButton;
 public class HeaderPinTileButton implements IsWidget {
 
 	TapHandler handler;
+	boolean isPinned;
 	
 	/**
 	 * Public constructor.
@@ -27,6 +28,14 @@ public class HeaderPinTileButton implements IsWidget {
 		pinTileButton.addTapHandler(this.handler);
 		
 		return pinTileButton;
+	}
+
+	public boolean isPinned() {
+		return isPinned;
+	}
+
+	public void setPinned(boolean isPinned) {
+		this.isPinned = isPinned;
 	}
 	
 

@@ -39,9 +39,8 @@ public class ProcessSeminarActivity extends MGWTAbstractActivity {
 			
 			@Override
 			public void onTap(TapEvent event) {
-				RegisterSeminarPlace registerSeminarPlace = new RegisterSeminarPlace();
-				clientFactory.getPlaceController().goTo(registerSeminarPlace);
-				
+//				RegisterSeminarPlace registerSeminarPlace = new RegisterSeminarPlace();
+				clientFactory.getPlaceController().goTo(clientFactory.getPlaceController().getWhere());
 			}
 		})); 
 		addHandlerRegistration(view.getSeminarCellList().addCellSelectedHandler(new CellSelectedHandler() {

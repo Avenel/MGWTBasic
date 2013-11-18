@@ -80,10 +80,6 @@ public class RegisterSeminarViewImpl implements RegisterSeminarView {
 		return main;
 	}
 
-	public void addContentToRootTabPanel(RootTabPanel rtp) {
-		rtp.getAnimatableDisplay().setFirstWidget(this.main);
-	}
-
 	@Override
 	public void render() {
 		// TODO Auto-generated method stub

@@ -5,6 +5,7 @@ import com.google.gwt.dom.client.Style.Display;
 import com.google.gwt.dom.client.Style.TextAlign;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.FocusPanel;
 import com.google.gwt.user.client.ui.Image;
@@ -48,6 +49,7 @@ public class Tile implements IsWidget, ObserverTile {
 	
 	// defines which page is behind this tile
 	PageName pageName;
+	Place tilePlace;
 
 	AnimationHelper animationHelper;
 	
@@ -64,11 +66,11 @@ public class Tile implements IsWidget, ObserverTile {
 	 * @param title
 	 * @param color
 	 */
-	public Tile(String iconURL, String title, PageName pageName) {
+	public Tile(String iconURL, String title, Place place) {
 		super();
 		this.iconURL = iconURL;
 		this.title = title;
-		this.pageName = pageName;
+		this.tilePlace = place;
 		
 		// official HS Karlsruhe color
 		this.color = "#DB0134";
@@ -371,6 +373,16 @@ public class Tile implements IsWidget, ObserverTile {
 
 	public void setBackPanel(LayoutPanel backPanel) {
 		this.backPanel = backPanel;
+	}
+
+
+	public Place getTilePlace() {
+		return tilePlace;
+	}
+
+
+	public void setTilePlace(Place tilePlace) {
+		this.tilePlace = tilePlace;
 	}
 
 }

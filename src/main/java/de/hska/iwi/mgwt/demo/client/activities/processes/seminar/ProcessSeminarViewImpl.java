@@ -2,6 +2,7 @@ package de.hska.iwi.mgwt.demo.client.activities.processes.seminar;
 
 import java.util.List;
 
+import com.google.gwt.dom.client.Style.Display;
 import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.mgwt.dom.client.event.tap.TapEvent;
 import com.googlecode.mgwt.dom.client.event.tap.TapHandler;
@@ -24,6 +25,8 @@ public class ProcessSeminarViewImpl implements ProcessSeminarView {
 	private LayoutPanel main;
 	private Button registerButton;
 	private CellList<Seminar> cellListSeminars;
+	private HeaderPinTileButton pinTileButton;
+	
 	public ProcessSeminarViewImpl() {
 
 		main = new LayoutPanel();
@@ -38,11 +41,12 @@ public class ProcessSeminarViewImpl implements ProcessSeminarView {
 		headerPanel.setLeftWidget(backButton.asWidget());
 	
 		// PinTile to Home Button
-		HeaderPinTileButton pinTileButton = new HeaderPinTileButton(new TapHandler(){
+		pinTileButton = new HeaderPinTileButton(new TapHandler(){
 			@Override
 			public void onTap(TapEvent event) {
-				Tile seminarTile = new Tile("assets/icons/Process.png", "Seminare", PageName.PROCESSES_SEMINAR);
+				Tile seminarTile = new Tile("assets/icons/Process.png", "Seminare", new ProcessSeminarPlace());
 				TileBoardManager.addTile(seminarTile);
+				pinTileButton.setPinned(true);
 			}
 		});
 		headerPanel.setRightWidget(pinTileButton.asWidget());
@@ -61,6 +65,12 @@ public class ProcessSeminarViewImpl implements ProcessSeminarView {
 
 	@Override
 	public Widget asWidget() {
+		if (this.pinTileButton.isPinned()) {
+			this.pinTileButton.asWidget().getElement().getStyle().setDisplay(Display.NONE);
+		} else {
+			this.pinTileButton.asWidget().getElement().getStyle().setDisplay(Display.BLOCK);
+		}
+		
 		return main;
 	}
 
