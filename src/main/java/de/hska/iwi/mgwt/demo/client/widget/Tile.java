@@ -1,6 +1,7 @@
 package de.hska.iwi.mgwt.demo.client.widget;
 
 import com.google.gwt.dom.client.Style.BorderStyle;
+import com.google.gwt.dom.client.Style.Display;
 import com.google.gwt.dom.client.Style.TextAlign;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -25,7 +26,7 @@ import de.hska.iwi.mgwt.demo.events.PageName;
  * @author Martin
  *
  */
-public class Tile implements IsWidget, ObserverWidget {
+public class Tile implements IsWidget, ObserverTile {
 	
 	FocusPanel focusPanel;
 	
@@ -35,10 +36,14 @@ public class Tile implements IsWidget, ObserverWidget {
 	LayoutPanel currentPanel;
 	
 	String iconURL;
+	Image icon;
 	String title;
 	String color;
+	Label titleBox;
+	
 	
 	Label updateBubble;
+	int updateCounter;
 	
 	// defines which page is behind this tile
 	PageName pageName;
@@ -74,90 +79,53 @@ public class Tile implements IsWidget, ObserverWidget {
 		
 		this.flipTime = (int) (Math.random() * 5000.0) + 5000;
 		this.flipTimer.schedule(this.flipTime);
-	}
-
-
-	@Override
-	public Widget asWidget() {
 		
+		this.frontPanel = new LayoutPanel();
+		this.backPanel = new LayoutPanel();
+		this.focusPanel = new FocusPanel();
+
 		// WRAPPER
-		// used to make tile touchable
-		this.focusPanel = new FocusPanel(); 
-		
-		animationHelper = new AnimationHelper();
-
-		// set size
-		this.focusPanel.setWidth("100px");
-		this.focusPanel.setHeight("100px");
-		this.focusPanel.getElement().getStyle().setMarginTop(10, Unit.PX);
+		setupWrapper();
 		
 		// FRONT
-		this.frontPanel = new LayoutPanel();
-		
-		this.frontPanel.setWidth("80px");
-		this.frontPanel.setHeight("80px");
-		this.frontPanel.getElement().getStyle().setMarginTop(10, Unit.PX);
-		
-		// set background color
-		this.frontPanel.getElement().getStyle().setBackgroundColor(this.color);
-		
-		// setup border & border radius
-		this.frontPanel.getElement().getStyle().setBorderWidth(2, Unit.PX);
-		this.frontPanel.getElement().getStyle().setBorderStyle(BorderStyle.NONE);
-		this.frontPanel.getElement().getStyle().setProperty("borderRadius", "15px");
+		createFrontPanel();
 		
 		// add icon
-		Image icon = new Image(this.iconURL);
-		icon.setWidth("50px");
-		
-		icon.getElement().getStyle().setMarginLeft(15, Unit.PX);
-		icon.getElement().getStyle().setMarginRight(15, Unit.PX);
-		icon.getElement().getStyle().setMarginTop(5, Unit.PX);
-		
+		createIcon();
 		this.frontPanel.add(icon);
 		
 		// adding titlebox
-		Label titleBox = new Label();
-		titleBox.setText(this.title);
-		titleBox.setWidth("70px");
-		
-		// font style
-		titleBox.getElement().getStyle().setFontSize(12, Unit.PX);
-		titleBox.getElement().getStyle().setProperty("fontFamily", "HelveticaNeue, consolas");
-		titleBox.getElement().getStyle().setColor("#FFFFFF");
-		
-		// setup margin titlebox
-		titleBox.getElement().getStyle().setMarginLeft(5, Unit.PX);
-		titleBox.getElement().getStyle().setMarginRight(5, Unit.PX);
-		titleBox.getElement().getStyle().setTextAlign(TextAlign.CENTER);
-		
-		this.frontPanel.add(titleBox);
+		createTitleBox();
+		this.frontPanel.add(this.titleBox);
 		
 		// add updateBubble
-		updateBubble = new Label();
-		updateBubble.getElement().getStyle().setFontSize(12, Unit.PX);
-		updateBubble.getElement().getStyle().setProperty("fontFamily", "HelveticaNeue, consolas");
-		updateBubble.getElement().getStyle().setColor("#DB0134");
-		updateBubble.getElement().getStyle().setWidth(20, Unit.PX);
-		updateBubble.getElement().getStyle().setHeight(20, Unit.PX);
-		
-		updateBubble.getElement().getStyle().setProperty("top", "5px");
-		updateBubble.getElement().getStyle().setProperty("right", "15px");
-		updateBubble.getElement().getStyle().setProperty("position", "absolute");
-		updateBubble.getElement().getStyle().setTextAlign(TextAlign.CENTER);
-		updateBubble.getElement().getStyle().setLineHeight(20, Unit.PX);
-		
-		updateBubble.getElement().getStyle().setBorderWidth(1, Unit.PX);
-		updateBubble.getElement().getStyle().setBorderStyle(BorderStyle.SOLID);
-		updateBubble.getElement().getStyle().setProperty("borderRadius", "20px");
-		
-		updateBubble.getElement().getStyle().setBackgroundColor("#FEFEFE");
-		
-		updateBubble.setText("2");
-		
+		createUpdateBubble();		
 		this.frontPanel.add(updateBubble);
 		
 		// BACK
+		createBack();
+		
+	}
+
+
+	/**
+	 * Return focusPanel.
+	 */
+	@Override
+	public Widget asWidget() {
+		// init focus panel
+		this.focusPanel.add(animationHelper);
+		animationHelper.goTo(this.frontPanel, null);
+		this.currentPanel = this.frontPanel;
+		
+		return this.focusPanel;
+	}
+
+
+	/**
+	 * Create BackPanel.
+	 */
+	private void createBack() {
 		this.backPanel = new LayoutPanel();
 		
 		// set size
@@ -172,14 +140,106 @@ public class Tile implements IsWidget, ObserverWidget {
 		this.backPanel.getElement().getStyle().setBorderWidth(2, Unit.PX);
 		this.backPanel.getElement().getStyle().setBorderStyle(BorderStyle.NONE);
 		this.backPanel.getElement().getStyle().setProperty("borderRadius", "15px");
+	}
+
+
+	/**
+	 * Create Wrapper: Focus Panel for touch interactions and animationHelper for
+	 * the flip animations.
+	 */
+	private void setupWrapper() {
+		// WRAPPER
+		// used to make tile touchable
+		this.focusPanel = new FocusPanel(); 
 		
+		animationHelper = new AnimationHelper();
+
+		// set size
+		this.focusPanel.setWidth("100px");
+		this.focusPanel.setHeight("100px");
+		this.focusPanel.getElement().getStyle().setMarginTop(10, Unit.PX);
+	}
+
+
+	/**
+	 * Create FrontPanel: Icon + title
+	 */
+	private void createFrontPanel() {
+		this.frontPanel = new LayoutPanel();
 		
-		// init focus panel
-		this.focusPanel.add(animationHelper);
-		animationHelper.goTo(this.frontPanel, null);
-		this.currentPanel = this.frontPanel;
+		this.frontPanel.setWidth("80px");
+		this.frontPanel.setHeight("80px");
+		this.frontPanel.getElement().getStyle().setMarginTop(10, Unit.PX);
 		
-		return this.focusPanel;
+		// set background color
+		this.frontPanel.getElement().getStyle().setBackgroundColor(this.color);
+		
+		// setup border & border radius
+		this.frontPanel.getElement().getStyle().setBorderWidth(2, Unit.PX);
+		this.frontPanel.getElement().getStyle().setBorderStyle(BorderStyle.NONE);
+		this.frontPanel.getElement().getStyle().setProperty("borderRadius", "15px");
+	}
+
+
+	/**
+	 * Create icon.
+	 */
+	private void createIcon() {
+		this.icon = new Image(this.iconURL);
+		this.icon.setWidth("50px");
+		
+		this.icon.getElement().getStyle().setMarginLeft(15, Unit.PX);
+		this.icon.getElement().getStyle().setMarginRight(15, Unit.PX);
+		this.icon.getElement().getStyle().setMarginTop(5, Unit.PX);
+	}
+
+
+	/**
+	 * Create TitleBox, beneath the tile icon.
+	 */
+	private void createTitleBox() {
+		this.titleBox = new Label();
+		this.titleBox.setText(this.title);
+		this.titleBox.setWidth("70px");
+		
+		// font style
+		this.titleBox.getElement().getStyle().setFontSize(12, Unit.PX);
+		this.titleBox.getElement().getStyle().setProperty("fontFamily", "HelveticaNeue, consolas");
+		this.titleBox.getElement().getStyle().setColor("#FFFFFF");
+		
+		// setup margin titlebox
+		this.titleBox.getElement().getStyle().setMarginLeft(5, Unit.PX);
+		this.titleBox.getElement().getStyle().setMarginRight(5, Unit.PX);
+		this.titleBox.getElement().getStyle().setTextAlign(TextAlign.CENTER);
+	}
+
+
+	/**
+	 * Create updateBubble, positioned in the upper left corner.
+	 */
+	private void createUpdateBubble() {
+		this.updateBubble = new Label();
+		this.updateBubble.getElement().getStyle().setFontSize(12, Unit.PX);
+		this.updateBubble.getElement().getStyle().setProperty("fontFamily", "HelveticaNeue, consolas");
+		this.updateBubble.getElement().getStyle().setColor("#DB0134");
+		this.updateBubble.getElement().getStyle().setWidth(20, Unit.PX);
+		this.updateBubble.getElement().getStyle().setHeight(20, Unit.PX);
+		
+		this.updateBubble.getElement().getStyle().setProperty("top", "5px");
+		this.updateBubble.getElement().getStyle().setProperty("right", "15px");
+		this.updateBubble.getElement().getStyle().setProperty("position", "absolute");
+		this.updateBubble.getElement().getStyle().setTextAlign(TextAlign.CENTER);
+		this.updateBubble.getElement().getStyle().setLineHeight(20, Unit.PX);
+		
+		this.updateBubble.getElement().getStyle().setBorderWidth(1, Unit.PX);
+		this.updateBubble.getElement().getStyle().setBorderStyle(BorderStyle.SOLID);
+		this.updateBubble.getElement().getStyle().setProperty("borderRadius", "20px");
+		
+		this.updateBubble.getElement().getStyle().setBackgroundColor("#FEFEFE");
+		this.updateBubble.getElement().getStyle().setDisplay(Display.NONE);
+		
+		this.updateCounter = 0;
+		this.updateBubble.setText(String.valueOf(this.updateCounter));
 	}
 	
 	/**
@@ -189,8 +249,6 @@ public class Tile implements IsWidget, ObserverWidget {
 	public void addTapHandler(ClickHandler handler) {
 		this.focusPanel.addClickHandler(handler);
 	}
-
-	
 	
 
 	/**
@@ -205,6 +263,28 @@ public class Tile implements IsWidget, ObserverWidget {
 		
 		this.animationHelper.goTo(this.currentPanel, Animation.FLIP);
 		this.flipTimer.schedule(this.flipTime);
+	}
+	
+	/**
+	 * Update tile. Update BackTile and/or "update bubble".
+	 */
+	@Override
+	public void update(int amountOfUpdates, LayoutPanel backPanel) {
+		this.backPanel.clear();
+		this.backPanel.add(backPanel);
+		
+		this.updateCounter = amountOfUpdates;
+		this.updateBubble.setText(String.valueOf(amountOfUpdates));
+		this.updateBubble.getElement().getStyle().setDisplay(Display.BLOCK);
+	}
+	
+	/**
+	 * Hide updateBubble, if user clicked on tile with updates.
+	 */
+	public void clearUpdateBubble() {
+		this.updateCounter = 0;
+		this.updateBubble.setText(String.valueOf(0));
+		this.updateBubble.getElement().getStyle().setDisplay(Display.NONE);
 	}
 	
 	public PageName getPageName() {
@@ -254,16 +334,6 @@ public class Tile implements IsWidget, ObserverWidget {
 
 	public void setBackPanel(LayoutPanel backPanel) {
 		this.backPanel = backPanel;
-	}
-
-
-	/**
-	 * Update tile. Update BackTile and/or "update bubble".
-	 */
-	@Override
-	public void update(Object arg) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

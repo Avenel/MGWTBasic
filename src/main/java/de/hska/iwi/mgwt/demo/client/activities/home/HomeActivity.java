@@ -35,8 +35,8 @@ public class HomeActivity extends MGWTAbstractActivity {
 			tile.addTapHandler(new ClickHandler() {
 				@Override
 				public void onClick(ClickEvent event) {
-//					tile.flipWidget();
 					ChangePage.changePageTo(tile.getPageName(), clientFactory.getAnimatingActivityManager(), clientFactory.getPlaceController());
+					tile.clearUpdateBubble();
 				}
 			});
 		}
