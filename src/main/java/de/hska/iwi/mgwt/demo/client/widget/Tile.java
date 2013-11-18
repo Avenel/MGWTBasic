@@ -53,7 +53,9 @@ public class Tile implements IsWidget, ObserverTile {
 	Timer flipTimer;
 	int flipTime;
 
-	
+	// OnClick handler
+	ClickHandler handler;
+
 	/**
 	 * Public constructor.
 	 * @param frontPanel
@@ -83,6 +85,7 @@ public class Tile implements IsWidget, ObserverTile {
 		this.frontPanel = new LayoutPanel();
 		this.backPanel = new LayoutPanel();
 		this.focusPanel = new FocusPanel();
+		this.animationHelper = new AnimationHelper();
 
 		// WRAPPER
 		setupWrapper();
@@ -105,6 +108,10 @@ public class Tile implements IsWidget, ObserverTile {
 		// BACK
 		createBack();
 		
+		// init focus panel
+		this.focusPanel.add(animationHelper);
+		animationHelper.goTo(this.frontPanel, null);
+		this.currentPanel = this.frontPanel;
 	}
 
 
@@ -113,11 +120,8 @@ public class Tile implements IsWidget, ObserverTile {
 	 */
 	@Override
 	public Widget asWidget() {
-		// init focus panel
-		this.focusPanel.add(animationHelper);
-		animationHelper.goTo(this.frontPanel, null);
-		this.currentPanel = this.frontPanel;
-		
+		animationHelper.goTo(this.currentPanel, null);
+		this.flipTimer.schedule(this.flipTime);
 		return this.focusPanel;
 	}
 
@@ -247,7 +251,16 @@ public class Tile implements IsWidget, ObserverTile {
 	 * @param handler
 	 */
 	public void addTapHandler(ClickHandler handler) {
+		if (this.handler != null) return;
+		this.handler = handler;
 		this.focusPanel.addClickHandler(handler);
+	}
+	
+	/**
+	 * Remove TapHandler.
+	 */
+	public void removeTapHandler() {
+		this.handler = null;
 	}
 	
 

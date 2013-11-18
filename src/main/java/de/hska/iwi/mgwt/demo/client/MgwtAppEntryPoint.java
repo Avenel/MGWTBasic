@@ -25,6 +25,7 @@ import com.googlecode.mgwt.ui.client.MGWT;
 import com.googlecode.mgwt.ui.client.MGWTSettings;
 import com.googlecode.mgwt.ui.client.MGWTStyle;
 
+import de.hska.iwi.mgwt.demo.client.model.TileBoardManager;
 import de.hska.iwi.mgwt.demo.client.theme.CustomTheme;
 
 /**
@@ -59,6 +60,9 @@ public class MgwtAppEntryPoint implements EntryPoint {
 
 		createPhoneDisplay(clientFactory);
 
+		// initialize TileBoard
+		TileBoardManager.initTiles();
+		
 		historyHandler.handleCurrentHistory();
 	}
 

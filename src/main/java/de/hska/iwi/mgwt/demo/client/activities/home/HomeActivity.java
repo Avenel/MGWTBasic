@@ -7,6 +7,7 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
 
 import de.hska.iwi.mgwt.demo.client.ClientFactory;
+import de.hska.iwi.mgwt.demo.client.model.TileBoardManager;
 import de.hska.iwi.mgwt.demo.client.widget.Tile;
 import de.hska.iwi.mgwt.demo.events.ChangePage;
 
@@ -31,7 +32,7 @@ public class HomeActivity extends MGWTAbstractActivity {
 		panel.setWidget(view);
 		
 		// Adding Tile handlers
-		for (final Tile tile : view.getTiles()) {
+		for (final Tile tile : TileBoardManager.getTiles()) {
 			tile.addTapHandler(new ClickHandler() {
 				@Override
 				public void onClick(ClickEvent event) {

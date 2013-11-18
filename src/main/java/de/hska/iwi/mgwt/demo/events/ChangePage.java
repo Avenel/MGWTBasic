@@ -8,6 +8,7 @@ import de.hska.iwi.mgwt.demo.client.activities.home.HomePlace;
 import de.hska.iwi.mgwt.demo.client.activities.lecture.LecturePlace;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsPlace;
 import de.hska.iwi.mgwt.demo.client.activities.processes.StudentPlace;
+import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.ProcessSeminarPlace;
 
 public class ChangePage {
 
@@ -21,6 +22,9 @@ public class ChangePage {
 			break;
 		case PROCESSES_MAIN:
 			newPlace = new StudentPlace();
+			break;
+		case PROCESSES_SEMINAR:
+			newPlace = new ProcessSeminarPlace();
 			break;
 		case LECTURE_MAIN:
 			newPlace = new LecturePlace();

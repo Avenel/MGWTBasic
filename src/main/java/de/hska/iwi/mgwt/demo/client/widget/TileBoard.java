@@ -1,5 +1,7 @@
 package de.hska.iwi.mgwt.demo.client.widget;
 
+import java.util.List;
+
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
@@ -30,6 +32,16 @@ public class TileBoard implements IsWidget {
 	 */
 	public void add(Tile tile) {
 		this.tileBoardPanel.add(tile.asWidget());
+	}
+	
+	/**
+	 * Add list of tiles to the tileBoard.
+	 * @param tiles
+	 */
+	public void addAll(List<Tile> tiles) {
+		for (Tile tile : tiles) {
+			add(tile);
+		}
 	}
 
 }
