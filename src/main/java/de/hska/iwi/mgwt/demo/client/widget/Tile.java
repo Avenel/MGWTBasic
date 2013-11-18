@@ -13,6 +13,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.mgwt.mvp.client.Animation;
 import com.googlecode.mgwt.ui.client.animation.AnimationHelper;
+import com.googlecode.mgwt.ui.client.dialog.Dialogs;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
 
 import de.hska.iwi.mgwt.demo.events.PageName;
@@ -72,6 +73,8 @@ public class Tile implements IsWidget, ObserverTile {
 		// official HS Karlsruhe color
 		this.color = "#DB0134";
 		
+		createWidget();
+		
 		this.flipTimer = new Timer() {
 			@Override
 			public void run() {
@@ -81,7 +84,13 @@ public class Tile implements IsWidget, ObserverTile {
 		
 		this.flipTime = (int) (Math.random() * 5000.0) + 5000;
 		this.flipTimer.schedule(this.flipTime);
-		
+	}
+
+	
+	/**
+	 * Create tileWidget.
+	 */
+	public void createWidget() {
 		this.frontPanel = new LayoutPanel();
 		this.backPanel = new LayoutPanel();
 		this.focusPanel = new FocusPanel();
@@ -113,15 +122,31 @@ public class Tile implements IsWidget, ObserverTile {
 		animationHelper.goTo(this.frontPanel, null);
 		this.currentPanel = this.frontPanel;
 	}
-
+	
+	/**
+	 * Reset WidgetState
+	 */
+	public void resetWidget() {
+		this.focusPanel = new FocusPanel();
+		this.animationHelper = new AnimationHelper();
+		
+		setupWrapper();
+		
+		this.focusPanel.add(animationHelper);
+		
+		this.animationHelper.goTo(frontPanel, null);
+		this.flipTimer.schedule(this.flipTime);
+		this.currentPanel = this.frontPanel;
+	}
 
 	/**
 	 * Return focusPanel.
 	 */
 	@Override
 	public Widget asWidget() {
-		animationHelper.goTo(this.currentPanel, null);
-		this.flipTimer.schedule(this.flipTime);
+		// prevent tile from being hided if it is flipping during switching to homeview.
+		resetWidget();
+		
 		return this.focusPanel;
 	}
 
@@ -156,7 +181,7 @@ public class Tile implements IsWidget, ObserverTile {
 		// used to make tile touchable
 		this.focusPanel = new FocusPanel(); 
 		
-		animationHelper = new AnimationHelper();
+		this.animationHelper = new AnimationHelper();
 
 		// set size
 		this.focusPanel.setWidth("100px");
@@ -251,7 +276,6 @@ public class Tile implements IsWidget, ObserverTile {
 	 * @param handler
 	 */
 	public void addTapHandler(ClickHandler handler) {
-		if (this.handler != null) return;
 		this.handler = handler;
 		this.focusPanel.addClickHandler(handler);
 	}
