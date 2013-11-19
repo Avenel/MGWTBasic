@@ -15,7 +15,9 @@ public interface NewsView extends IsWidget {
 	public HasCellSelectedHandler getListIM();
 	public HasCellSelectedHandler getListIB();
 	public HasCellSelectedHandler getListIWI();
+	public HasCellSelectedHandler getListFAK();
 	public CellList<News> getCellListIM();
 	public CellList<News> getCellListIB();
 	public CellList<News> getCellListIWI();
+	public CellList<News> getCellListFAK();
 }

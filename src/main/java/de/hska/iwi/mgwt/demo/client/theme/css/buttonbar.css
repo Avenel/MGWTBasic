@@ -1,11 +1,12 @@
 /*style for the button bar */
 .mgwt-ButtonBar {
-	
+	color: #DB0134;
 }
 
 /*style for a text in the button bar */
 .mgwt-ButtonBar-text {
-	
+	color: #DB0134;
+	size: 24px;
 }
 
 /* style for a spacer in the button bar*/

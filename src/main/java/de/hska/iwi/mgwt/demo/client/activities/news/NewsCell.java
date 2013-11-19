@@ -17,7 +17,7 @@ public class NewsCell implements Cell<News> {
 		@SafeHtmlTemplates.Template("<div style='float:left'><b>{0}</b></div><div style='float:right'><i>{1}</i></div>")
 		SafeHtml content(String cellContents, String date);
 	}
-	
+		
 	@Override
 	public void render(SafeHtmlBuilder safeHtmlBuilder, News model) {
 		DateTimeFormat fmt = DateTimeFormat.getFormat("dd.MM");

@@ -3,8 +3,10 @@ package de.hska.iwi.mgwt.demo.client.activities.news;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.TabBar;
+import com.google.gwt.user.client.ui.TabLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.mgwt.dom.client.event.tap.TapEvent;
 import com.googlecode.mgwt.dom.client.event.tap.TapHandler;
@@ -30,6 +32,7 @@ public class NewsViewImpl implements NewsView {
 	private CellList<News> cellListIM;
 	private CellList<News> cellListIB;
 	private CellList<News> cellListIWI;
+	private CellList<News> cellListFAK;
 
 	public NewsViewImpl() {
 		main = new LayoutPanel();
@@ -41,7 +44,11 @@ public class NewsViewImpl implements NewsView {
 		HeaderBackButton backButton = new HeaderBackButton();
 		headerPanel.setLeftWidget(backButton.asWidget());
 		
-		// Create 3 different cellists for each organisation
+		// Create 4 different cellists for each organisation
+		this.cellListFAK = new CellList<News>(new NewsCell());
+		ScrollPanel panelFAK = new ScrollPanel();
+		panelFAK.add(cellListFAK);
+		
 		this.cellListIM = new CellList<News>(new NewsCell());
 		ScrollPanel panelIM = new ScrollPanel();
 		panelIM.add(cellListIM);
@@ -56,13 +63,17 @@ public class NewsViewImpl implements NewsView {
 		
 		// create TabBar
 		TabPanel tabPanel = new TabPanel();
+		
+		TabBarButton tabBarButtonAktuellesFAK = new MostViewedTabBarButton();
+		tabBarButtonAktuellesFAK.setText("IWII");
 		TabBarButton tabBarButtonAktuellesIM = new MostViewedTabBarButton();
 		tabBarButtonAktuellesIM.setText("IM");
 		TabBarButton tabBarButtonAktuellesIB = new FavoritesTabBarButton();
 		tabBarButtonAktuellesIB.setText("IB");
 		TabBarButton tabBarButtonAktuellesIWI = new HistoryTabBarButton();
-		tabBarButtonAktuellesIWI.setText("IWI");
+		tabBarButtonAktuellesIWI.setText("WI");
 		
+		tabPanel.add(tabBarButtonAktuellesFAK, panelFAK);
 		tabPanel.add(tabBarButtonAktuellesIM, panelIM);
 		tabPanel.add(tabBarButtonAktuellesIB, panelIB);
 		tabPanel.add(tabBarButtonAktuellesIWI, panelIWI);
@@ -96,6 +107,7 @@ public class NewsViewImpl implements NewsView {
 		this.cellListIM.render(newsListIM);
 		this.cellListIB.render(newsListIB);	
 		this.cellListIWI.render(newsListIWI);	
+		this.cellListFAK.render(newsListIWI);
 	}
 
 	@Override
@@ -110,6 +122,11 @@ public class NewsViewImpl implements NewsView {
 
 	@Override
 	public HasCellSelectedHandler getListIWI() {
+		return this.cellListIWI;
+	}
+	
+	@Override
+	public HasCellSelectedHandler getListFAK() {
 		return this.cellListIWI;
 	}
 
@@ -127,6 +144,13 @@ public class NewsViewImpl implements NewsView {
 	public CellList<News> getCellListIWI() {
 		return this.cellListIWI;
 	}
+
+	@Override
+	public CellList<News> getCellListFAK() {
+		return this.cellListFAK;
+	}
+	
+	
 
 
 }

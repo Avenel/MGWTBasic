@@ -1,11 +1,14 @@
 .mgwt-TabPanel{
+	color: #000000;
 }
 
 .mgwt-TabPanel-container{
 }
 
 .mgwt-TabBar {
-	
+	border-bottom-width: 2px;
+	border-bottom-style: solid;
+	border-bottom-color: #DB0134;
 }
 
 .mgwt-TabBar-Button {
@@ -17,11 +20,14 @@
 }
 
 .mgwt-TabBar-Button-selected {
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(255,255,255,0)), color-stop(0.75, rgba(255,255,255,0)), color-stop(0.75, rgba(255, 255, 255, 1)), to(rgba(213, 28, 43, 1)))
 	
 }
 
 .mgwt-TabBar-Button-text {
-	
+	margin-top: 5px;
+	color: #DB0134;
+	font-size: 20px;
 }
 
 .mgwt-TabBar-Button-icon {
