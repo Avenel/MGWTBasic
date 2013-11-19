@@ -1,3 +1,10 @@
 .mgwt-Carousel-Indicator-active {
-	background-color: #DB0134;
+	background-color: #DB0134!important;
+}
+
+.mgwt-Carousel-Indicator {
+	background-color: #FFFFFF;
+	border: 1px solid!important;
+	color: #DB0134;
+	border-radius: 5px!important;
 }
