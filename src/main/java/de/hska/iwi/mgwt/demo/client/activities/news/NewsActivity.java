@@ -37,6 +37,18 @@ public class NewsActivity extends MGWTAbstractActivity implements ObserverActivi
 
 		view.render(currentModel);
 		panel.setWidget(view);
+		
+		addHandlerRegistration(view.getListFAK().addCellSelectedHandler(new CellSelectedHandler() {
+
+			@Override
+			public void onCellSelected(CellSelectedEvent event) {
+				News selectedNews = currentModel.get(event.getIndex());
+				Window.alert(selectedNews.getTitle());
+				NewsDetailPlace newsDetailPlace = new NewsDetailPlace(selectedNews.getId());
+				clientFactory.getPlaceController().goTo(newsDetailPlace);
+			}
+
+		}));
 
 		// IM Handler
 		addHandlerRegistration(view.getListIM().addCellSelectedHandler(new CellSelectedHandler() {
