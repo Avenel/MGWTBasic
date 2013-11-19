@@ -1,22 +1,17 @@
 package de.hska.iwi.mgwt.demo.client.activities.home;
 
-import java.util.ArrayList;
-
-import com.google.gwt.dom.client.Style.TextAlign;
-import com.google.gwt.dom.client.Style.Unit;
-import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.mgwt.ui.client.dialog.Dialogs;
 import com.googlecode.mgwt.ui.client.widget.Button;
+import com.googlecode.mgwt.ui.client.widget.Carousel;
 import com.googlecode.mgwt.ui.client.widget.HeaderPanel;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
+import com.googlecode.mgwt.ui.client.widget.MSearchBox;
 import com.googlecode.mgwt.ui.client.widget.ScrollPanel;
 
 import de.hska.iwi.mgwt.demo.client.model.TileBoardManager;
 import de.hska.iwi.mgwt.demo.client.widget.NavigationBar;
-import de.hska.iwi.mgwt.demo.client.widget.Tile;
 import de.hska.iwi.mgwt.demo.client.widget.TileBoard;
-import de.hska.iwi.mgwt.demo.events.PageName;
 
 /**
  * Implements a simple Home view. Showing HSKA Title and HomeTiles.
@@ -44,6 +39,8 @@ public class HomeViewImpl implements HomeView{
 		
 		main.add(headerPanel);
 		
+		Carousel carousel = new Carousel();
+		
 		// TileBoard embedded in a ScrollPanel
 		ScrollPanel scrollPanel = new ScrollPanel();
 		TileBoard tileBoard = new TileBoard();
@@ -56,8 +53,14 @@ public class HomeViewImpl implements HomeView{
 		}
 
 		scrollPanel.add(tileBoard.asWidget());
-		main.add(scrollPanel);
+		carousel.add(scrollPanel);
 
+		// Search Bar
+		ScrollPanel scrollPanelSearch = new ScrollPanel();
+		scrollPanelSearch.add(new MSearchBox());
+		carousel.add(scrollPanelSearch);
+		
+		this.main.add(carousel);
 		return this.main;
 	}
 
