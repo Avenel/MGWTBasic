@@ -32,11 +32,11 @@ public class TileBoardManager {
 		tiles = new ArrayList<Tile>();
 		
 		// News Tile
-		Tile newsTile = new Tile("assets/icons/WebNews.png", "Aktuelles", new NewsPlace());
+		Tile newsTile = new Tile("assets/icons/WebNews.png", "Aktuelles", new NewsPlace(), false);
 		tiles.add(newsTile);
 		
 		// Processes Tile
-		Tile processTile = new Tile("assets/icons/Process.png", "Prozesse", new StudentPlace());
+		Tile processTile = new Tile("assets/icons/Process.png", "Prozesse", new StudentPlace(), false);
 		
 		// TODO showcase update
 		LayoutPanel updatePanel = new LayoutPanel();
@@ -65,11 +65,11 @@ public class TileBoardManager {
 		tiles.add(processTile);
 		
 		// Lecture Tile
-		Tile lectureTile = new Tile("assets/icons/UniHut.png", "Vorlesung", new LecturePlace());
+		Tile lectureTile = new Tile("assets/icons/UniHut.png", "Vorlesung", new LecturePlace(), false);
 		tiles.add(lectureTile);
 	
 		// Mensa Tile
-		Tile mensaTile = new Tile("assets/icons/MensaWhite.png", "Mensa", new HomePlace());
+		Tile mensaTile = new Tile("assets/icons/MensaWhite.png", "Mensa", new HomePlace(), false);
 		tiles.add(mensaTile);
 	}
 	

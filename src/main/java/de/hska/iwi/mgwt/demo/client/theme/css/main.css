@@ -137,6 +137,34 @@ body {
 	position: relative;
 }
 
+/* Link Tile icon */
+.curvedarrow {
+  position: relative!important;
+  width: 0!important;
+  height: 0!important;
+  border-top: 9px solid transparent;
+  border-right: 9px solid #FEFEFE;
+  -webkit-transform: rotate(10deg);
+  -moz-transform: rotate(10deg);
+  -ms-transform: rotate(10deg);
+  -o-transform: rotate(10deg);
+}
+
+.curvedarrow:after {
+  content: "";
+  position: absolute!important;
+  border: 0 solid transparent;
+  border-top: 3px solid #FEFEFE;
+  border-radius: 20px 0 0 0;
+  top: -12px;
+  left: -9px;
+  width: 12px;
+  height: 12px;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+}
 
 /* Flip Animation */
 .GOE-WOTBFJ {

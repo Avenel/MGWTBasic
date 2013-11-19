@@ -43,12 +43,10 @@ public class Tile implements IsWidget, ObserverTile {
 	String color;
 	Label titleBox;
 	
-	
 	Label updateBubble;
 	int updateCounter;
 	
 	// defines which page is behind this tile
-	PageName pageName;
 	Place tilePlace;
 
 	AnimationHelper animationHelper;
@@ -58,6 +56,11 @@ public class Tile implements IsWidget, ObserverTile {
 
 	// OnClick handler
 	ClickHandler handler;
+	
+	// is customLink
+	boolean isCustomLink;
+
+	private LayoutPanel linkIcon;
 
 	/**
 	 * Public constructor.
@@ -66,7 +69,7 @@ public class Tile implements IsWidget, ObserverTile {
 	 * @param title
 	 * @param color
 	 */
-	public Tile(String iconURL, String title, Place place) {
+	public Tile(String iconURL, String title, Place place, boolean isCustomLink) {
 		super();
 		this.iconURL = iconURL;
 		this.title = title;
@@ -75,6 +78,7 @@ public class Tile implements IsWidget, ObserverTile {
 		// official HS Karlsruhe color
 		this.color = "#DB0134";
 		
+		this.isCustomLink = isCustomLink;
 		createWidget();
 		
 		this.flipTimer = new Timer() {
@@ -209,6 +213,17 @@ public class Tile implements IsWidget, ObserverTile {
 		this.frontPanel.getElement().getStyle().setBorderWidth(2, Unit.PX);
 		this.frontPanel.getElement().getStyle().setBorderStyle(BorderStyle.NONE);
 		this.frontPanel.getElement().getStyle().setProperty("borderRadius", "15px");
+		
+		// add link div, if it is a custom icon
+		if (this.isCustomLink) {
+			this.linkIcon = new LayoutPanel();
+			this.linkIcon.getElement().addClassName("curvedarrow");
+			
+			this.linkIcon.getElement().getStyle().setProperty("top", "5px");
+			this.linkIcon.getElement().getStyle().setProperty("left", "15px");
+			this.linkIcon.getElement().getStyle().setProperty("position", "absolute");
+			this.frontPanel.add(this.linkIcon);
+		}
 	}
 
 
@@ -221,7 +236,15 @@ public class Tile implements IsWidget, ObserverTile {
 		
 		this.icon.getElement().getStyle().setMarginLeft(15, Unit.PX);
 		this.icon.getElement().getStyle().setMarginRight(15, Unit.PX);
-		this.icon.getElement().getStyle().setMarginTop(5, Unit.PX);
+		
+		
+		// if it's a custom link, lower the icon
+		if (!this.isCustomLink) {
+			this.icon.getElement().getStyle().setMarginTop(5, Unit.PX);
+		} else {
+			this.icon.getElement().getStyle().setMarginTop(0, Unit.PX);
+		}
+		
 	}
 
 
@@ -325,16 +348,6 @@ public class Tile implements IsWidget, ObserverTile {
 		this.updateBubble.setText(String.valueOf(0));
 		this.updateBubble.getElement().getStyle().setDisplay(Display.NONE);
 	}
-	
-	public PageName getPageName() {
-		return pageName;
-	}
-
-
-	public void setPageName(PageName pageName) {
-		this.pageName = pageName;
-	}
-
 
 	public FocusPanel getFocusPanel() {
 		return focusPanel;
