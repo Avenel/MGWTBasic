@@ -12,12 +12,6 @@ import de.hska.iwi.mgwt.demo.client.model.News;
 public interface NewsView extends IsWidget {
 	
 	public void render(List<News> newsList);
-	public HasCellSelectedHandler getListIM();
-	public HasCellSelectedHandler getListIB();
-	public HasCellSelectedHandler getListIWI();
-	public HasCellSelectedHandler getListFAK();
-	public CellList<News> getCellListIM();
-	public CellList<News> getCellListIB();
-	public CellList<News> getCellListIWI();
-	public CellList<News> getCellListFAK();
+	public HasCellSelectedHandler getListNews();
+	public CellList<News> getCellListNews();
 }

@@ -2,7 +2,6 @@ package de.hska.iwi.mgwt.demo.client.activities.news;
 
 import java.util.List;
 
-import com.google.gwt.core.shared.GWT;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
@@ -21,8 +20,6 @@ public class NewsActivity extends MGWTAbstractActivity implements ObserverActivi
 
 	private List<News> currentModel;
 	private NewsView view;
-	private int startIndexIB = 0;
-	private int startIndexIWI = 0;
 
 	public NewsActivity(ClientFactory clientFactory) {
 		this.clientFactory = clientFactory;
@@ -38,49 +35,12 @@ public class NewsActivity extends MGWTAbstractActivity implements ObserverActivi
 		view.render(currentModel);
 		panel.setWidget(view);
 		
-		addHandlerRegistration(view.getListFAK().addCellSelectedHandler(new CellSelectedHandler() {
+		// Celllist Touch Handler
+		addHandlerRegistration(view.getListNews().addCellSelectedHandler(new CellSelectedHandler() {
 
 			@Override
 			public void onCellSelected(CellSelectedEvent event) {
 				News selectedNews = currentModel.get(event.getIndex());
-				Window.alert(selectedNews.getTitle());
-				NewsDetailPlace newsDetailPlace = new NewsDetailPlace(selectedNews.getId());
-				clientFactory.getPlaceController().goTo(newsDetailPlace);
-			}
-
-		}));
-
-		// IM Handler
-		addHandlerRegistration(view.getListIM().addCellSelectedHandler(new CellSelectedHandler() {
-
-			@Override
-			public void onCellSelected(CellSelectedEvent event) {
-				News selectedNews = currentModel.get(event.getIndex());
-				Window.alert(selectedNews.getTitle());
-				NewsDetailPlace newsDetailPlace = new NewsDetailPlace(selectedNews.getId());
-				clientFactory.getPlaceController().goTo(newsDetailPlace);
-			}
-
-		}));
-
-		// IB Handler
-		addHandlerRegistration(view.getListIB().addCellSelectedHandler(new CellSelectedHandler() {
-
-			@Override
-			public void onCellSelected(CellSelectedEvent event) {
-				News selectedNews = currentModel.get(event.getIndex() + startIndexIB - 1);
-				NewsDetailPlace newsDetailPlace = new NewsDetailPlace(selectedNews.getId());
-				clientFactory.getPlaceController().goTo(newsDetailPlace);
-			}
-
-		}));
-
-		// IM Handler
-		addHandlerRegistration(view.getListIWI().addCellSelectedHandler(new CellSelectedHandler() {
-
-			@Override
-			public void onCellSelected(CellSelectedEvent event) {
-				News selectedNews = currentModel.get(event.getIndex() + startIndexIWI - 1);
 				NewsDetailPlace newsDetailPlace = new NewsDetailPlace(selectedNews.getId());
 				clientFactory.getPlaceController().goTo(newsDetailPlace);
 			}
@@ -94,27 +54,6 @@ public class NewsActivity extends MGWTAbstractActivity implements ObserverActivi
 
 	public void setCurrentModel(List<News> currentModel) {
 		this.currentModel = currentModel;
-
-		int i = 1;
-		for (News news : currentModel) {
-			if (this.startIndexIB != 0 && this.startIndexIWI != 0) {
-				break;
-			}
-
-			if (news.getOrganisation().equals("[IB]") && this.startIndexIB == 0) {
-				this.startIndexIB = i;
-			}
-
-			if (news.getOrganisation().equals("[IWI]") && this.startIndexIWI == 0) {
-				this.startIndexIWI = i;
-			}
-
-			i++;
-		}
-
-		System.out.println("currentModelSize: " + currentModel.size());
-		System.out.println("startIndexIB: " + this.startIndexIB);
-		System.out.println("startIndexIWI: " + this.startIndexIWI);
 	}
 
 	@Override
