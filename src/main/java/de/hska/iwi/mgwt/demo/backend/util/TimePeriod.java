@@ -1,6 +1,5 @@
 package de.hska.iwi.mgwt.demo.backend.util;
 
-import java.text.SimpleDateFormat;
 
 public class TimePeriod {
 	
@@ -14,13 +13,18 @@ public class TimePeriod {
 	}
 	
 	public TimePeriod(String intranetTime) {
-		SimpleDateFormat format = new SimpleDateFormat("HH:MM");
 		String[] intervall = {"00:00", "00:00"};
-		if (intranetTime != null) {
+		
+		if (intranetTime != null && !(intranetTime.trim().isEmpty())) {
 			intervall = intranetTime.split("-");
 		}
-		this.startTime = format.format(intervall[0]);
-		this.endTime = format.format(intervall[1]);
+		this.startTime = intervall[0].trim();
+		//DUMMER WORKAROUND NEEDS TO BE FIXED
+		if (intranetTime.contains("und") || intranetTime.contains("nach") || intranetTime.contains("Fortbildung")) {
+			this.endTime = "00:00";
+		} else {
+			this.endTime = intervall[1].trim();
+		}
 	}
 
 	/**

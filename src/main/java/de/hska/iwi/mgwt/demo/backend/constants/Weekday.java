@@ -1,7 +1,9 @@
 package de.hska.iwi.mgwt.demo.backend.constants;
 
-public enum Weekday {
-	
+import com.fasterxml.jackson.annotation.JsonCreator;
+
+public enum Weekday implements IURLParameterEnum {
+	NONE(-1, "NONE"),
 	MONDAY(0, "Montag"),
 	TUESDAY(1, "Dienstag"),
 	WEDNESDAY(2, "Mittwoch"),
@@ -12,10 +14,36 @@ public enum Weekday {
 	
 	private final int numberOfWeekday;
 	
-	private final String strWeekday;
+	private final String key;
 	
-	private Weekday(int numberOfWeekday, String strWeekday) {
+	private Weekday(int numberOfWeekday, String key) {
 		this.numberOfWeekday = numberOfWeekday;
-		this.strWeekday = strWeekday;
+		this.key = key;
 	}
+	
+	@JsonCreator
+	public static Weekday create(int value) {
+		for (Weekday day : Weekday.values()) {
+			if (day.getNumberOfWeekday() == value) {
+				return day;
+			}
+		}
+		return NONE;
+	}
+
+	/**
+	 * @return the numberOfWeekday
+	 */
+	private int getNumberOfWeekday() {
+		return numberOfWeekday;
+	}
+
+	/**
+	 * @return the key
+	 */
+	public String getKey() {
+		return key;
+	}
+
+	
 }

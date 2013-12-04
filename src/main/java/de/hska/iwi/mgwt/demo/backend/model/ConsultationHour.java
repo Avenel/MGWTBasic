@@ -21,7 +21,7 @@ public class ConsultationHour {
 	
 	private TimePeriod consultationTime;
 	
-	private int room;
+	private String room;
 	
 	private String building;
 
@@ -84,10 +84,10 @@ public class ConsultationHour {
 	/**
 	 * @return the room
 	 */
-	public int getRoom() {
+	public String getRoom() {
 		return room;
 	}
-
+	
 	/**
 	 * @return the building
 	 */
@@ -154,7 +154,7 @@ public class ConsultationHour {
 	/**
 	 * @param room the room to set
 	 */
-	public void setRoom(int room) {
+	public void setRoom(String room) {
 		this.room = room;
 	}
 
