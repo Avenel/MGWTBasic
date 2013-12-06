@@ -1,3 +1,6 @@
+/* include awesome font */
+@import url("assets/fonts/font-awesome/css/font-awesome.min.css");
+
 @font-face {
 	font-family: 'HelveticaNeue';
 	src: url(assets/fonts/helvNeue.woff);
@@ -186,5 +189,23 @@ body {
 	display:inline;
 	white-space:nowrap;
 	text-align:left;
+}
+
+/* Checkboxes */
+.mgwt-CheckBox-off {
+	color: #DB0134 !important;
+	border: solid 1px #DB0134 !important;
+	background-image: none !important;
+}
+
+.mgwt-CheckBox-on {
+	background-color: #DB0134 !important;
+	background-image: none !important;
+	border: solid 1px #FEFEFE !important;
+}
+
+.mgwt-CheckBox-middle-content {
+	background-color: #FEFEFE !important;
+	background-image: none !important;
 }
 

@@ -25,6 +25,7 @@ import com.googlecode.mgwt.mvp.client.AnimatingActivityManager;
 import de.hska.iwi.mgwt.demo.client.activities.home.HomeView;
 import de.hska.iwi.mgwt.demo.client.activities.lecture.LectureView;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsDetailView;
+import de.hska.iwi.mgwt.demo.client.activities.news.NewsSettingsView;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsView;
 import de.hska.iwi.mgwt.demo.client.activities.processes.StudentView;
 import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.ProcessDetailSeminarView;
@@ -82,6 +83,12 @@ public interface ClientFactory {
 	public NewsDetailView getNewsDetailView();
 	
 	/**
+	 * Get NewsSettingsView
+	 * @return NewsSettingsView
+	 */
+	public NewsSettingsView getNewsSettingsView();
+	
+	/**
 	 * Get ProcessSeminarView.
 	 * @return ProcessSeminarView
 	 */
@@ -111,6 +118,5 @@ public interface ClientFactory {
 	 * @return AnimatingActivityManager
 	 */
 	public AnimatingActivityManager getAnimatingActivityManager();
-
 
 }

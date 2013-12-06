@@ -24,7 +24,6 @@ import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.SimpleEventBus;
 import com.googlecode.mgwt.mvp.client.AnimatableDisplay;
 import com.googlecode.mgwt.mvp.client.AnimatingActivityManager;
-import com.googlecode.mgwt.ui.client.widget.tabbar.RootTabPanel;
 
 import de.hska.iwi.mgwt.demo.client.activities.home.HomeView;
 import de.hska.iwi.mgwt.demo.client.activities.home.HomeViewImpl;
@@ -32,6 +31,8 @@ import de.hska.iwi.mgwt.demo.client.activities.lecture.LectureView;
 import de.hska.iwi.mgwt.demo.client.activities.lecture.LectureViewImpl;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsDetailView;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsDetailViewImpl;
+import de.hska.iwi.mgwt.demo.client.activities.news.NewsSettingsView;
+import de.hska.iwi.mgwt.demo.client.activities.news.NewsSettingsViewImpl;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsView;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsViewImpl;
 import de.hska.iwi.mgwt.demo.client.activities.processes.StudentView;
@@ -58,6 +59,7 @@ public class ClientFactoryImpl implements ClientFactory {
 	private StudentViewImpl studentView;
 	private LectureViewImpl lectureView;
 	private NewsDetailViewImpl newsDetailView;
+	private NewsSettingsView newsSettingsView;
 	private RegisterSeminarViewImpl registerSeminarView;
 	private ProcessSeminarViewImpl processSeminarView;
 	private ProcessDetailSeminarViewImpl processDetailSeminarView;
@@ -65,6 +67,7 @@ public class ClientFactoryImpl implements ClientFactory {
 	private PhoneActivityMapper appActivityMapper;
 	private PhoneAnimationMapper appAnimationMapper;
 	private AnimatingActivityManager activityManager;
+	
 	
 
 	/**
@@ -172,6 +175,15 @@ public class ClientFactoryImpl implements ClientFactory {
 	@Override
 	public AnimatingActivityManager getAnimatingActivityManager() {
 		return this.activityManager;
+	}
+
+	@Override
+	public NewsSettingsView getNewsSettingsView() {
+		if (newsSettingsView == null) {
+			newsSettingsView = new NewsSettingsViewImpl();
+		}
+		
+		return newsSettingsView;
 	}
 
 	

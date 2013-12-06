@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.http.HttpRequest;
 import org.apache.http.HttpStatus;
 
 import com.fasterxml.jackson.core.JsonParseException;
