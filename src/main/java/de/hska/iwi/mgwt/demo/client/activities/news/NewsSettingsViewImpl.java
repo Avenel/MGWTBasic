@@ -14,6 +14,10 @@ public class NewsSettingsViewImpl implements NewsSettingsView {
 
 	private LayoutPanel main;
 	private String title;
+	private CheckBoxWidget iwiCheckBox;
+	private CheckBoxWidget ibCheckBox;
+	private CheckBoxWidget imCheckBox;
+	private CheckBoxWidget mkiCheckBox;
 	
 	public NewsSettingsViewImpl() {
 		this.main = new LayoutPanel();
@@ -32,16 +36,20 @@ public class NewsSettingsViewImpl implements NewsSettingsView {
 	    widgetList.setRound(true);
 	    
 		// IWI
-	    widgetList.add(new CheckBoxWidget("IWI").asWidget());
+	    iwiCheckBox = new CheckBoxWidget("IWI");
+	    widgetList.add(iwiCheckBox.asWidget());
 	    
 	    // IB
-	    widgetList.add(new CheckBoxWidget("IB").asWidget());
+	    ibCheckBox = new CheckBoxWidget("IB");
+	    widgetList.add(ibCheckBox.asWidget());
 	    
 	    // IM
-	    widgetList.add(new CheckBoxWidget("IM").asWidget());
+	    imCheckBox = new CheckBoxWidget("IM");
+	    widgetList.add(imCheckBox.asWidget());
 	    
 	    // MKI
-	    widgetList.add(new CheckBoxWidget("MKI").asWidget());
+	    mkiCheckBox = new CheckBoxWidget("MKI");
+	    widgetList.add(mkiCheckBox.asWidget());
 	    
 	    this.main.add(widgetList);
 	}
@@ -50,6 +58,30 @@ public class NewsSettingsViewImpl implements NewsSettingsView {
 	@Override
 	public Widget asWidget() {	
 		return this.main;
+	}
+
+
+	@Override
+	public CheckBoxWidget getIWIFilterCheckBox() {
+		return this.iwiCheckBox;
+	}
+
+
+	@Override
+	public CheckBoxWidget getIMFilterCheckBox() {
+		return this.imCheckBox;
+	}
+
+
+	@Override
+	public CheckBoxWidget getIBFilterCheckBox() {
+		return this.ibCheckBox;
+	}
+
+
+	@Override
+	public CheckBoxWidget getMKIFilterCheckBox() {
+		return mkiCheckBox;
 	}
 
 }

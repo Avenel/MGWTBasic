@@ -1,7 +1,7 @@
 package de.hska.iwi.mgwt.demo.client.widget;
 
-import com.google.gwt.dom.client.Style;
 import com.google.gwt.dom.client.Style.Unit;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Label;
@@ -17,12 +17,16 @@ public class CheckBoxWidget implements IsWidget {
 
 	Label text;
 	MCheckBox checkbox;
+	ValueChangeHandler<Boolean> handler;
 	
 	public CheckBoxWidget(String text) {
 		this.text = new Label(text);
 		
 		this.checkbox = new MCheckBox();
 		this.checkbox.setTitle(text);
+		
+		this.handler = null;
+		
 	}
 	
 	@Override
@@ -41,6 +45,14 @@ public class CheckBoxWidget implements IsWidget {
 		
 		return panel;
 		
+	}
+	
+	public void setCheckBox(boolean isChecked) {
+		this.checkbox.setValue(isChecked);
+	}
+	
+	public void addHandler(ValueChangeHandler<Boolean> handler) {
+		this.checkbox.addValueChangeHandler(handler);
 	}
 
 }
