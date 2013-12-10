@@ -1,8 +1,10 @@
 package de.hska.iwi.mgwt.demo.client.activities.news;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.storage.client.Storage;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.googlecode.mgwt.dom.client.event.tap.TapEvent;
 import com.googlecode.mgwt.dom.client.event.tap.TapHandler;
@@ -20,6 +22,8 @@ public class NewsActivity extends MGWTAbstractActivity implements ObserverActivi
 	private final ClientFactory clientFactory;
 
 	private List<News> currentModel;
+	private List<News> unfilteredList;
+	
 	private NewsView view;
 
 	public NewsActivity(ClientFactory clientFactory) {
@@ -29,9 +33,12 @@ public class NewsActivity extends MGWTAbstractActivity implements ObserverActivi
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
 		view = this.clientFactory.getNewsView();
-
+		
+		System.out.println("Start NewsActivity");
+		
 		NewsUtility.subscribe(this);
-		this.setCurrentModel(NewsUtility.getSortedNewsList());
+		this.unfilteredList = NewsUtility.getSortedNewsList(); 
+		this.setCurrentModel(filterNews(this.unfilteredList));
 
 		view.render(currentModel);
 		panel.setWidget(view);
@@ -67,8 +74,49 @@ public class NewsActivity extends MGWTAbstractActivity implements ObserverActivi
 
 	@Override
 	public void update(Object arg) {
-		this.setCurrentModel((List<News>) arg);
+		this.unfilteredList = (List<News>) arg;
+		this.setCurrentModel(filterNews(this.unfilteredList));
 		view.render(currentModel);
 	}
 
+	
+	/**
+	 * WIP: Filters news items.
+	 * @param unfiltered
+	 * @return List<News> filtered News items
+	 */
+	public List<News> filterNews(List<News> unfiltered) {
+		Storage stockStore = Storage.getLocalStorageIfSupported();
+		List<News> filteredNews = new ArrayList<News>();
+		
+		for (News news : unfiltered) {
+			// IWI
+			if (news.getOrganisation().compareTo("[IWI]") == 0 && 
+					Boolean.parseBoolean(stockStore.getItem("NewsSettingsFilterIWI"))) {
+				filteredNews.add(news);
+			}
+			
+			// IM
+			if (news.getOrganisation().compareTo("[IM]") == 0 && 
+					Boolean.parseBoolean(stockStore.getItem("NewsSettingsFilterIM"))) {
+				filteredNews.add(news);
+			}
+			
+			// IB
+			if (news.getOrganisation().compareTo("[IB]") == 0 && 
+					Boolean.parseBoolean(stockStore.getItem("NewsSettingsFilterIB"))) {
+				filteredNews.add(news);
+			}
+			
+			// MKI
+			if (news.getOrganisation().compareTo("[MKI]") == 0 && 
+					Boolean.parseBoolean(stockStore.getItem("NewsSettingsFilterMKI"))) {
+				filteredNews.add(news);
+			}
+						
+		}
+		
+		return filteredNews;
+	}
+	
 }
