@@ -9,6 +9,7 @@ import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
 import com.googlecode.mgwt.ui.client.dialog.Dialogs;
 
 import de.hska.iwi.mgwt.demo.client.ClientFactory;
+import de.hska.iwi.mgwt.demo.client.storage.StorageKey;
 
 public class NewsSettingsActivity extends MGWTAbstractActivity {
 
@@ -32,7 +33,7 @@ public class NewsSettingsActivity extends MGWTAbstractActivity {
 			@Override
 			public void onValueChange(ValueChangeEvent<Boolean> event) {
 				// store value in local storage
-				stockStore.setItem("NewsSettingsFilterIWI", event.getValue().toString());
+				stockStore.setItem(StorageKey.NewsSettingsFilterIWI.toString(), event.getValue().toString());
 			}
 			
 		});
@@ -42,7 +43,7 @@ public class NewsSettingsActivity extends MGWTAbstractActivity {
 			@Override
 			public void onValueChange(ValueChangeEvent<Boolean> event) {
 				// store value in local storage
-				stockStore.setItem("NewsSettingsFilterIM", event.getValue().toString());
+				stockStore.setItem(StorageKey.NewsSettingsFilterIM.toString(), event.getValue().toString());
 			}
 			
 		});
@@ -52,7 +53,7 @@ public class NewsSettingsActivity extends MGWTAbstractActivity {
 			@Override
 			public void onValueChange(ValueChangeEvent<Boolean> event) {
 				// store value in local storage
-				stockStore.setItem("NewsSettingsFilterIB", event.getValue().toString());
+				stockStore.setItem(StorageKey.NewsSettingsFilterIB.toString(), event.getValue().toString());
 			}
 			
 		});
@@ -62,17 +63,17 @@ public class NewsSettingsActivity extends MGWTAbstractActivity {
 			@Override
 			public void onValueChange(ValueChangeEvent<Boolean> event) {
 				// store value in local storage
-				stockStore.setItem("NewsSettingsFilterMKI", event.getValue().toString());
+				stockStore.setItem(StorageKey.NewsSettingsFilterMKI.toString(), event.getValue().toString());
 			}
 			
 		});
 		
 		// Read values from storage to load default values.
 		if (stockStore != null) {
-			this.view.getIWIFilterCheckBox().setCheckBox(Boolean.parseBoolean(stockStore.getItem("NewsSettingsFilterIWI")));
-			this.view.getIMFilterCheckBox().setCheckBox(Boolean.parseBoolean(stockStore.getItem("NewsSettingsFilterIM")));
-			this.view.getIBFilterCheckBox().setCheckBox(Boolean.parseBoolean(stockStore.getItem("NewsSettingsFilterIB")));
-			this.view.getMKIFilterCheckBox().setCheckBox(Boolean.parseBoolean(stockStore.getItem("NewsSettingsFilterMKI")));
+			this.view.getIWIFilterCheckBox().setCheckBox(Boolean.parseBoolean(stockStore.getItem(StorageKey.NewsSettingsFilterIWI.toString())));
+			this.view.getIMFilterCheckBox().setCheckBox(Boolean.parseBoolean(stockStore.getItem(StorageKey.NewsSettingsFilterIM.toString())));
+			this.view.getIBFilterCheckBox().setCheckBox(Boolean.parseBoolean(stockStore.getItem(StorageKey.NewsSettingsFilterIB.toString())));
+			this.view.getMKIFilterCheckBox().setCheckBox(Boolean.parseBoolean(stockStore.getItem(StorageKey.NewsSettingsFilterMKI.toString())));
 		} else {
 			Dialogs.alert("Web Storage Error", "", null);
 		}

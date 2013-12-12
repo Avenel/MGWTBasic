@@ -16,6 +16,7 @@ import de.hska.iwi.mgwt.demo.client.ClientFactory;
 import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
 import de.hska.iwi.mgwt.demo.client.model.News;
 import de.hska.iwi.mgwt.demo.client.model.NewsUtility;
+import de.hska.iwi.mgwt.demo.client.storage.StorageKey;
 
 public class NewsActivity extends MGWTAbstractActivity implements ObserverActivity {
 
@@ -92,25 +93,25 @@ public class NewsActivity extends MGWTAbstractActivity implements ObserverActivi
 		for (News news : unfiltered) {
 			// IWI
 			if (news.getOrganisation().compareTo("[IWI]") == 0 && 
-					Boolean.parseBoolean(stockStore.getItem("NewsSettingsFilterIWI"))) {
+					Boolean.parseBoolean(stockStore.getItem(StorageKey.NewsSettingsFilterIWI.toString()))) {
 				filteredNews.add(news);
 			}
 			
 			// IM
 			if (news.getOrganisation().compareTo("[IM]") == 0 && 
-					Boolean.parseBoolean(stockStore.getItem("NewsSettingsFilterIM"))) {
+					Boolean.parseBoolean(stockStore.getItem(StorageKey.NewsSettingsFilterIM.toString()))) {
 				filteredNews.add(news);
 			}
 			
 			// IB
 			if (news.getOrganisation().compareTo("[IB]") == 0 && 
-					Boolean.parseBoolean(stockStore.getItem("NewsSettingsFilterIB"))) {
+					Boolean.parseBoolean(stockStore.getItem(StorageKey.NewsSettingsFilterIB.toString()))) {
 				filteredNews.add(news);
 			}
 			
 			// MKI
 			if (news.getOrganisation().compareTo("[MKI]") == 0 && 
-					Boolean.parseBoolean(stockStore.getItem("NewsSettingsFilterMKI"))) {
+					Boolean.parseBoolean(stockStore.getItem(StorageKey.NewsSettingsFilterMKI.toString()))) {
 				filteredNews.add(news);
 			}
 						
