@@ -46,7 +46,7 @@ public class NewsUtility {
 			news.setId("1");
 			news.setTitle("Fetching Data ...");
 			news.setContent("Fetching data ...");
-			news.setOrganisation("[IM]");
+			news.setOrganisation("[LOADING]");
 			news.setDate(new Date());
 			newsList.add(news);
 

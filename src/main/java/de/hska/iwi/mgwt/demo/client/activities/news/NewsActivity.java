@@ -1,6 +1,7 @@
 package de.hska.iwi.mgwt.demo.client.activities.news;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.google.gwt.event.shared.EventBus;
@@ -34,9 +35,7 @@ public class NewsActivity extends MGWTAbstractActivity implements ObserverActivi
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
 		view = this.clientFactory.getNewsView();
-		
-		System.out.println("Start NewsActivity");
-		
+				
 		NewsUtility.subscribe(this);
 		this.unfilteredList = NewsUtility.getSortedNewsList(); 
 		this.setCurrentModel(filterNews(this.unfilteredList));
@@ -50,6 +49,10 @@ public class NewsActivity extends MGWTAbstractActivity implements ObserverActivi
 			@Override
 			public void onCellSelected(CellSelectedEvent event) {
 				News selectedNews = currentModel.get(event.getIndex());
+				
+				// make cell inactive, if it is just the loading cell.
+				if (selectedNews.getOrganisation().compareTo("[LOADING]") == 0) return;
+				
 				NewsDetailPlace newsDetailPlace = new NewsDetailPlace(selectedNews.getId());
 				clientFactory.getPlaceController().goTo(newsDetailPlace);
 			}
@@ -91,6 +94,11 @@ public class NewsActivity extends MGWTAbstractActivity implements ObserverActivi
 		List<News> filteredNews = new ArrayList<News>();
 		
 		for (News news : unfiltered) {
+			// LOADING Information
+			if (news.getOrganisation().compareTo("[LOADING]") == 0) {
+				filteredNews.add(news);
+			}
+			
 			// IWI
 			if (news.getOrganisation().compareTo("[IWI]") == 0 && 
 					Boolean.parseBoolean(stockStore.getItem(StorageKey.NewsSettingsFilterIWI.toString()))) {
@@ -115,6 +123,18 @@ public class NewsActivity extends MGWTAbstractActivity implements ObserverActivi
 				filteredNews.add(news);
 			}
 						
+		}
+		
+		// If List is empty, inform user to inspect settings
+		if (filteredNews.size() == 0) {
+			News news = new News();
+			news.setId("1");
+			news.setTitle("Empty List - Perhaps you might want to check your settings.");
+			news.setContent("Perhaps you might want to check your settings.");
+			news.setOrganisation("[LOADING]");
+			news.setDate(new Date());
+			
+			filteredNews.add(news);
 		}
 		
 		return filteredNews;
