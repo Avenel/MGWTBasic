@@ -1,6 +1,5 @@
 package de.hska.iwi.mgwt.demo.backend.model;
 
-import java.net.URI;
 import java.util.List;
 
 import de.hska.iwi.mgwt.demo.backend.constants.Course;

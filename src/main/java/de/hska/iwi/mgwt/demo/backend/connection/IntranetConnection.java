@@ -10,8 +10,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.validation.constraints.NotNull;
-
 import org.apache.http.HttpStatus;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -26,6 +24,7 @@ import de.hska.iwi.mgwt.demo.backend.model.CompulsoryOptionalSubjects;
 import de.hska.iwi.mgwt.demo.backend.model.ConsultationHour;
 import de.hska.iwi.mgwt.demo.backend.model.CourseTutorial;
 import de.hska.iwi.mgwt.demo.backend.model.NewsBoard;
+import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
 
 public class IntranetConnection implements Intranet {
 	
@@ -34,6 +33,8 @@ public class IntranetConnection implements Intranet {
 	private static final String TUTORIALS = "/Intranetaccess/REST/tutorials/<stg>";
 	
 	private static final String CUMPOLSORY = "/Intranetaccess/REST/compulsoryoptionalsubjects/<stg>";
+	
+	private static final String NEWS_BOARD_ALL = "/Intranetaccess/REST/newsbulletinboard/";
 	
 	private static final String NEWS_BOARD = "/Intranetaccess/REST/newsbulletinboard/<stg>";
 	
@@ -87,8 +88,12 @@ public class IntranetConnection implements Intranet {
 			throw new IllegalArgumentException("The course must not be null!");
 		}
 		List<NewsBoard> news = null;
-		url = buildUrl(NEWS_BOARD, course);
-		
+		if (course == Course.ALL) {
+			url = buildUrl(NEWS_BOARD_ALL);
+		} else {
+			url = buildUrl(NEWS_BOARD, course);
+		}
+
 		try {
 			news = mapper.readValue(requestJSON(url), new TypeReference<List<NewsBoard>>(){});
 		} catch (JsonParseException e) {
@@ -203,5 +208,34 @@ public class IntranetConnection implements Intranet {
 			e.printStackTrace();
 		}
 		return ret;
+	}
+
+	@Override
+	public void getTutorials(ObserverActivity<List<CourseTutorial>> observer,
+			Course course) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void getNewsBoard(ObserverActivity<List<NewsBoard>> observer,
+			Course course) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void getConsultationHours(
+			ObserverActivity<List<ConsultationHour>> observer) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void getCompulsoryOptionalSubjects(
+			ObserverActivity<List<CompulsoryOptionalSubjects>> observer,
+			Course course) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+		
 	}
 }

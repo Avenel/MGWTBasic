@@ -10,6 +10,7 @@ import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
 import com.googlecode.mgwt.ui.client.widget.celllist.CellSelectedEvent;
 import com.googlecode.mgwt.ui.client.widget.celllist.CellSelectedHandler;
 
+import de.hska.iwi.mgwt.demo.backend.BackendFactory;
 import de.hska.iwi.mgwt.demo.backend.connection.IntranetConnection;
 import de.hska.iwi.mgwt.demo.backend.model.NewsBoard;
 import de.hska.iwi.mgwt.demo.client.ClientFactory;
@@ -33,7 +34,7 @@ public class NewsActivity extends MGWTAbstractActivity implements ObserverActivi
 		view = this.clientFactory.getNewsView();
 
 		// Get news of all courses
-		IntranetConnection intranetConn = new IntranetConnection();
+		IntranetConnection intranetConn = (IntranetConnection) BackendFactory.createIntranetInstance();
 		
 		// TODO: Wenn nico den AsyncCall im master hat, wieder einbauen!
 //		intranetConn.getNewsBoard(this, Course.ALL);
