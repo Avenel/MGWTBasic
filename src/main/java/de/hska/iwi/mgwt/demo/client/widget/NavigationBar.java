@@ -9,9 +9,6 @@ import com.googlecode.mgwt.ui.client.widget.CellList;
 import com.googlecode.mgwt.ui.client.widget.ScrollPanel;
 import com.googlecode.mgwt.ui.client.widget.celllist.CellSelectedHandler;
 
-import de.hska.iwi.mgwt.demo.client.activities.news.NewsCell;
-import de.hska.iwi.mgwt.demo.client.model.News;
-
 /**
  * Represents a simple list to navigate through app-content.
  * @author Martin

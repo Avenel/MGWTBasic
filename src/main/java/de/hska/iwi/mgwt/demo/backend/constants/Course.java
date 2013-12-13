@@ -5,7 +5,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 public enum Course implements IURLParameterEnum {
 	INFORMATIK_BACHELOR("INFB"),
 	INFORMATIK_MASTER("INFM"),
-	MEDIENINFORMATIK_BACHELOR("MKIB");
+	MEDIENINFORMATIK_BACHELOR("MKIB"),
+	ALL("ALL");
 	
 	private final String key;
 	
@@ -25,6 +26,7 @@ public enum Course implements IURLParameterEnum {
 
 	@Override
 	public String getKey() {
+		if (this.key.compareTo("ALL") == 0) return "";
 		return this.key;
 	}
 

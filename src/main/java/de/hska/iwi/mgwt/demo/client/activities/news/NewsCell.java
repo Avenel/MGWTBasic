@@ -7,9 +7,9 @@ import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.googlecode.mgwt.ui.client.widget.celllist.Cell;
 
-import de.hska.iwi.mgwt.demo.client.model.News;
+import de.hska.iwi.mgwt.demo.backend.model.NewsBoard;
 
-public class NewsCell implements Cell<News> {
+public class NewsCell implements Cell<NewsBoard> {
 
 	private static Template TEMPLATE = GWT.create(Template.class);
 	
@@ -19,15 +19,15 @@ public class NewsCell implements Cell<News> {
 	}
 		
 	@Override
-	public void render(SafeHtmlBuilder safeHtmlBuilder, News model) {
+	public void render(SafeHtmlBuilder safeHtmlBuilder, NewsBoard model) {
 		DateTimeFormat fmt = DateTimeFormat.getFormat("dd.MM");
-		SafeHtml content = TEMPLATE.content(model.getTitle(), fmt.format(model.getDate()));
+		SafeHtml content = TEMPLATE.content(model.getTitle(), String.valueOf(model.getId()));
 		
 		safeHtmlBuilder.append(content);
 	}
 
 	@Override
-	public boolean canBeSelected(News model) {
+	public boolean canBeSelected(NewsBoard model) {
 		return true;
 	}
 		
