@@ -30,6 +30,8 @@ public class IntranetConnection implements Intranet {
 	
 	private static final String BASE_URL = "http://www.iwi.hs-karlsruhe.de";
 	
+	private static final String TUTORIALS_ALL = "/Intranetaccess/REST/tutorials/";
+	
 	private static final String TUTORIALS = "/Intranetaccess/REST/tutorials/<stg>";
 	
 	private static final String CUMPOLSORY = "/Intranetaccess/REST/compulsoryoptionalsubjects/<stg>";
@@ -64,7 +66,12 @@ public class IntranetConnection implements Intranet {
 	@Override
 	public List<CourseTutorial> getTutorials(Course course) {
 		List<CourseTutorial> tutorial = null;
-		url = buildUrl(TUTORIALS, course);
+		
+		if (course == Course.ALL) {
+			url = buildUrl(TUTORIALS_ALL);
+		} else {
+			url = buildUrl(TUTORIALS, course);
+		}
 		
 		try {
 			tutorial = mapper.readValue(requestJSON(url), new TypeReference<List<CourseTutorial>>(){});
@@ -130,7 +137,7 @@ public class IntranetConnection implements Intranet {
 	}
 
 	@Override
-	public List<CompulsoryOptionalSubjects> getCompulsoryOptionalSubjects(Course course) {
+	public List<CompulsoryOptionalSubjects> getCompulsoryOptionalSubjects(Course course) throws IllegalArgumentException {
 		if (course == null) {
 			throw new IllegalArgumentException("The Course is mandatory for this operation");
 		}
