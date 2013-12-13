@@ -12,8 +12,7 @@ public interface Intranet {
 	
 	public List<CourseTutorial> getTutorials(Course course);
 	
-	// Needs to be changed... newsBoar is not really correct. It is a list of News.
-	public List<NewsBoard> getNewsBoard(Course course);
+	public List<NewsBoard> getNewsBoard(Course course) throws IllegalArgumentException;
 	
 	public List<ConsultationHour> getConsultationHours();
 	

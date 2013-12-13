@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.validation.constraints.NotNull;
+
 import org.apache.http.HttpStatus;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -39,7 +41,7 @@ public class IntranetConnection implements Intranet {
 	
 	private static final String BLOCK_COURSES = "/Intranetaccess/REST/blockcourses/<stg>";
 	
-	private static final String TIMETABLE = "/Intranetaccess/REST/timetable/{stg}/<sem>";
+	private static final String TIMETABLE = "/Intranetaccess/REST/timetable/<stg>/<sem>";
 	
 	private static final String WORKFLOW = "/Intranetaccess/REST/application/workflow/<veranst>";
 	
@@ -81,8 +83,25 @@ public class IntranetConnection implements Intranet {
 
 	@Override
 	public List<NewsBoard> getNewsBoard(Course course) {
-		// TODO Auto-generated method stub
-		return null;
+		if (course == null) {
+			throw new IllegalArgumentException("The course must not be null!");
+		}
+		List<NewsBoard> news = null;
+		url = buildUrl(NEWS_BOARD, course);
+		
+		try {
+			news = mapper.readValue(requestJSON(url), new TypeReference<List<NewsBoard>>(){});
+		} catch (JsonParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return news;
 	}
 	
 	@Override

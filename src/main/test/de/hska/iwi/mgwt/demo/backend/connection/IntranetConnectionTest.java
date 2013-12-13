@@ -27,6 +27,17 @@ public class IntranetConnectionTest {
 //	}
 	
 	@Test
+	public void news() {
+		assertEquals("", intra.getNewsBoard(Course.INFORMATIK_BACHELOR).get(0).toString());
+		System.out.println("Ready");
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void newsException() {
+		assertEquals("", intra.getNewsBoard(null).get(0).toString());
+	}
+	
+	@Test
 	public void tutorials() {
 		assertEquals("", intra.getTutorials(Course.INFORMATIK_BACHELOR).get(0).toString());
 		
@@ -36,6 +47,12 @@ public class IntranetConnectionTest {
 	@Test
 	public void compulsory() {
 		assertEquals("", intra.getCompulsoryOptionalSubjects(Course.INFORMATIK_BACHELOR).get(0).toString());
+		System.out.println("Ready");
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void compulsoryException() {
+		assertEquals("", intra.getCompulsoryOptionalSubjects(null).get(0).toString());
 		System.out.println("Ready");
 	}
 	

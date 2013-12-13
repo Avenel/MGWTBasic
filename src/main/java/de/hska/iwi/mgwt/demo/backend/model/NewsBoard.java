@@ -18,7 +18,7 @@ public class NewsBoard {
 	
 	private String content;
 	
-	private List<URI> links;
+	private List<String> links;
 	
 	private NewsType type;
 
@@ -60,7 +60,7 @@ public class NewsBoard {
 	/**
 	 * @return the links
 	 */
-	public List<URI> getLinks() {
+	public List<String> getLinks() {
 		return links;
 	}
 
@@ -109,7 +109,7 @@ public class NewsBoard {
 	/**
 	 * @param links the links to set
 	 */
-	public void setLinks(List<URI> links) {
+	public void setLinks(List<String> links) {
 		this.links = links;
 	}
 
