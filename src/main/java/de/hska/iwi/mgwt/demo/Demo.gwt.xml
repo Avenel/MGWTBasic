@@ -8,7 +8,7 @@
 	<inherits name="com.google.gwt.activity.Activity" />
 	<inherits name="com.googlecode.mgwt.MGWT"/>
 	<inherits name="com.google.gwt.json.JSON" /> 
-	  <inherits name="com.google.gwt.i18n.I18N"/>
+	 <inherits name="com.google.gwt.i18n.I18N"/>
 	<inherits name="de.hska.iwi.mgwt.demo.events.Events"/>
 	
 	<!-- uncomment this if you want to use gwt phonegap -->
@@ -26,4 +26,5 @@
 	<entry-point class="de.hska.iwi.mgwt.demo.client.MgwtAppEntryPoint" />
 	
 	<source path="client"/>
+	<source path="backend"/>
 </module>

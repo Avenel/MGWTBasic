@@ -11,7 +11,9 @@ import com.googlecode.mgwt.ui.client.widget.celllist.CellSelectedEvent;
 import com.googlecode.mgwt.ui.client.widget.celllist.CellSelectedHandler;
 
 import de.hska.iwi.mgwt.demo.backend.BackendFactory;
+import de.hska.iwi.mgwt.demo.backend.Intranet;
 import de.hska.iwi.mgwt.demo.backend.connection.IntranetConnection;
+import de.hska.iwi.mgwt.demo.backend.constants.Course;
 import de.hska.iwi.mgwt.demo.backend.model.NewsBoard;
 import de.hska.iwi.mgwt.demo.client.ClientFactory;
 import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
@@ -34,11 +36,12 @@ public class NewsActivity extends MGWTAbstractActivity implements ObserverActivi
 		view = this.clientFactory.getNewsView();
 
 		// Get news of all courses
-		IntranetConnection intranetConn = (IntranetConnection) BackendFactory.createIntranetInstance();
+		Intranet intranetConn = (Intranet) BackendFactory.createIntranetInstance();
 		
 		// TODO: Wenn nico den AsyncCall im master hat, wieder einbauen!
 //		intranetConn.getNewsBoard(this, Course.ALL);
-
+		intranetConn.getNewsBoard(this, Course.ALL);
+		
 		view.render(currentModel);
 		panel.setWidget(view);
 		

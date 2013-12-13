@@ -15,9 +15,9 @@ import de.hska.iwi.mgwt.demo.backend.model.NewsBoard;
 import de.hska.iwi.mgwt.demo.backend.util.TimePeriod;
 import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
 
-public class DummyIntranteConnection implements Intranet {
+public class DummyIntranetConnection implements Intranet {
 	
-	public DummyIntranteConnection() {
+	public DummyIntranetConnection() {
 		
 	}
 
