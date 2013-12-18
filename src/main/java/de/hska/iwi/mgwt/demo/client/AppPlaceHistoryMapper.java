@@ -20,6 +20,7 @@ import com.google.gwt.place.shared.WithTokenizers;
 
 import de.hska.iwi.mgwt.demo.client.activities.home.HomePlace.HomePlaceTokenizer;
 import de.hska.iwi.mgwt.demo.client.activities.lecture.LecturePlace;
+import de.hska.iwi.mgwt.demo.client.activities.mensa.MensaPlace.MensaPlaceTokenizer;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsDetailPlace;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsPlace.NewsPlaceTokenizer;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsSettingsPlace;
@@ -34,6 +35,7 @@ import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.RegisterSeminar
  * 
  */
 @WithTokenizers({ HomePlaceTokenizer.class, NewsPlaceTokenizer.class, NewsDetailPlace.NewsDetailPlaceTokenizer.class, NewsSettingsPlace.NewsSettingsPlaceTokenizer.class, StudentPlace.StudentPlaceTokenizer.class, 
-					LecturePlace.LecturePlaceTokenizer.class, RegisterSeminarPlaceTokenizer.class, ProcessSeminarPlaceTokenizer.class,ProcessDetailSeminarPlaceTokenizer.class})
+					LecturePlace.LecturePlaceTokenizer.class, RegisterSeminarPlaceTokenizer.class, ProcessSeminarPlaceTokenizer.class, ProcessDetailSeminarPlaceTokenizer.class, MensaPlaceTokenizer.class})
 public interface AppPlaceHistoryMapper extends PlaceHistoryMapper {
+	
 }

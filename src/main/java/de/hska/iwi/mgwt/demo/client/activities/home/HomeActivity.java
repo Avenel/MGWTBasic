@@ -9,7 +9,6 @@ import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
 import de.hska.iwi.mgwt.demo.client.ClientFactory;
 import de.hska.iwi.mgwt.demo.client.model.TileBoardManager;
 import de.hska.iwi.mgwt.demo.client.widget.Tile;
-import de.hska.iwi.mgwt.demo.events.ChangePage;
 
 /**
  * Implements the home activity. It is the entry point for the user

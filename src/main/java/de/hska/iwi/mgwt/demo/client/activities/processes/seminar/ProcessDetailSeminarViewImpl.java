@@ -48,7 +48,7 @@ public class ProcessDetailSeminarViewImpl implements ProcessDetailSeminarView {
 		pinTileButton = new HeaderPinTileButton(new TapHandler(){
 			@Override
 			public void onTap(TapEvent event) {
-				Tile seminarTile = new Tile("assets/icons/Process.png", "Detail", new ProcessDetailSeminarPlace(String.valueOf(id)), true);
+				Tile seminarTile = new Tile("assets/icons/Process.png", "Detail", new ProcessDetailSeminarPlace(String.valueOf(id)), true, false);
 				TileBoardManager.addTile(seminarTile);
 				pinTileButton.setPinned(true);
 				Dialogs.alert("Tile angepinnt", "Dieses Seminar wurde auf deinen Homescreen angepinnt!", null);

@@ -9,6 +9,8 @@ import de.hska.iwi.mgwt.demo.client.activities.home.HomeActivity;
 import de.hska.iwi.mgwt.demo.client.activities.home.HomePlace;
 import de.hska.iwi.mgwt.demo.client.activities.lecture.LectureActivity;
 import de.hska.iwi.mgwt.demo.client.activities.lecture.LecturePlace;
+import de.hska.iwi.mgwt.demo.client.activities.mensa.MensaActivity;
+import de.hska.iwi.mgwt.demo.client.activities.mensa.MensaPlace;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsActivity;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsDetailActivity;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsDetailPlace;
@@ -74,6 +76,9 @@ public class PhoneActivityMapper implements ActivityMapper {
 		}
 		if (place.getClass().equals(ProcessDetailSeminarPlace.class)) {
 			return new ProcessDetailSeminarActivity(clientFactory, ((ProcessDetailSeminarPlace)place).getId());
+		}
+		if (place.getClass().equals(MensaPlace.class)) {
+			return new MensaActivity(clientFactory);
 		}
 		
 		return new NewsActivity(clientFactory);

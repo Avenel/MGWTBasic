@@ -2,8 +2,6 @@ package de.hska.iwi.mgwt.demo.client.widget;
 
 import java.util.List;
 
-import com.google.gwt.dom.client.Element;
-import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.mgwt.ui.client.widget.CellList;

@@ -8,13 +8,11 @@ import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.ui.Label;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
 
-import de.hska.iwi.mgwt.demo.client.activities.home.HomePlace;
 import de.hska.iwi.mgwt.demo.client.activities.lecture.LecturePlace;
+import de.hska.iwi.mgwt.demo.client.activities.mensa.MensaPlace;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsPlace;
 import de.hska.iwi.mgwt.demo.client.activities.processes.StudentPlace;
 import de.hska.iwi.mgwt.demo.client.widget.Tile;
-import de.hska.iwi.mgwt.demo.client.widget.TileBoard;
-import de.hska.iwi.mgwt.demo.events.PageName;
 
 /**
  * Manages tiles on TileBoard. In future it can load tiles, stored in files on the clientside.
@@ -32,13 +30,13 @@ public class TileBoardManager {
 		tiles = new ArrayList<Tile>();
 		
 		// News Tile
-		Tile newsTile = new Tile("assets/icons/WebNews.png", "Aktuelles", new NewsPlace(), false);
+		Tile newsTile = new Tile("assets/icons/WebNews.png", "Aktuelles", new NewsPlace(), false, false);
 		tiles.add(newsTile);
 		
 		// Processes Tile
-		Tile processTile = new Tile("assets/icons/Process.png", "Prozesse", new StudentPlace(), false);
+		Tile processTile = new Tile("assets/icons/Process.png", "Prozesse", new StudentPlace(), false, true);
 		
-		// TODO showcase update
+		// showcase update
 		LayoutPanel updatePanel = new LayoutPanel();
 		updatePanel.getElement().getStyle().setPaddingTop(25, Unit.PX);
 		updatePanel.getElement().getStyle().setProperty("display", "table-cell");
@@ -65,11 +63,11 @@ public class TileBoardManager {
 		tiles.add(processTile);
 		
 		// Lecture Tile
-		Tile lectureTile = new Tile("assets/icons/UniHut.png", "Vorlesung", new LecturePlace(), false);
+		Tile lectureTile = new Tile("assets/icons/UniHut.png", "Vorlesung", new LecturePlace(), false, false);
 		tiles.add(lectureTile);
 	
 		// Mensa Tile
-		Tile mensaTile = new Tile("assets/icons/MensaWhite.png", "Mensa", new HomePlace(), false);
+		Tile mensaTile = new Tile("assets/icons/MensaWhite.png", "Mensa", new MensaPlace(), false, false);
 		tiles.add(mensaTile);
 	}
 	

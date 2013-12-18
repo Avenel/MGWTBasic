@@ -14,10 +14,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.mgwt.mvp.client.Animation;
 import com.googlecode.mgwt.ui.client.animation.AnimationHelper;
-import com.googlecode.mgwt.ui.client.dialog.Dialogs;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
-
-import de.hska.iwi.mgwt.demo.events.PageName;
 
 /**
  * Represents a tile. It has a front- and backside.
@@ -46,6 +43,8 @@ public class Tile implements IsWidget, ObserverTile {
 	Label updateBubble;
 	int updateCounter;
 	
+	boolean flippable;
+	
 	// defines which page is behind this tile
 	Place tilePlace;
 
@@ -69,7 +68,7 @@ public class Tile implements IsWidget, ObserverTile {
 	 * @param title
 	 * @param color
 	 */
-	public Tile(String iconURL, String title, Place place, boolean isCustomLink) {
+	public Tile(String iconURL, String title, Place place, boolean isCustomLink, boolean flippable) {
 		super();
 		this.iconURL = iconURL;
 		this.title = title;
@@ -77,6 +76,8 @@ public class Tile implements IsWidget, ObserverTile {
 		
 		// official HS Karlsruhe color
 		this.color = "#DB0134";
+		
+		this.flippable = flippable;
 		
 		this.isCustomLink = isCustomLink;
 		createWidget();
@@ -89,7 +90,11 @@ public class Tile implements IsWidget, ObserverTile {
 		};
 		
 		this.flipTime = (int) (Math.random() * 5000.0) + 5000;
-		this.flipTimer.schedule(this.flipTime);
+		
+		// prevent tile from flipping, if it is not meant to be.
+		if (this.flippable) {
+			this.flipTimer.schedule(this.flipTime);
+		}
 	}
 
 	
@@ -317,6 +322,8 @@ public class Tile implements IsWidget, ObserverTile {
 	 * Flips tile.
 	 */
 	public void flipWidget() {
+		if (!this.flippable) return;
+		
 		if (this.currentPanel == this.frontPanel) {
 			this.currentPanel = this.backPanel;
 		} else {
