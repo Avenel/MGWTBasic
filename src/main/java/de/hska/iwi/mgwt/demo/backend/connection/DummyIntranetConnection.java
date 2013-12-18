@@ -11,6 +11,7 @@ import de.hska.iwi.mgwt.demo.backend.constants.Weekday;
 import de.hska.iwi.mgwt.demo.backend.model.CompulsoryOptionalSubjects;
 import de.hska.iwi.mgwt.demo.backend.model.ConsultationHour;
 import de.hska.iwi.mgwt.demo.backend.model.CourseTutorial;
+import de.hska.iwi.mgwt.demo.backend.model.MensaMenu;
 import de.hska.iwi.mgwt.demo.backend.model.NewsBoard;
 import de.hska.iwi.mgwt.demo.backend.util.TimePeriod;
 import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
@@ -180,6 +181,12 @@ public class DummyIntranetConnection implements Intranet {
 			Course course) throws IllegalArgumentException {
 		observer.update(getCompulsoryOptionalSubjects(course));
 		
+	}
+
+	@Override
+	public List<MensaMenu> getMensaMenu(int id, Date date) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

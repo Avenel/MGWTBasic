@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -23,6 +24,7 @@ import de.hska.iwi.mgwt.demo.backend.constants.IURLParameterEnum;
 import de.hska.iwi.mgwt.demo.backend.model.CompulsoryOptionalSubjects;
 import de.hska.iwi.mgwt.demo.backend.model.ConsultationHour;
 import de.hska.iwi.mgwt.demo.backend.model.CourseTutorial;
+import de.hska.iwi.mgwt.demo.backend.model.MensaMenu;
 import de.hska.iwi.mgwt.demo.backend.model.NewsBoard;
 import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
 
@@ -49,6 +51,8 @@ public class IntranetConnection implements Intranet {
 	private static final String WORKFLOW = "/Intranetaccess/REST/application/workflow/<veranst>";
 	
 	private static final String WORKFLOW_PROGRESS = "/Intranetaccess/REST/application/state/<veranst>";
+	
+	private static final String MENSA_MENU = "/Intranetaccess/REST/canteen/<id>/<date>";
 	
 	private static final String PARAM_PATTERN = "<.*>";
 	
@@ -244,5 +248,11 @@ public class IntranetConnection implements Intranet {
 			Course course) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<MensaMenu> getMensaMenu(int id, Date date) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
