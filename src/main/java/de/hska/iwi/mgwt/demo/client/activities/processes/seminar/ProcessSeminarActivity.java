@@ -3,6 +3,7 @@ package de.hska.iwi.mgwt.demo.client.activities.processes.seminar;
 import java.util.List;
 
 import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.googlecode.mgwt.dom.client.event.tap.TapEvent;
 import com.googlecode.mgwt.dom.client.event.tap.TapHandler;
@@ -39,8 +40,8 @@ public class ProcessSeminarActivity extends MGWTAbstractActivity {
 			
 			@Override
 			public void onTap(TapEvent event) {
-//				RegisterSeminarPlace registerSeminarPlace = new RegisterSeminarPlace();
-				clientFactory.getPlaceController().goTo(clientFactory.getPlaceController().getWhere());
+				RegisterSeminarPlace registerSeminarPlace = new RegisterSeminarPlace();
+				clientFactory.getPlaceController().goTo(registerSeminarPlace);
 			}
 		})); 
 		addHandlerRegistration(view.getSeminarCellList().addCellSelectedHandler(new CellSelectedHandler() {
