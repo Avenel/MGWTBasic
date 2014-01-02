@@ -10,6 +10,7 @@ import com.googlecode.mgwt.dom.client.event.tap.TapHandler;
 import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
 
 import de.hska.iwi.mgwt.demo.client.ClientFactory;
+import de.hska.iwi.mgwt.demo.client.activities.processes.ProcessDetailView;
 import de.hska.iwi.mgwt.demo.client.model.ProcessStep;
 import de.hska.iwi.mgwt.demo.client.model.Seminar;
 import de.hska.iwi.mgwt.demo.client.model.SeminarStorage;
@@ -17,7 +18,7 @@ import de.hska.iwi.mgwt.demo.client.model.SeminarStorage;
 public class ProcessDetailSeminarActivity extends MGWTAbstractActivity {
 
 	private ClientFactory clientFactory;
-	private ProcessDetailSeminarView view;
+	private ProcessDetailView view;
 	private List<ProcessStep> currentModel;
 	private Seminar seminar;
 	private String id;
@@ -47,7 +48,7 @@ public class ProcessDetailSeminarActivity extends MGWTAbstractActivity {
 		steps.add(new ProcessStep("Note verfuegbar", 6, "Ihre Note kann eingesehen werden. Der Prozess ist abgeschlossen"));
 		
 		currentModel=steps;
-		view = this.clientFactory.getProcessDetailSeminarView(seminar.getStatus(), currentModel, Integer.parseInt(id));
+		view = this.clientFactory.getProcessDetailView(seminar.getStatus(), currentModel, Integer.parseInt(id));
 		view.setTitle(seminar.getTopic());
 		
 

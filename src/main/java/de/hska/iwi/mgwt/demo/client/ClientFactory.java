@@ -28,8 +28,8 @@ import de.hska.iwi.mgwt.demo.client.activities.mensa.MensaView;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsDetailView;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsSettingsView;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsView;
+import de.hska.iwi.mgwt.demo.client.activities.processes.ProcessDetailView;
 import de.hska.iwi.mgwt.demo.client.activities.processes.StudentView;
-import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.ProcessDetailSeminarView;
 import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.ProcessSeminarView;
 import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.RegisterSeminarView;
 import de.hska.iwi.mgwt.demo.client.model.ProcessStep;
@@ -105,7 +105,7 @@ public interface ClientFactory {
 	 * Get ProcessDetailSeminarView.
 	 * @return ProcessDetailSeminarView
 	 */
-	public ProcessDetailSeminarView getProcessDetailSeminarView(int activeStep,List<ProcessStep> steps, int id);
+	public ProcessDetailView getProcessDetailView(int activeStep,List<ProcessStep> steps, int id);
 	
 	/**
 	 * Get RegisterSeminarView.

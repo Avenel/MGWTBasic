@@ -5,6 +5,13 @@ import java.util.Iterator;
 import java.util.List;
 
 import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.json.client.JSONArray;
+import com.google.gwt.json.client.JSONObject;
+import com.google.gwt.json.client.JSONParser;
+import com.google.gwt.json.client.JSONString;
+import com.google.gwt.json.client.JSONValue;
+import com.google.gwt.storage.client.Storage;
+import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.mgwt.dom.client.event.tap.TapEvent;
@@ -17,6 +24,7 @@ import com.googlecode.mgwt.ui.client.widget.WidgetList;
 import de.hska.iwi.mgwt.demo.client.ClientFactory;
 import de.hska.iwi.mgwt.demo.client.model.Seminar;
 import de.hska.iwi.mgwt.demo.client.model.SeminarStorage;
+import de.hska.iwi.mgwt.demo.client.storage.StorageKey;
 
 public class RegisterSeminarActivity extends MGWTAbstractActivity {
 
@@ -24,7 +32,8 @@ public class RegisterSeminarActivity extends MGWTAbstractActivity {
 	private RegisterSeminarView view;
 	List<String> seminarEntries;
 	Seminar newSeminar;
-
+	Storage localStorage;
+	
 	public RegisterSeminarActivity(ClientFactory clientFactory) {
 		this.clientFactory = clientFactory;
 	}
@@ -34,7 +43,6 @@ public class RegisterSeminarActivity extends MGWTAbstractActivity {
 		view = this.clientFactory.getRegisterSeminarView();
 
 		seminarEntries = new ArrayList<String>();
-
 		panel.setWidget(view);
 
 		addHandlerRegistration(view.getRegisterButton().addTapHandler(new TapHandler() {
@@ -43,6 +51,21 @@ public class RegisterSeminarActivity extends MGWTAbstractActivity {
 
 			@Override
 			public void onTap(TapEvent event) {
+				
+				JSONArray currentSeminars= null;
+
+
+				localStorage = Storage.getLocalStorageIfSupported();
+				try{
+					JSONValue value= JSONParser.parseStrict(localStorage.getItem(StorageKey.ProcessesSeminarsList.toString()));
+					currentSeminars= (JSONArray)value;
+				}catch (NullPointerException e){
+					currentSeminars=new JSONArray();
+				}
+				
+					
+				
+				JSONObject jsonSeminar= new JSONObject();
 				newSeminar = new Seminar();
 				Iterator<Widget> iter = parent.iterator();
 				while (iter.hasNext()) {
@@ -51,20 +74,27 @@ public class RegisterSeminarActivity extends MGWTAbstractActivity {
 						MTextBox textBox = (MTextBox) ((LayoutPanel) widget).getWidget(1);
 						if (textBox.getName().equals("term")) {
 							newSeminar.setTerm(textBox.getText());
+							jsonSeminar.put(StorageKey.ProcessesSeminarTerm.toString(), new JSONString(textBox.getText()));
 						}
 						if (textBox.getName().equals("topic")) {
 							newSeminar.setTopic(textBox.getText());
+							jsonSeminar.put(StorageKey.ProcessesSeminarTopic.toString(), new JSONString(textBox.getText()));
 						}
 						if (textBox.getName().equals("professor")) {
 							newSeminar.setProfessor(textBox.getText());
+							jsonSeminar.put(StorageKey.ProcessesSeminarProfessor.toString(), new JSONString(textBox.getText()));
 						}
 						newSeminar.setStatus(1);
+						jsonSeminar.put(StorageKey.ProcessesSeminarStatus.toString(),new JSONString("1"));
 
 					}
 
 				}
 
 				SeminarStorage.addSeminar(newSeminar);
+				currentSeminars.set(currentSeminars.size(), jsonSeminar);
+				localStorage.setItem(StorageKey.ProcessesSeminarsList.toString(), currentSeminars.toString());
+				History.back();
 
 			}
 		}));

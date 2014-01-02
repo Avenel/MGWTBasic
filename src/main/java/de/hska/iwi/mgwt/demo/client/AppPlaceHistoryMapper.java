@@ -25,7 +25,7 @@ import de.hska.iwi.mgwt.demo.client.activities.news.NewsDetailPlace;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsPlace.NewsPlaceTokenizer;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsSettingsPlace;
 import de.hska.iwi.mgwt.demo.client.activities.processes.StudentPlace;
-import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.ProcessDetailSeminarPlace.ProcessDetailSeminarPlaceTokenizer;
+import de.hska.iwi.mgwt.demo.client.activities.processes.ProcessDetailPlace.ProcessDetailPlaceTokenizer;
 import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.ProcessSeminarPlace.ProcessSeminarPlaceTokenizer;
 import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.RegisterSeminarPlace.RegisterSeminarPlaceTokenizer;
 
@@ -35,7 +35,7 @@ import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.RegisterSeminar
  * 
  */
 @WithTokenizers({ HomePlaceTokenizer.class, NewsPlaceTokenizer.class, NewsDetailPlace.NewsDetailPlaceTokenizer.class, NewsSettingsPlace.NewsSettingsPlaceTokenizer.class, StudentPlace.StudentPlaceTokenizer.class, 
-					LecturePlace.LecturePlaceTokenizer.class, RegisterSeminarPlaceTokenizer.class, ProcessSeminarPlaceTokenizer.class, ProcessDetailSeminarPlaceTokenizer.class, MensaPlaceTokenizer.class})
+					LecturePlace.LecturePlaceTokenizer.class, RegisterSeminarPlaceTokenizer.class, ProcessSeminarPlaceTokenizer.class, ProcessDetailPlaceTokenizer.class, MensaPlaceTokenizer.class})
 public interface AppPlaceHistoryMapper extends PlaceHistoryMapper {
 	
 }

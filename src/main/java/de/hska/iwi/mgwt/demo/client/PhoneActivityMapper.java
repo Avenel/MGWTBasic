@@ -17,10 +17,10 @@ import de.hska.iwi.mgwt.demo.client.activities.news.NewsDetailPlace;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsPlace;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsSettingsActivity;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsSettingsPlace;
+import de.hska.iwi.mgwt.demo.client.activities.processes.ProcessDetailPlace;
 import de.hska.iwi.mgwt.demo.client.activities.processes.StudentActivity;
 import de.hska.iwi.mgwt.demo.client.activities.processes.StudentPlace;
 import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.ProcessDetailSeminarActivity;
-import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.ProcessDetailSeminarPlace;
 import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.ProcessSeminarActivity;
 import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.ProcessSeminarPlace;
 import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.RegisterSeminarActivity;
@@ -74,8 +74,8 @@ public class PhoneActivityMapper implements ActivityMapper {
 		if (place.getClass().equals(RegisterSeminarPlace.class)) {
 			return new RegisterSeminarActivity(clientFactory);
 		}
-		if (place.getClass().equals(ProcessDetailSeminarPlace.class)) {
-			return new ProcessDetailSeminarActivity(clientFactory, ((ProcessDetailSeminarPlace)place).getId());
+		if (place.getClass().equals(ProcessDetailPlace.class)) {
+			return new ProcessDetailSeminarActivity(clientFactory, ((ProcessDetailPlace)place).getId());
 		}
 		if (place.getClass().equals(MensaPlace.class)) {
 			return new MensaActivity(clientFactory);

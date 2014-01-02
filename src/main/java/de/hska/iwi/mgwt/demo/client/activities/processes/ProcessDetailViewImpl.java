@@ -1,4 +1,4 @@
-package de.hska.iwi.mgwt.demo.client.activities.processes.seminar;
+package de.hska.iwi.mgwt.demo.client.activities.processes;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ import de.hska.iwi.mgwt.demo.client.widget.HeaderPinTileButton;
 import de.hska.iwi.mgwt.demo.client.widget.ProcessDetailOverview;
 import de.hska.iwi.mgwt.demo.client.widget.Tile;
 
-public class ProcessDetailSeminarViewImpl implements ProcessDetailSeminarView {
+public class ProcessDetailViewImpl implements ProcessDetailView {
 
 	private LayoutPanel main;
 	private String title;
@@ -30,7 +30,7 @@ public class ProcessDetailSeminarViewImpl implements ProcessDetailSeminarView {
 	private ProcessDetailOverview processDetailOverviewWidget;
 	private HeaderPinTileButton pinTileButton;
 
-	public ProcessDetailSeminarViewImpl(int activeStep, List<ProcessStep> steps, final int id) {
+	public ProcessDetailViewImpl(int activeStep, List<ProcessStep> steps, final int id) {
 		this.activeStep = activeStep;
 		this.steps=steps;
 		
@@ -48,10 +48,10 @@ public class ProcessDetailSeminarViewImpl implements ProcessDetailSeminarView {
 		pinTileButton = new HeaderPinTileButton(new TapHandler(){
 			@Override
 			public void onTap(TapEvent event) {
-				Tile seminarTile = new Tile("assets/icons/Process.png", "Detail", new ProcessDetailSeminarPlace(String.valueOf(id)), true, false);
-				TileBoardManager.addTile(seminarTile);
+				Tile processTile = new Tile("assets/icons/Process.png", "Detail", new ProcessDetailPlace(String.valueOf(id)), true, false);
+				TileBoardManager.addTile(processTile);
 				pinTileButton.setPinned(true);
-				Dialogs.alert("Tile angepinnt", "Dieses Seminar wurde auf deinen Homescreen angepinnt!", null);
+				Dialogs.alert("Tile angepinnt", "Dieser Prozess wurde auf Deinen Homescreen angepinnt!", null);
 				headerPanel.setRightWidget(null);
 			}
 		});
