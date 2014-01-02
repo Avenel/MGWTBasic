@@ -95,14 +95,14 @@ body {
 	opacity:0.5;
 }
 
-.line {
+.line-done {
 	border-left: 2px solid #DB0134;
 	height: 100%;
 	margin-left: 16px;
 	padding: 12px;
 }
 
-.line-done {
+.line {
 	border-left: 2px solid grey;
 	height: 100%;
 	margin-left: 16px;
