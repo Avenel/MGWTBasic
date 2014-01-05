@@ -209,3 +209,25 @@ body {
 	background-image: none !important;
 }
 
+
+.mealGroups-container {
+	margin: 0 auto;
+	width: 80%;
+}
+
+.mealGroup-container {
+	width: 100%;
+}
+
+.mealGroup-title {
+	color: #DB0134;
+}
+
+.meal-name {
+	color: grey;
+}
+
+.meal-price{
+	color: #DB0134;
+	text-align: right;
+}
