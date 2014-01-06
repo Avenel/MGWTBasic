@@ -200,16 +200,19 @@ public class DummyIntranetConnection implements Intranet {
 		Meal holzfaellerSteak = new Meal();
 		holzfaellerSteak.setName("Holzfaellersteak vom Schweinekamm");
 		holzfaellerSteak.setPriceStudent(2.10);
+		holzfaellerSteak.getFoodAdditiveNumbers().add(95);
 		mealGroup1.getMeals().add(holzfaellerSteak);
 		
 		Meal pommes = new Meal();
 		pommes.setName("Pommes");
 		pommes.setPriceStudent(0.90);
+		pommes.getFoodAdditiveNumbers().add(97);
 		mealGroup1.getMeals().add(pommes);
 		
 		Meal langkorn = new Meal();
 		langkorn.setName("Langkornreis");
 		langkorn.setPriceStudent(0.90);
+		langkorn.getFoodAdditiveNumbers().add(97);
 		mealGroup1.getMeals().add(langkorn);
 		
 		menu.getMealGroups().add(mealGroup1);
@@ -220,16 +223,19 @@ public class DummyIntranetConnection implements Intranet {
 		holzfaellerSteak = new Meal();
 		holzfaellerSteak.setName("Holzfaellersteak vom Lamm");
 		holzfaellerSteak.setPriceStudent(2.90);
+		holzfaellerSteak.getFoodAdditiveNumbers().add(95);
 		mealGroup2.getMeals().add(holzfaellerSteak);
 		
 		pommes = new Meal();
 		pommes.setName("Pommes");
 		pommes.setPriceStudent(0.90);
+		pommes.getFoodAdditiveNumbers().add(97);
 		mealGroup2.getMeals().add(pommes);
 		
 		langkorn = new Meal();
 		langkorn.setName("Langkornreis");
 		langkorn.setPriceStudent(0.90);
+		langkorn.getFoodAdditiveNumbers().add(97);
 		mealGroup2.getMeals().add(langkorn);
 		
 		menu.getMealGroups().add(mealGroup2);

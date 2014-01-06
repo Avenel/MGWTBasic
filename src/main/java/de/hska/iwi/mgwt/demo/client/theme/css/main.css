@@ -241,10 +241,73 @@ body {
 
 .mealGroup-title {
 	color: #DB0134;
+	font-size: 1.25em;
+	line-height: 2em;
 }
 
 .meal-name {
 	color: grey;
+}
+
+
+.meal-modifiers-container {
+	
+}
+
+.meal-pig {
+	width: 20px;
+	height: 16px;
+	background-image: url(assets/icons/meal_pig.gif);
+	background-repeat:no-repeat;
+	background-position: center;
+}
+
+.meal-cow {
+	width: 20px;
+	height: 16px;
+	background-image: url(assets/icons/meal_cow.gif);
+	background-repeat:no-repeat;
+	background-position: center;
+}
+
+.meal-cow-welfare {
+	width: 20px;
+	height: 16px;
+	background-image: url(assets/icons/meal_cow_welfare.gif);
+	background-repeat:no-repeat;
+	background-position: center;
+}
+
+.meal-vegan {
+	width: 20px;
+	height: 16px;
+	background-image: url(assets/icons/meal_vegan.gif);
+	background-repeat:no-repeat;
+	background-position: center;
+}
+
+.meal-vegetarian {
+	width: 20px;
+	height: 16px;
+	background-image: url(assets/icons/meal_vegetarian.gif);
+	background-repeat:no-repeat;
+	background-position: center;
+}
+
+.meal-msc {
+	width: 20px;
+	height: 16px;
+	background-image: url(assets/icons/meal_msc.jpg);
+	background-repeat:no-repeat;
+	background-position: center;
+}
+
+.meal-bio {
+	width: 20px;
+	height: 16px;
+	background-image: url(assets/icons/meal_bio.jpg);
+	background-repeat:no-repeat;
+	background-position: center;
 }
 
 .meal-price{
