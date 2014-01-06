@@ -1,5 +1,8 @@
 package de.hska.iwi.mgwt.demo.client.widget;
 
+import java.text.DecimalFormat;
+
+import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Label;
@@ -38,7 +41,7 @@ public class MealGroupWidget implements IsWidget {
 		// meals
 		for (Meal meal : this.mealGroup.getMeals()) {
 			HorizontalPanel line = new HorizontalPanel();
-			line.getElement().addClassName("mealGroup-container");
+			line.getElement().addClassName("meal-container");
 			
 			Label name = new Label();
 			name.setText(meal.getName());
@@ -46,7 +49,7 @@ public class MealGroupWidget implements IsWidget {
 			line.add(name);
 			
 			Label price = new Label();
-			price.setText(meal.getPriceStudent().toString());
+			price.setText(NumberFormat.getFormat("#0.00").format(meal.getPriceStudent()).replace(".",  ",") + " €");
 			price.getElement().addClassName("meal-price");
 			line.add(price);
 			

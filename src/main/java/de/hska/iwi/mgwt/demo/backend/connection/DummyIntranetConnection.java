@@ -236,6 +236,16 @@ public class DummyIntranetConnection implements Intranet {
 		
 		mensaMenus.add(menu);
 		
+		// add second menu for the next day.
+		menu = new MensaMenu();
+		menu.setDate("2014-01-08");
+		menu.setName("Mensa Moltkestrasse");
+		menu.setStatus("ok");
+		
+		menu.getMealGroups().add(mealGroup1);
+		menu.getMealGroups().add(mealGroup2);
+		mensaMenus.add(menu);
+		
 		return mensaMenus;
 	}
 

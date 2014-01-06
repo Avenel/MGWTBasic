@@ -27,7 +27,7 @@ public class MensaActivity extends MGWTAbstractActivity {
 		// TODO: Wenn nico den AsyncCall im master hat, wieder einbauen!
 //				intranetConn.getNewsBoard(this, Course.ALL);
 
-		view.setMensaMenu(intranetConn.getMensaMenu(0, null).get(0));
+		view.setMensaMenu(intranetConn.getMensaMenu(0, null));
 		
 		panel.setWidget(view);
 	}

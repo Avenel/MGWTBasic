@@ -1,5 +1,10 @@
 package de.hska.iwi.mgwt.demo.client.activities.mensa;
 
+import java.util.Date;
+import java.util.List;
+
+import com.google.gwt.i18n.client.DateTimeFormat;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.mgwt.ui.client.widget.Carousel;
@@ -16,7 +21,7 @@ public class MensaViewImpl implements MensaView {
 
 	private LayoutPanel main;
 	
-	private MensaMenu mensaMenu;
+	private List<MensaMenu> mensaMenus;
 
 	@Override
 	public Widget asWidget() {
@@ -31,26 +36,44 @@ public class MensaViewImpl implements MensaView {
 		
 		// Caroussel: for each day a page on a scrollpanel
 		Carousel carousel = new Carousel();
-		ScrollPanel scrollPanel = new ScrollPanel();
 		
-		VerticalPanel mealGroups = new VerticalPanel();
-		mealGroups.getElement().addClassName("mealGroups-container");
-		
-		for (MealGroup mealGroup : this.mensaMenu.getMealGroups()) {
-			MealGroupWidget mw = new MealGroupWidget(mealGroup);
-			mealGroups.add(mw);
+		for (MensaMenu mensaMenu : this.mensaMenus) {
+			ScrollPanel scrollPanel = new ScrollPanel();
+			
+			VerticalPanel mealGroups = new VerticalPanel();
+			mealGroups.getElement().addClassName("mealGroups-container");
+			
+			// add Date
+			Label date = new Label();
+			date.getElement().addClassName("mealGroups-date");
+			Date parsedDate = DateTimeFormat.getFormat("yyyy-mm-dd").parse(mensaMenu.getDate());
+			
+			date.setText(DateTimeFormat.getFormat("EEE dd.mm").format(parsedDate));
+			mealGroups.add(date);
+			
+			for (MealGroup mealGroup : mensaMenu.getMealGroups()) {
+				MealGroupWidget mw = new MealGroupWidget(mealGroup);
+				mealGroups.add(mw);
+				
+				// add separator
+				if (mealGroup != mensaMenu.getMealGroups().get(mensaMenu.getMealGroups().size()-1)) {
+					LayoutPanel separator = new LayoutPanel();
+					separator.getElement().addClassName("mealGroup-separator");
+					mealGroups.add(separator);
+				}
+			}
+			
+			scrollPanel.add(mealGroups);
+			carousel.add(scrollPanel);
 		}
 		
-		
-		scrollPanel.add(mealGroups);
-		carousel.add(scrollPanel);
 		main.add(carousel);
 		
 		return this.main;
 	}
 
-	public void setMensaMenu(MensaMenu mensaMenu) {
-		this.mensaMenu = mensaMenu;
+	public void setMensaMenu(List<MensaMenu> mensaMenus) {
+		this.mensaMenus = mensaMenus;
 	}
 
 }
