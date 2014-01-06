@@ -1,18 +1,19 @@
 package de.hska.iwi.mgwt.demo.client.widget;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.cobogw.gwt.user.client.ui.Rating;
 
+import com.google.gwt.dom.client.Style.VerticalAlign;
 import com.google.gwt.i18n.client.HasDirection.Direction;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment.HorizontalAlignmentConstant;
+import com.google.gwt.user.client.ui.HasVerticalAlignment.VerticalAlignmentConstant;
+import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
-import com.googlecode.mgwt.dom.client.recognizer.swipe.SwipeEvent.DIRECTION;
 
 import de.hska.iwi.mgwt.demo.backend.model.Meal;
 import de.hska.iwi.mgwt.demo.backend.model.MealGroup;
@@ -37,11 +38,25 @@ public class MealGroupWidget implements IsWidget {
 		this.main = new VerticalPanel();
 		this.main.getElement().addClassName("mealGroup-container");
 		
+		// titlebar
+		HorizontalPanel titleBar = new HorizontalPanel();
+		titleBar.getElement().addClassName("mealGroup-titlebar");
+		
 		// title
 		this.title = new Label();
 		this.title.setText(this.mealGroup.getTitle());
 		this.title.getElement().addClassName("mealGroup-title");
-		this.main.add(title);
+		titleBar.add(title);
+		
+		// rating
+		Rating rating = new Rating((int)(Math.random() * 10) % 5, 5);
+		rating.getElement().addClassName("mealGroup-rating");
+		titleBar.add(rating);
+		titleBar.setCellHorizontalAlignment(rating, HorizontalAlignmentConstant.startOf(Direction.RTL));
+		titleBar.setCellVerticalAlignment(rating, HasVerticalAlignment.ALIGN_MIDDLE);  
+		
+		this.main.add(titleBar);
+		
 		// meals
 		for (Meal meal : this.mealGroup.getMeals()) {
 			HorizontalPanel line = new HorizontalPanel();

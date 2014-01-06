@@ -215,6 +215,11 @@ body {
 	width: 80%;
 }
 
+.mealGroup-titlebar {
+	width: 100%;
+}
+
+
 .mealGroups-date {
 	color: #DB0134;
 	font-size: 1.5em;
@@ -242,6 +247,11 @@ body {
 .mealGroup-title {
 	color: #DB0134;
 	font-size: 1.25em;
+	line-height: 2em;
+	text-align: left;
+}
+
+.mealGroup-rating {
 	line-height: 2em;
 }
 
