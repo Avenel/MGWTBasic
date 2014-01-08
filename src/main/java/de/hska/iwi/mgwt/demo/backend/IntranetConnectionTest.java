@@ -1,14 +1,16 @@
-package de.hska.iwi.mgwt.demo.backend.connection;
+package de.hska.iwi.mgwt.demo.backend;
 
-import static org.junit.Assert.assertEquals;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import de.hska.iwi.mgwt.demo.backend.Intranet;
-import de.hska.iwi.mgwt.demo.backend.constants.Course;
+import com.google.gwt.junit.client.GWTTestCase;
 
-public class IntranetConnectionTest {
+import de.hska.iwi.mgwt.demo.backend.constants.Course;
+import de.hska.iwi.mgwt.demo.backend.model.NewsBoard;
+
+public class IntranetConnectionTest extends GWTTestCase{
 	
 	private static final String TUTORIALS = "/Intranetaccess/REST/tutorials/<stg>";
 	
@@ -16,7 +18,7 @@ public class IntranetConnectionTest {
 
 	@Before
 	public void init() {
-		intra = new IntranetConnection();
+		intra = (Intranet) BackendFactory.createIntranetInstance();
 	}
 	
 //	Verification if buildUrl works as expected
@@ -27,8 +29,12 @@ public class IntranetConnectionTest {
 //	}
 	
 	@Test
-	public void news() {
-		assertEquals("", intra.getNewsBoard(Course.INFORMATIK_BACHELOR).get(0).toString());
+	public void testNews() {
+		System.out.println("Moep");
+		intra = (Intranet) BackendFactory.createIntranetInstance();
+		List<NewsBoard> board = intra.getNewsBoard(Course.INFORMATIK_BACHELOR);
+		
+		assertEquals("", board.get(0).toString());
 		System.out.println("Ready");
 	}
 	
@@ -60,6 +66,11 @@ public class IntranetConnectionTest {
 	public void consultation() {
 		assertEquals("", intra.getConsultationHours().get(0).toString());
 		System.out.println("Ready");
+	}
+
+	@Override
+	public String getModuleName() {
+		return "de.hska.iwi.mgwt.demo.Demo";
 	}
 
 }

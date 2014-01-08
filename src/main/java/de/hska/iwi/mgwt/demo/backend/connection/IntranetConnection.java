@@ -17,6 +17,9 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gwt.http.client.RequestBuilder;
+import com.google.gwt.http.client.RequestBuilder.Method;
+import com.google.gwt.json.client.JSONArray;
 
 import de.hska.iwi.mgwt.demo.backend.Intranet;
 import de.hska.iwi.mgwt.demo.backend.constants.Course;
@@ -104,7 +107,7 @@ public class IntranetConnection implements Intranet {
 		} else {
 			url = buildUrl(NEWS_BOARD, course);
 		}
-
+		
 		try {
 			news = mapper.readValue(requestJSON(url), new TypeReference<List<NewsBoard>>(){});
 		} catch (JsonParseException e) {
@@ -164,6 +167,18 @@ public class IntranetConnection implements Intranet {
 		return subjects;
 	}
 	
+	
+	private JSONArray requestJSON(String url, Method httpMethod) {		
+		JSONArray result = new JSONArray();
+		RequestBuilder builder = new RequestBuilder(httpMethod, url);
+		
+				
+		
+		
+		return result;
+	}
+	
+	@Deprecated
 	private String requestJSON(URL url) {
 		StringBuilder response = new StringBuilder();
 		String responseLine = "";

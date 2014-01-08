@@ -4,10 +4,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.google.gwt.core.shared.GWT;
+import com.google.web.bindery.autobean.shared.AutoBean;
+import com.google.web.bindery.autobean.shared.AutoBeanCodex;
+
 import de.hska.iwi.mgwt.demo.backend.Intranet;
 import de.hska.iwi.mgwt.demo.backend.constants.Course;
 import de.hska.iwi.mgwt.demo.backend.constants.NewsType;
 import de.hska.iwi.mgwt.demo.backend.constants.Weekday;
+import de.hska.iwi.mgwt.demo.backend.gwt.CustomBeanFactory;
+import de.hska.iwi.mgwt.demo.backend.gwt.News;
 import de.hska.iwi.mgwt.demo.backend.model.CompulsoryOptionalSubjects;
 import de.hska.iwi.mgwt.demo.backend.model.ConsultationHour;
 import de.hska.iwi.mgwt.demo.backend.model.CourseTutorial;
@@ -63,13 +69,34 @@ public class DummyIntranetConnection implements Intranet {
 			throw new IllegalArgumentException("course must not be null");
 		}
 		
+		CustomBeanFactory factory = GWT.create(CustomBeanFactory.class);
+		
+		String json = "[{\"id\":53,\"title\":\"Tutorium Technische Info 1\",\"subTitle\":\"Ausfall\",\"courseOfStudies\":[\"MKIB\",\"INFB\"],\"content\":\"Das Tutorium Technische Info 1 muss am 10.01. ausfallen.\",\"links\":null,\"type\":\"cancellation\"}]";
+		
+		AutoBean<News> news2 = AutoBeanCodex.decode(factory, News.class, json);
+		News news3 = news2.as();
+		
+		
+		
 		ArrayList<NewsBoard> retList = new ArrayList<NewsBoard>();
 		
 		NewsBoard v = new NewsBoard();
-		v.setId(51);
+		
+		v.setId(news3.getId());
 		v.setTitle("Tutorium Theoretische Info 2");
 		v.setSubTitle("Ausfall");
 		ArrayList<Course> courses = new ArrayList<Course>();
+		courses.add(Course.MEDIENINFORMATIK_BACHELOR);
+		courses.add(Course.INFORMATIK_BACHELOR);
+		v.setCourseOfStudies(courses);
+		v.setContent("Das Tutorium am Dienstag 14:000 Uhr  fällt aus.");
+		v.setLinks(null);
+		v.setType(NewsType.CANCELLATION);
+		
+		v.setId(51);
+		v.setTitle("Tutorium Theoretische Info 2");
+		v.setSubTitle("Ausfall");
+		courses = new ArrayList<Course>();
 		courses.add(Course.MEDIENINFORMATIK_BACHELOR);
 		courses.add(Course.INFORMATIK_BACHELOR);
 		v.setCourseOfStudies(courses);

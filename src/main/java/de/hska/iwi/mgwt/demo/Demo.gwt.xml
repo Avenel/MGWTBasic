@@ -8,8 +8,9 @@
 	<inherits name="com.google.gwt.activity.Activity" />
 	<inherits name="com.googlecode.mgwt.MGWT"/>
 	<inherits name="com.google.gwt.json.JSON" /> 
-	 <inherits name="com.google.gwt.i18n.I18N"/>
+	<inherits name="com.google.gwt.i18n.I18N"/>
 	<inherits name="de.hska.iwi.mgwt.demo.events.Events"/>
+	<inherits name="com.google.web.bindery.autobean.AutoBean" />
 	
 	<!-- uncomment this if you want to use gwt phonegap -->
 	<!--<inherits name="com.googlecode.gwtphonegap.PhoneGap"/>-->

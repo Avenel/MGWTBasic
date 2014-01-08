@@ -1,7 +1,5 @@
 package de.hska.iwi.mgwt.demo.backend.model;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -154,12 +152,12 @@ public class CourseTutorial {
 	 * @param startDate the startDate to set
 	 */
 	public void setStartDate(Date startDate) {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		try {
-			this.startDate = dateFormat.parse(dateFormat.format(startDate));
-		} catch (ParseException e) {
+//		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//		try {
+//			this.startDate = dateFormat.parse(dateFormat.format(startDate));
+//		} catch (ParseException e) {
 			this.startDate = startDate;
-		}
+//		}
 	}
 	
 	
