@@ -22,6 +22,7 @@ import com.google.gwt.http.client.RequestBuilder.Method;
 import com.google.gwt.json.client.JSONArray;
 
 import de.hska.iwi.mgwt.demo.backend.Intranet;
+import de.hska.iwi.mgwt.demo.backend.constants.Canteen;
 import de.hska.iwi.mgwt.demo.backend.constants.Course;
 import de.hska.iwi.mgwt.demo.backend.constants.IURLParameterEnum;
 import de.hska.iwi.mgwt.demo.backend.model.CompulsoryOptionalSubjects;
@@ -226,7 +227,7 @@ public class IntranetConnection implements Intranet {
 		Matcher matcher = pattern.matcher(pathOfUrl);
 		
 		for (int i = 0; matcher.find() && i < parameters.length; i++) {
-			pathWithParameters = pathOfUrl.replace(matcher.group(), parameters[i].getKey());
+			pathWithParameters = pathOfUrl.replace(matcher.group(), parameters[i].getUrlKey());
 		}
 		URL ret = null;
 		try {
@@ -270,5 +271,12 @@ public class IntranetConnection implements Intranet {
 	public List<MensaMenu> getMensaMenu(int id, Date date) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void getMensaMenu(ObserverActivity<List<MensaMenu>> observer,
+			Canteen cateen, Date date) {
+		// TODO Auto-generated method stub
+		
 	}
 }

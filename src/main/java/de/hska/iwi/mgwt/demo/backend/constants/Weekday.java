@@ -41,7 +41,7 @@ public enum Weekday implements IURLParameterEnum {
 	/**
 	 * @return the key
 	 */
-	public String getKey() {
+	public String getUrlKey() {
 		return key;
 	}
 

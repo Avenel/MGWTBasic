@@ -12,7 +12,12 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.http.client.URL;
 
 import de.hska.iwi.mgwt.demo.backend.Intranet;
+import de.hska.iwi.mgwt.demo.backend.callbacks.AbstractRequestCallback;
+import de.hska.iwi.mgwt.demo.backend.callbacks.CompulsorySubjectCallback;
+import de.hska.iwi.mgwt.demo.backend.callbacks.MensaMenuCallback;
 import de.hska.iwi.mgwt.demo.backend.callbacks.NewsBoardCallback;
+import de.hska.iwi.mgwt.demo.backend.callbacks.TutorialsCallback;
+import de.hska.iwi.mgwt.demo.backend.constants.Canteen;
 import de.hska.iwi.mgwt.demo.backend.constants.Course;
 import de.hska.iwi.mgwt.demo.backend.constants.NewsType;
 import de.hska.iwi.mgwt.demo.backend.model.CompulsoryOptionalSubjects;
@@ -20,82 +25,37 @@ import de.hska.iwi.mgwt.demo.backend.model.ConsultationHour;
 import de.hska.iwi.mgwt.demo.backend.model.CourseTutorial;
 import de.hska.iwi.mgwt.demo.backend.model.MensaMenu;
 import de.hska.iwi.mgwt.demo.backend.model.NewsBoard;
+import de.hska.iwi.mgwt.demo.backend.util.UrlBuilderUtil;
 import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
 
 public class GWTIntranetConnection implements Intranet {
 	
-	private static final String BASE_URL = "http://www.iwi.hs-karlsruhe.de";
-	
-	private static final String TUTORIALS_ALL = "/Intranetaccess/REST/tutorials/";
-	
-	private static final String TUTORIALS = "/Intranetaccess/REST/tutorials/<stg>";
-	
-	private static final String CUMPOLSORY = "/Intranetaccess/REST/compulsoryoptionalsubjects/<stg>";
-	
-	private static final String NEWS_BOARD_ALL = "/Intranetaccess/REST/newsbulletinboard/";
-	
-	private static final String NEWS_BOARD = "/Intranetaccess/REST/newsbulletinboard/<stg>";
-	
-	private static final String LECTURER_HOURS = "/Intranetaccess/REST/lecturersconsultationhours/";
-	
-	private static final String BLOCK_COURSES = "/Intranetaccess/REST/blockcourses/<stg>";
-	
-	private static final String TIMETABLE = "/Intranetaccess/REST/timetable/<stg>/<sem>";
-	
-	private static final String WORKFLOW = "/Intranetaccess/REST/application/workflow/<veranst>";
-	
-	private static final String WORKFLOW_PROGRESS = "/Intranetaccess/REST/application/state/<veranst>";
-	
-	private static final String MENSA_MENU = "/Intranetaccess/REST/canteen/<id>/<date>";
-	
-	private static final String PARAM_PATTERN = "<.*>";
-	
-
-	
-	public GWTIntranetConnection() {
-		
+	@Override
+	public List<CourseTutorial> getTutorials(Course course) {
+		return new ArrayList<CourseTutorial>();
 	}
 
 	@Override
-	public List<CourseTutorial> getTutorials(Course course) {
-		ArrayList<CourseTutorial> tutorial = null;
-		String url = BASE_URL + TUTORIALS_ALL;
+	public void getTutorials(ObserverActivity<List<CourseTutorial>> observer, Course course) {
+		if (observer == null || course == null) {
+			throw new IllegalArgumentException("Parameter must not be null");
+		}
+		String url = UrlBuilderUtil.getTutorialsUrl(course);
 		
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, URL.encode(url));
-//		builder.setHeader("Accept", "application/json");
+		
+		TutorialsCallback cb = new TutorialsCallback(observer);
 		
 		try {
-			Request response = builder.sendRequest(null, new RequestCallback() {
-				
-				@Override
-				public void onResponseReceived(Request request, Response response) {
-					int code = response.getStatusCode();
-					String test = response.getText();
-				}
-				
-				@Override
-				public void onError(Request request, Throwable exception) {
-							Throwable e = exception;			
-				}
-			});
+			builder.sendRequest(null, cb);
 		} catch (RequestException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		return tutorial;
 	}
 
 	@Override
-	public void getTutorials(ObserverActivity<List<CourseTutorial>> observer,
-			Course course) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public List<NewsBoard> getNewsBoard(Course course)
-			throws IllegalArgumentException {
+	public List<NewsBoard> getNewsBoard(Course course) throws IllegalArgumentException {
 		
 		ArrayList<NewsBoard> retList = new ArrayList<NewsBoard>();
 		
@@ -119,16 +79,17 @@ public class GWTIntranetConnection implements Intranet {
 
 	@Override
 	public void getNewsBoard(ObserverActivity<List<NewsBoard>> observer, Course course) throws IllegalArgumentException {
-		ArrayList<NewsBoard> retList = (ArrayList<NewsBoard>) getNewsBoard(course);
-		
-		String url = BASE_URL + "/Intranetaccess/REST/tutorials/INFB";
+		if (observer == null || course == null) {
+			throw new IllegalArgumentException("Parameter must not be null");
+		}
+		String url = UrlBuilderUtil.getNewsBoardUrl(course);
 		
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, URL.encode(url));
 		
 		NewsBoardCallback cb = new NewsBoardCallback(observer);
 		
 		try {
-			Request response = builder.sendRequest(null, cb);
+			builder.sendRequest(null, cb);
 		} catch (RequestException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -142,30 +103,42 @@ public class GWTIntranetConnection implements Intranet {
 	}
 
 	@Override
-	public void getConsultationHours(
-			ObserverActivity<List<ConsultationHour>> observer) {
+	public void getConsultationHours(ObserverActivity<List<ConsultationHour>> observer) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public List<CompulsoryOptionalSubjects> getCompulsoryOptionalSubjects(
-			Course course) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<CompulsoryOptionalSubjects> getCompulsoryOptionalSubjects(Course course) throws IllegalArgumentException {
+		return new ArrayList<CompulsoryOptionalSubjects>();
 	}
 
 	@Override
-	public void getCompulsoryOptionalSubjects(
-			ObserverActivity<List<CompulsoryOptionalSubjects>> observer,
-			Course course) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
+	public void getCompulsoryOptionalSubjects(ObserverActivity<List<CompulsoryOptionalSubjects>> observer, Course course)
+													throws IllegalArgumentException {
+		if (observer == null || course == null) {
+			throw new IllegalArgumentException("Parameter must not be null");
+		} else if (Course.ALL == course) {
+			throw new IllegalArgumentException("This course is not allowed");
+		}
+		String url = UrlBuilderUtil.getCumpolsoryUrl(course);
+		
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, URL.encode(url));
+		
+		CompulsorySubjectCallback cb = new CompulsorySubjectCallback(observer);
+		
+		try {
+			builder.sendRequest(null, cb);
+		} catch (RequestException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
 	@Override
 	public List<MensaMenu> getMensaMenu(int id, Date date) {
-		String url = BASE_URL + TUTORIALS_ALL;
+		String url = "http://www.iwi.hs-karlsruhe.de/Intranetaccess/REST/tutorials/";
 		
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, URL.encode(url));
 		builder.setHeader("Accept", "application/json");
@@ -193,4 +166,22 @@ public class GWTIntranetConnection implements Intranet {
 		return null;
 	}
 
+	@Override
+	public void getMensaMenu(ObserverActivity<List<MensaMenu>> observer, Canteen canteen, Date date) throws IllegalArgumentException {
+		if (observer == null || canteen == null || date == null) {
+			throw new IllegalArgumentException("Parameter must not be null");
+		}
+		String url = UrlBuilderUtil.getMensaUrl(canteen, date);
+		
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, URL.encode(url));
+		
+		MensaMenuCallback cb = new MensaMenuCallback(observer);
+		
+		try {
+			builder.sendRequest(url, cb);
+		} catch (RequestException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

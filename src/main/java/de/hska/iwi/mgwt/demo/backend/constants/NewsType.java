@@ -17,7 +17,7 @@ public enum NewsType implements IURLParameterEnum {
 	@JsonCreator
 	public static NewsType create(String value) {
 		for (NewsType newsType : NewsType.values()) {
-			if (newsType.getKey().equals(value)) {
+			if (newsType.getUrlKey().equals(value)) {
 				return newsType;
 			}
 		}
@@ -27,7 +27,7 @@ public enum NewsType implements IURLParameterEnum {
 	/**
 	 * @return the key
 	 */
-	public String getKey() {
+	public String getUrlKey() {
 		return key;
 	}
 	

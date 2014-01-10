@@ -9,11 +9,12 @@ import com.google.web.bindery.autobean.shared.AutoBean;
 import com.google.web.bindery.autobean.shared.AutoBeanCodex;
 
 import de.hska.iwi.mgwt.demo.backend.Intranet;
+import de.hska.iwi.mgwt.demo.backend.constants.Canteen;
 import de.hska.iwi.mgwt.demo.backend.constants.Course;
 import de.hska.iwi.mgwt.demo.backend.constants.NewsType;
 import de.hska.iwi.mgwt.demo.backend.constants.Weekday;
 import de.hska.iwi.mgwt.demo.backend.gwt.CustomBeanFactory;
-import de.hska.iwi.mgwt.demo.backend.gwt.News;
+import de.hska.iwi.mgwt.demo.backend.gwt.NewsJSON;
 import de.hska.iwi.mgwt.demo.backend.model.CompulsoryOptionalSubjects;
 import de.hska.iwi.mgwt.demo.backend.model.ConsultationHour;
 import de.hska.iwi.mgwt.demo.backend.model.CourseTutorial;
@@ -73,8 +74,8 @@ public class DummyIntranetConnection implements Intranet {
 		
 		String json = "[{\"id\":53,\"title\":\"Tutorium Technische Info 1\",\"subTitle\":\"Ausfall\",\"courseOfStudies\":[\"MKIB\",\"INFB\"],\"content\":\"Das Tutorium Technische Info 1 muss am 10.01. ausfallen.\",\"links\":null,\"type\":\"cancellation\"}]";
 		
-		AutoBean<News> news2 = AutoBeanCodex.decode(factory, News.class, json);
-		News news3 = news2.as();
+		AutoBean<NewsJSON> news2 = AutoBeanCodex.decode(factory, NewsJSON.class, json);
+		NewsJSON news3 = news2.as();
 		
 		
 		
@@ -214,6 +215,13 @@ public class DummyIntranetConnection implements Intranet {
 	public List<MensaMenu> getMensaMenu(int id, Date date) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void getMensaMenu(ObserverActivity<List<MensaMenu>> observer,
+			Canteen cateen, Date date) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

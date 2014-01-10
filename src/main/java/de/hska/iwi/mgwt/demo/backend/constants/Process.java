@@ -24,7 +24,7 @@ public enum Process implements IURLParameterEnum {
 	@JsonCreator
 	public static Process create(String value) {
 		for (Process process : Process.values()) {
-			if (process.getKey().equals(value)) {
+			if (process.getUrlKey().equals(value)) {
 				return process;
 			}
 		}
@@ -32,7 +32,7 @@ public enum Process implements IURLParameterEnum {
 	}
 
 	@Override
-	public String getKey() {
+	public String getUrlKey() {
 		return this.key;
 	}
 }

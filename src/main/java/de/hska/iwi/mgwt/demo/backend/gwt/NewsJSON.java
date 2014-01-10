@@ -5,7 +5,7 @@ import java.util.List;
 import de.hska.iwi.mgwt.demo.backend.constants.Course;
 import de.hska.iwi.mgwt.demo.backend.constants.NewsType;
 
-public interface News {
+public interface NewsJSON {
 	
 	public int getId();
 	

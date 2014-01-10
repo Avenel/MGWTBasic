@@ -17,7 +17,7 @@ public enum Course implements IURLParameterEnum {
 	@JsonCreator
 	public static Course create(String value) {
 		for (Course course : Course.values()) {
-			if (course.getKey().equals(value)) {
+			if (course.getUrlKey().equals(value)) {
 				return course;
 			}
 		}
@@ -25,8 +25,8 @@ public enum Course implements IURLParameterEnum {
 	}
 
 	@Override
-	public String getKey() {
-		if (this.key.compareTo("ALL") == 0) return "";
+	public String getUrlKey() {
+//		if (this.key.compareTo("ALL") == 0) return "";
 		return this.key;
 	}
 
