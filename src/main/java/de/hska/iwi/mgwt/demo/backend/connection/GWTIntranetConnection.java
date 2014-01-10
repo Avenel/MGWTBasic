@@ -89,7 +89,7 @@ public class GWTIntranetConnection implements Intranet {
 		NewsBoardCallback cb = new NewsBoardCallback(observer);
 		
 		try {
-			builder.sendRequest(null, cb);
+			Request request = builder.sendRequest(null, cb);
 		} catch (RequestException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

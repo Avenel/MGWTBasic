@@ -30,7 +30,7 @@ public class NewsBoardCallback extends AbstractRequestCallback<ObserverActivity<
 		
 		AutoBean<NewsBoardJSON> bean = AutoBeanCodex.decode(factory, NewsBoardJSON.class, moep);
 		//TODO Parse JSON ETC
-		List<NewsJSON> result = bean.as().getNewsBoard();
+		NewsBoardJSON lala = bean.as();
 		observer.update(new ArrayList<NewsBoard>());
 	}
 
