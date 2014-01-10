@@ -1,5 +1,6 @@
 package de.hska.iwi.mgwt.demo.client.activities.news;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gwt.event.shared.EventBus;
@@ -40,7 +41,7 @@ public class NewsActivity extends MGWTAbstractActivity implements ObserverActivi
 		// TODO: Wenn nico den AsyncCall im master hat, wieder einbauen!
 //		intranetConn.getNewsBoard(this, Course.ALL);
 		intranetConn.getNewsBoard(this, Course.ALL);
-		
+		currentModel = new ArrayList<NewsBoard>();
 		view.render(currentModel);
 		panel.setWidget(view);
 		

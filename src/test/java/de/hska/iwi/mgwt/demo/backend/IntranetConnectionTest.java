@@ -1,16 +1,16 @@
 package de.hska.iwi.mgwt.demo.backend;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import com.google.gwt.junit.client.GWTTestCase;
-
 import de.hska.iwi.mgwt.demo.backend.constants.Course;
 import de.hska.iwi.mgwt.demo.backend.model.NewsBoard;
 
-public class IntranetConnectionTest extends GWTTestCase{
+public class IntranetConnectionTest {
 	
 	private static final String TUTORIALS = "/Intranetaccess/REST/tutorials/<stg>";
 	
@@ -45,7 +45,7 @@ public class IntranetConnectionTest extends GWTTestCase{
 	
 	@Test
 	public void tutorials() {
-		assertEquals("", intra.getTutorials(Course.INFORMATIK_BACHELOR).get(0).toString());
+		assertEquals("", intra.getTutorials(Course.ALL).get(0).toString());
 		
 		System.out.println("Ready");
 	}
@@ -67,10 +67,4 @@ public class IntranetConnectionTest extends GWTTestCase{
 		assertEquals("", intra.getConsultationHours().get(0).toString());
 		System.out.println("Ready");
 	}
-
-	@Override
-	public String getModuleName() {
-		return "de.hska.iwi.mgwt.demo.Demo";
-	}
-
 }

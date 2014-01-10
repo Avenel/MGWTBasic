@@ -11,6 +11,7 @@
 	<inherits name="com.google.gwt.i18n.I18N"/>
 	<inherits name="de.hska.iwi.mgwt.demo.events.Events"/>
 	<inherits name="com.google.web.bindery.autobean.AutoBean" />
+	<inherits name="com.google.gwt.http.HTTP" />
 	
 	<!-- uncomment this if you want to use gwt phonegap -->
 	<!--<inherits name="com.googlecode.gwtphonegap.PhoneGap"/>-->

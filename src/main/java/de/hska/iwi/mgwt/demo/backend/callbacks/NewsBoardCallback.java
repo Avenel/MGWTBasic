@@ -1,28 +1,28 @@
-package de.hska.iwi.mgwt.demo.backend.requestcallbacks;
+package de.hska.iwi.mgwt.demo.backend.callbacks;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gwt.http.client.Request;
-import com.google.gwt.http.client.RequestCallback;
 import com.google.gwt.http.client.Response;
 
 import de.hska.iwi.mgwt.demo.backend.model.NewsBoard;
 import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
 
-public class NewsBoardCallback implements RequestCallback {
+public class NewsBoardCallback extends AbstractRequestCallback<ObserverActivity<List<NewsBoard>>> {
 
-	private List<NewsBoard> newsBoard = null;
-	
-	private static ObserverActivity<List<NewsBoard>> observer;
-	
 	public NewsBoardCallback(ObserverActivity<List<NewsBoard>> observer) {
-		this.observer = observer;
+		super(observer);
 	}
-	
+
 	@Override
 	public void onResponseReceived(Request request, Response response) {
-		// TODO Auto-generated method stub
+		int status = response.getStatusCode();
+		String test = response.getText();
+		String moep = test;
 		
+		//TODO Parse JSON ETC
+		observer.update(new ArrayList<NewsBoard>());
 	}
 
 	@Override
@@ -30,5 +30,6 @@ public class NewsBoardCallback implements RequestCallback {
 		// TODO Auto-generated method stub
 		
 	}
+
 
 }

@@ -170,7 +170,8 @@ public class IntranetConnection implements Intranet {
 	
 	private JSONArray requestJSON(String url, Method httpMethod) {		
 		JSONArray result = new JSONArray();
-		RequestBuilder builder = new RequestBuilder(httpMethod, url);
+		
+//		RequestBuilder builder = new RequestBuilder(httpMethod, url);
 		
 				
 		
