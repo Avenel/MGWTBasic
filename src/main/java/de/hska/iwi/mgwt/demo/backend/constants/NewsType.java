@@ -4,9 +4,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 
 public enum NewsType implements IURLParameterEnum {
 	ANNOUNCEMENT("announcement"),
+	announcement("announcement"),
 	REARRANGEMENT("rearrangement"),
+	rearrangement("rearrangement"),
 	CANCELLATION("cancellation"),
-	ROOM_CHANGE("room_change");
+	cancellation("cancellation"),
+	ROOM_CHANGE("room_change"),
+	room_change("room_change");
 	
 	private final String key;
 	
@@ -23,7 +27,7 @@ public enum NewsType implements IURLParameterEnum {
 		}
 		return ANNOUNCEMENT;
 	}
-
+		
 	/**
 	 * @return the key
 	 */

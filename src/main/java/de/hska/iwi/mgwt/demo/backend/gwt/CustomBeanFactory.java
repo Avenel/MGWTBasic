@@ -8,5 +8,4 @@ public interface CustomBeanFactory extends AutoBeanFactory {
 	AutoBean<NewsBoardJSON> newsBoard();
 	
 	AutoBean<NewsJSON> news();
-
 }
