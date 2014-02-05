@@ -25,6 +25,8 @@ import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.ProcessSeminarA
 import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.ProcessSeminarPlace;
 import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.RegisterSeminarActivity;
 import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.RegisterSeminarPlace;
+import de.hska.iwi.mgwt.demo.client.activities.settings.SettingsActivity;
+import de.hska.iwi.mgwt.demo.client.activities.settings.SettingsPlace;
 
 
 /**
@@ -79,6 +81,9 @@ public class PhoneActivityMapper implements ActivityMapper {
 		}
 		if (place.getClass().equals(MensaPlace.class)) {
 			return new MensaActivity(clientFactory);
+		}
+		if (place.getClass().equals(SettingsPlace.class)) {
+			return new SettingsActivity(clientFactory);
 		}
 		
 		return new NewsActivity(clientFactory);

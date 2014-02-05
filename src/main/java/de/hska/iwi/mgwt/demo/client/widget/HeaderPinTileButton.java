@@ -22,7 +22,9 @@ public class HeaderPinTileButton implements IsWidget {
 	public Widget asWidget() {
 		HeaderButton pinTileButton = new CustomHeaderButton();
 		pinTileButton.setRoundButton(true);
-		pinTileButton.setText("<i class='fa fa-link fa-lg'></i>");
+
+		// use font-awesome icon
+		pinTileButton.setText("<i class='fa fa-thumb-tack fa-lg'></i>");
 
 		// handle history back
 		pinTileButton.addTapHandler(this.handler);

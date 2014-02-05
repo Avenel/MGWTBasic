@@ -28,6 +28,7 @@ import de.hska.iwi.mgwt.demo.client.activities.processes.StudentPlace;
 import de.hska.iwi.mgwt.demo.client.activities.processes.ProcessDetailPlace.ProcessDetailPlaceTokenizer;
 import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.ProcessSeminarPlace.ProcessSeminarPlaceTokenizer;
 import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.RegisterSeminarPlace.RegisterSeminarPlaceTokenizer;
+import de.hska.iwi.mgwt.demo.client.activities.settings.SettingsPlace.SettingsPlaceTokenizer;
 
 /**
  * Place History Mapper. Mapps History<->Place.
@@ -35,7 +36,7 @@ import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.RegisterSeminar
  * 
  */
 @WithTokenizers({ HomePlaceTokenizer.class, NewsPlaceTokenizer.class, NewsDetailPlace.NewsDetailPlaceTokenizer.class, NewsSettingsPlace.NewsSettingsPlaceTokenizer.class, StudentPlace.StudentPlaceTokenizer.class, 
-					LecturePlace.LecturePlaceTokenizer.class, RegisterSeminarPlaceTokenizer.class, ProcessSeminarPlaceTokenizer.class, ProcessDetailPlaceTokenizer.class, MensaPlaceTokenizer.class})
+					LecturePlace.LecturePlaceTokenizer.class, RegisterSeminarPlaceTokenizer.class, ProcessSeminarPlaceTokenizer.class, ProcessDetailPlaceTokenizer.class, MensaPlaceTokenizer.class, SettingsPlaceTokenizer.class})
 public interface AppPlaceHistoryMapper extends PlaceHistoryMapper {
 	
 }

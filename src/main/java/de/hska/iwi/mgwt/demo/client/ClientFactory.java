@@ -32,6 +32,7 @@ import de.hska.iwi.mgwt.demo.client.activities.processes.ProcessDetailView;
 import de.hska.iwi.mgwt.demo.client.activities.processes.StudentView;
 import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.ProcessSeminarView;
 import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.RegisterSeminarView;
+import de.hska.iwi.mgwt.demo.client.activities.settings.SettingsView;
 import de.hska.iwi.mgwt.demo.client.model.ProcessStep;
 
 /**
@@ -113,6 +114,11 @@ public interface ClientFactory {
 	 */
 	public RegisterSeminarView getRegisterSeminarView();
 	
+	/**
+	 * Get SettingsView
+	 * @return SettingsView
+	 */
+	public SettingsView getSettingsView();
 
 	/**
 	 * Get AnimateableDisplay.

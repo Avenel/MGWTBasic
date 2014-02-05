@@ -12,6 +12,7 @@ import de.hska.iwi.mgwt.demo.client.activities.lecture.LecturePlace;
 import de.hska.iwi.mgwt.demo.client.activities.mensa.MensaPlace;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsPlace;
 import de.hska.iwi.mgwt.demo.client.activities.processes.StudentPlace;
+import de.hska.iwi.mgwt.demo.client.activities.settings.SettingsPlace;
 import de.hska.iwi.mgwt.demo.client.widget.Tile;
 
 /**
@@ -30,7 +31,7 @@ public class TileBoardManager {
 		tiles = new ArrayList<Tile>();
 		
 		// News Tile
-		Tile newsTile = new Tile("assets/icons/WebNews.png", "Aktuelles", new NewsPlace(), false, false);
+		Tile newsTile = new Tile("assets/icons/News.png", "Aktuelles", new NewsPlace(), false, false);
 		tiles.add(newsTile);
 		
 		// Processes Tile
@@ -69,6 +70,10 @@ public class TileBoardManager {
 		// Mensa Tile
 		Tile mensaTile = new Tile("assets/icons/MensaWhite.png", "Mensa", new MensaPlace(), false, false);
 		tiles.add(mensaTile);
+		
+		// Settings Tile
+		Tile settingsTile = new Tile("assets/icons/Settings.png", "Einstellungen", new SettingsPlace(), false, false);
+		tiles.add(settingsTile);
 	}
 	
 	/**

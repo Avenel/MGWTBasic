@@ -45,6 +45,8 @@ import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.ProcessSeminarV
 import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.ProcessSeminarViewImpl;
 import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.RegisterSeminarView;
 import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.RegisterSeminarViewImpl;
+import de.hska.iwi.mgwt.demo.client.activities.settings.SettingsView;
+import de.hska.iwi.mgwt.demo.client.activities.settings.SettingsViewImpl;
 import de.hska.iwi.mgwt.demo.client.model.ProcessStep;
 
 /**
@@ -65,6 +67,7 @@ public class ClientFactoryImpl implements ClientFactory {
 	private RegisterSeminarViewImpl registerSeminarView;
 	private ProcessSeminarViewImpl processSeminarView;
 	private ProcessDetailViewImpl processDetailSeminarView;
+	private SettingsViewImpl settingsView;
 	private MensaViewImpl mensaView;
 	private AnimatableDisplay display;
 	private PhoneActivityMapper appActivityMapper;
@@ -196,6 +199,14 @@ public class ClientFactoryImpl implements ClientFactory {
 		}
 		
 		return mensaView;
+	}
+
+	@Override
+	public SettingsView getSettingsView() {
+		if (settingsView == null) {
+			settingsView = new SettingsViewImpl();
+		}
+		return settingsView;
 	}
 
 	
