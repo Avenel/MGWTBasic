@@ -42,7 +42,13 @@ public class MgwtAppEntryPoint implements EntryPoint {
 	private void start() {
 		
 		MGWTStyle.setTheme(new CustomTheme());
+		
+		//this will create a link element at the end of head
+		MGWTStyle.getTheme().getMGWTClientBundle().getMainCss().ensureInjected();
 
+		// append font-awesome css
+		MGWTStyle.injectStyleSheet("assets/fonts/font-awesome/css/font-awesome.css");
+		
 		// set viewport and other settings for mobile
 		MGWT.applySettings(MGWTSettings.getAppSetting());
 

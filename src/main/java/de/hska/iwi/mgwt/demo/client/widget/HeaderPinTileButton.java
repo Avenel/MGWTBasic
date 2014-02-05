@@ -20,9 +20,9 @@ public class HeaderPinTileButton implements IsWidget {
 	
 	@Override
 	public Widget asWidget() {
-		HeaderButton pinTileButton = new HeaderButton();
+		HeaderButton pinTileButton = new CustomHeaderButton();
 		pinTileButton.setRoundButton(true);
-		pinTileButton.setText("Pin");
+		pinTileButton.setText("<i class='fa fa-link fa-lg'></i>");
 
 		// handle history back
 		pinTileButton.addTapHandler(this.handler);
