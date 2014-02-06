@@ -124,7 +124,7 @@ body {
 
 .tileBoard {
 	margin: 0px!important;
-	padding: 0px!important;
+	padding: 10px!important;
 	display: -webkit-flex!important;
 	display: -moz-flex!important;
 	display: flex!important;

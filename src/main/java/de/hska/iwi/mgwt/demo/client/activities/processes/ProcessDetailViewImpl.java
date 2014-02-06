@@ -48,7 +48,7 @@ public class ProcessDetailViewImpl implements ProcessDetailView {
 		pinTileButton = new HeaderPinTileButton(new TapHandler(){
 			@Override
 			public void onTap(TapEvent event) {
-				Tile processTile = new Tile("assets/icons/Process.png", "Detail", new ProcessDetailPlace(String.valueOf(id)), true, false);
+				Tile processTile = new Tile("fa-ellipsis-v fa-3x", "Detail", new ProcessDetailPlace(String.valueOf(id)), true, false);
 				TileBoardManager.addTile(processTile);
 				pinTileButton.setPinned(true);
 				Dialogs.alert("Tile angepinnt", "Dieser Prozess wurde auf Deinen Homescreen angepinnt!", null);

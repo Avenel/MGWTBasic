@@ -1,5 +1,7 @@
 package de.hska.iwi.mgwt.demo.client.widget;
 
+import com.google.gwt.dom.client.Document;
+import com.google.gwt.dom.client.ParagraphElement;
 import com.google.gwt.dom.client.Style.BorderStyle;
 import com.google.gwt.dom.client.Style.Display;
 import com.google.gwt.dom.client.Style.TextAlign;
@@ -34,8 +36,8 @@ public class Tile implements IsWidget, ObserverTile {
 	
 	LayoutPanel currentPanel;
 	
-	String iconURL;
-	Image icon;
+	String fontAwesomeIconClass;
+	ParagraphElement icon;
 	String title;
 	String color;
 	Label titleBox;
@@ -70,7 +72,7 @@ public class Tile implements IsWidget, ObserverTile {
 	 */
 	public Tile(String iconURL, String title, Place place, boolean isCustomLink, boolean flippable) {
 		super();
-		this.iconURL = iconURL;
+		this.fontAwesomeIconClass = iconURL;
 		this.title = title;
 		this.tilePlace = place;
 		
@@ -115,7 +117,7 @@ public class Tile implements IsWidget, ObserverTile {
 		
 		// add icon
 		createIcon();
-		this.frontPanel.add(icon);
+		this.frontPanel.getElement().appendChild(icon);
 		
 		// adding titlebox
 		createTitleBox();
@@ -219,16 +221,6 @@ public class Tile implements IsWidget, ObserverTile {
 		this.frontPanel.getElement().getStyle().setBorderStyle(BorderStyle.NONE);
 		this.frontPanel.getElement().getStyle().setProperty("borderRadius", "15px");
 		
-		// add link div, if it is a custom icon
-		if (this.isCustomLink) {
-			this.linkIcon = new LayoutPanel();
-			this.linkIcon.getElement().addClassName("curvedarrow");
-			
-			this.linkIcon.getElement().getStyle().setProperty("top", "5px");
-			this.linkIcon.getElement().getStyle().setProperty("left", "15px");
-			this.linkIcon.getElement().getStyle().setProperty("position", "absolute");
-			this.frontPanel.add(this.linkIcon);
-		}
 	}
 
 
@@ -236,20 +228,12 @@ public class Tile implements IsWidget, ObserverTile {
 	 * Create icon.
 	 */
 	private void createIcon() {
-		this.icon = new Image(this.iconURL);
-		this.icon.setWidth("50px");
-		
-		this.icon.getElement().getStyle().setMarginLeft(15, Unit.PX);
-		this.icon.getElement().getStyle().setMarginRight(15, Unit.PX);
-		
-		
-		// if it's a custom link, lower the icon
-		if (!this.isCustomLink) {
-			this.icon.getElement().getStyle().setMarginTop(5, Unit.PX);
-		} else {
-			this.icon.getElement().getStyle().setMarginTop(0, Unit.PX);
-		}
-		
+		this.icon = Document.get().createPElement();
+		this.icon.getStyle().setMarginLeft(15, Unit.PX);
+		this.icon.getStyle().setMarginRight(15, Unit.PX);
+		this.icon.getStyle().setMarginTop(10 , Unit.PX);
+		this.icon.getStyle().setTextAlign(TextAlign.CENTER);
+		this.icon.setInnerHTML("<i class='fa " + this.fontAwesomeIconClass + "'></i>");
 	}
 
 
@@ -264,7 +248,7 @@ public class Tile implements IsWidget, ObserverTile {
 		// font style
 		this.titleBox.getElement().getStyle().setFontSize(12, Unit.PX);
 		this.titleBox.getElement().getStyle().setProperty("fontFamily", "HelveticaNeue, consolas");
-		this.titleBox.getElement().getStyle().setColor("#FFFFFF");
+		this.titleBox.getElement().getStyle().setColor("#FFFFFF");		
 		
 		// setup margin titlebox
 		this.titleBox.getElement().getStyle().setMarginLeft(5, Unit.PX);

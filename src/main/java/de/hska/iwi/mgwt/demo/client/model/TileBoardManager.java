@@ -31,11 +31,11 @@ public class TileBoardManager {
 		tiles = new ArrayList<Tile>();
 		
 		// News Tile
-		Tile newsTile = new Tile("assets/icons/News.png", "Aktuelles", new NewsPlace(), false, false);
+		Tile newsTile = new Tile("fa-bullhorn fa-3x", "Aktuelles", new NewsPlace(), false, false);
 		tiles.add(newsTile);
 		
 		// Processes Tile
-		Tile processTile = new Tile("assets/icons/Process.png", "Prozesse", new StudentPlace(), false, true);
+		Tile processTile = new Tile("fa-ellipsis-v fa-3x", "Prozesse", new StudentPlace(), false, true);
 		
 		// showcase update
 		LayoutPanel updatePanel = new LayoutPanel();
@@ -64,15 +64,15 @@ public class TileBoardManager {
 		tiles.add(processTile);
 		
 		// Lecture Tile
-		Tile lectureTile = new Tile("assets/icons/UniHut.png", "Vorlesung", new LecturePlace(), false, false);
+		Tile lectureTile = new Tile("fa-comments-o fa-3x", "Vorlesung", new LecturePlace(), false, false);
 		tiles.add(lectureTile);
 	
 		// Mensa Tile
-		Tile mensaTile = new Tile("assets/icons/MensaWhite.png", "Mensa", new MensaPlace(), false, false);
+		Tile mensaTile = new Tile("fa-cutlery fa-3x", "Mensa", new MensaPlace(), false, false);
 		tiles.add(mensaTile);
 		
 		// Settings Tile
-		Tile settingsTile = new Tile("assets/icons/Settings.png", "Einstellungen", new SettingsPlace(), false, false);
+		Tile settingsTile = new Tile("fa-gears fa-3x", "Einstellungen", new SettingsPlace(), false, false);
 		tiles.add(settingsTile);
 	}
 	
