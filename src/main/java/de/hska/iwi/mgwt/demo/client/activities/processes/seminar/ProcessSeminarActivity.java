@@ -19,7 +19,6 @@ import com.googlecode.mgwt.ui.client.widget.celllist.CellSelectedHandler;
 import de.hska.iwi.mgwt.demo.client.ClientFactory;
 import de.hska.iwi.mgwt.demo.client.activities.processes.ProcessDetailPlace;
 import de.hska.iwi.mgwt.demo.client.model.Seminar;
-import de.hska.iwi.mgwt.demo.client.model.SeminarStorage;
 import de.hska.iwi.mgwt.demo.client.storage.StorageKey;
 
 public class ProcessSeminarActivity extends MGWTAbstractActivity {

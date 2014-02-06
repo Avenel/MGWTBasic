@@ -1,9 +1,13 @@
 package de.hska.iwi.mgwt.demo.client.activities.home;
 
+import com.google.gwt.json.client.JSONParser;
+import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceTokenizer;
 
-public class HomePlace extends Place {
+import de.hska.iwi.mgwt.demo.client.model.PlaceJSONObject;
+
+public class HomePlace extends Place implements PlaceJSONObject {
 
 	public static class HomePlaceTokenizer implements PlaceTokenizer<HomePlace> {
 
@@ -16,6 +20,12 @@ public class HomePlace extends Place {
 		public String getToken(HomePlace place) {
 			return "";
 		}
-	}
 	
+	
+	}
+
+	@Override
+	public JSONValue toJson() {
+		return JSONParser.parseStrict("{\"className\": \"HomePlace\"}");
+	}
 }

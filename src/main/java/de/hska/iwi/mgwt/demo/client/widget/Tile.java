@@ -7,6 +7,9 @@ import com.google.gwt.dom.client.Style.Display;
 import com.google.gwt.dom.client.Style.TextAlign;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.json.client.JSONArray;
+import com.google.gwt.json.client.JSONParser;
+import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.FocusPanel;
@@ -18,6 +21,11 @@ import com.googlecode.mgwt.mvp.client.Animation;
 import com.googlecode.mgwt.ui.client.animation.AnimationHelper;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
 
+import de.hska.iwi.mgwt.demo.client.activities.home.HomePlace;
+import de.hska.iwi.mgwt.demo.client.model.JSONToPlaceMapper;
+import de.hska.iwi.mgwt.demo.client.model.PlaceJSONObject;
+import de.hska.iwi.mgwt.demo.client.model.TileJSONObject;
+
 /**
  * Represents a tile. It has a front- and backside.
  * On the front it has an icon and a title + information.
@@ -27,7 +35,7 @@ import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
  * @author Martin
  *
  */
-public class Tile implements IsWidget, ObserverTile {
+public class Tile implements IsWidget, ObserverTile, TileJSONObject {
 	
 	FocusPanel focusPanel;
 	
@@ -45,7 +53,7 @@ public class Tile implements IsWidget, ObserverTile {
 	Label updateBubble;
 	int updateCounter;
 	
-	boolean flippable;
+	boolean isFlippable;
 	
 	// defines which page is behind this tile
 	Place tilePlace;
@@ -61,25 +69,29 @@ public class Tile implements IsWidget, ObserverTile {
 	// is customLink
 	boolean isCustomLink;
 
-	private LayoutPanel linkIcon;
-
+	/**
+	 * Default Constructor
+	 */
+	public Tile() {}
+	
+	
 	/**
 	 * Public constructor.
 	 * @param frontPanel
-	 * @param iconURL
+	 * @param fontAwesomeIconString
 	 * @param title
 	 * @param color
 	 */
-	public Tile(String iconURL, String title, Place place, boolean isCustomLink, boolean flippable) {
+	public Tile(String fontAwesomeIconString, String title, Place place, boolean isCustomLink, boolean flippable) {
 		super();
-		this.fontAwesomeIconClass = iconURL;
+		this.fontAwesomeIconClass = fontAwesomeIconString;
 		this.title = title;
 		this.tilePlace = place;
 		
 		// official HS Karlsruhe color
 		this.color = "#DB0134";
 		
-		this.flippable = flippable;
+		this.isFlippable = flippable;
 		
 		this.isCustomLink = isCustomLink;
 		createWidget();
@@ -94,7 +106,7 @@ public class Tile implements IsWidget, ObserverTile {
 		this.flipTime = (int) (Math.random() * 5000.0) + 5000;
 		
 		// prevent tile from flipping, if it is not meant to be.
-		if (this.flippable) {
+		if (this.isFlippable) {
 			this.flipTimer.schedule(this.flipTime);
 		}
 	}
@@ -306,7 +318,7 @@ public class Tile implements IsWidget, ObserverTile {
 	 * Flips tile.
 	 */
 	public void flipWidget() {
-		if (!this.flippable) return;
+		if (!this.isFlippable) return;
 		
 		if (this.currentPanel == this.frontPanel) {
 			this.currentPanel = this.backPanel;
@@ -387,6 +399,50 @@ public class Tile implements IsWidget, ObserverTile {
 
 	public void setTilePlace(Place tilePlace) {
 		this.tilePlace = tilePlace;
+	}
+
+
+	@Override
+	public Tile toTile(JSONValue jsonValue) {
+		Tile returnTile = null;
+		
+		int parseObject = 0;
+		try {
+			String fontAwesomeIconString = jsonValue.isObject().get("fontAwesomeIconString").isString().stringValue();
+			parseObject++;
+			String title = jsonValue.isObject().get("title").isString().stringValue();
+			parseObject++;
+			Place place = JSONToPlaceMapper.toPlace(jsonValue.isObject().get("place").isObject());
+			parseObject++;
+			boolean isCustomLink = jsonValue.isObject().get("isCustomLink").isBoolean().booleanValue();
+			parseObject++;
+			boolean isFlippable = jsonValue.isObject().get("isFlippable").isBoolean().booleanValue();
+			returnTile = new Tile(fontAwesomeIconString, title, place, isCustomLink, isFlippable);
+		} catch (NullPointerException e) {
+			// If any JSONValue is null -> error
+			System.out.println("PARSER ERROR: " + parseObject);
+			return null;
+		}
+		
+		return returnTile;
+	}
+
+
+	@Override
+	public JSONValue toJSON() {
+		JSONValue jsonValue;
+		String jsonString = new String();
+		
+		jsonString += "{";
+		jsonString += "\"fontAwesomeIconString\": \"" + this.fontAwesomeIconClass + "\", ";
+		jsonString += "\"title\": \"" + this.title + "\", ";
+		jsonString += "\"place\": " + ((PlaceJSONObject) this.tilePlace).toJson() + ", ";
+		jsonString += "\"isCustomLink\": " + ((this.isCustomLink) ? "true" : "false") + ", ";
+		jsonString += "\"isFlippable\": " + ((this.isFlippable) ? "true" : "false");
+		jsonString += "}";
+		
+		jsonValue = JSONParser.parseStrict(jsonString);
+		return jsonValue;
 	}
 
 }

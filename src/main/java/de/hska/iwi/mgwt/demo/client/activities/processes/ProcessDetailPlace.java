@@ -1,9 +1,13 @@
 package de.hska.iwi.mgwt.demo.client.activities.processes;
 
+import com.google.gwt.json.client.JSONParser;
+import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceTokenizer;
 
-public class ProcessDetailPlace extends Place {
+import de.hska.iwi.mgwt.demo.client.model.PlaceJSONObject;
+
+public class ProcessDetailPlace extends Place implements PlaceJSONObject {
 	String id;
 	
 	public ProcessDetailPlace(String id) {
@@ -26,5 +30,19 @@ public class ProcessDetailPlace extends Place {
 		}
 
 	}
-
+	
+	@Override
+	public JSONValue toJson() {
+		String jsonString = new String();
+		
+		jsonString += "{";
+		jsonString += "\"className\": \"ProcessDetailPlace\", ";
+		jsonString += "\"id\": " + this.id;
+		jsonString += "}";
+		
+		JSONValue jsonValue = JSONParser.parseStrict(jsonString);
+		System.out.println(jsonValue);
+		return jsonValue;
+	}
+	
 }

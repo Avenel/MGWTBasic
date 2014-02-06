@@ -9,6 +9,7 @@ package de.hska.iwi.mgwt.demo.client.storage;
 public enum StorageKey {
 
 	NewsSettingsFilterIWI, NewsSettingsFilterIB, NewsSettingsFilterIM, NewsSettingsFilterMKI, 
-	ProcessesSeminarsList, ProcessesSeminarProfessor, ProcessesSeminarTerm, ProcessesSeminarTopic,ProcessesSeminarStatus;
+	ProcessesSeminarsList, ProcessesSeminarProfessor, ProcessesSeminarTerm, ProcessesSeminarTopic,ProcessesSeminarStatus,
+	HomeScreenTiles;
 
 }

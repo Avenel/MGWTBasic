@@ -1,9 +1,13 @@
 package de.hska.iwi.mgwt.demo.client.activities.settings;
 
+import com.google.gwt.json.client.JSONParser;
+import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceTokenizer;
 
-public class SettingsPlace extends Place {
+import de.hska.iwi.mgwt.demo.client.model.PlaceJSONObject;
+
+public class SettingsPlace extends Place implements PlaceJSONObject {
 	public static class SettingsPlaceTokenizer implements PlaceTokenizer<SettingsPlace> {
 
 		@Override
@@ -15,5 +19,10 @@ public class SettingsPlace extends Place {
 		public String getToken(SettingsPlace place) {
 			return "";
 		}
+	}
+	
+	@Override
+	public JSONValue toJson() {
+		return JSONParser.parseStrict("{\"className\": \"SettingsPlace\"}");
 	}
 }
