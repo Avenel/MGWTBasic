@@ -7,13 +7,11 @@ import com.google.gwt.dom.client.Style.Display;
 import com.google.gwt.dom.client.Style.TextAlign;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.FocusPanel;
-import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
@@ -21,7 +19,6 @@ import com.googlecode.mgwt.mvp.client.Animation;
 import com.googlecode.mgwt.ui.client.animation.AnimationHelper;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
 
-import de.hska.iwi.mgwt.demo.client.activities.home.HomePlace;
 import de.hska.iwi.mgwt.demo.client.model.JSONToPlaceMapper;
 import de.hska.iwi.mgwt.demo.client.model.PlaceJSONObject;
 import de.hska.iwi.mgwt.demo.client.model.TileJSONObject;
@@ -311,6 +308,10 @@ public class Tile implements IsWidget, ObserverTile, TileJSONObject {
 	 */
 	public void removeTapHandler() {
 		this.handler = null;
+	}
+	
+	public ClickHandler getTapHandler() {
+		return this.handler;
 	}
 	
 

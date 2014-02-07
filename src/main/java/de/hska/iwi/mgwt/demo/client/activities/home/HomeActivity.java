@@ -19,28 +19,36 @@ import de.hska.iwi.mgwt.demo.client.widget.Tile;
 public class HomeActivity extends MGWTAbstractActivity {
 
 	private final ClientFactory clientFactory;
+	private HomeView view;
 	
 	
 	public HomeActivity(ClientFactory clientFactory) {
 		this.clientFactory = clientFactory;
+		this.view = null;
 	}
 	
 	@Override 
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
-		final HomeView view = this.clientFactory.getHomeView();
+		this.view = this.clientFactory.getHomeView();
 		panel.setWidget(view);
 		
+		addTapHandlers();
+	}
+	
+	public void addTapHandlers() {
 		// Adding Tile handlers
 		for (final Tile tile : TileBoardManager.getTiles()) {
 			tile.addTapHandler(new ClickHandler() {
 				@Override
 				public void onClick(ClickEvent event) {
-					//ChangePage.changePageTo(tile.getPageName(), clientFactory.getAnimatingActivityManager(), clientFactory.getPlaceController());
-					clientFactory.getPlaceController().goTo(tile.getTilePlace());
-					tile.clearUpdateBubble();
+					if (!TileBoardManager.isOrganizing()) {
+						clientFactory.getPlaceController().goTo(tile.getTilePlace());
+						tile.clearUpdateBubble();
+					} else {
+						TileBoardManager.removeTile(tile, view.getTileBoard());
+					}
 				}
 			});
 		}
 	}
-	
 }

@@ -65,8 +65,9 @@ public class MgwtAppEntryPoint implements EntryPoint {
 				new de.hska.iwi.mgwt.demo.client.activities.home.HomePlace());
 
 		createPhoneDisplay(clientFactory);
-
+		
 		// initialize TileBoard
+		TileBoardManager.setClientFactory(clientFactory);
 		TileBoardManager.initTiles();
 		
 		historyHandler.handleCurrentHistory();

@@ -1,7 +1,9 @@
 package de.hska.iwi.mgwt.demo.client.widget;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
@@ -14,6 +16,7 @@ import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
 public class TileBoard implements IsWidget {
 
 	LayoutPanel tileBoardPanel;
+	List<ClickHandler> handlers;
 	
 	public TileBoard() {
 		this.tileBoardPanel = new LayoutPanel();
@@ -43,5 +46,23 @@ public class TileBoard implements IsWidget {
 			add(tile);
 		}
 	}
+	
+	/**
+	 * Removes given Tile from Panel
+	 * @param tile
+	 */
+	public void removeTile(Tile tile) {
+		this.tileBoardPanel.remove(tile.asWidget());
+	}
+	
+	/**
+	 * Refresh Tile on HomeScreen
+	 */
+	public void refreshTiles(List<Tile> tiles) {
+		this.tileBoardPanel.clear();
+		addAll(tiles);
+	}
+	
+	
 
 }
