@@ -52,7 +52,7 @@ public class ProcessSeminarViewImpl implements ProcessSeminarView {
 				Dialogs.alert("Tile angepinnt", "Seminar Uebersicht wurde auf deinen Homescreen angepinnt!", null);
 				headerPanel.setRightWidget(null);
 			}
-		});
+		}, new ProcessSeminarPlace());
 		headerPanel.setRightWidget(pinTileButton.asWidget());
 		
 		this.cellListSeminars = new CellList<Seminar>(new SeminarCell("blubb"));
@@ -71,6 +71,8 @@ public class ProcessSeminarViewImpl implements ProcessSeminarView {
 	public Widget asWidget() {
 		if (!this.pinTileButton.isPinned()) {
 			this.headerPanel.setRightWidget(pinTileButton.asWidget());
+		} else {
+			this.headerPanel.setRightWidget(null);
 		}
 		
 		return main;

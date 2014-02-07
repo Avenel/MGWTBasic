@@ -8,6 +8,7 @@ import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONParser;
+import com.google.gwt.place.shared.Place;
 import com.google.gwt.storage.client.Storage;
 import com.google.gwt.user.client.ui.Label;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
@@ -142,6 +143,19 @@ public class TileBoardManager {
 			
 			stockStore.setItem(StorageKey.HomeScreenTiles.toString(), homeScreenTilesJSON);
 		}
+	}
+	
+	/**
+	 * Lookup in localStore if given tile is already pinned on homescreen.
+	 * @return boolean: isPinned
+	 */
+	public static boolean isTilePinned(Place targetPlace) {
+		for (Tile tile : tiles) {
+			if (tile.getTilePlace().equals(targetPlace)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 }

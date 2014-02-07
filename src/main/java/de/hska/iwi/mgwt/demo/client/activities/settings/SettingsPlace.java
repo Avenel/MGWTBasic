@@ -25,4 +25,12 @@ public class SettingsPlace extends Place implements PlaceJSONObject {
 	public JSONValue toJson() {
 		return JSONParser.parseStrict("{\"className\": \"SettingsPlace\"}");
 	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (o.getClass().toString().compareTo(this.getClass().toString()) == 0) {
+			return true;
+		}
+		return false;
+	}
 }

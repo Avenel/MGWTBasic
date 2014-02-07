@@ -54,7 +54,7 @@ public class ProcessDetailViewImpl implements ProcessDetailView {
 				Dialogs.alert("Tile angepinnt", "Dieser Prozess wurde auf Deinen Homescreen angepinnt!", null);
 				headerPanel.setRightWidget(null);
 			}
-		});
+		}, new ProcessDetailPlace(String.valueOf(id)));
 		headerPanel.setRightWidget(pinTileButton.asWidget());
 		
 		this.processDetailOverviewWidget = new ProcessDetailOverview(this.activeStep, steps.size() - 1);
@@ -71,6 +71,8 @@ public class ProcessDetailViewImpl implements ProcessDetailView {
 	public Widget asWidget() {
 		if (!this.pinTileButton.isPinned()) {
 			this.headerPanel.setRightWidget(pinTileButton.asWidget());
+		} else {
+			this.headerPanel.setRightWidget(null);
 		}
 		
 		headerPanel.setCenter(title);

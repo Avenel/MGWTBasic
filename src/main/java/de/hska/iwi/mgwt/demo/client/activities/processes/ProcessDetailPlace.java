@@ -45,4 +45,13 @@ public class ProcessDetailPlace extends Place implements PlaceJSONObject {
 		return jsonValue;
 	}
 	
+	@Override
+	public boolean equals(Object o) {
+		if (o.getClass().toString().compareTo(this.getClass().toString()) == 0) {
+			if (((ProcessDetailPlace) o).id.compareTo(this.id) == 0) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

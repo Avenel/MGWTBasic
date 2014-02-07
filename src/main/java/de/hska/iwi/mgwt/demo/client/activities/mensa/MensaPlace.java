@@ -27,4 +27,12 @@ public class MensaPlace extends Place implements PlaceJSONObject {
 		return JSONParser.parseStrict("{\"className\": \"MensaPlace\"}");
 	}
 	
+	@Override
+	public boolean equals(Object o) {
+		if (o.getClass().toString().compareTo(this.getClass().toString()) == 0) {
+			return true;
+		}
+		return false;
+	}
+	
 }
