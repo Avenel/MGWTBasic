@@ -56,7 +56,10 @@ public class HomeViewImpl implements HomeView{
 					organizeTilesButton.switchOrganize(true);
 					
 					for (Tile tile : TileBoardManager.getTiles()) {
-						if (tile.isCustomLink()) {
+						// resetWidget so only tilefront is displayed
+						tile.flipToFront();
+						
+						if (tile.isCustomLink()) {							
 							tile.switchShake(true);
 						}
 					}

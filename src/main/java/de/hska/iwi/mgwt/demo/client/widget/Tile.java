@@ -21,6 +21,7 @@ import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
 
 import de.hska.iwi.mgwt.demo.client.model.JSONToPlaceMapper;
 import de.hska.iwi.mgwt.demo.client.model.PlaceJSONObject;
+import de.hska.iwi.mgwt.demo.client.model.TileBoardManager;
 import de.hska.iwi.mgwt.demo.client.model.TileJSONObject;
 
 /**
@@ -360,7 +361,7 @@ public class Tile implements IsWidget, ObserverTile, TileJSONObject {
 	 * Flips tile.
 	 */
 	public void flipWidget() {
-		if (!this.isFlippable) return;
+		if (!this.isFlippable || TileBoardManager.isOrganizing()) return;
 		
 		if (this.currentPanel == this.frontPanel) {
 			this.currentPanel = this.backPanel;
@@ -512,4 +513,10 @@ public class Tile implements IsWidget, ObserverTile, TileJSONObject {
 		}
 	}
 
+	public void flipToFront() {
+		if (this.currentPanel == this.backPanel) { 
+			this.animationHelper.goTo(frontPanel, Animation.FLIP);
+		}
+	}
+	
 }
