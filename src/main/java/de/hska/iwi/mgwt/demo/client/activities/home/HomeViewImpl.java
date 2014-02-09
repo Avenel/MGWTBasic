@@ -56,7 +56,7 @@ public class HomeViewImpl implements HomeView{
 				if (TileBoardManager.isOrganizing()) {
 					for (Tile tile : TileBoardManager.getTiles()) {
 						if (tile.isCustomLink()) {
-							tile.switchShake();
+							tile.switchShake(true);
 						}
 					}
 				}
@@ -64,7 +64,7 @@ public class HomeViewImpl implements HomeView{
 				if (!TileBoardManager.isOrganizing()) {
 					for (Tile tile : TileBoardManager.getTiles()) {
 						if (tile.isCustomLink()) {
-							tile.switchShake();
+							tile.switchShake(false);
 						}
 					}
 					TileBoardManager.refreshHomeScreen(tileBoard);

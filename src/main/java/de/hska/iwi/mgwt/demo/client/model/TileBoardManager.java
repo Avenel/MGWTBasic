@@ -180,6 +180,14 @@ public class TileBoardManager {
 	 */
 	public static void refreshHomeScreen(TileBoard tileBoard) {
 		tileBoard.refreshTiles(tiles);
+		
+		if (isOrganizing) {
+			for (Tile tile : tiles) {
+				if (tile.isCustomLink()) {
+					tile.switchShake(true);
+				}
+			}
+		}
 	}
 	
 	public static boolean isOrganizing() {

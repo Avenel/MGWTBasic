@@ -498,8 +498,8 @@ public class Tile implements IsWidget, ObserverTile, TileJSONObject {
 	}
 
 	
-	public void switchShake() {
-		this.isShakeing = !this.isShakeing;
+	public void switchShake(boolean doShake) {
+		this.isShakeing = doShake;
 		
 		if (this.isShakeing) {
 			this.focusPanel.getElement().addClassName("shake");

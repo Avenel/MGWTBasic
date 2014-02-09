@@ -48,6 +48,7 @@ public class HomeActivity extends MGWTAbstractActivity {
 						// only custom tiles can be removed.
 						if (tile.isCustomLink()) {
 							TileBoardManager.removeTile(tile, view.getTileBoard());
+							TileBoardManager.refreshHomeScreen(view.getTileBoard());
 						}
 					}
 				}
