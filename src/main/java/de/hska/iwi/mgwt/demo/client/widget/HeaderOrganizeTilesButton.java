@@ -32,5 +32,15 @@ private TapHandler handler;
 			organizeButton.addTapHandler(handler);
 		}
 	}
+	
+	public void switchOrganize(boolean doOrganize) {
+		if (doOrganize) {
+			organizeButton.setText("<i class='fa fa-magic fa-lg' style='color: #DB0134'></i>");
+			organizeButton.asWidget().getElement().getFirstChildElement().getNextSiblingElement().getStyle().setBackgroundColor("#FFFFFF");
+		} else {
+			organizeButton.setText("<i class='fa fa-magic fa-lg' style='color: #FFFFFF'></i>");
+			organizeButton.asWidget().getElement().getFirstChildElement().getNextSiblingElement().getStyle().setBackgroundColor("#ED8689");
+		}
+	}
 
 }

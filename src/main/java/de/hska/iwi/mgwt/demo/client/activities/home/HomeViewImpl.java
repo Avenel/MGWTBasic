@@ -50,10 +50,11 @@ public class HomeViewImpl implements HomeView{
 			@Override
 			public void onTap(TapEvent event) {
 				TileBoardManager.switchIsOrganizing();
-				Dialogs.alert("Organisieren", (TileBoardManager.isOrganizing())? "Organisiere nun deine Tiles!" : "Organisieren beendet.", null);
 				
 				// let'em shake :D
 				if (TileBoardManager.isOrganizing()) {
+					organizeTilesButton.switchOrganize(true);
+					
 					for (Tile tile : TileBoardManager.getTiles()) {
 						if (tile.isCustomLink()) {
 							tile.switchShake(true);
@@ -68,6 +69,7 @@ public class HomeViewImpl implements HomeView{
 						}
 					}
 					TileBoardManager.refreshHomeScreen(tileBoard);
+					organizeTilesButton.switchOrganize(false);
 				}
 			}
 		});

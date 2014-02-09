@@ -503,7 +503,9 @@ public class Tile implements IsWidget, ObserverTile, TileJSONObject {
 		
 		if (this.isShakeing) {
 			this.focusPanel.getElement().addClassName("shake");
-			this.removeBubble.getElement().getStyle().setDisplay(Display.BLOCK);
+			if (this.isCustomLink) {
+				this.removeBubble.getElement().getStyle().setDisplay(Display.BLOCK);
+			}
 		} else {
 			this.focusPanel.getElement().removeClassName("shake");
 			this.removeBubble.getElement().getStyle().setDisplay(Display.NONE);
