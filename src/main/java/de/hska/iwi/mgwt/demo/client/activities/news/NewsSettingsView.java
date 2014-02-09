@@ -3,6 +3,7 @@ package de.hska.iwi.mgwt.demo.client.activities.news;
 import com.google.gwt.user.client.ui.IsWidget;
 
 import de.hska.iwi.mgwt.demo.client.widget.CheckBoxWidget;
+import de.hska.iwi.mgwt.demo.client.widget.TextInputWidget;
 
 public interface NewsSettingsView extends IsWidget {
 

@@ -5,7 +5,6 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
 
 import de.hska.iwi.mgwt.demo.client.ClientFactory;
-import de.hska.iwi.mgwt.demo.client.activities.lecture.LectureView;
 
 public class SettingsActivity extends MGWTAbstractActivity {
 	
@@ -18,6 +17,7 @@ public class SettingsActivity extends MGWTAbstractActivity {
 	@Override 
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
 		SettingsView view = this.clientFactory.getSettingsView();
+		
 		panel.setWidget(view);
 	}
 	

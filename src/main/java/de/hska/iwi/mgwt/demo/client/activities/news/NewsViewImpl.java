@@ -34,7 +34,6 @@ public class NewsViewImpl implements NewsView {
 		settingsButton = new HeaderSettingsButton();
 		headerPanel.setRightWidget(settingsButton.asWidget());
 		
-		// Create 4 different cellists for each organisation
 		this.cellListNews = new CellList<NewsBoard>(new NewsCell());
 		ScrollPanel panelNews = new ScrollPanel();
 		panelNews.add(cellListNews);

@@ -3,7 +3,6 @@ package de.hska.iwi.mgwt.demo.client.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.dom.client.Style.TextAlign;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.json.client.JSONArray;
@@ -14,7 +13,6 @@ import com.google.gwt.storage.client.Storage;
 import com.google.gwt.user.client.ui.Label;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
 
-import de.hska.iwi.mgwt.demo.client.ClientFactory;
 import de.hska.iwi.mgwt.demo.client.activities.lecture.LecturePlace;
 import de.hska.iwi.mgwt.demo.client.activities.mensa.MensaPlace;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsPlace;
@@ -34,8 +32,6 @@ public class TileBoardManager {
 	static List<Tile> tiles;
 	private static Storage stockStore;
 	private static boolean isOrganizing; // false = icons can be added, true = icons can be removed
-	// TODO: perhaps it is not the best idea to do this...
-	private static ClientFactory clientFactory;
 	
 	/**
 	 * Bootstrap, add necessary tiles.
@@ -196,9 +192,5 @@ public class TileBoardManager {
 	
 	public static void switchIsOrganizing() {
 		isOrganizing = !isOrganizing;
-	}
-
-	public static void setClientFactory(ClientFactory clientFactoryParam) {
-		clientFactory = clientFactoryParam;
 	}
 }
