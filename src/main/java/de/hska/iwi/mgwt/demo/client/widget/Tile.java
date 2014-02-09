@@ -155,6 +155,9 @@ public class Tile implements IsWidget, ObserverTile, TileJSONObject {
 		setupWrapper();
 		
 		this.focusPanel.add(animationHelper);
+		if (this.handler != null) {
+			this.focusPanel.addClickHandler(handler);
+		}
 		
 		this.animationHelper.goTo(frontPanel, null);
 		this.flipTimer.schedule(this.flipTime);
