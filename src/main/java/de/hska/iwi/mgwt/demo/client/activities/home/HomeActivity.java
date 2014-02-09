@@ -45,7 +45,10 @@ public class HomeActivity extends MGWTAbstractActivity {
 						clientFactory.getPlaceController().goTo(tile.getTilePlace());
 						tile.clearUpdateBubble();
 					} else {
-						TileBoardManager.removeTile(tile, view.getTileBoard());
+						// only custom tiles can be removed.
+						if (tile.isCustomLink()) {
+							TileBoardManager.removeTile(tile, view.getTileBoard());
+						}
 					}
 				}
 			});

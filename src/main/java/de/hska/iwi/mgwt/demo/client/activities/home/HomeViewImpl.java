@@ -14,6 +14,7 @@ import com.googlecode.mgwt.ui.client.widget.ScrollPanel;
 import de.hska.iwi.mgwt.demo.client.model.TileBoardManager;
 import de.hska.iwi.mgwt.demo.client.widget.HeaderOrganizeTilesButton;
 import de.hska.iwi.mgwt.demo.client.widget.NavigationBar;
+import de.hska.iwi.mgwt.demo.client.widget.Tile;
 import de.hska.iwi.mgwt.demo.client.widget.TileBoard;
 
 /**
@@ -51,7 +52,23 @@ public class HomeViewImpl implements HomeView{
 				TileBoardManager.switchIsOrganizing();
 				Dialogs.alert("Organisieren", (TileBoardManager.isOrganizing())? "Organisiere nun deine Tiles!" : "Organisieren beendet.", null);
 				
-				if (!TileBoardManager.isOrganizing()) TileBoardManager.refreshHomeScreen(tileBoard);
+				// let'em shake :D
+				if (TileBoardManager.isOrganizing()) {
+					for (Tile tile : TileBoardManager.getTiles()) {
+						if (tile.isCustomLink()) {
+							tile.switchShake();
+						}
+					}
+				}
+				
+				if (!TileBoardManager.isOrganizing()) {
+					for (Tile tile : TileBoardManager.getTiles()) {
+						if (tile.isCustomLink()) {
+							tile.switchShake();
+						}
+					}
+					TileBoardManager.refreshHomeScreen(tileBoard);
+				}
 			}
 		});
 		

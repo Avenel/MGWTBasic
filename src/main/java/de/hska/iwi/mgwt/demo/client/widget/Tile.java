@@ -50,6 +50,8 @@ public class Tile implements IsWidget, ObserverTile, TileJSONObject {
 	Label updateBubble;
 	int updateCounter;
 	
+	Label removeBubble;
+	
 	boolean isFlippable;
 	
 	// defines which page is behind this tile
@@ -65,6 +67,8 @@ public class Tile implements IsWidget, ObserverTile, TileJSONObject {
 	
 	// is customLink
 	boolean isCustomLink;
+	
+	boolean isShakeing;
 
 	/**
 	 * Default Constructor
@@ -134,7 +138,11 @@ public class Tile implements IsWidget, ObserverTile, TileJSONObject {
 		
 		// add updateBubble
 		createUpdateBubble();		
-		this.frontPanel.add(updateBubble);
+		this.frontPanel.add(this.updateBubble);
+		
+		// add deleteBubble
+		createRemoveBubble();
+		this.frontPanel.add(this.removeBubble);
 		
 		// BACK
 		createBack();
@@ -298,6 +306,36 @@ public class Tile implements IsWidget, ObserverTile, TileJSONObject {
 	}
 	
 	/**
+	 * Creates cross-icon to tell the user that he can delete this tile.
+	 */
+	private void createRemoveBubble() {
+		this.removeBubble = new Label();
+		this.removeBubble.getElement().getStyle().setColor("#DB0134");
+		this.removeBubble.getElement().getStyle().setWidth(20, Unit.PX);
+		this.removeBubble.getElement().getStyle().setHeight(20, Unit.PX);
+		
+		this.removeBubble.getElement().getStyle().setProperty("top", "5px");
+		this.removeBubble.getElement().getStyle().setProperty("right", "15px");
+		this.removeBubble.getElement().getStyle().setProperty("position", "absolute");
+		this.removeBubble.getElement().getStyle().setTextAlign(TextAlign.CENTER);
+		this.removeBubble.getElement().getStyle().setLineHeight(20, Unit.PX);
+		
+		this.removeBubble.getElement().getStyle().setBorderWidth(1, Unit.PX);
+		this.removeBubble.getElement().getStyle().setBorderStyle(BorderStyle.SOLID);
+		this.removeBubble.getElement().getStyle().setProperty("borderRadius", "20px");
+		
+		this.removeBubble.getElement().getStyle().setBackgroundColor("#FEFEFE");
+		this.removeBubble.getElement().getStyle().setDisplay(Display.NONE);
+		
+		this.removeBubble.setText("");
+		
+		ParagraphElement pElement = Document.get().createPElement();
+		pElement.setInnerHTML("<i class='fa fa-times' style='color: #DB0134'></i>");
+		
+		this.removeBubble.getElement().appendChild(pElement);
+	}
+	
+	/**
 	 * Setup tap handler for user interactions.
 	 * @param handler
 	 */
@@ -447,6 +485,29 @@ public class Tile implements IsWidget, ObserverTile, TileJSONObject {
 		
 		jsonValue = JSONParser.parseStrict(jsonString);
 		return jsonValue;
+	}
+
+
+	public boolean isCustomLink() {
+		return isCustomLink;
+	}
+
+
+	public void setCustomLink(boolean isCustomLink) {
+		this.isCustomLink = isCustomLink;
+	}
+
+	
+	public void switchShake() {
+		this.isShakeing = !this.isShakeing;
+		
+		if (this.isShakeing) {
+			this.focusPanel.getElement().addClassName("shake");
+			this.removeBubble.getElement().getStyle().setDisplay(Display.BLOCK);
+		} else {
+			this.focusPanel.getElement().removeClassName("shake");
+			this.removeBubble.getElement().getStyle().setDisplay(Display.NONE);
+		}
 	}
 
 }
