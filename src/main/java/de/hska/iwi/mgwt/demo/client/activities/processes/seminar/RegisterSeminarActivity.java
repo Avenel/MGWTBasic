@@ -23,7 +23,7 @@ import com.googlecode.mgwt.ui.client.widget.WidgetList;
 
 import de.hska.iwi.mgwt.demo.client.ClientFactory;
 import de.hska.iwi.mgwt.demo.client.model.Seminar;
-import de.hska.iwi.mgwt.demo.client.model.SeminarStorage;
+import de.hska.iwi.mgwt.demo.client.model.SeminarTempStorage;
 import de.hska.iwi.mgwt.demo.client.storage.StorageKey;
 
 public class RegisterSeminarActivity extends MGWTAbstractActivity {
@@ -91,7 +91,7 @@ public class RegisterSeminarActivity extends MGWTAbstractActivity {
 
 				}
 
-				SeminarStorage.addSeminar(newSeminar);
+				SeminarTempStorage.addSeminar(newSeminar);
 				currentSeminars.set(currentSeminars.size(), jsonSeminar);
 				localStorage.setItem(StorageKey.ProcessesSeminarsList.toString(), currentSeminars.toString());
 				History.back();

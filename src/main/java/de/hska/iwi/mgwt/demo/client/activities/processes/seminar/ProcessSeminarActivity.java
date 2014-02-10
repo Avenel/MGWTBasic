@@ -19,6 +19,7 @@ import com.googlecode.mgwt.ui.client.widget.celllist.CellSelectedHandler;
 import de.hska.iwi.mgwt.demo.client.ClientFactory;
 import de.hska.iwi.mgwt.demo.client.activities.processes.ProcessDetailPlace;
 import de.hska.iwi.mgwt.demo.client.model.Seminar;
+import de.hska.iwi.mgwt.demo.client.model.SeminarTempStorage;
 import de.hska.iwi.mgwt.demo.client.storage.StorageKey;
 
 public class ProcessSeminarActivity extends MGWTAbstractActivity {
@@ -72,16 +73,9 @@ public class ProcessSeminarActivity extends MGWTAbstractActivity {
 
 		seminarEntries = generateSeminarEntriesFromJSON(localStorage.getItem(StorageKey.ProcessesSeminarsList
 				.toString()));
+		SeminarTempStorage.setSeminars(seminarEntries);
 
-		// seminarEntries = SeminarStorage.getSeminarList();
-
-		// JSONObject result = new JSONObject();
-		// result.put("test", new JSONString("blubb"));
-		//
-		//
-		// JSONValue value=
-		// JSONParser.parseStrict(localStorage.getItem("seminar"));
-		// JSONObject object= (JSONObject)value;
+		
 
 		view.render(seminarEntries);
 		panel.setWidget(view);

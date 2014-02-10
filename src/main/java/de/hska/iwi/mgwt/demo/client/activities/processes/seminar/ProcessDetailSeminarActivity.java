@@ -13,7 +13,7 @@ import de.hska.iwi.mgwt.demo.client.ClientFactory;
 import de.hska.iwi.mgwt.demo.client.activities.processes.ProcessDetailView;
 import de.hska.iwi.mgwt.demo.client.model.ProcessStep;
 import de.hska.iwi.mgwt.demo.client.model.Seminar;
-import de.hska.iwi.mgwt.demo.client.model.SeminarStorage;
+import de.hska.iwi.mgwt.demo.client.model.SeminarTempStorage;
 
 public class ProcessDetailSeminarActivity extends MGWTAbstractActivity {
 
@@ -35,7 +35,7 @@ public class ProcessDetailSeminarActivity extends MGWTAbstractActivity {
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
 
-		seminar = SeminarStorage.getSeminarList().get(Integer.parseInt(id));
+		seminar = SeminarTempStorage.getSeminarList().get(Integer.parseInt(id));
 		
 		
 		List<ProcessStep> steps= new ArrayList<ProcessStep>();
