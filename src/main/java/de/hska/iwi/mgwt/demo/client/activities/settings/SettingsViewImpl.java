@@ -8,9 +8,11 @@ import com.googlecode.mgwt.ui.client.widget.WidgetList;
 
 import de.hska.iwi.mgwt.demo.client.model.InputType;
 import de.hska.iwi.mgwt.demo.client.model.SettingItem;
-import de.hska.iwi.mgwt.demo.client.model.SettingStorage;
+import de.hska.iwi.mgwt.demo.client.storage.SettingStorage;
+import de.hska.iwi.mgwt.demo.client.storage.StorageKey;
+import de.hska.iwi.mgwt.demo.client.widget.CheckBoxWidget;
 import de.hska.iwi.mgwt.demo.client.widget.HeaderBackButton;
-import de.hska.iwi.mgwt.demo.client.widget.SettingItemMenu;
+import de.hska.iwi.mgwt.demo.client.widget.SettingItemMenuLink;
 import de.hska.iwi.mgwt.demo.client.widget.TextInputWidget;
 
 public class SettingsViewImpl implements SettingsView {
@@ -30,12 +32,16 @@ public class SettingsViewImpl implements SettingsView {
 	    widgetList.setRound(true);
 	    
 	    for (SettingItem item : SettingStorage.getSettingItems()) {
-	    	if (item.getInputType().equals(InputType.MENUE)) {
-	    		widgetList.add(new SettingItemMenu(item.getKey().getHumanReadableName(), item.getFontAwesomeIcom()).asWidget());
+	    	if (item.getInputType().equals(InputType.MENUELINK)) {
+	    		widgetList.add(new SettingItemMenuLink(item.getKey().getHumanReadableName(), item.getFontAwesomeIcom()).asWidget());
 	    	}
 	    	
 	    	if (item.getInputType().equals(InputType.TEXT)) {
-	    		widgetList.add(new TextInputWidget(item.getKey().getHumanReadableName()).asWidget());
+	    		widgetList.add(new TextInputWidget(item.getKey().getHumanReadableName(), StorageKey.IZAccountname).asWidget());
+	    	}
+	    	
+	    	if (item.getInputType().equals(InputType.CHECKBOX)) {
+	    		widgetList.add(new CheckBoxWidget(item.getKey().getHumanReadableName(), StorageKey.IsSendingPushMessages).asWidget());
 	    	}
 	    }
 		

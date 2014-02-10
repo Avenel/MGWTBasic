@@ -1,12 +1,14 @@
 package de.hska.iwi.mgwt.demo.client.model;
 
+import de.hska.iwi.mgwt.demo.client.storage.StorageKey;
+
 /**
  * Represents a possible setting
  * @author avenel
  *
  */
 public class SettingItem {
-	private SettingKey key;
+	private StorageKey key;
 	private String value;
 	private boolean isSecure;
 	private String fontAwesomeIcom;
@@ -18,7 +20,7 @@ public class SettingItem {
 	 * @param value
 	 * @param isSecure
 	 */
-	public SettingItem(SettingKey key, String value, boolean isSecure,
+	public SettingItem(StorageKey key, String value, boolean isSecure,
 			String fontAwesomeIcom, InputType inputType) {
 		this.key = key;
 		this.value = value;
@@ -27,11 +29,11 @@ public class SettingItem {
 		this.setInputType(inputType);
 	}
 	
-	public SettingKey getKey() {
+	public StorageKey getKey() {
 		return key;
 	}
 	
-	public void setKey(SettingKey key) {
+	public void setKey(StorageKey key) {
 		this.key = key;
 	}
 	

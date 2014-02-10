@@ -5,6 +5,7 @@ import com.googlecode.mgwt.ui.client.widget.HeaderPanel;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
 import com.googlecode.mgwt.ui.client.widget.WidgetList;
 
+import de.hska.iwi.mgwt.demo.client.storage.StorageKey;
 import de.hska.iwi.mgwt.demo.client.widget.CheckBoxWidget;
 import de.hska.iwi.mgwt.demo.client.widget.HeaderBackButton;
 
@@ -34,19 +35,19 @@ public class NewsSettingsViewImpl implements NewsSettingsView {
 	    widgetList.setRound(true);
 	    
 		// IWI
-	    iwiCheckBox = new CheckBoxWidget("IWI");
+	    iwiCheckBox = new CheckBoxWidget("IWI", StorageKey.NewsSettingsFilterIWI);
 	    widgetList.add(iwiCheckBox.asWidget());
 	    
 	    // IB
-	    ibCheckBox = new CheckBoxWidget("IB");
+	    ibCheckBox = new CheckBoxWidget("IB", StorageKey.NewsSettingsFilterIB);
 	    widgetList.add(ibCheckBox.asWidget());
 	    
 	    // IM
-	    imCheckBox = new CheckBoxWidget("IM");
+	    imCheckBox = new CheckBoxWidget("IM", StorageKey.NewsSettingsFilterIM);
 	    widgetList.add(imCheckBox.asWidget());
 	    
 	    // MKI
-	    mkiCheckBox = new CheckBoxWidget("MKI");
+	    mkiCheckBox = new CheckBoxWidget("MKI", StorageKey.NewsSettingsFilterMKI);
 	    widgetList.add(mkiCheckBox.asWidget());
 	    
 	    this.main.add(widgetList);
