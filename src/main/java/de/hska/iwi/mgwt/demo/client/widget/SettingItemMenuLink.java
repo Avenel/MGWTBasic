@@ -6,12 +6,12 @@ import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 
-public class SettingItemMenu implements IsWidget{
+public class SettingItemMenuLink implements IsWidget{
 
 	private String title;
 	private String fontAwesomeIcon;
 	
-	public SettingItemMenu(String title, String fontAwesomeIcon) {
+	public SettingItemMenuLink(String title, String fontAwesomeIcon) {
 		this.title = title;
 		this.fontAwesomeIcon = fontAwesomeIcon;
 	}
@@ -19,10 +19,12 @@ public class SettingItemMenu implements IsWidget{
 	
 	public Widget asWidget() {
 		ParagraphElement pElement = Document.get().createPElement();
-		pElement.setInnerHTML("<i class='fa "+ this.fontAwesomeIcon + " fa-lg'></i> " + this.title);
+		pElement.setInnerHTML("<div style='float:left'><i class='fa " + this.fontAwesomeIcon 
+								+ " fa-lg' style='margin-right: 15px'></i><b>" + this.title + "</b></div><div style='float:right'>"
+								+ "<i class='fa fa-chevron-right fa-lg'></i></div>");
 		
 		Label menueLabel = new Label();
-		menueLabel.getElement().getStyle().setBackgroundColor("#ED8689");
+//		menueLabel.getElement().getStyle().setBackgroundColor("#ED8689");
 		menueLabel.getElement().appendChild(pElement);
 		return menueLabel;
 	}
