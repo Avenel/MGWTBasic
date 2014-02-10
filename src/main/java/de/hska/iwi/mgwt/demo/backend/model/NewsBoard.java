@@ -1,12 +1,13 @@
 package de.hska.iwi.mgwt.demo.backend.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.hska.iwi.mgwt.demo.backend.constants.Course;
 import de.hska.iwi.mgwt.demo.backend.constants.NewsType;
 import de.hska.iwi.mgwt.demo.backend.gwt.NewsJSON;
 
-public class NewsBoard implements NewsJSON{
+public class NewsBoard implements NewsJSON {
 	
 	private int id;
 	
@@ -96,6 +97,11 @@ public class NewsBoard implements NewsJSON{
 	 * @param courseOfStudies the courseOfStudies to set
 	 */
 	public void setCourseOfStudies(List<Course> courseOfStudies) {
+		if (courseOfStudies == null) {
+			ArrayList<Course> studies = new ArrayList<Course>();
+			studies.add(Course.ALL);
+			courseOfStudies = studies;
+		}
 		this.courseOfStudies = courseOfStudies;
 	}
 
