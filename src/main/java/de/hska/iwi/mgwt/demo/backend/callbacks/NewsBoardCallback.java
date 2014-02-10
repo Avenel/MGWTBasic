@@ -21,7 +21,6 @@ public class NewsBoardCallback extends AbstractRequestCallback<ObserverActivity<
 
 	@Override
 	public void onResponseReceived(Request request, Response response) {
-		System.out.println("response! code: " + response.getStatusCode());
 		if (response.getStatusCode() == 200) {			
 			
 			AutoBean<INewsBoard> bean = AutoBeanCodex.decode(factory, INewsBoard.class, "{\"newsBoard\": " + response.getText() + "}");

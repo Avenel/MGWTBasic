@@ -1,7 +1,6 @@
 package de.hska.iwi.mgwt.demo.client.model;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.google.gwt.storage.client.Storage;
@@ -42,21 +41,21 @@ public class NewsBoardUtility {
 		
 		for (News news : unfilteredNewsBoardItems) {
 			// IM
-			if ((news.getCourseOfStudies().contains(Course.INFORMATIK_MASTER) || news.getCourseOfStudies().contains(Course.ALL)) 
+			if ((news.getCourseOfStudies().contains(Course.INFM) || news.getCourseOfStudies().contains(Course.ALL)) 
 					&& Boolean.parseBoolean(stockStore.getItem(StorageKey.NewsSettingsFilterIM.toString()))) {
 				filteredNews.add(news);
 				continue;
 			}
 			
 			// IB
-			if ((news.getCourseOfStudies().contains(Course.INFORMATIK_BACHELOR) || news.getCourseOfStudies().contains(Course.ALL)) 
+			if ((news.getCourseOfStudies().contains(Course.INFB) || news.getCourseOfStudies().contains(Course.ALL)) 
 					&& Boolean.parseBoolean(stockStore.getItem(StorageKey.NewsSettingsFilterIB.toString()))) {
 				filteredNews.add(news);
 				continue;
 			}
 			
 			// MKI
-			if ((news.getCourseOfStudies().contains(Course.MEDIENINFORMATIK_BACHELOR) || news.getCourseOfStudies().contains(Course.ALL))
+			if ((news.getCourseOfStudies().contains(Course.MKIB) || news.getCourseOfStudies().contains(Course.ALL))
 					&& Boolean.parseBoolean(stockStore.getItem(StorageKey.NewsSettingsFilterMKI.toString()))) {
 				filteredNews.add(news);
 				continue;
