@@ -9,6 +9,10 @@
 	<inherits name="com.googlecode.mgwt.MGWT"/>
 	<inherits name="com.google.gwt.json.JSON" /> 
 	<inherits name="com.google.gwt.i18n.I18N"/>
+<<<<<<< HEAD
+=======
+	<inherits name='org.cobogw.gwt.user.User' />
+>>>>>>> refs/remotes/origin/master
 	<inherits name="de.hska.iwi.mgwt.demo.events.Events"/>
 	<inherits name="com.google.web.bindery.autobean.AutoBean" />
 	<inherits name="com.google.gwt.http.HTTP" />
@@ -21,6 +25,8 @@
 	
 	<!--  here you can set mgwt.os to a specific platform -->
 	<set-property name="mgwt.os" value="android" />
+	
+	<extend-property name="locale" values="de"/>
 	
 	<!-- here you can turn off css obfuscation -->
 	<set-configuration-property name="mgwt.css" value="pretty" />

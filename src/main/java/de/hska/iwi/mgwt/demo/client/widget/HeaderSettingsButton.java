@@ -11,9 +11,9 @@ public class HeaderSettingsButton implements IsWidget {
 	private TapHandler handler;
 
 	public HeaderSettingsButton() {
-		settingsButton = new HeaderButton();
+		settingsButton = new CustomHeaderButton();
 		settingsButton.setRoundButton(true);
-		settingsButton.setText("E");
+		settingsButton.setText("<i class='fa fa-cog fa-lg'></i>");
 	}
 	
 	

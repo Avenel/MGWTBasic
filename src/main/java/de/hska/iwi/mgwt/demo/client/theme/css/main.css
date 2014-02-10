@@ -1,9 +1,14 @@
-/* include awesome font */
-@import url("assets/fonts/font-awesome/css/font-awesome.min.css");
-
 @font-face {
 	font-family: 'HelveticaNeue';
 	src: url(assets/fonts/helvNeue.woff);
+}
+
+@font-face {
+	font-family: 'FontAwesome';
+	src: url('assets/fonts/font-awesome/fonts/fontawesome-webfont.eot?v=4.0.3');
+	src: url('assets/fonts/font-awesome/fonts/fontawesome-webfont.eot?#iefix&v=4.0.3') format('embedded-opentype'), url('assets/fonts/font-awesome/fonts/fontawesome-webfont.woff?v=4.0.3') format('woff'), url('assets/fonts/font-awesome/fonts/fontawesome-webfont.ttf?v=4.0.3') format('truetype'), url('assets/fonts/font-awesome/fonts/fontawesome-webfont.svg?v=4.0.3#fontawesomeregular') format('svg');
+	font-weight: normal;
+ 	font-style: normal;
 }
 
 * {
@@ -95,14 +100,14 @@ body {
 	opacity:0.5;
 }
 
-.line {
+.line-done {
 	border-left: 2px solid #DB0134;
 	height: 100%;
 	margin-left: 16px;
 	padding: 12px;
 }
 
-.line-done {
+.line {
 	border-left: 2px solid grey;
 	height: 100%;
 	margin-left: 16px;
@@ -119,7 +124,7 @@ body {
 
 .tileBoard {
 	margin: 0px!important;
-	padding: 0px!important;
+	padding: 10px!important;
 	display: -webkit-flex!important;
 	display: -moz-flex!important;
 	display: flex!important;
@@ -209,3 +214,141 @@ body {
 	background-image: none !important;
 }
 
+
+.mealGroups-container {
+	margin: 0 auto;
+	width: 80%;
+}
+
+.mealGroup-titlebar {
+	width: 100%;
+}
+
+
+.mealGroups-date {
+	color: #DB0134;
+	font-size: 1.5em;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 20px;
+}
+
+.mealGroup-container {
+	width: 100%;
+	margin-top: 20px;
+}
+
+.mealGroup-separator {
+	width: 100%;
+	height: 2px;
+	margin-top: 20px;
+	border: 1px solid #DB0134;
+}
+
+.meal-container {
+	width: 100%;
+}
+
+.mealGroup-title {
+	color: #DB0134;
+	font-size: 1.25em;
+	line-height: 2em;
+	text-align: left;
+}
+
+.mealGroup-rating {
+	line-height: 2em;
+}
+
+.meal-name {
+	color: grey;
+}
+
+
+.meal-modifiers-container {
+	
+}
+
+.meal-pig {
+	width: 20px;
+	height: 16px;
+	background-image: url(assets/icons/meal_pig.gif);
+	background-repeat:no-repeat;
+	background-position: center;
+}
+
+.meal-cow {
+	width: 20px;
+	height: 16px;
+	background-image: url(assets/icons/meal_cow.gif);
+	background-repeat:no-repeat;
+	background-position: center;
+}
+
+.meal-cow-welfare {
+	width: 20px;
+	height: 16px;
+	background-image: url(assets/icons/meal_cow_welfare.gif);
+	background-repeat:no-repeat;
+	background-position: center;
+}
+
+.meal-vegan {
+	width: 20px;
+	height: 16px;
+	background-image: url(assets/icons/meal_vegan.gif);
+	background-repeat:no-repeat;
+	background-position: center;
+}
+
+.meal-vegetarian {
+	width: 20px;
+	height: 16px;
+	background-image: url(assets/icons/meal_vegetarian.gif);
+	background-repeat:no-repeat;
+	background-position: center;
+}
+
+.meal-msc {
+	width: 20px;
+	height: 16px;
+	background-image: url(assets/icons/meal_msc.jpg);
+	background-repeat:no-repeat;
+	background-position: center;
+}
+
+.meal-bio {
+	width: 20px;
+	height: 16px;
+	background-image: url(assets/icons/meal_bio.jpg);
+	background-repeat:no-repeat;
+	background-position: center;
+}
+
+.meal-price{
+	color: #DB0134;
+	text-align: right;
+}
+
+/* Shake content */
+@-webkit-keyframes spaceboots {
+	0% { -webkit-transform: translate(2px, 1px) rotate(0deg); }
+	10% { -webkit-transform: translate(-1px, -2px) rotate(-1deg); }
+	20% { -webkit-transform: translate(-3px, 0px) rotate(1deg); }
+	30% { -webkit-transform: translate(0px, 2px) rotate(0deg); }
+	40% { -webkit-transform: translate(1px, -1px) rotate(1deg); }
+	50% { -webkit-transform: translate(-1px, 2px) rotate(-1deg); }
+	60% { -webkit-transform: translate(-3px, 1px) rotate(0deg); }
+	70% { -webkit-transform: translate(2px, 1px) rotate(-1deg); }
+	80% { -webkit-transform: translate(-1px, -1px) rotate(1deg); }
+	90% { -webkit-transform: translate(2px, 2px) rotate(0deg); }
+	100% { -webkit-transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+.shake {
+	-webkit-animation-name: spaceboots;
+	-webkit-animation-duration: 0.8s;
+	-webkit-transform-origin:50% 50%;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+}

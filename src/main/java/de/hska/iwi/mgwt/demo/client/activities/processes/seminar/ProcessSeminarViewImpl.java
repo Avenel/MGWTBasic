@@ -46,13 +46,13 @@ public class ProcessSeminarViewImpl implements ProcessSeminarView {
 		pinTileButton = new HeaderPinTileButton(new TapHandler(){
 			@Override
 			public void onTap(TapEvent event) {
-				Tile seminarTile = new Tile("assets/icons/Process.png", "Seminare", new ProcessSeminarPlace(), true);
+				Tile seminarTile = new Tile("fa-comment-o fa-3x", "Seminare", new ProcessSeminarPlace(), true, false);
 				TileBoardManager.addTile(seminarTile);
 				pinTileButton.setPinned(true);
 				Dialogs.alert("Tile angepinnt", "Seminar Uebersicht wurde auf deinen Homescreen angepinnt!", null);
 				headerPanel.setRightWidget(null);
 			}
-		});
+		}, new ProcessSeminarPlace());
 		headerPanel.setRightWidget(pinTileButton.asWidget());
 		
 		this.cellListSeminars = new CellList<Seminar>(new SeminarCell("blubb"));
@@ -71,6 +71,8 @@ public class ProcessSeminarViewImpl implements ProcessSeminarView {
 	public Widget asWidget() {
 		if (!this.pinTileButton.isPinned()) {
 			this.headerPanel.setRightWidget(pinTileButton.asWidget());
+		} else {
+			this.headerPanel.setRightWidget(null);
 		}
 		
 		return main;

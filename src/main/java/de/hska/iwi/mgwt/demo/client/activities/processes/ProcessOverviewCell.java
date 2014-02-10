@@ -1,4 +1,4 @@
-package de.hska.iwi.mgwt.demo.client.activities.processes.seminar;
+package de.hska.iwi.mgwt.demo.client.activities.processes;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.safehtml.client.SafeHtmlTemplates;
@@ -48,7 +48,6 @@ public class ProcessOverviewCell implements Cell<ProcessStep> {
 
 	@Override
 	public boolean canBeSelected(ProcessStep model) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

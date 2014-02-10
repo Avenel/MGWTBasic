@@ -3,6 +3,7 @@
 #################
 target/*
 .gwt-log
+src/main/gwt-unitCache/*
 #################
 ## Eclipse
 #################

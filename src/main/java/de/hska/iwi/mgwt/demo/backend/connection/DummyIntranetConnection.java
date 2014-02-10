@@ -18,6 +18,8 @@ import de.hska.iwi.mgwt.demo.backend.constants.Weekday;
 import de.hska.iwi.mgwt.demo.backend.model.CompulsoryOptionalSubjects;
 import de.hska.iwi.mgwt.demo.backend.model.ConsultationHour;
 import de.hska.iwi.mgwt.demo.backend.model.CourseTutorial;
+import de.hska.iwi.mgwt.demo.backend.model.Meal;
+import de.hska.iwi.mgwt.demo.backend.model.MealGroup;
 import de.hska.iwi.mgwt.demo.backend.model.MensaMenu;
 import de.hska.iwi.mgwt.demo.backend.model.News;
 import de.hska.iwi.mgwt.demo.backend.model.NewsBoard;
@@ -213,8 +215,72 @@ public class DummyIntranetConnection implements Intranet {
 
 	@Override
 	public List<MensaMenu> getMensaMenu(int id, Date date) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<MensaMenu> mensaMenus = new ArrayList<MensaMenu>();
+		
+		MensaMenu menu = new MensaMenu();
+		menu.setDate("2014-01-07");
+		menu.setName("Mensa Moltkestrasse");
+		menu.setStatus("ok");
+		
+		MealGroup mealGroup1 = new MealGroup();
+		mealGroup1.setTitle("Wahlessen 1");
+		
+		Meal holzfaellerSteak = new Meal();
+		holzfaellerSteak.setName("Holzfaellersteak vom Schweinekamm");
+		holzfaellerSteak.setPriceStudent(2.10);
+		holzfaellerSteak.getFoodAdditiveNumbers().add(95);
+		mealGroup1.getMeals().add(holzfaellerSteak);
+		
+		Meal pommes = new Meal();
+		pommes.setName("Pommes");
+		pommes.setPriceStudent(0.90);
+		pommes.getFoodAdditiveNumbers().add(97);
+		mealGroup1.getMeals().add(pommes);
+		
+		Meal langkorn = new Meal();
+		langkorn.setName("Langkornreis");
+		langkorn.setPriceStudent(0.90);
+		langkorn.getFoodAdditiveNumbers().add(97);
+		mealGroup1.getMeals().add(langkorn);
+		
+		menu.getMealGroups().add(mealGroup1);
+		
+		MealGroup mealGroup2 = new MealGroup();
+		mealGroup2.setTitle("Wahlessen 2");
+		
+		holzfaellerSteak = new Meal();
+		holzfaellerSteak.setName("Holzfaellersteak vom Lamm");
+		holzfaellerSteak.setPriceStudent(2.90);
+		holzfaellerSteak.getFoodAdditiveNumbers().add(95);
+		mealGroup2.getMeals().add(holzfaellerSteak);
+		
+		pommes = new Meal();
+		pommes.setName("Pommes");
+		pommes.setPriceStudent(0.90);
+		pommes.getFoodAdditiveNumbers().add(97);
+		mealGroup2.getMeals().add(pommes);
+		
+		langkorn = new Meal();
+		langkorn.setName("Langkornreis");
+		langkorn.setPriceStudent(0.90);
+		langkorn.getFoodAdditiveNumbers().add(97);
+		mealGroup2.getMeals().add(langkorn);
+		
+		menu.getMealGroups().add(mealGroup2);
+		
+		mensaMenus.add(menu);
+		
+		// add second menu for the next day.
+		menu = new MensaMenu();
+		menu.setDate("2014-01-08");
+		menu.setName("Mensa Moltkestrasse");
+		menu.setStatus("ok");
+		
+		menu.getMealGroups().add(mealGroup1);
+		menu.getMealGroups().add(mealGroup2);
+		mensaMenus.add(menu);
+		
+		return mensaMenus;
 	}
 
 	@Override

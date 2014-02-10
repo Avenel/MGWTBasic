@@ -1,10 +1,8 @@
 package de.hska.iwi.mgwt.demo.client.activities.news;
 
 import com.google.gwt.user.client.ui.Widget;
-import com.googlecode.mgwt.ui.client.dialog.Dialogs;
 import com.googlecode.mgwt.ui.client.widget.HeaderPanel;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
-import com.googlecode.mgwt.ui.client.widget.MCheckBox;
 import com.googlecode.mgwt.ui.client.widget.WidgetList;
 
 import de.hska.iwi.mgwt.demo.client.widget.CheckBoxWidget;

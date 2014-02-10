@@ -13,10 +13,8 @@ import com.googlecode.mgwt.ui.client.widget.celllist.CellSelectedHandler;
 
 import de.hska.iwi.mgwt.demo.backend.BackendFactory;
 import de.hska.iwi.mgwt.demo.backend.Intranet;
-import de.hska.iwi.mgwt.demo.backend.autobean.INews;
 import de.hska.iwi.mgwt.demo.backend.constants.Course;
 import de.hska.iwi.mgwt.demo.backend.model.News;
-import de.hska.iwi.mgwt.demo.backend.model.NewsBoard;
 import de.hska.iwi.mgwt.demo.client.ClientFactory;
 import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
 import de.hska.iwi.mgwt.demo.client.model.NewsBoardUtility;

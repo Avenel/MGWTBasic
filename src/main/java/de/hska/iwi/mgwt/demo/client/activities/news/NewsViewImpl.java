@@ -36,6 +36,7 @@ public class NewsViewImpl implements NewsView {
 		
 		// Create 4 different cellists for each organisation
 		this.cellListNews = new CellList<News>(new NewsCell());
+
 		ScrollPanel panelNews = new ScrollPanel();
 		panelNews.add(cellListNews);
 

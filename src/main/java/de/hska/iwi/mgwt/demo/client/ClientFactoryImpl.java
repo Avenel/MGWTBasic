@@ -29,20 +29,24 @@ import de.hska.iwi.mgwt.demo.client.activities.home.HomeView;
 import de.hska.iwi.mgwt.demo.client.activities.home.HomeViewImpl;
 import de.hska.iwi.mgwt.demo.client.activities.lecture.LectureView;
 import de.hska.iwi.mgwt.demo.client.activities.lecture.LectureViewImpl;
+import de.hska.iwi.mgwt.demo.client.activities.mensa.MensaView;
+import de.hska.iwi.mgwt.demo.client.activities.mensa.MensaViewImpl;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsDetailView;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsDetailViewImpl;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsSettingsView;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsSettingsViewImpl;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsView;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsViewImpl;
+import de.hska.iwi.mgwt.demo.client.activities.processes.ProcessDetailView;
+import de.hska.iwi.mgwt.demo.client.activities.processes.ProcessDetailViewImpl;
 import de.hska.iwi.mgwt.demo.client.activities.processes.StudentView;
 import de.hska.iwi.mgwt.demo.client.activities.processes.StudentViewImpl;
-import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.ProcessDetailSeminarView;
-import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.ProcessDetailSeminarViewImpl;
 import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.ProcessSeminarView;
 import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.ProcessSeminarViewImpl;
 import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.RegisterSeminarView;
 import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.RegisterSeminarViewImpl;
+import de.hska.iwi.mgwt.demo.client.activities.settings.SettingsView;
+import de.hska.iwi.mgwt.demo.client.activities.settings.SettingsViewImpl;
 import de.hska.iwi.mgwt.demo.client.model.ProcessStep;
 
 /**
@@ -62,7 +66,9 @@ public class ClientFactoryImpl implements ClientFactory {
 	private NewsSettingsView newsSettingsView;
 	private RegisterSeminarViewImpl registerSeminarView;
 	private ProcessSeminarViewImpl processSeminarView;
-	private ProcessDetailSeminarViewImpl processDetailSeminarView;
+	private ProcessDetailViewImpl processDetailSeminarView;
+	private SettingsViewImpl settingsView;
+	private MensaViewImpl mensaView;
 	private AnimatableDisplay display;
 	private PhoneActivityMapper appActivityMapper;
 	private PhoneAnimationMapper appAnimationMapper;
@@ -152,8 +158,8 @@ public class ClientFactoryImpl implements ClientFactory {
 	}
 	
 	@Override
-	public ProcessDetailSeminarView getProcessDetailSeminarView(int activeStep,List<ProcessStep> steps, int id) {
-		processDetailSeminarView = new ProcessDetailSeminarViewImpl(activeStep, steps, id);
+	public ProcessDetailView getProcessDetailView(int activeStep,List<ProcessStep> steps, int id) {
+		processDetailSeminarView = new ProcessDetailViewImpl(activeStep, steps, id);
 		return  processDetailSeminarView;
 	}
 	
@@ -184,6 +190,23 @@ public class ClientFactoryImpl implements ClientFactory {
 		}
 		
 		return newsSettingsView;
+	}
+
+	@Override
+	public MensaView getMensaView() {
+		if (mensaView == null) {
+			mensaView = new MensaViewImpl();
+		}
+		
+		return mensaView;
+	}
+
+	@Override
+	public SettingsView getSettingsView() {
+		if (settingsView == null) {
+			settingsView = new SettingsViewImpl();
+		}
+		return settingsView;
 	}
 
 	

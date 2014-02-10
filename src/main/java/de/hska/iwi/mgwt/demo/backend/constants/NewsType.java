@@ -1,7 +1,5 @@
 package de.hska.iwi.mgwt.demo.backend.constants;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-
 public enum NewsType implements IURLParameterEnum {
 	ANNOUNCEMENT("announcement"),
 	announcement("announcement"),
@@ -18,7 +16,6 @@ public enum NewsType implements IURLParameterEnum {
 		this.key = key;
 	}
 	
-	@JsonCreator
 	public static NewsType create(String value) {
 		for (NewsType newsType : NewsType.values()) {
 			if (newsType.getUrlKey().equals(value)) {
@@ -35,5 +32,21 @@ public enum NewsType implements IURLParameterEnum {
 		return key;
 	}
 	
+	public String getFontAwesomeIcon() {
+		if (this.getUrlKey().equals("announcement")) {
+			return "fa-exclamation-triangle";
+		}
+		if (this.getUrlKey().equals("rearrangement")) {
+			return "fa-calendar";
+		}
+		if (this.getUrlKey().equals("cancellation")) {
+			return "fa-ban";
+		}
+		if (this.getUrlKey().equals("room_change")) {
+			return "fa-arrows-h";
+		}
+		
+		return "fa-envelope";
+	}
 	
 }

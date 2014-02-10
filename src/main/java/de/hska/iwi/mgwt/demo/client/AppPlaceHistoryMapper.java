@@ -20,13 +20,15 @@ import com.google.gwt.place.shared.WithTokenizers;
 
 import de.hska.iwi.mgwt.demo.client.activities.home.HomePlace.HomePlaceTokenizer;
 import de.hska.iwi.mgwt.demo.client.activities.lecture.LecturePlace;
+import de.hska.iwi.mgwt.demo.client.activities.mensa.MensaPlace.MensaPlaceTokenizer;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsDetailPlace;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsPlace.NewsPlaceTokenizer;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsSettingsPlace;
 import de.hska.iwi.mgwt.demo.client.activities.processes.StudentPlace;
-import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.ProcessDetailSeminarPlace.ProcessDetailSeminarPlaceTokenizer;
+import de.hska.iwi.mgwt.demo.client.activities.processes.ProcessDetailPlace.ProcessDetailPlaceTokenizer;
 import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.ProcessSeminarPlace.ProcessSeminarPlaceTokenizer;
 import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.RegisterSeminarPlace.RegisterSeminarPlaceTokenizer;
+import de.hska.iwi.mgwt.demo.client.activities.settings.SettingsPlace.SettingsPlaceTokenizer;
 
 /**
  * Place History Mapper. Mapps History<->Place.
@@ -34,6 +36,7 @@ import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.RegisterSeminar
  * 
  */
 @WithTokenizers({ HomePlaceTokenizer.class, NewsPlaceTokenizer.class, NewsDetailPlace.NewsDetailPlaceTokenizer.class, NewsSettingsPlace.NewsSettingsPlaceTokenizer.class, StudentPlace.StudentPlaceTokenizer.class, 
-					LecturePlace.LecturePlaceTokenizer.class, RegisterSeminarPlaceTokenizer.class, ProcessSeminarPlaceTokenizer.class,ProcessDetailSeminarPlaceTokenizer.class})
+					LecturePlace.LecturePlaceTokenizer.class, RegisterSeminarPlaceTokenizer.class, ProcessSeminarPlaceTokenizer.class, ProcessDetailPlaceTokenizer.class, MensaPlaceTokenizer.class, SettingsPlaceTokenizer.class})
 public interface AppPlaceHistoryMapper extends PlaceHistoryMapper {
+	
 }

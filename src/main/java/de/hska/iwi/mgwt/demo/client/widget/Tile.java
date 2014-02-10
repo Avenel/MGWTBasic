@@ -1,23 +1,28 @@
 package de.hska.iwi.mgwt.demo.client.widget;
 
+import com.google.gwt.dom.client.Document;
+import com.google.gwt.dom.client.ParagraphElement;
 import com.google.gwt.dom.client.Style.BorderStyle;
 import com.google.gwt.dom.client.Style.Display;
 import com.google.gwt.dom.client.Style.TextAlign;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.json.client.JSONParser;
+import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.FocusPanel;
-import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.mgwt.mvp.client.Animation;
 import com.googlecode.mgwt.ui.client.animation.AnimationHelper;
-import com.googlecode.mgwt.ui.client.dialog.Dialogs;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
 
-import de.hska.iwi.mgwt.demo.events.PageName;
+import de.hska.iwi.mgwt.demo.client.model.JSONToPlaceMapper;
+import de.hska.iwi.mgwt.demo.client.model.PlaceJSONObject;
+import de.hska.iwi.mgwt.demo.client.model.TileBoardManager;
+import de.hska.iwi.mgwt.demo.client.model.TileJSONObject;
 
 /**
  * Represents a tile. It has a front- and backside.
@@ -28,7 +33,7 @@ import de.hska.iwi.mgwt.demo.events.PageName;
  * @author Martin
  *
  */
-public class Tile implements IsWidget, ObserverTile {
+public class Tile implements IsWidget, ObserverTile, TileJSONObject {
 	
 	FocusPanel focusPanel;
 	
@@ -37,14 +42,18 @@ public class Tile implements IsWidget, ObserverTile {
 	
 	LayoutPanel currentPanel;
 	
-	String iconURL;
-	Image icon;
+	String fontAwesomeIconClass;
+	ParagraphElement icon;
 	String title;
 	String color;
 	Label titleBox;
 	
 	Label updateBubble;
 	int updateCounter;
+	
+	Label removeBubble;
+	
+	boolean isFlippable;
 	
 	// defines which page is behind this tile
 	Place tilePlace;
@@ -59,24 +68,32 @@ public class Tile implements IsWidget, ObserverTile {
 	
 	// is customLink
 	boolean isCustomLink;
+	
+	boolean isShakeing;
 
-	private LayoutPanel linkIcon;
-
+	/**
+	 * Default Constructor
+	 */
+	public Tile() {}
+	
+	
 	/**
 	 * Public constructor.
 	 * @param frontPanel
-	 * @param iconURL
+	 * @param fontAwesomeIconString
 	 * @param title
 	 * @param color
 	 */
-	public Tile(String iconURL, String title, Place place, boolean isCustomLink) {
+	public Tile(String fontAwesomeIconString, String title, Place place, boolean isCustomLink, boolean flippable) {
 		super();
-		this.iconURL = iconURL;
+		this.fontAwesomeIconClass = fontAwesomeIconString;
 		this.title = title;
 		this.tilePlace = place;
 		
 		// official HS Karlsruhe color
 		this.color = "#DB0134";
+		
+		this.isFlippable = flippable;
 		
 		this.isCustomLink = isCustomLink;
 		createWidget();
@@ -89,7 +106,11 @@ public class Tile implements IsWidget, ObserverTile {
 		};
 		
 		this.flipTime = (int) (Math.random() * 5000.0) + 5000;
-		this.flipTimer.schedule(this.flipTime);
+		
+		// prevent tile from flipping, if it is not meant to be.
+		if (this.isFlippable) {
+			this.flipTimer.schedule(this.flipTime);
+		}
 	}
 
 	
@@ -110,7 +131,7 @@ public class Tile implements IsWidget, ObserverTile {
 		
 		// add icon
 		createIcon();
-		this.frontPanel.add(icon);
+		this.frontPanel.getElement().appendChild(icon);
 		
 		// adding titlebox
 		createTitleBox();
@@ -118,7 +139,11 @@ public class Tile implements IsWidget, ObserverTile {
 		
 		// add updateBubble
 		createUpdateBubble();		
-		this.frontPanel.add(updateBubble);
+		this.frontPanel.add(this.updateBubble);
+		
+		// add deleteBubble
+		createRemoveBubble();
+		this.frontPanel.add(this.removeBubble);
 		
 		// BACK
 		createBack();
@@ -139,6 +164,9 @@ public class Tile implements IsWidget, ObserverTile {
 		setupWrapper();
 		
 		this.focusPanel.add(animationHelper);
+		if (this.handler != null) {
+			this.focusPanel.addClickHandler(handler);
+		}
 		
 		this.animationHelper.goTo(frontPanel, null);
 		this.flipTimer.schedule(this.flipTime);
@@ -214,16 +242,6 @@ public class Tile implements IsWidget, ObserverTile {
 		this.frontPanel.getElement().getStyle().setBorderStyle(BorderStyle.NONE);
 		this.frontPanel.getElement().getStyle().setProperty("borderRadius", "15px");
 		
-		// add link div, if it is a custom icon
-		if (this.isCustomLink) {
-			this.linkIcon = new LayoutPanel();
-			this.linkIcon.getElement().addClassName("curvedarrow");
-			
-			this.linkIcon.getElement().getStyle().setProperty("top", "5px");
-			this.linkIcon.getElement().getStyle().setProperty("left", "15px");
-			this.linkIcon.getElement().getStyle().setProperty("position", "absolute");
-			this.frontPanel.add(this.linkIcon);
-		}
 	}
 
 
@@ -231,20 +249,12 @@ public class Tile implements IsWidget, ObserverTile {
 	 * Create icon.
 	 */
 	private void createIcon() {
-		this.icon = new Image(this.iconURL);
-		this.icon.setWidth("50px");
-		
-		this.icon.getElement().getStyle().setMarginLeft(15, Unit.PX);
-		this.icon.getElement().getStyle().setMarginRight(15, Unit.PX);
-		
-		
-		// if it's a custom link, lower the icon
-		if (!this.isCustomLink) {
-			this.icon.getElement().getStyle().setMarginTop(5, Unit.PX);
-		} else {
-			this.icon.getElement().getStyle().setMarginTop(0, Unit.PX);
-		}
-		
+		this.icon = Document.get().createPElement();
+		this.icon.getStyle().setMarginLeft(15, Unit.PX);
+		this.icon.getStyle().setMarginRight(15, Unit.PX);
+		this.icon.getStyle().setMarginTop(10 , Unit.PX);
+		this.icon.getStyle().setTextAlign(TextAlign.CENTER);
+		this.icon.setInnerHTML("<i class='fa " + this.fontAwesomeIconClass + "'></i>");
 	}
 
 
@@ -259,7 +269,7 @@ public class Tile implements IsWidget, ObserverTile {
 		// font style
 		this.titleBox.getElement().getStyle().setFontSize(12, Unit.PX);
 		this.titleBox.getElement().getStyle().setProperty("fontFamily", "HelveticaNeue, consolas");
-		this.titleBox.getElement().getStyle().setColor("#FFFFFF");
+		this.titleBox.getElement().getStyle().setColor("#FFFFFF");		
 		
 		// setup margin titlebox
 		this.titleBox.getElement().getStyle().setMarginLeft(5, Unit.PX);
@@ -297,6 +307,36 @@ public class Tile implements IsWidget, ObserverTile {
 	}
 	
 	/**
+	 * Creates cross-icon to tell the user that he can delete this tile.
+	 */
+	private void createRemoveBubble() {
+		this.removeBubble = new Label();
+		this.removeBubble.getElement().getStyle().setColor("#DB0134");
+		this.removeBubble.getElement().getStyle().setWidth(20, Unit.PX);
+		this.removeBubble.getElement().getStyle().setHeight(20, Unit.PX);
+		
+		this.removeBubble.getElement().getStyle().setProperty("top", "5px");
+		this.removeBubble.getElement().getStyle().setProperty("right", "15px");
+		this.removeBubble.getElement().getStyle().setProperty("position", "absolute");
+		this.removeBubble.getElement().getStyle().setTextAlign(TextAlign.CENTER);
+		this.removeBubble.getElement().getStyle().setLineHeight(20, Unit.PX);
+		
+		this.removeBubble.getElement().getStyle().setBorderWidth(1, Unit.PX);
+		this.removeBubble.getElement().getStyle().setBorderStyle(BorderStyle.SOLID);
+		this.removeBubble.getElement().getStyle().setProperty("borderRadius", "20px");
+		
+		this.removeBubble.getElement().getStyle().setBackgroundColor("#FEFEFE");
+		this.removeBubble.getElement().getStyle().setDisplay(Display.NONE);
+		
+		this.removeBubble.setText("");
+		
+		ParagraphElement pElement = Document.get().createPElement();
+		pElement.setInnerHTML("<i class='fa fa-times' style='color: #DB0134'></i>");
+		
+		this.removeBubble.getElement().appendChild(pElement);
+	}
+	
+	/**
 	 * Setup tap handler for user interactions.
 	 * @param handler
 	 */
@@ -312,11 +352,17 @@ public class Tile implements IsWidget, ObserverTile {
 		this.handler = null;
 	}
 	
+	public ClickHandler getTapHandler() {
+		return this.handler;
+	}
+	
 
 	/**
 	 * Flips tile.
 	 */
 	public void flipWidget() {
+		if (!this.isFlippable || TileBoardManager.isOrganizing()) return;
+		
 		if (this.currentPanel == this.frontPanel) {
 			this.currentPanel = this.backPanel;
 		} else {
@@ -398,4 +444,79 @@ public class Tile implements IsWidget, ObserverTile {
 		this.tilePlace = tilePlace;
 	}
 
+
+	@Override
+	public Tile toTile(JSONValue jsonValue) {
+		Tile returnTile = null;
+		
+		int parseObject = 0;
+		try {
+			String fontAwesomeIconString = jsonValue.isObject().get("fontAwesomeIconString").isString().stringValue();
+			parseObject++;
+			String title = jsonValue.isObject().get("title").isString().stringValue();
+			parseObject++;
+			Place place = JSONToPlaceMapper.toPlace(jsonValue.isObject().get("place").isObject());
+			parseObject++;
+			boolean isCustomLink = jsonValue.isObject().get("isCustomLink").isBoolean().booleanValue();
+			parseObject++;
+			boolean isFlippable = jsonValue.isObject().get("isFlippable").isBoolean().booleanValue();
+			returnTile = new Tile(fontAwesomeIconString, title, place, isCustomLink, isFlippable);
+		} catch (NullPointerException e) {
+			// If any JSONValue is null -> error
+			System.out.println("PARSER ERROR: " + parseObject);
+			return null;
+		}
+		
+		return returnTile;
+	}
+
+
+	@Override
+	public JSONValue toJSON() {
+		JSONValue jsonValue;
+		String jsonString = new String();
+		
+		jsonString += "{";
+		jsonString += "\"fontAwesomeIconString\": \"" + this.fontAwesomeIconClass + "\", ";
+		jsonString += "\"title\": \"" + this.title + "\", ";
+		jsonString += "\"place\": " + ((PlaceJSONObject) this.tilePlace).toJson() + ", ";
+		jsonString += "\"isCustomLink\": " + ((this.isCustomLink) ? "true" : "false") + ", ";
+		jsonString += "\"isFlippable\": " + ((this.isFlippable) ? "true" : "false");
+		jsonString += "}";
+		
+		jsonValue = JSONParser.parseStrict(jsonString);
+		return jsonValue;
+	}
+
+
+	public boolean isCustomLink() {
+		return isCustomLink;
+	}
+
+
+	public void setCustomLink(boolean isCustomLink) {
+		this.isCustomLink = isCustomLink;
+	}
+
+	
+	public void switchShake(boolean doShake) {
+		this.isShakeing = doShake;
+		
+		if (this.isShakeing) {
+			this.focusPanel.getElement().addClassName("shake");
+			if (this.isCustomLink) {
+				this.removeBubble.getElement().getStyle().setDisplay(Display.BLOCK);
+			}
+		} else {
+			this.focusPanel.getElement().removeClassName("shake");
+			this.removeBubble.getElement().getStyle().setDisplay(Display.NONE);
+		}
+	}
+
+	public void flipToFront() {
+		if (this.currentPanel == this.backPanel) { 
+			this.animationHelper.goTo(frontPanel, Animation.FLIP);
+		}
+	}
+	
 }
