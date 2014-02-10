@@ -85,13 +85,17 @@ public class GWTIntranetConnection implements Intranet {
 		}
 		String url = UrlBuilderUtil.getNewsBoardUrl(course);
 		
+		System.out.println("url: " + url);
+		
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, URL.encode(url));
 		
 		NewsBoardCallback cb = new NewsBoardCallback(observer);
 		
 		try {
+			System.out.println("request!");
 			Request request = builder.sendRequest(null, cb);
 		} catch (RequestException e) {
+			System.out.println("error");
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
