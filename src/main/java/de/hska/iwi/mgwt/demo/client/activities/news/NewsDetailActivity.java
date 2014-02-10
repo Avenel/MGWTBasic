@@ -4,7 +4,7 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
 
-import de.hska.iwi.mgwt.demo.backend.model.NewsBoard;
+import de.hska.iwi.mgwt.demo.backend.model.News;
 import de.hska.iwi.mgwt.demo.client.ClientFactory;
 import de.hska.iwi.mgwt.demo.client.model.NewsBoardUtility;
 
@@ -12,7 +12,7 @@ public class NewsDetailActivity extends MGWTAbstractActivity {
 	
 	private final ClientFactory clientFactory;
 	
-	private NewsBoard currentModel;
+	private News currentModel;
 	
 	public NewsDetailActivity(ClientFactory clientFactory, String id) {
 		this.clientFactory = clientFactory;

@@ -8,41 +8,24 @@ import com.google.gwt.http.client.Response;
 import com.google.web.bindery.autobean.shared.AutoBean;
 import com.google.web.bindery.autobean.shared.AutoBeanCodex;
 
-import de.hska.iwi.mgwt.demo.backend.gwt.NewsBoardJSON;
-import de.hska.iwi.mgwt.demo.backend.model.NewsBoard;
-import de.hska.iwi.mgwt.demo.backend.model.NewsBoardList;
+import de.hska.iwi.mgwt.demo.backend.autobean.INews;
+import de.hska.iwi.mgwt.demo.backend.autobean.INewsBoard;
+import de.hska.iwi.mgwt.demo.backend.model.News;
 import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
 
-public class NewsBoardCallback extends AbstractRequestCallback<ObserverActivity<List<NewsBoard>>> {
+public class NewsBoardCallback extends AbstractRequestCallback<ObserverActivity<List<News>>> {
 
-	public NewsBoardCallback(ObserverActivity<List<NewsBoard>> observer) {
+	public NewsBoardCallback(ObserverActivity<List<News>> observer) {
 		super(observer);
 	}
 
 	@Override
 	public void onResponseReceived(Request request, Response response) {
 		if (response.getStatusCode() == 200) {			
-			AutoBean<NewsBoardJSON> bean = AutoBeanCodex.decode(factory, NewsBoardJSON.class, "{\"newsBoard\": " + response.getText() + "}");
 			
-			ArrayList<NewsBoard> myNewsBoard = new ArrayList<NewsBoard>();
-			NewsBoardList list = (NewsBoardList) bean.as();
-//			myNewsBoard = bean.as();
+			AutoBean<INewsBoard> bean = AutoBeanCodex.decode(factory, INewsBoard.class, "{\"newsBoard\": " + response.getText() + "}");
 			
-			NewsBoard board = null;
-			
-//			for (NewsJSON news : bean.as().getNewsBoard()) {
-//				board = new NewsBoard();
-//				board.setTitle(news.getTitle());
-//				board.setContent(news.getContent());
-//				board.setId(news.getId());				
-//				board.setCourseOfStudies(news.getCourseOfStudies());
-//				board.setLinks(news.getLinks());
-//				board.setSubTitle(news.getSubTitle());		
-//				board.setType(news.getType());
-//				myNewsBoard.add(board);
-//			}
-			
-//			observer.update(list.getNewsBoard());
+			observer.update(convertToImplementation(bean.as()));
 		}
 	}
 
@@ -50,6 +33,14 @@ public class NewsBoardCallback extends AbstractRequestCallback<ObserverActivity<
 	public void onError(Request request, Throwable exception) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	private List<News> convertToImplementation(INewsBoard board) {
+		ArrayList<News> news = new ArrayList<News>();
+		for (INews currNews : board.getNewsBoard()) {
+			news.add((News) currNews);
+		}
+		return news;
 	}
 
 

@@ -24,6 +24,7 @@ import de.hska.iwi.mgwt.demo.backend.model.CompulsoryOptionalSubjects;
 import de.hska.iwi.mgwt.demo.backend.model.ConsultationHour;
 import de.hska.iwi.mgwt.demo.backend.model.CourseTutorial;
 import de.hska.iwi.mgwt.demo.backend.model.MensaMenu;
+import de.hska.iwi.mgwt.demo.backend.model.News;
 import de.hska.iwi.mgwt.demo.backend.model.NewsBoard;
 import de.hska.iwi.mgwt.demo.backend.util.UrlBuilderUtil;
 import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
@@ -55,13 +56,13 @@ public class GWTIntranetConnection implements Intranet {
 	}
 
 	@Override
-	public List<NewsBoard> getNewsBoard(Course course) throws IllegalArgumentException {
+	public List<News> getNewsBoard(Course course) throws IllegalArgumentException {
 		
-		ArrayList<NewsBoard> retList = new ArrayList<NewsBoard>();
+		ArrayList<News> retList = new ArrayList<News>();
 		
-		NewsBoard v = new NewsBoard();
+		News v = new News();
 		ArrayList<Course> courses = new ArrayList<Course>();
-		v = new NewsBoard();
+		v = new News();
 		v.setId(50);
 		v.setTitle("Technische Informatik 1 Übungen");
 		v.setSubTitle("Ausfall");
@@ -78,7 +79,7 @@ public class GWTIntranetConnection implements Intranet {
 	}
 
 	@Override
-	public void getNewsBoard(ObserverActivity<List<NewsBoard>> observer, Course course) throws IllegalArgumentException {
+	public void getNewsBoard(ObserverActivity<List<News>> observer, Course course) throws IllegalArgumentException {
 		if (observer == null || course == null) {
 			throw new IllegalArgumentException("Parameter must not be null");
 		}
@@ -184,4 +185,6 @@ public class GWTIntranetConnection implements Intranet {
 			e.printStackTrace();
 		}
 	}
+
+	
 }

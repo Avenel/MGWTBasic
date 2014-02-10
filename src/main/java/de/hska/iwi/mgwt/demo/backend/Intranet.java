@@ -9,7 +9,7 @@ import de.hska.iwi.mgwt.demo.backend.model.CompulsoryOptionalSubjects;
 import de.hska.iwi.mgwt.demo.backend.model.ConsultationHour;
 import de.hska.iwi.mgwt.demo.backend.model.CourseTutorial;
 import de.hska.iwi.mgwt.demo.backend.model.MensaMenu;
-import de.hska.iwi.mgwt.demo.backend.model.NewsBoard;
+import de.hska.iwi.mgwt.demo.backend.model.News;
 import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
 
 public interface Intranet {
@@ -28,9 +28,9 @@ public interface Intranet {
 	 * @deprecated Please use the corresponding method with an observer.
 	 */
 	@Deprecated
-	public List<NewsBoard> getNewsBoard(Course course) throws IllegalArgumentException;
+	public List<News> getNewsBoard(Course course) throws IllegalArgumentException;
 	
-	public void getNewsBoard(ObserverActivity<List<NewsBoard>> observer, Course course) throws IllegalArgumentException;
+	public void getNewsBoard(ObserverActivity<List<News>> observer, Course course) throws IllegalArgumentException;
 	
 	/**
 	 * 

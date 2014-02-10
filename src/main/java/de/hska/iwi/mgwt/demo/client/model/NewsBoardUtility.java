@@ -7,24 +7,24 @@ import java.util.List;
 import com.google.gwt.storage.client.Storage;
 
 import de.hska.iwi.mgwt.demo.backend.constants.Course;
-import de.hska.iwi.mgwt.demo.backend.model.NewsBoard;
+import de.hska.iwi.mgwt.demo.backend.model.News;
 import de.hska.iwi.mgwt.demo.client.storage.StorageKey;
 
 public class NewsBoardUtility {
 
-	private static List<NewsBoard> unfilteredNewsBoardItems;
+	private static List<News> unfilteredNewsBoardItems;
 	
-	public static void setUnfilteredNewsBoardItems(List<NewsBoard> items) {
+	public static void setUnfilteredNewsBoardItems(List<News> items) {
 		unfilteredNewsBoardItems = items;
 	}
 	
-	public static List<NewsBoard> getUnfilteredNewsBoardItems() {
-		if (unfilteredNewsBoardItems == null) unfilteredNewsBoardItems = new ArrayList<NewsBoard>();
+	public static List<News> getUnfilteredNewsBoardItems() {
+		if (unfilteredNewsBoardItems == null) unfilteredNewsBoardItems = new ArrayList<News>();
 		return unfilteredNewsBoardItems;
 	}
 	
-	public static NewsBoard getNewsBoardById(int id) {
-		for (NewsBoard item : unfilteredNewsBoardItems) {
+	public static News getNewsBoardById(int id) {
+		for (News item : unfilteredNewsBoardItems) {
 			if (item.getId() == id) return item;
 		}
 		
@@ -36,11 +36,11 @@ public class NewsBoardUtility {
 	 * @param unfiltered
 	 * @return List<News> filtered News items
 	 */
-	public static List<NewsBoard> getFilteredNews() {
+	public static List<News> getFilteredNews() {
 		Storage stockStore = Storage.getLocalStorageIfSupported();
-		List<NewsBoard> filteredNews = new ArrayList<NewsBoard>();
+		List<News> filteredNews = new ArrayList<News>();
 		
-		for (NewsBoard news : unfilteredNewsBoardItems) {
+		for (News news : unfilteredNewsBoardItems) {
 			// IM
 			if (news.getCourseOfStudies().contains(Course.INFORMATIK_MASTER) && 
 					Boolean.parseBoolean(stockStore.getItem(StorageKey.NewsSettingsFilterIM.toString()))) {
@@ -63,7 +63,7 @@ public class NewsBoardUtility {
 		
 		// If List is empty, inform user to inspect settings
 		if (filteredNews.size() == 0) {
-			NewsBoard news = new NewsBoard();
+			News news = new News();
 			news.setId(1);
 			news.setTitle("Empty List - Perhaps you might want to check your settings.");
 			news.setContent("Perhaps you might want to check your settings.");

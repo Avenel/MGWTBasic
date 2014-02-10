@@ -9,16 +9,17 @@ import com.google.web.bindery.autobean.shared.AutoBean;
 import com.google.web.bindery.autobean.shared.AutoBeanCodex;
 
 import de.hska.iwi.mgwt.demo.backend.Intranet;
+import de.hska.iwi.mgwt.demo.backend.autobean.CustomBeanFactory;
+import de.hska.iwi.mgwt.demo.backend.autobean.INews;
 import de.hska.iwi.mgwt.demo.backend.constants.Canteen;
 import de.hska.iwi.mgwt.demo.backend.constants.Course;
 import de.hska.iwi.mgwt.demo.backend.constants.NewsType;
 import de.hska.iwi.mgwt.demo.backend.constants.Weekday;
-import de.hska.iwi.mgwt.demo.backend.gwt.CustomBeanFactory;
-import de.hska.iwi.mgwt.demo.backend.gwt.NewsJSON;
 import de.hska.iwi.mgwt.demo.backend.model.CompulsoryOptionalSubjects;
 import de.hska.iwi.mgwt.demo.backend.model.ConsultationHour;
 import de.hska.iwi.mgwt.demo.backend.model.CourseTutorial;
 import de.hska.iwi.mgwt.demo.backend.model.MensaMenu;
+import de.hska.iwi.mgwt.demo.backend.model.News;
 import de.hska.iwi.mgwt.demo.backend.model.NewsBoard;
 import de.hska.iwi.mgwt.demo.backend.util.TimePeriod;
 import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
@@ -65,7 +66,7 @@ public class DummyIntranetConnection implements Intranet {
 	}
 
 	@Override
-	public List<NewsBoard> getNewsBoard(Course course) throws IllegalArgumentException {
+	public List<News> getNewsBoard(Course course) throws IllegalArgumentException {
 		if (course == null) {
 			throw new IllegalArgumentException("course must not be null");
 		}
@@ -74,14 +75,14 @@ public class DummyIntranetConnection implements Intranet {
 		
 		String json = "[{\"id\":53,\"title\":\"Tutorium Technische Info 1\",\"subTitle\":\"Ausfall\",\"courseOfStudies\":[\"MKIB\",\"INFB\"],\"content\":\"Das Tutorium Technische Info 1 muss am 10.01. ausfallen.\",\"links\":null,\"type\":\"cancellation\"}]";
 		
-		AutoBean<NewsJSON> news2 = AutoBeanCodex.decode(factory, NewsJSON.class, json);
-		NewsJSON news3 = news2.as();
+		AutoBean<INews> news2 = AutoBeanCodex.decode(factory, INews.class, json);
+		INews news3 = news2.as();
 		
 		
 		
-		ArrayList<NewsBoard> retList = new ArrayList<NewsBoard>();
+		ArrayList<News> retList = new ArrayList<News>();
 		
-		NewsBoard v = new NewsBoard();
+		News v = new News();
 		
 		v.setId(news3.getId());
 		v.setTitle("Tutorium Theoretische Info 2");
@@ -106,7 +107,7 @@ public class DummyIntranetConnection implements Intranet {
 		v.setType(NewsType.CANCELLATION);
 		retList.add(v);
 		
-		v = new NewsBoard();
+		v = new News();
 		v.setId(50);
 		v.setTitle("Technische Informatik 1 Übungen");
 		v.setSubTitle("Ausfall");
@@ -119,7 +120,7 @@ public class DummyIntranetConnection implements Intranet {
 		v.setType(NewsType.CANCELLATION);
 		retList.add(v);
 		
-		v = new NewsBoard();
+		v = new News();
 		v.setId(33);
 		v.setTitle("Technische Informatik 1 Übungen");
 		v.setSubTitle("Labortermine");
@@ -131,7 +132,7 @@ public class DummyIntranetConnection implements Intranet {
 		v.setType(NewsType.ANNOUNCEMENT);
 		retList.add(v);
 		
-		v = new NewsBoard();
+		v = new News();
 		v.setId(33);
 		v.setTitle("Seminar SS 2014");
 		v.setSubTitle("Wichtige Änderung - Neue Voraussetzung");
@@ -190,9 +191,8 @@ public class DummyIntranetConnection implements Intranet {
 	}
 
 	@Override
-	public void getNewsBoard(ObserverActivity<List<NewsBoard>> observer,
+	public void getNewsBoard(ObserverActivity<List<News>> observer,
 			Course course) throws IllegalArgumentException {
-		observer.update(getNewsBoard(course));
 		
 	}
 

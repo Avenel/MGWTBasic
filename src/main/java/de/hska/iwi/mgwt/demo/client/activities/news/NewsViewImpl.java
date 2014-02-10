@@ -10,14 +10,14 @@ import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
 import com.googlecode.mgwt.ui.client.widget.ScrollPanel;
 import com.googlecode.mgwt.ui.client.widget.celllist.HasCellSelectedHandler;
 
-import de.hska.iwi.mgwt.demo.backend.model.NewsBoard;
+import de.hska.iwi.mgwt.demo.backend.model.News;
 import de.hska.iwi.mgwt.demo.client.widget.HeaderBackButton;
 import de.hska.iwi.mgwt.demo.client.widget.HeaderSettingsButton;
 
 public class NewsViewImpl implements NewsView {
 
 	private LayoutPanel main;
-	private CellList<NewsBoard> cellListNews;
+	private CellList<News> cellListNews;
 	private HeaderSettingsButton settingsButton;
 	
 
@@ -35,7 +35,7 @@ public class NewsViewImpl implements NewsView {
 		headerPanel.setRightWidget(settingsButton.asWidget());
 		
 		// Create 4 different cellists for each organisation
-		this.cellListNews = new CellList<NewsBoard>(new NewsCell());
+		this.cellListNews = new CellList<News>(new NewsCell());
 		ScrollPanel panelNews = new ScrollPanel();
 		panelNews.add(cellListNews);
 
@@ -48,7 +48,7 @@ public class NewsViewImpl implements NewsView {
 	}
 
 	@Override
-	public void render(List<NewsBoard> newsList) {
+	public void render(List<News> newsList) {
 		this.cellListNews.render(newsList);
 	}
 
@@ -59,7 +59,7 @@ public class NewsViewImpl implements NewsView {
 	}
 
 	@Override
-	public CellList<NewsBoard> getCellListNews() {
+	public CellList<News> getCellListNews() {
 		return this.cellListNews;
 	}
 

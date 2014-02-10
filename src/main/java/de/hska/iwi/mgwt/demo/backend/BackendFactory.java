@@ -5,12 +5,7 @@ import de.hska.iwi.mgwt.demo.backend.connection.GWTIntranetConnection;
 public class BackendFactory {
 
 	public static Intranet createIntranetInstance() {
-		return new GWTIntranetConnection();
-		
-//		return new DummyIntranetConnection();
-//		Used in live mode.
-//		return new IntranetConnection();
-		
+		return new GWTIntranetConnection();		
 	}
 
 }

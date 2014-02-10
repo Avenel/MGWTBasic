@@ -13,17 +13,19 @@ import com.googlecode.mgwt.ui.client.widget.celllist.CellSelectedHandler;
 
 import de.hska.iwi.mgwt.demo.backend.BackendFactory;
 import de.hska.iwi.mgwt.demo.backend.Intranet;
+import de.hska.iwi.mgwt.demo.backend.autobean.INews;
 import de.hska.iwi.mgwt.demo.backend.constants.Course;
+import de.hska.iwi.mgwt.demo.backend.model.News;
 import de.hska.iwi.mgwt.demo.backend.model.NewsBoard;
 import de.hska.iwi.mgwt.demo.client.ClientFactory;
 import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
 import de.hska.iwi.mgwt.demo.client.model.NewsBoardUtility;
 
-public class NewsActivity extends MGWTAbstractActivity implements ObserverActivity<List<NewsBoard>> {
+public class NewsActivity extends MGWTAbstractActivity implements ObserverActivity<List<News>> {
 
 	private final ClientFactory clientFactory;
 
-	private List<NewsBoard> currentModel;
+	private List<News> currentModel;
 	
 	private NewsView view;
 
@@ -41,7 +43,7 @@ public class NewsActivity extends MGWTAbstractActivity implements ObserverActivi
 		// TODO: Wenn nico den AsyncCall im master hat, wieder einbauen!
 //		intranetConn.getNewsBoard(this, Course.ALL);
 		intranetConn.getNewsBoard(this, Course.ALL);
-		currentModel = new ArrayList<NewsBoard>();
+		currentModel = new ArrayList<News>();
 		view.render(currentModel);
 		panel.setWidget(view);
 		
@@ -50,7 +52,7 @@ public class NewsActivity extends MGWTAbstractActivity implements ObserverActivi
 
 			@Override
 			public void onCellSelected(CellSelectedEvent event) {
-				NewsBoard selectedNews = currentModel.get(event.getIndex());
+				News selectedNews = currentModel.get(event.getIndex());
 				
 				// make cell inactive, if it is just the loading cell.
 				if (selectedNews.getCourseOfStudies().size() == 0) return;
@@ -70,20 +72,21 @@ public class NewsActivity extends MGWTAbstractActivity implements ObserverActivi
 		});
 	}
 
-	public List<NewsBoard> getCurrentModel() {
+	public List<News> getCurrentModel() {
 		return currentModel;
 	}
 
-	public void setCurrentModel(List<NewsBoard> currentModel) {
+	public void setCurrentModel(List<News> currentModel) {
 		this.currentModel = currentModel;
 	}
 	
 	@Override
-	public void update(List<NewsBoard> arg) {
+	public void update(List<News> arg) {
 		NewsBoardUtility.setUnfilteredNewsBoardItems(arg);
 		this.setCurrentModel(NewsBoardUtility.getFilteredNews());
 		
 		view.render(currentModel);
+		
 	}
 
 }

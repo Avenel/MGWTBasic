@@ -17,7 +17,6 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestBuilder.Method;
 import com.google.gwt.json.client.JSONArray;
 
@@ -29,6 +28,7 @@ import de.hska.iwi.mgwt.demo.backend.model.CompulsoryOptionalSubjects;
 import de.hska.iwi.mgwt.demo.backend.model.ConsultationHour;
 import de.hska.iwi.mgwt.demo.backend.model.CourseTutorial;
 import de.hska.iwi.mgwt.demo.backend.model.MensaMenu;
+import de.hska.iwi.mgwt.demo.backend.model.News;
 import de.hska.iwi.mgwt.demo.backend.model.NewsBoard;
 import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
 
@@ -98,11 +98,11 @@ public class IntranetConnection implements Intranet {
 	}
 
 	@Override
-	public List<NewsBoard> getNewsBoard(Course course) {
+	public List<News> getNewsBoard(Course course) {
 		if (course == null) {
 			throw new IllegalArgumentException("The course must not be null!");
 		}
-		List<NewsBoard> news = null;
+		List<News> news = null;
 		if (course == Course.ALL) {
 			url = buildUrl(NEWS_BOARD_ALL);
 		} else {
@@ -110,7 +110,7 @@ public class IntranetConnection implements Intranet {
 		}
 		
 		try {
-			news = mapper.readValue(requestJSON(url), new TypeReference<List<NewsBoard>>(){});
+			news = mapper.readValue(requestJSON(url), new TypeReference<List<News>>(){});
 		} catch (JsonParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -246,7 +246,7 @@ public class IntranetConnection implements Intranet {
 	}
 
 	@Override
-	public void getNewsBoard(ObserverActivity<List<NewsBoard>> observer,
+	public void getNewsBoard(ObserverActivity<List<News>> observer,
 			Course course) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		
