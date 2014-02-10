@@ -38,7 +38,15 @@ public class NewsBoardCallback extends AbstractRequestCallback<ObserverActivity<
 	private List<News> convertToImplementation(INewsBoard board) {
 		ArrayList<News> news = new ArrayList<News>();
 		for (INews currNews : board.getNewsBoard()) {
-			news.add((News) currNews);
+			News nNews = new News();
+			nNews.setContent(currNews.getContent());
+			nNews.setCourseOfStudies(currNews.getCourseOfStudies());
+			nNews.setId(currNews.getId());
+			nNews.setLinks(currNews.getLinks());
+			nNews.setSubTitle(currNews.getSubTitle());
+			nNews.setTitle(currNews.getTitle());
+			nNews.setType(currNews.getType());
+			news.add(nNews);
 		}
 		return news;
 	}
