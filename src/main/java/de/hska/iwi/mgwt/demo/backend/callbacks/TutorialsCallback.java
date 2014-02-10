@@ -17,7 +17,6 @@ public class TutorialsCallback extends AbstractRequestCallback<ObserverActivity<
 	@Override
 	public void onResponseReceived(Request request, Response response) {
 		// TODO PARSE JSON etc
-		//Ok
 		
 	}
 
