@@ -119,7 +119,7 @@ public interface ClientFactory {
 	 * Get SettingsView
 	 * @return SettingsView
 	 */
-	public SettingsView getSettingsView(List<Widget> settingItems);
+	public SettingsView getSettingsView();
 
 	/**
 	 * Get AnimateableDisplay.

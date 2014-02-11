@@ -203,9 +203,9 @@ public class ClientFactoryImpl implements ClientFactory {
 	}
 
 	@Override
-	public SettingsView getSettingsView(List<Widget> settingItems) {
+	public SettingsView getSettingsView() {
 		if (settingsView == null) {
-			settingsView = new SettingsViewImpl(settingItems);
+			settingsView = new SettingsViewImpl();
 		}
 		return settingsView;
 	}

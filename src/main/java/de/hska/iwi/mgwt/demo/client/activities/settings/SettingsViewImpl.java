@@ -1,5 +1,6 @@
 package de.hska.iwi.mgwt.demo.client.activities.settings;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gwt.user.client.ui.Widget;
@@ -12,8 +13,17 @@ import de.hska.iwi.mgwt.demo.client.widget.HeaderBackButton;
 
 public class SettingsViewImpl implements SettingsView {
 	private LayoutPanel main;
+	private List<Widget> settingItems;
 	
-	public SettingsViewImpl(List<Widget> settingItems) {
+	public SettingsViewImpl() {
+		this.settingItems = new ArrayList<Widget>();
+	}
+	
+	public void setSettingItems(List<Widget> settingItems) {
+		this.settingItems = settingItems;
+	}
+	
+	private void init(List<Widget> settingItems) {
 		this.main = new LayoutPanel();
 		
 		HeaderPanel headerPanel = new HeaderPanel();
@@ -37,7 +47,8 @@ public class SettingsViewImpl implements SettingsView {
 	}
 	
 	@Override
-	public Widget asWidget() {		
+	public Widget asWidget() {	
+		init(this.settingItems);
 		return this.main;
 	}
 

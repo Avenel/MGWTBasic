@@ -49,7 +49,8 @@ public class SettingsActivity extends MGWTAbstractActivity {
 	    }
 		
 		System.out.println(settingItemWidgets.size());
-		SettingsView view = this.clientFactory.getSettingsView(settingItemWidgets);
+		SettingsView view = this.clientFactory.getSettingsView();
+		view.setSettingItems(settingItemWidgets);
 		
 		panel.setWidget(view);
 	}
