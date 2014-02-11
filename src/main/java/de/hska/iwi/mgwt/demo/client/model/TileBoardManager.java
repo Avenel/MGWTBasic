@@ -17,6 +17,7 @@ import de.hska.iwi.mgwt.demo.client.activities.lecture.LecturePlace;
 import de.hska.iwi.mgwt.demo.client.activities.mensa.MensaPlace;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsPlace;
 import de.hska.iwi.mgwt.demo.client.activities.processes.StudentPlace;
+import de.hska.iwi.mgwt.demo.client.activities.settings.SettingMenueName;
 import de.hska.iwi.mgwt.demo.client.activities.settings.SettingsPlace;
 import de.hska.iwi.mgwt.demo.client.storage.StorageKey;
 import de.hska.iwi.mgwt.demo.client.widget.Tile;
@@ -98,7 +99,7 @@ public class TileBoardManager {
 			tiles.add(mensaTile);
 			
 			// Settings Tile
-			Tile settingsTile = new Tile("fa-gears fa-3x", "Einstellungen", new SettingsPlace(), false, false);
+			Tile settingsTile = new Tile("fa-gears fa-3x", "Einstellungen", new SettingsPlace(SettingMenueName.HOME.toString()), false, false);
 			tiles.add(settingsTile);
 			
 			// store them

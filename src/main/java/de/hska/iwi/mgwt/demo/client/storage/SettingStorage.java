@@ -1,33 +1,78 @@
 package de.hska.iwi.mgwt.demo.client.storage;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import com.google.gwt.storage.client.Storage;
+
+import de.hska.iwi.mgwt.demo.client.activities.settings.SettingMenueName;
 import de.hska.iwi.mgwt.demo.client.model.InputType;
 import de.hska.iwi.mgwt.demo.client.model.SettingItem;
+import de.hska.iwi.mgwt.demo.client.model.SettingItemImpl;
+import de.hska.iwi.mgwt.demo.client.model.SettingItemMenueImpl;
 
 public class SettingStorage {
 
-	private static List<SettingItem> settingItems;
+	private static Map<SettingMenueName, List<SettingItem>> settingItems;
 	
-	
-	public static List<SettingItem> getSettingItems() {
-		if (settingItems == null) {
-			settingItems = new ArrayList<SettingItem>();
-			
-			SettingItem izUserMenu = new SettingItem(StorageKey.IZAccount, "", false, "fa-user", InputType.MENUELINK);
-			SettingItem izUserAccount = new SettingItem(StorageKey.IZAccountname, "brma0004", false, "fa-user", InputType.TEXT);
-			SettingItem izUserPassword = new SettingItem(StorageKey.IZAccountPassword, "123456", true, "fa-key", InputType.PASSWORD);
-			SettingItem pushMessagesAllowed = new SettingItem(StorageKey.IsSendingPushMessages, "true", false, "fa-mail-forward", InputType.CHECKBOX);
-			
-			settingItems.add(izUserMenu);
-			settingItems.add(izUserAccount);
-			settingItems.add(izUserPassword);
-			settingItems.add(pushMessagesAllowed);
-		}
+	public static void init() {
+		settingItems = new HashMap<SettingMenueName, List<SettingItem>>();
 		
-		return settingItems;
+		// HOME
+		List<SettingItem> settingItemsHome = new ArrayList<SettingItem>();
+		
+		// MenuLink: IZAccount
+		List<SettingItem> settingItemsIZAccount = new ArrayList<SettingItem>();
+		SettingItemImpl izUserAccount = new SettingItemImpl(InputType.TEXT, StorageKey.IZAccountname, "brma0004", "fa-user", false);
+		SettingItemImpl izUserPassword = new SettingItemImpl(InputType.PASSWORD, StorageKey.IZAccountPassword, "123456", "fa-key", true);
+		settingItemsIZAccount.add(izUserAccount);
+		settingItemsIZAccount.add(izUserPassword);
+		SettingItemMenueImpl izUserMenu = new SettingItemMenueImpl(SettingMenueName.IZACCOUNT, "fa-user", settingItemsIZAccount);
+		
+		// General
+		SettingItemImpl pushMessagesAllowed = new SettingItemImpl(InputType.CHECKBOX, StorageKey.IsSendingPushMessages, "true", "fa-mail-forward", false);
+		
+		settingItemsHome.add(izUserMenu);
+		settingItemsHome.add(pushMessagesAllowed);
+		
+		settingItems.put(SettingMenueName.HOME, settingItemsHome);
+		settingItems.put(SettingMenueName.IZACCOUNT, settingItemsIZAccount);
 	}
 	
+	public static List<SettingItem> getSettingItems(SettingMenueName key) {
+		if (settingItems == null) {
+			init();
+		}
+		
+		return settingItems.get(key);
+	}
+	
+	public static String getValue(StorageKey key, boolean isSecure) throws Exception {
+		Storage stockStore = Storage.getLocalStorageIfSupported();
+		
+		if (stockStore != null) {
+			// TODO decrypt if necessary
+			if (isSecure) {
+				return "";
+			}
+			
+			return stockStore.getItem(key.toString());
+		} else {
+			// TODO find better exception
+			throw new Exception();
+		}
+	}
+	
+	public static void storeValue(StorageKey key, String value, boolean isSecure) {
+		// store value in local storage
+		Storage stockStore = Storage.getLocalStorageIfSupported();
+		
+		// TODO encrypt if necessary
+		if (stockStore != null) {
+			stockStore.setItem(key.toString(), value);
+		}
+	}
 	
 }

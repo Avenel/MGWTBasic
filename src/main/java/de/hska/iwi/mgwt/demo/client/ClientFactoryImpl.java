@@ -20,6 +20,7 @@ import java.util.List;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.Widget;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.SimpleEventBus;
 import com.googlecode.mgwt.mvp.client.AnimatableDisplay;
@@ -202,9 +203,9 @@ public class ClientFactoryImpl implements ClientFactory {
 	}
 
 	@Override
-	public SettingsView getSettingsView() {
+	public SettingsView getSettingsView(List<Widget> settingItems) {
 		if (settingsView == null) {
-			settingsView = new SettingsViewImpl();
+			settingsView = new SettingsViewImpl(settingItems);
 		}
 		return settingsView;
 	}

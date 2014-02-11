@@ -3,13 +3,13 @@ package de.hska.iwi.mgwt.demo.client.widget;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
-import com.google.gwt.storage.client.Storage;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.mgwt.ui.client.widget.MCheckBox;
 
+import de.hska.iwi.mgwt.demo.client.storage.SettingStorage;
 import de.hska.iwi.mgwt.demo.client.storage.StorageKey;
 
 /**
@@ -34,11 +34,7 @@ public class CheckBoxWidget implements IsWidget, InputWidget {
 			@Override
 			public void onValueChange(ValueChangeEvent<Boolean> event) {
 				// store value in local storage
-				Storage stockStore = Storage.getLocalStorageIfSupported();
-				
-				if (stockStore != null) {
-					stockStore.setItem(key.toString(), event.getValue().toString());
-				}
+				SettingStorage.storeValue(key, event.getValue().toString(), false);
 			}
 			
 		};
@@ -76,10 +72,10 @@ public class CheckBoxWidget implements IsWidget, InputWidget {
 	
 	@Override
 	public void setValueFromStorage() {
-		Storage stockStore = Storage.getLocalStorageIfSupported();
-		
-		if (stockStore != null) {
-			this.checkbox.setValue(Boolean.parseBoolean(stockStore.getItem(this.key.toString())));
+		try {
+			this.checkbox.setValue(Boolean.parseBoolean(SettingStorage.getValue(key, false)));
+		} catch (Exception e) {
+			this.checkbox.setValue(false);
 		}
 	}
 

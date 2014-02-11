@@ -66,7 +66,12 @@ public class JSONToPlaceMapper {
 			}
 			
 			if (className.compareTo("SettingsPlace") == 0) {
-				return new SettingsPlace();
+				if (jsonValue.isObject().get("id").isNumber() == null) {
+					// Error, return to HomePlace
+					return new HomePlace();
+				} else {
+					return new SettingsPlace(jsonValue.isObject().get("id").isNumber().toString());
+				}
 			}
 		}
 		

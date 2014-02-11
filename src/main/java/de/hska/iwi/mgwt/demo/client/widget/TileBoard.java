@@ -1,6 +1,5 @@
 package de.hska.iwi.mgwt.demo.client.widget;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gwt.event.dom.client.ClickHandler;

@@ -11,6 +11,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.mgwt.ui.client.widget.MTextBox;
 
+import de.hska.iwi.mgwt.demo.client.storage.SettingStorage;
 import de.hska.iwi.mgwt.demo.client.storage.StorageKey;
 
 /**
@@ -35,14 +36,8 @@ public class TextInputWidget implements IsWidget, InputWidget {
 		this.handler = new ValueChangeHandler<String>() {
 			@Override
 			public void onValueChange(ValueChangeEvent<String> event) {
-				// store value in local storage
-				Storage stockStore = Storage.getLocalStorageIfSupported();
-				
-				if (stockStore != null) {
-					stockStore.setItem(key.toString(), event.getValue().toString());
-				}
+				SettingStorage.storeValue(key, event.getValue(), false);
 			}
-			
 		};
 		textBox.addValueChangeHandler(handler);
 		
@@ -77,10 +72,10 @@ public class TextInputWidget implements IsWidget, InputWidget {
 
 	@Override
 	public void setValueFromStorage() {
-		Storage stockStore = Storage.getLocalStorageIfSupported();
-		
-		if (stockStore != null) {
-			this.textBox.setValue(stockStore.getItem(this.key.toString()));
+		try {
+			this.textBox.setValue(SettingStorage.getValue(key, false));
+		} catch (Exception e) {
+			this.textBox.setValue("[ERR]");
 		}
 	}
 

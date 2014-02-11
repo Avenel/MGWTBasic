@@ -18,6 +18,7 @@ package de.hska.iwi.mgwt.demo.client;
 import java.util.List;
 
 import com.google.gwt.place.shared.PlaceController;
+import com.google.gwt.user.client.ui.Widget;
 import com.google.web.bindery.event.shared.EventBus;
 import com.googlecode.mgwt.mvp.client.AnimatableDisplay;
 import com.googlecode.mgwt.mvp.client.AnimatingActivityManager;
@@ -106,7 +107,7 @@ public interface ClientFactory {
 	 * Get ProcessDetailSeminarView.
 	 * @return ProcessDetailSeminarView
 	 */
-	public ProcessDetailView getProcessDetailView(int activeStep,List<ProcessStep> steps, int id);
+	public ProcessDetailView getProcessDetailView(int activeStep, List<ProcessStep> steps, int id);
 	
 	/**
 	 * Get RegisterSeminarView.
@@ -118,7 +119,7 @@ public interface ClientFactory {
 	 * Get SettingsView
 	 * @return SettingsView
 	 */
-	public SettingsView getSettingsView();
+	public SettingsView getSettingsView(List<Widget> settingItems);
 
 	/**
 	 * Get AnimateableDisplay.

@@ -83,7 +83,7 @@ public class PhoneActivityMapper implements ActivityMapper {
 			return new MensaActivity(clientFactory);
 		}
 		if (place.getClass().equals(SettingsPlace.class)) {
-			return new SettingsActivity(clientFactory);
+			return new SettingsActivity(clientFactory, ((SettingsPlace) place).getId());
 		}
 		
 		return new NewsActivity(clientFactory);
