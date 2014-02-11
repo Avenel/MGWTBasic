@@ -43,6 +43,11 @@ public class SettingsActivity extends MGWTAbstractActivity {
 	    		settingItemWidgets.add(new TextInputWidget(item.getStorageKey().getHumanReadableName(), item.getStorageKey()).asWidget());
 	    	}
 	    	
+	    	// TODO use secure textbox
+	    	if (item.getInputType().equals(InputType.PASSWORD)) {
+	    		settingItemWidgets.add(new TextInputWidget(item.getStorageKey().getHumanReadableName(), item.getStorageKey()).asWidget());
+	    	}
+	    	
 	    	if (item.getInputType().equals(InputType.CHECKBOX)) {
 	    		settingItemWidgets.add(new CheckBoxWidget(item.getStorageKey().getHumanReadableName(), item.getStorageKey()).asWidget());
 	    	}
