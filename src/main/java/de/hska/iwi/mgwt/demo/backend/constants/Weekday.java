@@ -1,15 +1,23 @@
 package de.hska.iwi.mgwt.demo.backend.constants;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
+import com.google.web.bindery.autobean.shared.AutoBean.PropertyName;
 
 public enum Weekday implements IURLParameterEnum {
+	@PropertyName("-1")
 	NONE(-1, "NONE"),
+	@PropertyName("0")
 	MONDAY(0, "Montag"),
+	@PropertyName("1")
 	TUESDAY(1, "Dienstag"),
+	@PropertyName("2")
 	WEDNESDAY(2, "Mittwoch"),
+	@PropertyName("3")
 	THURSDAY(3, "Donnerstag"),
+	@PropertyName("4")
 	FRIDAY(4, "Freitag"),
+	@PropertyName("5")
 	SATURDAY(5, "Samstag"),
+	@PropertyName("6")
 	SUNDAY(6, "Sonntag");
 	
 	private final int numberOfWeekday;
@@ -21,15 +29,15 @@ public enum Weekday implements IURLParameterEnum {
 		this.key = key;
 	}
 	
-	@JsonCreator
-	public static Weekday create(int value) {
-		for (Weekday day : Weekday.values()) {
-			if (day.getNumberOfWeekday() == value) {
-				return day;
-			}
-		}
-		return NONE;
-	}
+//	@JsonCreator
+//	public static Weekday create(int value) {
+//		for (Weekday day : Weekday.values()) {
+//			if (day.getNumberOfWeekday() == value) {
+//				return day;
+//			}
+//		}
+//		return NONE;
+//	}
 
 	/**
 	 * @return the numberOfWeekday

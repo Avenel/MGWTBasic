@@ -12,7 +12,7 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.http.client.URL;
 
 import de.hska.iwi.mgwt.demo.backend.Intranet;
-import de.hska.iwi.mgwt.demo.backend.callbacks.AbstractRequestCallback;
+import de.hska.iwi.mgwt.demo.backend.autobean.MensaMenu;
 import de.hska.iwi.mgwt.demo.backend.callbacks.CompulsorySubjectCallback;
 import de.hska.iwi.mgwt.demo.backend.callbacks.MensaMenuCallback;
 import de.hska.iwi.mgwt.demo.backend.callbacks.NewsBoardCallback;
@@ -23,9 +23,7 @@ import de.hska.iwi.mgwt.demo.backend.constants.NewsType;
 import de.hska.iwi.mgwt.demo.backend.model.CompulsoryOptionalSubjects;
 import de.hska.iwi.mgwt.demo.backend.model.ConsultationHour;
 import de.hska.iwi.mgwt.demo.backend.model.CourseTutorial;
-import de.hska.iwi.mgwt.demo.backend.model.MensaMenu;
 import de.hska.iwi.mgwt.demo.backend.model.News;
-import de.hska.iwi.mgwt.demo.backend.model.NewsBoard;
 import de.hska.iwi.mgwt.demo.backend.util.UrlBuilderUtil;
 import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
 
@@ -140,36 +138,11 @@ public class GWTIntranetConnection implements Intranet {
 
 	@Override
 	public List<MensaMenu> getMensaMenu(int id, Date date) {
-		String url = "http://www.iwi.hs-karlsruhe.de/Intranetaccess/REST/tutorials/";
-		
-		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, URL.encode(url));
-		builder.setHeader("Accept", "application/json");
-		
-		try {
-			Request response = builder.sendRequest(null, new RequestCallback() {
-				
-				@Override
-				public void onResponseReceived(Request request, Response response) {
-					int code = response.getStatusCode();
-					String test = response.getText();
-					
-				}
-				
-				@Override
-				public void onError(Request request, Throwable exception) {
-					// TODO Auto-generated method stub
-					
-				}
-			});
-		} catch (RequestException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		return null;
 	}
 
 	@Override
-	public void getMensaMenu(ObserverActivity<List<MensaMenu>> observer, Canteen canteen, Date date) throws IllegalArgumentException {
+	public void getMensaMenu(ObserverActivity<MensaMenu> observer, Canteen canteen, String date) throws IllegalArgumentException {
 		if (observer == null || canteen == null || date == null) {
 			throw new IllegalArgumentException("Parameter must not be null");
 		}

@@ -1,36 +1,34 @@
 package de.hska.iwi.mgwt.demo.backend.util;
 
-import java.util.Date;
-
 import de.hska.iwi.mgwt.demo.backend.constants.Canteen;
 import de.hska.iwi.mgwt.demo.backend.constants.Course;
 
 public class UrlBuilderUtil {
 	
-	private static final String BASE_URL = "http://www.iwi.hs-karlsruhe.de";
+	private static final String BASE_URL = "http://www.iwi.hs-karlsruhe.de/Intranetaccess/REST";
 	
-	private static final String TUTORIALS_ALL = "/Intranetaccess/REST/tutorials/";
+	private static final String TUTORIALS_ALL = "/tutorials/";
 	
-	private static final String CUMPOLSORY = "/Intranetaccess/REST/compulsoryoptionalsubjects/";
+	private static final String CUMPOLSORY = "/compulsoryoptionalsubjects/";
 	
-	private static final String NEWS_BOARD_ALL = "/Intranetaccess/REST/newsbulletinboard/";
+	private static final String NEWS_BOARD_ALL = "/newsbulletinboard/";
 	
-	private static final String LECTURER_HOURS = "/Intranetaccess/REST/lecturersconsultationhours/";
+	private static final String LECTURER_HOURS = "/lecturersconsultationhours/";
 	
-	private static final String BLOCK_COURSES = "/Intranetaccess/REST/blockcourses/<stg>";
+	private static final String BLOCK_COURSES = "/blockcourses/<stg>";
 	
-	private static final String TIMETABLE = "/Intranetaccess/REST/timetable/<stg>/<sem>";
+	private static final String TIMETABLE = "/timetable/<stg>/<sem>";
 	
-	private static final String WORKFLOW = "/Intranetaccess/REST/application/workflow/<veranst>";
+	private static final String WORKFLOW = "/application/workflow/<veranst>";
 	
-	private static final String WORKFLOW_PROGRESS = "/Intranetaccess/REST/application/state/<veranst>";
+	private static final String WORKFLOW_PROGRESS = "/application/state/<veranst>";
 	
 	// Complete url Intranetaccess/REST/canteen/<id>/<date>
-	private static final String MENSA_MENU = "/Intranetaccess/REST/canteen/";
+	private static final String MENSA_MENU = "/canteen/";
 	
 	
-	public static String getMensaUrl(Canteen canteen, Date date) {
-		return BASE_URL + MENSA_MENU + canteen.getUrlKey() +  "/" + date.toString();
+	public static String getMensaUrl(Canteen canteen, String date) {
+		return BASE_URL + MENSA_MENU + canteen.getUrlKey() +  "/" + date;
 	}
 	
 	public static String getCumpolsoryUrl(Course course) {

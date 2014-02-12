@@ -7,7 +7,6 @@ import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.Response;
 import com.google.web.bindery.autobean.shared.AutoBean;
 import com.google.web.bindery.autobean.shared.AutoBeanCodex;
-import com.google.web.bindery.autobean.shared.AutoBeanUtils;
 
 import de.hska.iwi.mgwt.demo.backend.autobean.INews;
 import de.hska.iwi.mgwt.demo.backend.autobean.INewsBoard;

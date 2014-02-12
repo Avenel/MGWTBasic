@@ -6,6 +6,10 @@ import com.google.web.bindery.autobean.shared.AutoBeanFactory;
 public interface CustomBeanFactory extends AutoBeanFactory {
 	
 	AutoBean<INewsBoard> newsBoard();
-	
 	AutoBean<INews> news();
+	
+	AutoBean<Meal> meal();
+	AutoBean<MealGroup> mealGroup();
+	AutoBean<MensaMenu> mensaMenu();
+	
 }

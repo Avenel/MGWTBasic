@@ -15,8 +15,8 @@ import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-import de.hska.iwi.mgwt.demo.backend.model.Meal;
-import de.hska.iwi.mgwt.demo.backend.model.MealGroup;
+import de.hska.iwi.mgwt.demo.backend.autobean.Meal;
+import de.hska.iwi.mgwt.demo.backend.autobean.MealGroup;
 
 /**
  * This widget represents a Mensa MealGroup.
