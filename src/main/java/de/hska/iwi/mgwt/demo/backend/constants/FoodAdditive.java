@@ -11,7 +11,7 @@ public enum FoodAdditive {
 	@PropertyName("3")
 	ANTIOXIDATIONSMITTEL,
 	@PropertyName("4")
-	GESCHMACKSVERSTÄRKER,
+	GESCHMACKSVERSTAERKER,
 	@PropertyName("5")
 	PHOSPHAT,
 	@PropertyName("6")
