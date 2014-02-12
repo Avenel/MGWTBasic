@@ -1,10 +1,5 @@
 package de.hska.iwi.mgwt.demo.client.model;
 
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
-
-import de.hska.iwi.mgwt.demo.client.ClientFactory;
-import de.hska.iwi.mgwt.demo.client.activities.settings.SettingsPlace;
 import de.hska.iwi.mgwt.demo.client.storage.SettingStorage;
 import de.hska.iwi.mgwt.demo.client.storage.StorageKey;
 

@@ -2,11 +2,9 @@ package de.hska.iwi.mgwt.demo.client.widget;
 
 import org.cobogw.gwt.user.client.ui.Rating;
 
-import com.google.gwt.dom.client.Style.VerticalAlign;
 import com.google.gwt.i18n.client.HasDirection.Direction;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment.HorizontalAlignmentConstant;
-import com.google.gwt.user.client.ui.HasVerticalAlignment.VerticalAlignmentConstant;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.IsWidget;

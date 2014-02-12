@@ -2,8 +2,8 @@ package de.hska.iwi.mgwt.demo.backend.model;
 
 import java.util.List;
 
-import de.hska.iwi.mgwt.demo.backend.autobean.INewsBoard;
 import de.hska.iwi.mgwt.demo.backend.autobean.INews;
+import de.hska.iwi.mgwt.demo.backend.autobean.INewsBoard;
 
 public class NewsBoard implements INewsBoard {
 

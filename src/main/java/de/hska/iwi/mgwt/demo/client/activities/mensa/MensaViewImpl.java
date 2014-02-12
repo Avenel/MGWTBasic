@@ -1,7 +1,6 @@
 package de.hska.iwi.mgwt.demo.client.activities.mensa;
 
 import java.util.Date;
-import java.util.List;
 
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.ui.Label;

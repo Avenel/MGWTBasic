@@ -2,6 +2,7 @@ package de.hska.iwi.mgwt.demo.backend.util;
 
 import de.hska.iwi.mgwt.demo.backend.constants.Canteen;
 import de.hska.iwi.mgwt.demo.backend.constants.Course;
+import de.hska.iwi.mgwt.demo.backend.constants.WorkflowEvent;
 
 public class UrlBuilderUtil {
 	
@@ -19,7 +20,7 @@ public class UrlBuilderUtil {
 	
 	private static final String TIMETABLE = "/timetable/<stg>/<sem>";
 	
-	private static final String WORKFLOW = "/application/workflow/<veranst>";
+	private static final String WORKFLOW_INFORMATION = "/application/workflow/";
 	
 	private static final String WORKFLOW_PROGRESS = "/application/state/<veranst>";
 	
@@ -59,6 +60,10 @@ public class UrlBuilderUtil {
 				break;
 		}
 		return url;	
+	}
+	
+	public static String getWorkflowInformationUrl(WorkflowEvent workflowEvent) {
+		return BASE_URL + WORKFLOW_INFORMATION + workflowEvent.getUrlKey();
 	}
 
 }

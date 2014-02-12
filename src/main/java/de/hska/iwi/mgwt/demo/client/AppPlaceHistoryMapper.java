@@ -24,8 +24,8 @@ import de.hska.iwi.mgwt.demo.client.activities.mensa.MensaPlace.MensaPlaceTokeni
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsDetailPlace;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsPlace.NewsPlaceTokenizer;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsSettingsPlace;
-import de.hska.iwi.mgwt.demo.client.activities.processes.StudentPlace;
 import de.hska.iwi.mgwt.demo.client.activities.processes.ProcessDetailPlace.ProcessDetailPlaceTokenizer;
+import de.hska.iwi.mgwt.demo.client.activities.processes.StudentPlace;
 import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.ProcessSeminarPlace.ProcessSeminarPlaceTokenizer;
 import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.RegisterSeminarPlace.RegisterSeminarPlaceTokenizer;
 import de.hska.iwi.mgwt.demo.client.activities.settings.SettingsPlace.SettingsPlaceTokenizer;

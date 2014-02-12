@@ -16,6 +16,8 @@ public class MensaMenuCallback extends AbstractRequestCallback<ObserverActivity<
 
 	@Override
 	public void onResponseReceived(Request request, Response response) {
+		//Handle differen statuses...
+		
 		if (response.getStatusCode() == 200) {
 			AutoBean<MensaMenu> bean = AutoBeanCodex.decode(factory, MensaMenu.class, response.getText());
 			

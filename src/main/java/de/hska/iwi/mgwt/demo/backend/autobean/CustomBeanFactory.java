@@ -12,5 +12,7 @@ public interface CustomBeanFactory extends AutoBeanFactory {
 	AutoBean<MealGroup> mealGroup();
 	AutoBean<Meal> meal();
 	
+	AutoBean<IWorkflowInformation> workflowInformation();
+	
 	
 }

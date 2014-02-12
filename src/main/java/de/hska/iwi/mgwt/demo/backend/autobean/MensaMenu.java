@@ -2,7 +2,7 @@ package de.hska.iwi.mgwt.demo.backend.autobean;
 
 import java.util.List;
 
-import de.hska.iwi.mgwt.demo.backend.constants.MensaStatus;
+import de.hska.iwi.mgwt.demo.backend.constants.CanteenStatus;
 
 public interface MensaMenu {
 
@@ -10,7 +10,7 @@ public interface MensaMenu {
 	
 	public List<MealGroup> getMealGroup();
 	
-	public MensaStatus getMensaStatus();
+	public CanteenStatus getMensaStatus();
 	
 	public String getDate();
 }

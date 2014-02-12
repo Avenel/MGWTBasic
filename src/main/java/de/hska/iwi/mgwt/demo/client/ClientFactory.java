@@ -18,7 +18,6 @@ package de.hska.iwi.mgwt.demo.client;
 import java.util.List;
 
 import com.google.gwt.place.shared.PlaceController;
-import com.google.gwt.user.client.ui.Widget;
 import com.google.web.bindery.event.shared.EventBus;
 import com.googlecode.mgwt.mvp.client.AnimatableDisplay;
 import com.googlecode.mgwt.mvp.client.AnimatingActivityManager;

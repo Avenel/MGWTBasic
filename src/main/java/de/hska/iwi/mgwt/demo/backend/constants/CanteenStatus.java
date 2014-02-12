@@ -2,7 +2,7 @@ package de.hska.iwi.mgwt.demo.backend.constants;
 
 import com.google.web.bindery.autobean.shared.AutoBean.PropertyName;
 
-public enum MensaStatus {
+public enum CanteenStatus {
 	
 	@PropertyName("ok")
 	OK,

@@ -1,14 +1,9 @@
 package de.hska.iwi.mgwt.demo.backend.connection;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
-import com.google.gwt.http.client.RequestCallback;
 import com.google.gwt.http.client.RequestException;
-import com.google.gwt.http.client.Response;
 import com.google.gwt.http.client.URL;
 
 import de.hska.iwi.mgwt.demo.backend.Intranet;
@@ -17,22 +12,19 @@ import de.hska.iwi.mgwt.demo.backend.callbacks.CompulsorySubjectCallback;
 import de.hska.iwi.mgwt.demo.backend.callbacks.MensaMenuCallback;
 import de.hska.iwi.mgwt.demo.backend.callbacks.NewsBoardCallback;
 import de.hska.iwi.mgwt.demo.backend.callbacks.TutorialsCallback;
+import de.hska.iwi.mgwt.demo.backend.callbacks.WorkflowCallback;
 import de.hska.iwi.mgwt.demo.backend.constants.Canteen;
 import de.hska.iwi.mgwt.demo.backend.constants.Course;
-import de.hska.iwi.mgwt.demo.backend.constants.NewsType;
+import de.hska.iwi.mgwt.demo.backend.constants.WorkflowEvent;
 import de.hska.iwi.mgwt.demo.backend.model.CompulsoryOptionalSubjects;
 import de.hska.iwi.mgwt.demo.backend.model.ConsultationHour;
 import de.hska.iwi.mgwt.demo.backend.model.CourseTutorial;
 import de.hska.iwi.mgwt.demo.backend.model.News;
+import de.hska.iwi.mgwt.demo.backend.model.WorkflowInformation;
 import de.hska.iwi.mgwt.demo.backend.util.UrlBuilderUtil;
 import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
 
-public class GWTIntranetConnection implements Intranet {
-	
-	@Override
-	public List<CourseTutorial> getTutorials(Course course) {
-		return new ArrayList<CourseTutorial>();
-	}
+public class IntranetConnection implements Intranet {
 
 	@Override
 	public void getTutorials(ObserverActivity<List<CourseTutorial>> observer, Course course) {
@@ -54,29 +46,6 @@ public class GWTIntranetConnection implements Intranet {
 	}
 
 	@Override
-	public List<News> getNewsBoard(Course course) throws IllegalArgumentException {
-		
-		ArrayList<News> retList = new ArrayList<News>();
-		
-		News v = new News();
-		ArrayList<Course> courses = new ArrayList<Course>();
-		v = new News();
-		v.setId(50);
-		v.setTitle("Technische Informatik 1 Übungen");
-		v.setSubTitle("Ausfall");
-		courses = new ArrayList<Course>();
-		courses.add(Course.MEDIENINFORMATIK_BACHELOR);
-		courses.add(Course.INFORMATIK_BACHELOR);
-		v.setCourseOfStudies(courses);
-		v.setContent("Die Veranstaltung am Donnerstag, dem 09.01.2014 entfällt.");
-		v.setLinks(null);
-		v.setType(NewsType.CANCELLATION);
-		retList.add(v);
-
-		return retList;
-	}
-
-	@Override
 	public void getNewsBoard(ObserverActivity<List<News>> observer, Course course) throws IllegalArgumentException {
 		if (observer == null || course == null) {
 			throw new IllegalArgumentException("Parameter must not be null");
@@ -88,7 +57,7 @@ public class GWTIntranetConnection implements Intranet {
 		NewsBoardCallback cb = new NewsBoardCallback(observer);
 		
 		try {
-			Request request = builder.sendRequest(null, cb);
+			builder.sendRequest(null, cb);
 		} catch (RequestException e) {
 			System.out.println("error");
 			// TODO Auto-generated catch block
@@ -96,21 +65,11 @@ public class GWTIntranetConnection implements Intranet {
 		}
 	}
 
-	@Override
-	public List<ConsultationHour> getConsultationHours() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public void getConsultationHours(ObserverActivity<List<ConsultationHour>> observer) {
 		// TODO Auto-generated method stub
 
-	}
-
-	@Override
-	public List<CompulsoryOptionalSubjects> getCompulsoryOptionalSubjects(Course course) throws IllegalArgumentException {
-		return new ArrayList<CompulsoryOptionalSubjects>();
 	}
 
 	@Override
@@ -137,11 +96,6 @@ public class GWTIntranetConnection implements Intranet {
 	}
 
 	@Override
-	public List<MensaMenu> getMensaMenu(int id, Date date) {
-		return null;
-	}
-
-	@Override
 	public void getMensaMenu(ObserverActivity<MensaMenu> observer, Canteen canteen, String date) throws IllegalArgumentException {
 		if (observer == null || canteen == null || date == null) {
 			throw new IllegalArgumentException("Parameter must not be null");
@@ -153,11 +107,41 @@ public class GWTIntranetConnection implements Intranet {
 		MensaMenuCallback cb = new MensaMenuCallback(observer);
 		
 		try {
-			builder.sendRequest(url, cb);
+			builder.sendRequest(null, cb);
 		} catch (RequestException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void getWorkflowInformation(ObserverActivity<WorkflowInformation> observer, WorkflowEvent event) {
+		if (isParamNull(observer, event)) {
+			throw new IllegalArgumentException("Parameter must not be null");
+		}
+		
+		String url = UrlBuilderUtil.getWorkflowInformationUrl(event);
+		
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, URL.encode(url));
+		
+		WorkflowCallback cb = new WorkflowCallback(observer);
+		
+		try {
+			builder.sendRequest(null, cb);
+		} catch (RequestException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	private boolean isParamNull(Object... args) {
+		for (Object obj : args) {
+			if (obj == null) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	
