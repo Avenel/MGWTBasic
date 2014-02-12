@@ -7,6 +7,7 @@ import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.Response;
 import com.google.web.bindery.autobean.shared.AutoBean;
 import com.google.web.bindery.autobean.shared.AutoBeanCodex;
+import com.google.web.bindery.autobean.shared.AutoBeanUtils;
 
 import de.hska.iwi.mgwt.demo.backend.autobean.INews;
 import de.hska.iwi.mgwt.demo.backend.autobean.INewsBoard;
@@ -24,7 +25,6 @@ public class NewsBoardCallback extends AbstractRequestCallback<ObserverActivity<
 		if (response.getStatusCode() == 200) {			
 			
 			AutoBean<INewsBoard> bean = AutoBeanCodex.decode(factory, INewsBoard.class, "{\"newsBoard\": " + response.getText() + "}");
-			
 			observer.update(convertToImplementation(bean.as()));
 		}
 	}

@@ -1,14 +1,18 @@
 package de.hska.iwi.mgwt.demo.backend.constants;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.google.web.bindery.autobean.shared.AutoBean.PropertyName;
 
 public enum Course implements IURLParameterEnum {
+	@PropertyName("INFB")
 	INFORMATIK_BACHELOR("INFB"),
-	INFB("INFB"),
+//	INFB("INFB"),
+	@PropertyName("INFM")
 	INFORMATIK_MASTER("INFM"),
-	INFM("INFM"),
+//	INFM("INFM"),
+	@PropertyName("MKIB")
 	MEDIENINFORMATIK_BACHELOR("MKIB"),
-	MKIB("MKIB"),
+//	MKIB("MKIB"),
 	ALL("ALL");
 	
 	private final String key;
