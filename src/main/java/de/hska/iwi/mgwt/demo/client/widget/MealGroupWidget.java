@@ -59,12 +59,19 @@ public class MealGroupWidget implements IsWidget {
 		ratingStar.getElement().getStyle().setFloat(Style.Float.RIGHT);
 		ratingStar.getElement().getStyle().setTextAlign(TextAlign.CENTER);
 		ParagraphElement pElementStar = Document.get().createPElement();
-		pElementStar.setInnerHTML("<i class='fa fa-star-half-o fa-2x' style='color:#DB0134;'></i>");
+		
+		double rating = (Math.random() * 10) % 5;
+		String fontAwesomeStar = "fa-star-half-o";
+		if (rating < 2) fontAwesomeStar = "fa-star-o";
+		if (rating > 2 && rating < 4.5) fontAwesomeStar = "fa-star-half-o";
+		if (rating > 4.5) fontAwesomeStar = "fa-star";
+		
+		pElementStar.setInnerHTML("<i class='fa " + fontAwesomeStar + " fa-2x' style='color:#DB0134;'></i>");
 		ratingStar.getElement().appendChild(pElementStar);
 		
 		NumberFormat fmt = NumberFormat.getFormat("0.0");
 		ParagraphElement pElementRating = Document.get().createPElement();
-		pElementRating.setInnerHTML("<p style='font-size:0.9em'>" + fmt.format((Math.random() * 10) % 5).replace(".", ",") + "</p>");
+		pElementRating.setInnerHTML("<p style='font-size:0.9em'>" + fmt.format(rating).replace(".", ",") + "</p>");
 		pElementRating.getStyle().setColor("#DB0134");
 		ratingStar.getElement().appendChild(pElementRating);
 		
