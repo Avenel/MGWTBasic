@@ -3,6 +3,7 @@ package de.hska.iwi.mgwt.demo.client.activities.settings;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gwt.dom.client.Style.BorderStyle;
 import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.mgwt.ui.client.widget.HeaderPanel;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
@@ -35,6 +36,7 @@ public class SettingsViewImpl implements SettingsView {
 		
 		WidgetList widgetList = new WidgetList();
 	    widgetList.setRound(true);
+	    widgetList.getElement().getStyle().setProperty("border", "none!important");
 	    
 	    for (Widget item : settingItems) {
 	    	widgetList.add(item);

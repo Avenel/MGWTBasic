@@ -34,7 +34,7 @@ public enum NewsType implements IURLParameterEnum {
 	
 	public String getFontAwesomeIcon() {
 		if (this.getUrlKey().equals("announcement")) {
-			return "fa-exclamation-triangle";
+			return "fa-bullhorn";
 		}
 		if (this.getUrlKey().equals("rearrangement")) {
 			return "fa-calendar";

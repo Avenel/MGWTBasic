@@ -1,9 +1,11 @@
 .mgwt-TextBox {
 	color: #DB0134;
+/* 	margin-left:5%; */
 }
 
 .mgwt-PasswordTextBox {
 	color: #DB0134;
+/* 	margin-left:25px; */
 }
 
 .mgwt-TextArea {
@@ -12,7 +14,6 @@
 
 .mgwt-TextBox .mgwt-InputBox-box {
 	color: #DB0134;
-	margin-left:10px;
 }
 
 .mgwt-PasswordTextBox .mgwt-InputBox-box {
