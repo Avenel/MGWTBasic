@@ -27,6 +27,11 @@ public class CheckBoxWidget implements IsWidget, InputWidget {
 	public CheckBoxWidget(String text, final StorageKey key) {
 		this.text = new Label(text);
 		
+		// setup wordrwrap
+		this.text.getElement().getStyle().setProperty("overflow", "hidden");
+		this.text.getElement().getStyle().setProperty("whiteSpace", "nowrap");
+		this.text.getElement().getStyle().setProperty("textOverflow", "ellipsis");
+		
 		this.checkbox = new MCheckBox();
 		this.checkbox.setTitle(text);
 		
@@ -52,9 +57,11 @@ public class CheckBoxWidget implements IsWidget, InputWidget {
 		panel.add(this.text);
 		panel.add(this.checkbox);
 		
+		// setup table layout: fixed
+		panel.getWidget(0).getElement().getParentElement().getParentElement().getParentElement().getParentElement().getStyle().setProperty("tableLayout", "fixed");
+		
 		// setup 2nd cell
 		panel.getWidget(1).getElement().getParentElement().setPropertyString("align", "right");
-		panel.getWidget(1).getElement().getParentElement().getStyle().setWidth(75, Unit.PCT);
 		
 		setValueFromStorage();
 		

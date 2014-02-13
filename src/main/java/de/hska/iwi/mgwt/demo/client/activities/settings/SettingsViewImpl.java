@@ -3,7 +3,6 @@ package de.hska.iwi.mgwt.demo.client.activities.settings;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.gwt.dom.client.Style.BorderStyle;
 import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.mgwt.ui.client.widget.HeaderPanel;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;

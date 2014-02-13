@@ -37,10 +37,8 @@ public class NewsActivity extends MGWTAbstractActivity implements ObserverActivi
 
 		// Get news of all courses
 		Intranet intranetConn = (Intranet) BackendFactory.createIntranetInstance();
-		
-		// TODO: Wenn nico den AsyncCall im master hat, wieder einbauen!
-//		intranetConn.getNewsBoard(this, Course.ALL);
 		intranetConn.getNewsBoard(this, Course.ALL);
+		
 		currentModel = new ArrayList<News>();
 		view.render(currentModel);
 		panel.setWidget(view);

@@ -81,6 +81,7 @@ public class MensaViewImpl implements MensaView {
 	
 	public void setMensaMenu(MensaMenu mensa) {
 		this.mensaMenu = mensa;
+		System.out.println("meanu empfangen" + this.mensaMenu.getMealGroup().size());
 	}
 
 }

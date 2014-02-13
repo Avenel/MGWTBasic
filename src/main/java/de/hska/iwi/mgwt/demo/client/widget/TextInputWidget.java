@@ -1,6 +1,5 @@
 package de.hska.iwi.mgwt.demo.client.widget;
 
-import com.google.gwt.dom.client.Style.Display;
 import com.google.gwt.dom.client.Style.TextAlign;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
@@ -58,7 +57,7 @@ public class TextInputWidget implements IsWidget, InputWidget {
 		panel.getWidget(0).getElement().getStyle().setProperty("overflow", "hidden");
 		panel.getWidget(0).getElement().getStyle().setProperty("whiteSpace", "nowrap");
 		panel.getWidget(0).getElement().getStyle().setProperty("textOverflow", "ellipsis");
-		panel.getWidget(0).getElement().getParentElement().getStyle().setWidth(25, Unit.PCT);
+		panel.getWidget(0).getElement().getParentElement().getStyle().setWidth(35, Unit.PCT);
 		
 		// setup 2nd cell
 		panel.getWidget(1).getElement().getParentElement().setPropertyString("align", "left");

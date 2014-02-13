@@ -25,12 +25,7 @@ public class MensaActivity extends MGWTAbstractActivity implements ObserverActiv
 		
 		// Get news of all courses
 		Intranet intranetConn = (Intranet) BackendFactory.createIntranetInstance();
-		
-		// TODO: Wenn nico den AsyncCall im master hat, wieder einbauen!
-//				intranetConn.getNewsBoard(this, Course.ALL);
 		intranetConn.getMensaMenu(this, Canteen.MOLTKE, "2014-02-12");
-
-//		view.setMensaMenu(intranetConn.getMensaMenu(0, null));
 		
 		panel.setWidget(view);
 	}
