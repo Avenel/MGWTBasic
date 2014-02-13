@@ -1,5 +1,6 @@
 package de.hska.iwi.mgwt.demo.client.widget;
 
+import com.google.gwt.dom.client.Style.Display;
 import com.google.gwt.dom.client.Style.TextAlign;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
@@ -61,7 +62,6 @@ public class TextInputWidget implements IsWidget, InputWidget {
 		
 		// setup 2nd cell
 		panel.getWidget(1).getElement().getParentElement().setPropertyString("align", "left");
-//		panel.getWidget(1).getElement().getParentElement().getStyle().setWidth(75, Unit.PCT);
 		panel.getWidget(1).getElement().getParentElement().getFirstChildElement().getFirstChildElement().getStyle().setWidth(100, Unit.PCT);
 		panel.getWidget(1).getElement().getParentElement().getFirstChildElement().getFirstChildElement().getStyle().setProperty("borderBottom", "1px solid");
 		

@@ -36,7 +36,7 @@ public class SettingsViewImpl implements SettingsView {
 		
 		WidgetList widgetList = new WidgetList();
 	    widgetList.setRound(true);
-	    widgetList.getElement().getStyle().setProperty("border", "none!important");
+	    widgetList.getElement().addClassName("mgwt-List-settings");
 	    
 	    for (Widget item : settingItems) {
 	    	widgetList.add(item);
