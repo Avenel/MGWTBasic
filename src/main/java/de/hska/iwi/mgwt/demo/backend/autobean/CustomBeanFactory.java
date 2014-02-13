@@ -16,4 +16,7 @@ public interface CustomBeanFactory extends AutoBeanFactory {
 	
 	AutoBean<ITutorials> tutorials();
 	AutoBean<ITutorial> tutorial();
+	
+	AutoBean<ICompulsoryOptionalSubjects> subjects();
+	AutoBean<ICompulsoryOptionalSubject> subject();
 }

@@ -73,9 +73,9 @@ public class IntranetConnection implements Intranet {
 	}
 
 	@Override
-	public void getCompulsoryOptionalSubjects(ObserverActivity<List<CompulsoryOptionalSubjects>> observer, Course course)
+	public void getCompulsoryOptionalSubjects(ObserverActivity<CompulsoryOptionalSubjects> observer, Course course)
 													throws IllegalArgumentException {
-		if (observer == null || course == null) {
+		if (isParamNull(observer, course)) {
 			throw new IllegalArgumentException("Parameter must not be null");
 		} else if (Course.ALL == course) {
 			throw new IllegalArgumentException("This course is not allowed");

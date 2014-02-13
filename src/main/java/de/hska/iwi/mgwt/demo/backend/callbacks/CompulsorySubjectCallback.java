@@ -1,35 +1,25 @@
 package de.hska.iwi.mgwt.demo.backend.callbacks;
 
-import java.util.List;
+import com.google.web.bindery.autobean.shared.AutoBean;
+import com.google.web.bindery.autobean.shared.AutoBeanCodex;
 
-import com.google.gwt.http.client.Request;
-import com.google.gwt.http.client.Response;
-
+import de.hska.iwi.mgwt.demo.backend.autobean.ICompulsoryOptionalSubjects;
 import de.hska.iwi.mgwt.demo.backend.model.CompulsoryOptionalSubjects;
 import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
 
-public class CompulsorySubjectCallback extends AbstractRequestCallback<ObserverActivity<List<CompulsoryOptionalSubjects>>> {
+public class CompulsorySubjectCallback extends AbstractRequestCallback<ObserverActivity<CompulsoryOptionalSubjects>> {
 
-	public CompulsorySubjectCallback(ObserverActivity<List<CompulsoryOptionalSubjects>> observer) {
+	public CompulsorySubjectCallback(ObserverActivity<CompulsoryOptionalSubjects> observer) {
 		super(observer);
 	}
 
 	@Override
-	public void onResponseReceived(Request request, Response response) {
-		// TODO Parse JSON ETC
-		
-	}
-
-	@Override
-	public void onError(Request request, Throwable exception) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	protected void handleJson(String json) {
-		// TODO Auto-generated method stub
+		AutoBean<ICompulsoryOptionalSubjects> bean = AutoBeanCodex.decode(factory,
+																		  ICompulsoryOptionalSubjects.class, 
+																		  "{\"compulsorySubjects\": " + json + "}");
 		
+		observer.update(new CompulsoryOptionalSubjects(bean.as()));
 	}
 	
 
