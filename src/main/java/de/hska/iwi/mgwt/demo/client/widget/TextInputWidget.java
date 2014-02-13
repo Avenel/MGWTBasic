@@ -1,5 +1,6 @@
 package de.hska.iwi.mgwt.demo.client.widget;
 
+import com.google.gwt.dom.client.Style.Display;
 import com.google.gwt.dom.client.Style.TextAlign;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
@@ -26,11 +27,11 @@ public class TextInputWidget implements IsWidget, InputWidget {
 	ValueChangeHandler<String> handler;
 	
 	public TextInputWidget(String text, final StorageKey key) {
-		this.text = new Label(text);
+		this.text = new Label(text);		
 		
 		this.textBox = new MTextBox();
 		this.textBox.setTitle(text);
-		this.textBox.getElement().getFirstChildElement().getStyle().setTextAlign(TextAlign.RIGHT);
+		this.textBox.getElement().getFirstChildElement().getStyle().setTextAlign(TextAlign.LEFT);
 		
 		this.handler = new ValueChangeHandler<String>() {
 			@Override
@@ -46,15 +47,23 @@ public class TextInputWidget implements IsWidget, InputWidget {
 	@Override
 	public Widget asWidget() {
 		HorizontalPanel panel = new HorizontalPanel();
-		
 		panel.setWidth("100%");
 		
 		panel.add(this.text);
 		panel.add(this.textBox);
 		
+		// setup 1st cell - label
+		panel.getWidget(0).getElement().getParentElement().getParentElement().getParentElement().getParentElement().getStyle().setProperty("tableLayout", "fixed");
+		
+		panel.getWidget(0).getElement().getStyle().setProperty("overflow", "hidden");
+		panel.getWidget(0).getElement().getStyle().setProperty("whiteSpace", "nowrap");
+		panel.getWidget(0).getElement().getStyle().setProperty("textOverflow", "ellipsis");
+		panel.getWidget(0).getElement().getParentElement().getStyle().setWidth(25, Unit.PCT);
+		
 		// setup 2nd cell
-		panel.getWidget(1).getElement().getParentElement().setPropertyString("align", "right");
-		panel.getWidget(1).getElement().getParentElement().getStyle().setWidth(75, Unit.PCT);
+		panel.getWidget(1).getElement().getParentElement().setPropertyString("align", "left");
+		panel.getWidget(1).getElement().getParentElement().getFirstChildElement().getFirstChildElement().getStyle().setWidth(100, Unit.PCT);
+		panel.getWidget(1).getElement().getParentElement().getFirstChildElement().getFirstChildElement().getStyle().setProperty("borderBottom", "1px solid");
 		
 		this.setValueFromStorage();
 		
