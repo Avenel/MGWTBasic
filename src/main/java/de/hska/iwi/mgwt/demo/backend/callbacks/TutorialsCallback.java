@@ -1,29 +1,23 @@
 package de.hska.iwi.mgwt.demo.backend.callbacks;
 
-import java.util.List;
+import com.google.web.bindery.autobean.shared.AutoBean;
+import com.google.web.bindery.autobean.shared.AutoBeanCodex;
 
-import com.google.gwt.http.client.Request;
-import com.google.gwt.http.client.Response;
-
-import de.hska.iwi.mgwt.demo.backend.model.CourseTutorial;
+import de.hska.iwi.mgwt.demo.backend.autobean.ITutorials;
+import de.hska.iwi.mgwt.demo.backend.model.Tutorials;
 import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
 
-public class TutorialsCallback extends AbstractRequestCallback<ObserverActivity<List<CourseTutorial>>>{
+public class TutorialsCallback extends AbstractRequestCallback<ObserverActivity<Tutorials>>{
 
-	public TutorialsCallback(ObserverActivity<List<CourseTutorial>> observer) {
+	public TutorialsCallback(ObserverActivity<Tutorials> observer) {
 		super(observer);
 	}
 
 	@Override
-	public void onResponseReceived(Request request, Response response) {
-		// TODO PARSE JSON etc
-		
-	}
+	protected void handleJson(String json) {
+		AutoBean<ITutorials> bean = AutoBeanCodex.decode(factory, ITutorials.class, "{\"tutorials\": " + json + "}");
 
-	@Override
-	public void onError(Request request, Throwable exception) {
-		// TODO Auto-generated method stub
-		
+		observer.update(new Tutorials(bean.as()));
 	}
 
 }
