@@ -1,6 +1,9 @@
 package de.hska.iwi.mgwt.demo.client.activities.mensa;
 
+import java.util.Date;
+
 import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
 
@@ -25,7 +28,7 @@ public class MensaActivity extends MGWTAbstractActivity implements ObserverActiv
 		
 		// Get news of all courses
 		Intranet intranetConn = (Intranet) BackendFactory.createIntranetInstance();
-		intranetConn.getMensaMenu(this, Canteen.MOLTKE, "2014-02-14");
+		intranetConn.getMensaMenu(this, Canteen.MOLTKE, DateTimeFormat.getFormat("yyyy-MM-dd").format(new Date()));
 		
 		panel.setWidget(view);
 	}
