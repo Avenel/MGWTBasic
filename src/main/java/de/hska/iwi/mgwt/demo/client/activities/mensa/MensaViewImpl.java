@@ -3,11 +3,11 @@ package de.hska.iwi.mgwt.demo.client.activities.mensa;
 import java.util.Date;
 import java.util.List;
 
+import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
-import com.googlecode.mgwt.ui.client.widget.Carousel;
 import com.googlecode.mgwt.ui.client.widget.HeaderPanel;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
 import com.googlecode.mgwt.ui.client.widget.ScrollPanel;
@@ -25,7 +25,7 @@ public class MensaViewImpl implements MensaView {
 	
 	private MensaMenu mensaMenu;
 
-	private Carousel carousel;
+	private ScrollPanel carousel;
 
 	@Override
 	public Widget asWidget() {
@@ -39,7 +39,14 @@ public class MensaViewImpl implements MensaView {
 		headerPanel.setLeftWidget(backButton.asWidget());
 		
 		// Caroussel: for each day a page on a scrollpanel
-		carousel = new Carousel();
+		carousel = new ScrollPanel();
+		carousel.getElement().getStyle().setPaddingBottom(2, Unit.EM);
+		
+		Label loadingLabel = new Label();
+		loadingLabel.setText("Lade Menü...");
+		loadingLabel.getElement().getStyle().setColor("#FEFEFE");
+		carousel.add(loadingLabel);
+		
 		main.add(carousel);
 		
 		return this.main;
@@ -47,7 +54,7 @@ public class MensaViewImpl implements MensaView {
 	
 	private void generateMensaMenueView(MensaMenu mensa) {
 		if (mensaMenu != null) {
-			ScrollPanel scrollPanel = new ScrollPanel();
+			this.carousel.clear();
 			
 			VerticalPanel mealGroups = new VerticalPanel();
 			mealGroups.getElement().addClassName("mealGroups-container");
@@ -61,27 +68,28 @@ public class MensaViewImpl implements MensaView {
 			mealGroups.add(date);
 			
 			List<MealGroup> meals = mensaMenu.getMealGroups();
-			
-			for (MealGroup mealGroup : meals) {
-				MealGroupWidget mw = new MealGroupWidget(mealGroup);
-				mealGroups.add(mw);
-				
-				// add separator
-				if (mealGroup != mensaMenu.getMealGroups().get(mensaMenu.getMealGroups().size()-1)) {
-					LayoutPanel separator = new LayoutPanel();
-					separator.getElement().addClassName("mealGroup-separator");
-					mealGroups.add(separator);
+			if (meals != null && meals.size() > 0) {
+				for (MealGroup mealGroup : meals) {
+					MealGroupWidget mw = new MealGroupWidget(mealGroup);
+					mealGroups.add(mw);
+					
+					// add separator
+					if (mealGroup != mensaMenu.getMealGroups().get(mensaMenu.getMealGroups().size()-1)) {
+						LayoutPanel separator = new LayoutPanel();
+						separator.getElement().addClassName("mealGroup-separator");
+						mealGroups.add(separator);
+					} else {
+						mw.asWidget().getElement().getStyle().setPaddingBottom(2, Unit.EM);
+					}
 				}
 			}
 			
-			scrollPanel.add(mealGroups);
-			this.carousel.add(scrollPanel);
+			carousel.add(mealGroups);
 		}
 	}
 	
 	public void setMensaMenu(MensaMenu mensa) {
 		this.mensaMenu = mensa;
-		System.out.println("meanu empfangen");
 		generateMensaMenueView(mensa);
 	}
 

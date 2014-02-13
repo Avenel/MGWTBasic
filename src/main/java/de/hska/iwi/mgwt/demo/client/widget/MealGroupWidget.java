@@ -2,12 +2,14 @@ package de.hska.iwi.mgwt.demo.client.widget;
 
 import java.util.List;
 
-import org.cobogw.gwt.user.client.ui.Rating;
-
+import com.google.gwt.dom.client.Document;
+import com.google.gwt.dom.client.ParagraphElement;
+import com.google.gwt.dom.client.Style;
+import com.google.gwt.dom.client.Style.TextAlign;
+import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.i18n.client.HasDirection.Direction;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment.HorizontalAlignmentConstant;
-import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Label;
@@ -32,6 +34,7 @@ public class MealGroupWidget implements IsWidget {
 	private VerticalPanel main;  
 	private MealGroup mealGroup;
 	private Label title;
+	private HorizontalPanel titleBar;
 	
 	public MealGroupWidget(MealGroup mealgroup) {
 		this.mealGroup = mealgroup;
@@ -40,21 +43,32 @@ public class MealGroupWidget implements IsWidget {
 		this.main.getElement().addClassName("mealGroup-container");
 		
 		// titlebar
-		HorizontalPanel titleBar = new HorizontalPanel();
+		titleBar = new HorizontalPanel();
 		titleBar.getElement().addClassName("mealGroup-titlebar");
+		titleBar.getElement().getStyle().setPaddingBottom(0.1, Unit.EM);
 		
 		// title
 		this.title = new Label();
 		this.title.setText(this.mealGroup.getTitle());
 		this.title.getElement().addClassName("mealGroup-title");
+		
 		titleBar.add(title);
 		
-		// rating
-		Rating rating = new Rating((int)(Math.random() * 10) % 5, 5);
-		rating.getElement().addClassName("mealGroup-rating");
-		titleBar.add(rating);
-		titleBar.setCellHorizontalAlignment(rating, HorizontalAlignmentConstant.startOf(Direction.RTL));
-		titleBar.setCellVerticalAlignment(rating, HasVerticalAlignment.ALIGN_MIDDLE);  
+		// rating		
+		Label ratingStar = new Label();
+		ratingStar.getElement().getStyle().setFloat(Style.Float.RIGHT);
+		ratingStar.getElement().getStyle().setTextAlign(TextAlign.CENTER);
+		ParagraphElement pElementStar = Document.get().createPElement();
+		pElementStar.setInnerHTML("<i class='fa fa-star-half-o fa-2x' style='color:#DB0134;'></i>");
+		ratingStar.getElement().appendChild(pElementStar);
+		
+		NumberFormat fmt = NumberFormat.getFormat("0.0");
+		ParagraphElement pElementRating = Document.get().createPElement();
+		pElementRating.setInnerHTML("<p style='font-size:0.9em'>" + fmt.format((Math.random() * 10) % 5).replace(".", ",") + "</p>");
+		pElementRating.getStyle().setColor("#DB0134");
+		ratingStar.getElement().appendChild(pElementRating);
+		
+		titleBar.add(ratingStar);
 		
 		this.main.add(titleBar);
 		
@@ -70,55 +84,58 @@ public class MealGroupWidget implements IsWidget {
 			// meal contains cow meat
 			List<FoodAdditive> foodAdditiveNumbers = meal.getFoodAdditiveNumbersAsEnum();
 			if (foodAdditiveNumbers != null && foodAdditiveNumbers.size() > 0) {
-				System.out.println(foodAdditiveNumbers.get(0));
 				
-				if (foodAdditiveNumbers.contains(FoodAdditive.ENTHAELT_RINDFLEISCH)) {
-					LayoutPanel cow = new LayoutPanel();
-					cow.getElement().addClassName("meal-cow");
-					mealModifiers.add(cow);
+				for (FoodAdditive fa : foodAdditiveNumbers) {
+					if (fa.equals(FoodAdditive.ENTHAELT_RINDFLEISCH)) {
+						LayoutPanel cow = new LayoutPanel();
+						cow.getElement().addClassName("meal-cow");
+						mealModifiers.add(cow);
+					}
+					
+					// meal contains cow welfare meat
+					if (fa.equals(FoodAdditive.ENTHAELT_RINDFLEISCH_ARTGERECHT)) {
+						LayoutPanel cow = new LayoutPanel();
+						cow.getElement().addClassName("meal-cow-welfare");
+						mealModifiers.add(cow);
+					}
+					
+					// meal contains pig meat
+					if (fa.equals(FoodAdditive.ENTHAELT_SCHWEINEFLEISCH)) {
+						LayoutPanel pig = new LayoutPanel();
+						pig.getElement().addClassName("meal-pig");
+						mealModifiers.add(pig);
+					}
+					
+					// vegetarian meal
+					if (fa.equals(FoodAdditive.VEGETARISCHES_GERICHT)) {
+						LayoutPanel vegetarian = new LayoutPanel();
+						vegetarian.getElement().addClassName("meal-vegetarian");
+						mealModifiers.add(vegetarian);
+					}
+					
+					// vegan meal
+					if (fa.equals(FoodAdditive.VEGANES_GERICHT)) {
+						LayoutPanel vegan = new LayoutPanel();
+						vegan.getElement().addClassName("meal-vegan");
+						mealModifiers.add(vegan);
+					}
+					
+					// msc meal
+					if (fa.equals(FoodAdditive.MSC_ZERTIFIZIERTER_FISCH)) {
+						LayoutPanel msc = new LayoutPanel();
+						msc.getElement().addClassName("meal-msc");
+						mealModifiers.add(msc);
+					}
+					
+					// bio meal
+					if (fa.equals(FoodAdditive.KONTROLLIERTER_BIO_ANBAU)) {
+						LayoutPanel bio = new LayoutPanel();
+						bio.getElement().addClassName("meal-bio");
+						mealModifiers.add(bio);
+					}
 				}
 				
-				// meal contains cow welfare meat
-				if (meal.getFoodAdditiveNumbers().contains(FoodAdditive.ENTHAELT_RINDFLEISCH_ARTGERECHT)) {
-					LayoutPanel cow = new LayoutPanel();
-					cow.getElement().addClassName("meal-cow-welfare");
-					mealModifiers.add(cow);
-				}
 				
-				// meal contains pig meat
-				if (meal.getFoodAdditiveNumbers().contains(FoodAdditive.ENTHAELT_SCHWEINEFLEISCH)) {
-					LayoutPanel pig = new LayoutPanel();
-					pig.getElement().addClassName("meal-pig");
-					mealModifiers.add(pig);
-				}
-				
-				// vegetarian meal
-				if (meal.getFoodAdditiveNumbers().contains(FoodAdditive.VEGETARISCHES_GERICHT)) {
-					LayoutPanel vegetarian = new LayoutPanel();
-					vegetarian.getElement().addClassName("meal-vegetarian");
-					mealModifiers.add(vegetarian);
-				}
-				
-				// vegan meal
-				if (meal.getFoodAdditiveNumbers().contains(FoodAdditive.VEGANES_GERICHT)) {
-					LayoutPanel vegan = new LayoutPanel();
-					vegan.getElement().addClassName("meal-vegan");
-					mealModifiers.add(vegan);
-				}
-				
-				// msc meal
-				if (meal.getFoodAdditiveNumbers().contains(FoodAdditive.MSC_ZERTIFIZIERTER_FISCH)) {
-					LayoutPanel msc = new LayoutPanel();
-					msc.getElement().addClassName("meal-msc");
-					mealModifiers.add(msc);
-				}
-				
-				// bio meal
-				if (meal.getFoodAdditiveNumbers().contains(FoodAdditive.KONTROLLIERTER_BIO_ANBAU)) {
-					LayoutPanel bio = new LayoutPanel();
-					bio.getElement().addClassName("meal-bio");
-					mealModifiers.add(bio);
-				}
 			}
 
 			line.add(mealModifiers);		
@@ -142,7 +159,7 @@ public class MealGroupWidget implements IsWidget {
 	}
 	
 	@Override
-	public Widget asWidget() {
+	public Widget asWidget() {		
 		return this.main;
 	}
 	

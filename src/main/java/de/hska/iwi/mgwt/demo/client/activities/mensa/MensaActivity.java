@@ -1,7 +1,5 @@
 package de.hska.iwi.mgwt.demo.client.activities.mensa;
 
-import java.util.List;
-
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
@@ -9,7 +7,6 @@ import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
 import de.hska.iwi.mgwt.demo.backend.BackendFactory;
 import de.hska.iwi.mgwt.demo.backend.Intranet;
 import de.hska.iwi.mgwt.demo.backend.constants.Canteen;
-import de.hska.iwi.mgwt.demo.backend.model.MealGroup;
 import de.hska.iwi.mgwt.demo.backend.model.MensaMenu;
 import de.hska.iwi.mgwt.demo.client.ClientFactory;
 import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
@@ -36,9 +33,6 @@ public class MensaActivity extends MGWTAbstractActivity implements ObserverActiv
 	@Override
 	public void update(MensaMenu arg) {
 		this.clientFactory.getMensaView().setMensaMenu(arg);
-		MealGroup group = arg.getMealGroups().get(0);
-		
-		List<Integer> food = group.getMeals().get(0).getFoodAdditiveNumbers();
 	}
 
 }

@@ -251,13 +251,14 @@ body {
 
 .mealGroup-title {
 	color: #DB0134;
-	font-size: 1.25em;
-	line-height: 2em;
+	font-size: 1.5em;
+	line-height: 2.5em;
 	text-align: left;
+	vertical-align: bottom;
 }
 
 .mealGroup-rating {
-	line-height: 2em;
+	line-height: 2.5em;
 }
 
 .meal-name {
@@ -328,6 +329,7 @@ body {
 .meal-price{
 	color: #DB0134;
 	text-align: right;
+	min-width: 55px;
 }
 
 /* Shake content */
