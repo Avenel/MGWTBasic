@@ -8,7 +8,7 @@ public interface MensaMenu {
 
 	public String getName();
 	
-	public List<MealGroup> getMealGroup();
+	public List<MealGroup> getMealGroups();
 	
 	public CanteenStatus getMensaStatus();
 	

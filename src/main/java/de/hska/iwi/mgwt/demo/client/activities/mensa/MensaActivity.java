@@ -25,7 +25,7 @@ public class MensaActivity extends MGWTAbstractActivity implements ObserverActiv
 		
 		// Get news of all courses
 		Intranet intranetConn = (Intranet) BackendFactory.createIntranetInstance();
-		intranetConn.getMensaMenu(this, Canteen.MOLTKE, "2014-02-12");
+		intranetConn.getMensaMenu(this, Canteen.MOLTKE, "2014-02-14");
 		
 		panel.setWidget(view);
 	}

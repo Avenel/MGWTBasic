@@ -1,6 +1,7 @@
 package de.hska.iwi.mgwt.demo.client.activities.mensa;
 
 import java.util.Date;
+import java.util.List;
 
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.ui.Label;
@@ -24,6 +25,8 @@ public class MensaViewImpl implements MensaView {
 	
 	private MensaMenu mensaMenu;
 
+	private Carousel carousel;
+
 	@Override
 	public Widget asWidget() {
 		this.main = new LayoutPanel();
@@ -36,9 +39,13 @@ public class MensaViewImpl implements MensaView {
 		headerPanel.setLeftWidget(backButton.asWidget());
 		
 		// Caroussel: for each day a page on a scrollpanel
-		Carousel carousel = new Carousel();
+		carousel = new Carousel();
+		main.add(carousel);
 		
-//		for (MensaMenu mensaMenu : this.mensaMenus) {
+		return this.main;
+	}
+	
+	private void generateMensaMenueView(MensaMenu mensa) {
 		if (mensaMenu != null) {
 			ScrollPanel scrollPanel = new ScrollPanel();
 			
@@ -53,12 +60,14 @@ public class MensaViewImpl implements MensaView {
 			date.setText(DateTimeFormat.getFormat("EEE dd.mm").format(parsedDate));
 			mealGroups.add(date);
 			
-			for (MealGroup mealGroup : mensaMenu.getMealGroup()) {
+			List<MealGroup> meals = mensaMenu.getMealGroups();
+			
+			for (MealGroup mealGroup : meals) {
 				MealGroupWidget mw = new MealGroupWidget(mealGroup);
 				mealGroups.add(mw);
 				
 				// add separator
-				if (mealGroup != mensaMenu.getMealGroup().get(mensaMenu.getMealGroup().size()-1)) {
+				if (mealGroup != mensaMenu.getMealGroups().get(mensaMenu.getMealGroups().size()-1)) {
 					LayoutPanel separator = new LayoutPanel();
 					separator.getElement().addClassName("mealGroup-separator");
 					mealGroups.add(separator);
@@ -66,22 +75,14 @@ public class MensaViewImpl implements MensaView {
 			}
 			
 			scrollPanel.add(mealGroups);
-			carousel.add(scrollPanel);
+			this.carousel.add(scrollPanel);
 		}
-//		} for Schleife
-		
-		main.add(carousel);
-		
-		return this.main;
 	}
-
-//	public void setMensaMenu(List<MensaMenu> mensaMenus) {
-//		this.mensaMenus = mensaMenus;
-//	}
 	
 	public void setMensaMenu(MensaMenu mensa) {
 		this.mensaMenu = mensa;
-		System.out.println("meanu empfangen" + this.mensaMenu.getMealGroup().size());
+		System.out.println("meanu empfangen");
+		generateMensaMenueView(mensa);
 	}
 
 }

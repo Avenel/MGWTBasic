@@ -1,5 +1,7 @@
 package de.hska.iwi.mgwt.demo.client.widget;
 
+import java.util.List;
+
 import org.cobogw.gwt.user.client.ui.Rating;
 
 import com.google.gwt.i18n.client.HasDirection.Direction;
@@ -15,6 +17,7 @@ import com.google.gwt.user.client.ui.Widget;
 
 import de.hska.iwi.mgwt.demo.backend.autobean.Meal;
 import de.hska.iwi.mgwt.demo.backend.autobean.MealGroup;
+import de.hska.iwi.mgwt.demo.backend.constants.FoodAdditive;
 
 /**
  * This widget represents a Mensa MealGroup.
@@ -65,52 +68,57 @@ public class MealGroupWidget implements IsWidget {
 			mealModifiers.getElement().addClassName("meal-modifiers-container");
 			
 			// meal contains cow meat
-			if (meal.getFoodAdditiveNumbers().contains(93)) {
-				LayoutPanel cow = new LayoutPanel();
-				cow.getElement().addClassName("meal-cow");
-				mealModifiers.add(cow);
-			}
-			
-			// meal contains cow welfare meat
-			if (meal.getFoodAdditiveNumbers().contains(94)) {
-				LayoutPanel cow = new LayoutPanel();
-				cow.getElement().addClassName("meal-cow-welfare");
-				mealModifiers.add(cow);
-			}
-			
-			// meal contains pig meat
-			if (meal.getFoodAdditiveNumbers().contains(95)) {
-				LayoutPanel pig = new LayoutPanel();
-				pig.getElement().addClassName("meal-pig");
-				mealModifiers.add(pig);
-			}
-			
-			// vegetarian meal
-			if (meal.getFoodAdditiveNumbers().contains(96)) {
-				LayoutPanel vegetarian = new LayoutPanel();
-				vegetarian.getElement().addClassName("meal-vegetarian");
-				mealModifiers.add(vegetarian);
-			}
-			
-			// vegan meal
-			if (meal.getFoodAdditiveNumbers().contains(97)) {
-				LayoutPanel vegan = new LayoutPanel();
-				vegan.getElement().addClassName("meal-vegan");
-				mealModifiers.add(vegan);
-			}
-			
-			// msc meal
-			if (meal.getFoodAdditiveNumbers().contains(98)) {
-				LayoutPanel msc = new LayoutPanel();
-				msc.getElement().addClassName("meal-msc");
-				mealModifiers.add(msc);
-			}
-			
-			// bio meal
-			if (meal.getFoodAdditiveNumbers().contains(99)) {
-				LayoutPanel bio = new LayoutPanel();
-				bio.getElement().addClassName("meal-bio");
-				mealModifiers.add(bio);
+			List<FoodAdditive> foodAdditiveNumbers = meal.getFoodAdditiveNumbers();
+			if (foodAdditiveNumbers != null && foodAdditiveNumbers.size() > 0) {
+				System.out.println(foodAdditiveNumbers.get(0));
+				
+				if (foodAdditiveNumbers.contains(FoodAdditive.ENTHAELT_RINDFLEISCH)) {
+					LayoutPanel cow = new LayoutPanel();
+					cow.getElement().addClassName("meal-cow");
+					mealModifiers.add(cow);
+				}
+				
+				// meal contains cow welfare meat
+				if (meal.getFoodAdditiveNumbers().contains(FoodAdditive.ENTHAELT_RINDFLEISCH_ARTGERECHT)) {
+					LayoutPanel cow = new LayoutPanel();
+					cow.getElement().addClassName("meal-cow-welfare");
+					mealModifiers.add(cow);
+				}
+				
+				// meal contains pig meat
+				if (meal.getFoodAdditiveNumbers().contains(FoodAdditive.ENTHAELT_SCHWEINEFLEISCH)) {
+					LayoutPanel pig = new LayoutPanel();
+					pig.getElement().addClassName("meal-pig");
+					mealModifiers.add(pig);
+				}
+				
+				// vegetarian meal
+				if (meal.getFoodAdditiveNumbers().contains(FoodAdditive.VEGETARISCHES_GERICHT)) {
+					LayoutPanel vegetarian = new LayoutPanel();
+					vegetarian.getElement().addClassName("meal-vegetarian");
+					mealModifiers.add(vegetarian);
+				}
+				
+				// vegan meal
+				if (meal.getFoodAdditiveNumbers().contains(FoodAdditive.VEGANES_GERICHT)) {
+					LayoutPanel vegan = new LayoutPanel();
+					vegan.getElement().addClassName("meal-vegan");
+					mealModifiers.add(vegan);
+				}
+				
+				// msc meal
+				if (meal.getFoodAdditiveNumbers().contains(FoodAdditive.MSC_ZERTIFIZIERTER_FISCH)) {
+					LayoutPanel msc = new LayoutPanel();
+					msc.getElement().addClassName("meal-msc");
+					mealModifiers.add(msc);
+				}
+				
+				// bio meal
+				if (meal.getFoodAdditiveNumbers().contains(FoodAdditive.KONTROLLIERTER_BIO_ANBAU)) {
+					LayoutPanel bio = new LayoutPanel();
+					bio.getElement().addClassName("meal-bio");
+					mealModifiers.add(bio);
+				}
 			}
 
 			line.add(mealModifiers);		

@@ -41,7 +41,6 @@ public class ProcessDetailPlace extends Place implements PlaceJSONObject {
 		jsonString += "}";
 		
 		JSONValue jsonValue = JSONParser.parseStrict(jsonString);
-		System.out.println(jsonValue);
 		return jsonValue;
 	}
 	

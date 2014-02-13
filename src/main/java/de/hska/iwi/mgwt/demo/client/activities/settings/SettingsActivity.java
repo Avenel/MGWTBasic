@@ -31,8 +31,6 @@ public class SettingsActivity extends MGWTAbstractActivity {
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
 		List<Widget> settingItemWidgets = new ArrayList<Widget>();
 		
-		System.out.println(id);
-		
 		for (SettingItem item : SettingStorage.getSettingItems(SettingMenueName.getKey(id))) {
 	    	if (item.getInputType().equals(InputType.MENUELINK)) {
 	    		settingItemWidgets.add(new SettingItemMenuLink(item.getFontAwesomeIcon(), SettingMenueName.getKey(item.getValue()), 
@@ -53,7 +51,6 @@ public class SettingsActivity extends MGWTAbstractActivity {
 	    	}
 	    }
 		
-		System.out.println(settingItemWidgets.size());
 		SettingsView view = this.clientFactory.getSettingsView();
 		view.setSettingItems(settingItemWidgets);
 		
