@@ -128,11 +128,10 @@ public class Meal implements IMeal {
 	
 	public List<FoodAdditive> getFoodAdditiveNumbersAsEnum() {
 		ArrayList<FoodAdditive> result = new ArrayList<FoodAdditive>();
-		for (int i : this.foodAdditiveNumbers) {
-			
+		for (int number : this.foodAdditiveNumbers) {
+			result.add(FoodAdditive.getEnumForKey(number));
 		}
 		return result;
-		
 	}
 
 }
