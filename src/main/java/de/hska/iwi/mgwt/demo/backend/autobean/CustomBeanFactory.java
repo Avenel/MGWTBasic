@@ -14,5 +14,6 @@ public interface CustomBeanFactory extends AutoBeanFactory {
 	
 	AutoBean<IWorkflowInformation> workflowInformation();
 	
-	
+	AutoBean<ITutorials> tutorials();
+	AutoBean<ITutorial> tutorial();
 }

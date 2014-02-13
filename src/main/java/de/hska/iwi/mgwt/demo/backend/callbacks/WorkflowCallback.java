@@ -1,7 +1,5 @@
 package de.hska.iwi.mgwt.demo.backend.callbacks;
 
-import com.google.gwt.http.client.Request;
-import com.google.gwt.http.client.Response;
 import com.google.web.bindery.autobean.shared.AutoBean;
 import com.google.web.bindery.autobean.shared.AutoBeanCodex;
 
@@ -16,20 +14,12 @@ public class WorkflowCallback extends AbstractRequestCallback<ObserverActivity<W
 	}
 
 	@Override
-	public void onResponseReceived(Request request, Response response) {
-		if (response.getStatusCode() == 200) {
-			AutoBean<IWorkflowInformation> bean = AutoBeanCodex.decode(factory, IWorkflowInformation.class, response.getText());
-			
-			WorkflowInformation info = new WorkflowInformation(bean.as());
-			
-			observer.update(info);
-		}
-	}
-
-	@Override
-	public void onError(Request request, Throwable exception) {
-		// TODO Auto-generated method stub
+	protected void handleJson(String json) {
+		AutoBean<IWorkflowInformation> bean = AutoBeanCodex.decode(factory, IWorkflowInformation.class, json);
 		
+		WorkflowInformation info = new WorkflowInformation(bean.as());
+		
+		observer.update(info);
 	}
 
 }

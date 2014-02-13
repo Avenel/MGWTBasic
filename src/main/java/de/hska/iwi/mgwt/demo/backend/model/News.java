@@ -22,6 +22,20 @@ public class News implements INews {
 	private List<String> links;
 	
 	private NewsType type;
+	
+	public News() {
+		
+	}
+	
+	public News(INews currNews) {
+		this.content = currNews.getContent();
+		this.courseOfStudies = currNews.getCourseOfStudies();
+		this.id = currNews.getId();
+		this.links = currNews.getLinks();
+		this.subTitle = currNews.getSubTitle();
+		this.title = currNews.getTitle();
+		this.type = currNews.getType();
+	}
 
 	/**
 	 * @return the id

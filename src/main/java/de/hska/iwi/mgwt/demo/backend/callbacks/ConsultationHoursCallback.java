@@ -26,4 +26,10 @@ public class ConsultationHoursCallback extends AbstractRequestCallback<ObserverA
 		
 	}
 
+	@Override
+	protected void handleJson(String json) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

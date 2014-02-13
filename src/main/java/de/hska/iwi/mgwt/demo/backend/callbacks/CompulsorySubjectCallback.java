@@ -25,6 +25,12 @@ public class CompulsorySubjectCallback extends AbstractRequestCallback<ObserverA
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	protected void handleJson(String json) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 }

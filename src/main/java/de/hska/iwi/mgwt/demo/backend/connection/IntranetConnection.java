@@ -18,8 +18,8 @@ import de.hska.iwi.mgwt.demo.backend.constants.Course;
 import de.hska.iwi.mgwt.demo.backend.constants.WorkflowEvent;
 import de.hska.iwi.mgwt.demo.backend.model.CompulsoryOptionalSubjects;
 import de.hska.iwi.mgwt.demo.backend.model.ConsultationHour;
-import de.hska.iwi.mgwt.demo.backend.model.CourseTutorial;
 import de.hska.iwi.mgwt.demo.backend.model.News;
+import de.hska.iwi.mgwt.demo.backend.model.Tutorials;
 import de.hska.iwi.mgwt.demo.backend.model.WorkflowInformation;
 import de.hska.iwi.mgwt.demo.backend.util.UrlBuilderUtil;
 import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
@@ -27,7 +27,7 @@ import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
 public class IntranetConnection implements Intranet {
 
 	@Override
-	public void getTutorials(ObserverActivity<List<CourseTutorial>> observer, Course course) {
+	public void getTutorials(ObserverActivity<Tutorials> observer, Course course) {
 		if (observer == null || course == null) {
 			throw new IllegalArgumentException("Parameter must not be null");
 		}
