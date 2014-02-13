@@ -2,15 +2,15 @@ package de.hska.iwi.mgwt.demo.backend.autobean;
 
 import java.util.List;
 
-public interface MealGroup {
+public interface IMealGroup {
 
 	public String getTitle();
 
 	public void setTitle(String title);
 
-	public List<Meal> getMeals();
+	public List<IMeal> getMeals();
 
-	public void setMeals(List<Meal> meals);
+	public void setMeals(List<IMeal> meals);
 
 	public String getMessage();
 

@@ -7,9 +7,9 @@ import de.hska.iwi.mgwt.demo.backend.autobean.IWorkflowInformation;
 import de.hska.iwi.mgwt.demo.backend.model.WorkflowInformation;
 import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
 
-public class WorkflowCallback extends AbstractRequestCallback<ObserverActivity<WorkflowInformation>>{
+public class WorkflowInformationCallback extends AbstractRequestCallback<ObserverActivity<WorkflowInformation>>{
 
-	public WorkflowCallback(ObserverActivity<WorkflowInformation> observer) {
+	public WorkflowInformationCallback(ObserverActivity<WorkflowInformation> observer) {
 		super(observer);
 	}
 

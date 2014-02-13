@@ -3,28 +3,32 @@ package de.hska.iwi.mgwt.demo.backend.constants;
 import com.google.web.bindery.autobean.shared.AutoBean.PropertyName;
 
 public enum WorkflowRoles {
-	@PropertyName("A")
+//	@PropertyName("A")
 	APPLICATION_THROUGH_STUDENT('A', "Anmeldung durch einen Studierenden"),
-	@PropertyName("p")
+//	@PropertyName("p")
 	PRIMARY_ASSESSOR('p', "Erstgutachter muss es nur zur Kenntniss nehmen"),
-	@PropertyName("P")
+//	@PropertyName("P")
 	PRIMARY_ASSESSOR_APPROVAL('P', "Erstgutachter muss zustimmen"),
-	@PropertyName("s")
+//	@PropertyName("s")
 	SECONDARY_ASSESSOR('s', "Zweitgutachter muss es nur zur Kenntniss nehmen"),
-	@PropertyName("S")
+//	@PropertyName("S")
 	SECONDARY_ASSESSOR_APPROVAL('S', "Zweitgutachter muss zustimmen"),
-	@PropertyName("o")
+//	@PropertyName("o")
 	SECRETARIAT('o', "Sekretariat muss es nur zur Kenntniss nehmen"),
-	@PropertyName("O")
+//	@PropertyName("O")
 	SECRETARIAT_APPROVAL('O', "Sekretariat muss zustimmen"),
-	@PropertyName("h")
+//	@PropertyName("h")
 	HEAD_OF_EVENT('h', "Leiter der Veranstaltung muss es nur zur Kenntniss nehmen"),
-	@PropertyName("H")
+//	@PropertyName("H")
 	HEAD_OF_EVENT_APPROVAL('H', "Leiter der Veranstaltung muss zustimmen"),
-	@PropertyName("U")
+//	@PropertyName("U")
 	UPLOAD_OF_RESULTS('U', "Hochladen von Ergebnissen"),
-	@PropertyName("N")
-	MARK_CAN_SEEN_BY_STUDENT('N', "Note kann vom Studierenden eingesehen werden");
+//	@PropertyName("N")
+	MARK_CAN_SEEN_BY_STUDENT('N', "Note kann vom Studierenden eingesehen werden"),
+//	@PropertyName("D")
+//	APPLICATION_DECLINED('D', "Die Anmeldung wurde abgelehnt."),
+//	@PropertyName("-")
+	DEFAULT('-', "No more information");
 	
 	private char key;
 	
@@ -51,6 +55,11 @@ public enum WorkflowRoles {
 			}
 		}
 		return APPLICATION_THROUGH_STUDENT;
+	}
+	
+	@Override
+	public String toString() {
+		return this.description;
 	}
 
 }

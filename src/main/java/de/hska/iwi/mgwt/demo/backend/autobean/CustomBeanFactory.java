@@ -8,9 +8,9 @@ public interface CustomBeanFactory extends AutoBeanFactory {
 	AutoBean<INewsBoard> newsBoard();
 	AutoBean<INews> news();
 	
-	AutoBean<MensaMenu> mensaMenu();
-	AutoBean<MealGroup> mealGroup();
-	AutoBean<Meal> meal();
+	AutoBean<IMensaMenu> mensaMenu();
+	AutoBean<IMealGroup> mealGroup();
+	AutoBean<IMeal> meal();
 	
 	AutoBean<IWorkflowInformation> workflowInformation();
 	

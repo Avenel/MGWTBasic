@@ -3,7 +3,8 @@ package de.hska.iwi.mgwt.demo.backend.callbacks;
 import com.google.web.bindery.autobean.shared.AutoBean;
 import com.google.web.bindery.autobean.shared.AutoBeanCodex;
 
-import de.hska.iwi.mgwt.demo.backend.autobean.MensaMenu;
+import de.hska.iwi.mgwt.demo.backend.autobean.IMensaMenu;
+import de.hska.iwi.mgwt.demo.backend.model.MensaMenu;
 import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
 
 public class MensaMenuCallback extends AbstractRequestCallback<ObserverActivity<MensaMenu>> {
@@ -12,27 +13,11 @@ public class MensaMenuCallback extends AbstractRequestCallback<ObserverActivity<
 		super(observer);
 	}
 
-//	@Override
-//	public void onResponseReceived(Request request, Response response) {
-//		if (response.getStatusCode() == 200) {
-//			AutoBean<MensaMenu> bean = AutoBeanCodex.decode(factory, MensaMenu.class, response.getText());
-//			
-//			observer.update(bean.as());
-//		}
-//		
-//	}
-//
-//	@Override
-//	public void onError(Request request, Throwable exception) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-
 	@Override
 	protected void handleJson(String json) {
-		AutoBean<MensaMenu> bean = AutoBeanCodex.decode(factory, MensaMenu.class, json);
+		AutoBean<IMensaMenu> bean = AutoBeanCodex.decode(factory, IMensaMenu.class, json);
 		
-		observer.update(bean.as());
+		observer.update(new MensaMenu(bean.as()));
 		
 	}
 

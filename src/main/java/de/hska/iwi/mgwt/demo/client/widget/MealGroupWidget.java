@@ -15,9 +15,9 @@ import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-import de.hska.iwi.mgwt.demo.backend.autobean.Meal;
-import de.hska.iwi.mgwt.demo.backend.autobean.MealGroup;
 import de.hska.iwi.mgwt.demo.backend.constants.FoodAdditive;
+import de.hska.iwi.mgwt.demo.backend.model.Meal;
+import de.hska.iwi.mgwt.demo.backend.model.MealGroup;
 
 /**
  * This widget represents a Mensa MealGroup.
@@ -68,7 +68,7 @@ public class MealGroupWidget implements IsWidget {
 			mealModifiers.getElement().addClassName("meal-modifiers-container");
 			
 			// meal contains cow meat
-			List<FoodAdditive> foodAdditiveNumbers = meal.getFoodAdditiveNumbers();
+			List<FoodAdditive> foodAdditiveNumbers = meal.getFoodAdditiveNumbersAsEnum();
 			if (foodAdditiveNumbers != null && foodAdditiveNumbers.size() > 0) {
 				System.out.println(foodAdditiveNumbers.get(0));
 				

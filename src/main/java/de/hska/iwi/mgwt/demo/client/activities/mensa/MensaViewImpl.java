@@ -12,8 +12,8 @@ import com.googlecode.mgwt.ui.client.widget.HeaderPanel;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
 import com.googlecode.mgwt.ui.client.widget.ScrollPanel;
 
-import de.hska.iwi.mgwt.demo.backend.autobean.MealGroup;
-import de.hska.iwi.mgwt.demo.backend.autobean.MensaMenu;
+import de.hska.iwi.mgwt.demo.backend.model.MealGroup;
+import de.hska.iwi.mgwt.demo.backend.model.MensaMenu;
 import de.hska.iwi.mgwt.demo.client.widget.HeaderBackButton;
 import de.hska.iwi.mgwt.demo.client.widget.MealGroupWidget;
 

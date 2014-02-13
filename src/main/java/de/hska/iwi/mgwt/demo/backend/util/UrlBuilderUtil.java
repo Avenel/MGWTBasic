@@ -8,6 +8,8 @@ public class UrlBuilderUtil {
 	
 	private static final String BASE_URL = "http://www.iwi.hs-karlsruhe.de/Intranetaccess/REST";
 	
+	private static final String BASE_URL_SECURE = "https://www.iwi.hs-karlsruhe.de/Intranetaccess/REST";
+	
 	private static final String TUTORIALS_ALL = "/tutorials/";
 	
 	private static final String CUMPOLSORY = "/compulsoryoptionalsubjects/";
@@ -22,7 +24,7 @@ public class UrlBuilderUtil {
 	
 	private static final String WORKFLOW_INFORMATION = "/application/workflow/";
 	
-	private static final String WORKFLOW_PROGRESS = "/application/state/<veranst>";
+	private static final String WORKFLOW_STATUS = "/application/state/";
 	
 	// Complete url Intranetaccess/REST/canteen/<id>/<date>
 	private static final String MENSA_MENU = "/canteen/";
@@ -64,6 +66,10 @@ public class UrlBuilderUtil {
 	
 	public static String getWorkflowInformationUrl(WorkflowEvent workflowEvent) {
 		return BASE_URL + WORKFLOW_INFORMATION + workflowEvent.getUrlKey();
+	}
+	
+	public static String getWorkflowStatusUrl(WorkflowEvent workflowEvent) {
+		return BASE_URL_SECURE + WORKFLOW_STATUS + workflowEvent.getUrlKey();
 	}
 
 }

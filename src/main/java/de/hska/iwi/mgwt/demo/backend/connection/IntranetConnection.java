@@ -7,21 +7,23 @@ import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.URL;
 
 import de.hska.iwi.mgwt.demo.backend.Intranet;
-import de.hska.iwi.mgwt.demo.backend.autobean.MensaMenu;
 import de.hska.iwi.mgwt.demo.backend.callbacks.CompulsorySubjectCallback;
 import de.hska.iwi.mgwt.demo.backend.callbacks.MensaMenuCallback;
 import de.hska.iwi.mgwt.demo.backend.callbacks.NewsBoardCallback;
 import de.hska.iwi.mgwt.demo.backend.callbacks.TutorialsCallback;
-import de.hska.iwi.mgwt.demo.backend.callbacks.WorkflowCallback;
+import de.hska.iwi.mgwt.demo.backend.callbacks.WorkflowInformationCallback;
 import de.hska.iwi.mgwt.demo.backend.constants.Canteen;
 import de.hska.iwi.mgwt.demo.backend.constants.Course;
 import de.hska.iwi.mgwt.demo.backend.constants.WorkflowEvent;
 import de.hska.iwi.mgwt.demo.backend.model.CompulsoryOptionalSubjects;
 import de.hska.iwi.mgwt.demo.backend.model.ConsultationHour;
+import de.hska.iwi.mgwt.demo.backend.model.MensaMenu;
 import de.hska.iwi.mgwt.demo.backend.model.News;
 import de.hska.iwi.mgwt.demo.backend.model.Tutorials;
 import de.hska.iwi.mgwt.demo.backend.model.WorkflowInformation;
+import de.hska.iwi.mgwt.demo.backend.model.WorkflowStatus;
 import de.hska.iwi.mgwt.demo.backend.util.UrlBuilderUtil;
+import de.hska.iwi.mgwt.demo.backend.util.UserCredentials;
 import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
 
 public class IntranetConnection implements Intranet {
@@ -124,7 +126,7 @@ public class IntranetConnection implements Intranet {
 		
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, URL.encode(url));
 		
-		WorkflowCallback cb = new WorkflowCallback(observer);
+		WorkflowInformationCallback cb = new WorkflowInformationCallback(observer);
 		
 		try {
 			builder.sendRequest(null, cb);
@@ -142,6 +144,13 @@ public class IntranetConnection implements Intranet {
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public void getWorkflowStatus(ObserverActivity<WorkflowStatus> observer,
+			WorkflowEvent event, UserCredentials credentials) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

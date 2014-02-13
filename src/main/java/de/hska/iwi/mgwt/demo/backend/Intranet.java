@@ -2,15 +2,17 @@ package de.hska.iwi.mgwt.demo.backend;
 
 import java.util.List;
 
-import de.hska.iwi.mgwt.demo.backend.autobean.MensaMenu;
 import de.hska.iwi.mgwt.demo.backend.constants.Canteen;
 import de.hska.iwi.mgwt.demo.backend.constants.Course;
 import de.hska.iwi.mgwt.demo.backend.constants.WorkflowEvent;
 import de.hska.iwi.mgwt.demo.backend.model.CompulsoryOptionalSubjects;
 import de.hska.iwi.mgwt.demo.backend.model.ConsultationHour;
+import de.hska.iwi.mgwt.demo.backend.model.MensaMenu;
 import de.hska.iwi.mgwt.demo.backend.model.News;
 import de.hska.iwi.mgwt.demo.backend.model.Tutorials;
 import de.hska.iwi.mgwt.demo.backend.model.WorkflowInformation;
+import de.hska.iwi.mgwt.demo.backend.model.WorkflowStatus;
+import de.hska.iwi.mgwt.demo.backend.util.UserCredentials;
 import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
 
 public interface Intranet {
@@ -26,5 +28,7 @@ public interface Intranet {
 	public void getMensaMenu(ObserverActivity<MensaMenu> observer, Canteen canteen, String date) throws IllegalArgumentException;
 	
 	public void getWorkflowInformation(ObserverActivity<WorkflowInformation> observer, WorkflowEvent event);
+	
+	public void getWorkflowStatus(ObserverActivity<WorkflowStatus> observer, WorkflowEvent event, UserCredentials credentials);
 
 }
