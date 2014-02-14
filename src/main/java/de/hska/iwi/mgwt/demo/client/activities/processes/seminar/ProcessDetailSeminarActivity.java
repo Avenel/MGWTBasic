@@ -7,13 +7,20 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
 
+import de.hska.iwi.mgwt.demo.backend.BackendFactory;
+import de.hska.iwi.mgwt.demo.backend.Intranet;
+import de.hska.iwi.mgwt.demo.backend.connection.IntranetConnection;
+import de.hska.iwi.mgwt.demo.backend.constants.WorkflowEvent;
+import de.hska.iwi.mgwt.demo.backend.constants.WorkflowPhase;
+import de.hska.iwi.mgwt.demo.backend.model.WorkflowInformation;
 import de.hska.iwi.mgwt.demo.client.ClientFactory;
+import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
 import de.hska.iwi.mgwt.demo.client.activities.processes.ProcessDetailView;
 import de.hska.iwi.mgwt.demo.client.model.ProcessStep;
 import de.hska.iwi.mgwt.demo.client.model.Seminar;
 import de.hska.iwi.mgwt.demo.client.model.SeminarTempStorage;
 
-public class ProcessDetailSeminarActivity extends MGWTAbstractActivity {
+public class ProcessDetailSeminarActivity extends MGWTAbstractActivity implements ObserverActivity<WorkflowInformation> {
 
 	private ClientFactory clientFactory;
 	private ProcessDetailView view;
@@ -34,6 +41,9 @@ public class ProcessDetailSeminarActivity extends MGWTAbstractActivity {
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
 
 		seminar = SeminarTempStorage.getSeminarList().get(Integer.parseInt(id));
+		Intranet intranetConn = (Intranet) BackendFactory.createIntranetInstance();
+		//TODO Case if Student is master or bachelor. In this Case student is always master
+		intranetConn.getWorkflowInformation(this, WorkflowEvent.SEMINAR_MASTER);
 		
 		
 		List<ProcessStep> steps= new ArrayList<ProcessStep>();
@@ -50,13 +60,22 @@ public class ProcessDetailSeminarActivity extends MGWTAbstractActivity {
 		view.setTitle(seminar.getTopic());
 		
 
-		//seminarEntries = SeminarStorage.getSeminarList();
+		
 		
 		view.render();
 		panel.setWidget(view);
 
 		
 
+	}
+	@Override
+	public void update(WorkflowInformation arg) {
+		List<ProcessStep> steps= new ArrayList<ProcessStep>();
+		int i = 0;
+		for(String s : arg.getWorkflow()){
+			steps.add(new ProcessStep(s, i++, "desc"));
+		}
+		view.render(steps);
 	}
 
 }

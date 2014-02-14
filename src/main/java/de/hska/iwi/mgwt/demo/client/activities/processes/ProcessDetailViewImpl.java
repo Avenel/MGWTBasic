@@ -85,6 +85,11 @@ public class ProcessDetailViewImpl implements ProcessDetailView {
 
 	@Override
 	public void render() {
+		processDetailOverviewWidget.render(this.steps);
+	}
+	
+	@Override
+	public void render(List<ProcessStep> steps){
 		processDetailOverviewWidget.render(steps);
 	}
 
