@@ -7,6 +7,7 @@ import com.google.gwt.dom.client.ParagraphElement;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.dom.client.Style.TextAlign;
 import com.google.gwt.dom.client.Style.Unit;
+import com.google.gwt.dom.client.Style.VerticalAlign;
 import com.google.gwt.i18n.client.HasDirection.Direction;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment.HorizontalAlignmentConstant;
@@ -16,6 +17,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
+import com.googlecode.mgwt.ui.client.widget.WidgetList;
 
 import de.hska.iwi.mgwt.demo.backend.constants.FoodAdditive;
 import de.hska.iwi.mgwt.demo.backend.model.Meal;
@@ -53,31 +55,9 @@ public class MealGroupWidget implements IsWidget {
 		this.title.getElement().addClassName("mealGroup-title");
 		
 		titleBar.add(title);
-		
-		// rating		
-		Label ratingStar = new Label();
-		ratingStar.getElement().getStyle().setFloat(Style.Float.RIGHT);
-		ratingStar.getElement().getStyle().setTextAlign(TextAlign.CENTER);
-		ParagraphElement pElementStar = Document.get().createPElement();
-		
-		double rating = (Math.random() * 10) % 5;
-		String fontAwesomeStar = "fa-star-half-o";
-		if (rating < 2) fontAwesomeStar = "fa-star-o";
-		if (rating > 2 && rating < 4.5) fontAwesomeStar = "fa-star-half-o";
-		if (rating > 4.5) fontAwesomeStar = "fa-star";
-		
-		pElementStar.setInnerHTML("<i class='fa " + fontAwesomeStar + " fa-2x' style='color:#DB0134;'></i>");
-		ratingStar.getElement().appendChild(pElementStar);
-		
-		NumberFormat fmt = NumberFormat.getFormat("0.0");
-		ParagraphElement pElementRating = Document.get().createPElement();
-		pElementRating.setInnerHTML("<p style='font-size:0.9em'>" + fmt.format(rating).replace(".", ",") + "</p>");
-		pElementRating.getStyle().setColor("#DB0134");
-		ratingStar.getElement().appendChild(pElementRating);
-		
-		titleBar.add(ratingStar);
-		
 		this.main.add(titleBar);
+		
+		WidgetList lineList = new WidgetList();
 		
 		// meals
 		for (Meal meal : this.mealGroup.getMeals()) {
@@ -87,6 +67,7 @@ public class MealGroupWidget implements IsWidget {
 			// icon for meal modifier (pig, cow, vegan, vegetarian)
 			HorizontalPanel mealModifiers = new HorizontalPanel();
 			mealModifiers.getElement().addClassName("meal-modifiers-container");
+			mealModifiers.getElement().getStyle().setVerticalAlign(VerticalAlign.MIDDLE);
 			
 			// meal contains cow meat
 			List<FoodAdditive> foodAdditiveNumbers = meal.getFoodAdditiveNumbersAsEnum();
@@ -145,23 +126,58 @@ public class MealGroupWidget implements IsWidget {
 				
 			}
 
-			line.add(mealModifiers);		
-			line.setCellWidth(line.getWidget(0), "40px");
-			line.setCellHorizontalAlignment(mealModifiers, HorizontalAlignmentConstant.startOf(Direction.RTL));
+			HorizontalPanel ratingNamePanel = new HorizontalPanel();
+			ratingNamePanel.getElement().getStyle().setFloat(Style.Float.LEFT);
 			
+			// rating		
+			Label ratingStar = new Label();
+			ratingStar.getElement().getStyle().setFloat(Style.Float.RIGHT);
+			ratingStar.getElement().getStyle().setTextAlign(TextAlign.CENTER);
+			ParagraphElement pElementStar = Document.get().createPElement();
+			
+			double rating = (Math.random() * 10) % 5;
+			String fontAwesomeStar = "fa-star-half-o";
+			if (rating < 2) fontAwesomeStar = "fa-star-o";
+			if (rating > 2 && rating < 4.5) fontAwesomeStar = "fa-star-half-o";
+			if (rating > 4.5) fontAwesomeStar = "fa-star";
+			
+			pElementStar.setInnerHTML("<i class='fa " + fontAwesomeStar + " fa-lg' style='color:#DB0134;'></i>");
+			ratingStar.getElement().appendChild(pElementStar);
+			
+			NumberFormat fmt = NumberFormat.getFormat("0.0");
+			ParagraphElement pElementRating = Document.get().createPElement();
+			pElementRating.setInnerHTML("<p style='font-size:0.9em; float:right;'>" + fmt.format(rating).replace(".", ",") + "</p>");
+			pElementRating.getStyle().setColor("#DB0134");
+			ratingStar.getElement().appendChild(pElementRating);
+			
+			ratingNamePanel.add(ratingStar);
+			
+			// name
 			Label name = new Label();
 			name.setText(meal.getName());
 			name.getElement().addClassName("meal-name");
-			line.add(name);
 			
+			ratingNamePanel.add(name);
+			line.add(ratingNamePanel);
+			
+			HorizontalPanel modifierPricePanel = new HorizontalPanel();
+			modifierPricePanel.getElement().getStyle().setFloat(Style.Float.RIGHT);
+			modifierPricePanel.getElement().getStyle().setLineHeight(2.5, Unit.EM);
+			
+			modifierPricePanel.add(mealModifiers);		
+			line.setCellHorizontalAlignment(mealModifiers, HorizontalAlignmentConstant.startOf(Direction.RTL));
+			
+			// price
 			Label price = new Label();
 			price.setText(NumberFormat.getFormat("#0.00").format(meal.getPriceStudent()).replace(".",  ",") + " €");
 			price.getElement().addClassName("meal-price");
-			line.add(price);
+			modifierPricePanel.add(price);
 			
-			main.add (line);
+			line.add(modifierPricePanel);			
+			lineList.add(line);
 		}
-			
+		
+		main.add(lineList);
 
 	}
 	

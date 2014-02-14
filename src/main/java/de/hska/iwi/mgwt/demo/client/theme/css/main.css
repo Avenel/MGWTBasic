@@ -214,6 +214,7 @@ body {
 	background-image: none !important;
 }
 
+/* Mensa View */
 
 .mealGroups-container {
 	margin: 0 auto;
@@ -263,11 +264,17 @@ body {
 
 .meal-name {
 	color: grey;
+	padding-left: 15px; 
+	line-height: 2.5em;	
 }
 
 
 .meal-modifiers-container {
-	
+	float: right;
+}
+
+tr > td {
+	vertical-align: middle!important;
 }
 
 .meal-pig {
