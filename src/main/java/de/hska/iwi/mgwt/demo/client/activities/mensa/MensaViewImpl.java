@@ -43,7 +43,7 @@ public class MensaViewImpl implements MensaView {
 		carousel.getElement().getStyle().setPaddingBottom(2, Unit.EM);
 		
 		Label loadingLabel = new Label();
-		loadingLabel.setText("Lade Menü...");
+		loadingLabel.setText("Lade MenÃ¼...");
 		loadingLabel.getElement().getStyle().setColor("#FEFEFE");
 		carousel.add(loadingLabel);
 		

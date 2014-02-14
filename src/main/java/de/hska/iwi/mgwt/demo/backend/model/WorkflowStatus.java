@@ -9,12 +9,12 @@ public class WorkflowStatus {
 	
 	private WorkflowPhase phase;
 	
-	private String phaseDescription;
+	private String phaseString;
 	
 	public WorkflowStatus(IWorkflowStatus iStatus) {
 		for (Map.Entry<WorkflowPhase, String> entry : iStatus.getWorkflowStatus().entrySet()) {
 			this.phase = entry.getKey();
-			this.phaseDescription = entry.getValue();
+			this.phaseString = entry.getValue();
 		}
 	}
 
@@ -24,11 +24,17 @@ public class WorkflowStatus {
 	public WorkflowPhase getPhase() {
 		return phase;
 	}
+	
+	public String getPhaseDescription() {
+		phase.parseStatus(phaseString);
+		return phase.getPhaseDescription();
+	}
 
 	/**
 	 * @return the phaseDescription
 	 */
-	public String getPhaseDescription() {
-		return phaseDescription;
+	public String getPhaseString() {
+		return phaseString;
 	}
+
 }

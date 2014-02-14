@@ -37,6 +37,13 @@ public enum DeclineReason {
 	public int getKey() {
 		return key;
 	}
+	
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
 
 	@Override
 	public String toString() {
