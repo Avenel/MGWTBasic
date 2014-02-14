@@ -15,9 +15,12 @@ public class WorkflowStatusCallback extends AbstractRequestCallback<ObserverActi
 
 	@Override
 	protected void handleJson(String json) {
+		String[] split = json.split(":");
+		String moep = "\"" + split[0] + "\": \"" + split[1] + "\"";
+		
 		AutoBean<IWorkflowStatus> bean = AutoBeanCodex.decode(factory, 
 															  IWorkflowStatus.class,
-															  "{\"workflowStatus\": " + json + "}");
+															  "{\"workflowStatus\": " + moep + "}");
 		observer.update(new WorkflowStatus(bean.as()));
 	}
 

@@ -17,16 +17,6 @@ public enum Course implements IURLParameterEnum {
 		this.key = key;
 	}
 	
-//	@JsonCreator
-//	public static Course create(String value) {
-//		for (Course course : Course.values()) {
-//			if (course.getUrlKey().equals(value)) {
-//				return course;
-//			}
-//		}
-//		return INFORMATIK_BACHELOR;
-//	}
-
 	@Override
 	public String getUrlKey() {
 		return this.key;

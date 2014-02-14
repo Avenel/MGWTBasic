@@ -147,9 +147,8 @@ public class IntranetConnection implements Intranet {
 	}
 
 	@Override
-	public void getWorkflowStatus(ObserverActivity<WorkflowStatus> observer,
-			WorkflowEvent event, UserCredentials credentials) {
-		// TODO Auto-generated method stub
+	public void getWorkflowStatus(ObserverActivity<WorkflowStatus> observer, WorkflowEvent event, UserCredentials credentials) {
+		
 		
 	}
 

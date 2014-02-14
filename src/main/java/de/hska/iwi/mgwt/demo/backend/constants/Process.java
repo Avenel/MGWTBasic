@@ -1,6 +1,5 @@
 package de.hska.iwi.mgwt.demo.backend.constants;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 
 public enum Process implements IURLParameterEnum {
 	ACADEMIC_WRITING("academic_writing"),
@@ -19,16 +18,6 @@ public enum Process implements IURLParameterEnum {
 	
 	private Process(String key) {
 		this.key = key;
-	}
-	
-	@JsonCreator
-	public static Process create(String value) {
-		for (Process process : Process.values()) {
-			if (process.getUrlKey().equals(value)) {
-				return process;
-			}
-		}
-		return ACADEMIC_WRITING;
 	}
 
 	@Override

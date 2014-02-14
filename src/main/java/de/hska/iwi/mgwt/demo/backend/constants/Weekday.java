@@ -29,16 +29,6 @@ public enum Weekday implements IURLParameterEnum {
 		this.key = key;
 	}
 	
-//	@JsonCreator
-//	public static Weekday create(int value) {
-//		for (Weekday day : Weekday.values()) {
-//			if (day.getNumberOfWeekday() == value) {
-//				return day;
-//			}
-//		}
-//		return NONE;
-//	}
-
 	/**
 	 * @return the numberOfWeekday
 	 */

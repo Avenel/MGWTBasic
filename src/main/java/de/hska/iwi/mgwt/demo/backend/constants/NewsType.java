@@ -15,16 +15,7 @@ public enum NewsType implements IURLParameterEnum {
 	private NewsType(String key) {
 		this.key = key;
 	}
-	
-	public static NewsType create(String value) {
-		for (NewsType newsType : NewsType.values()) {
-			if (newsType.getUrlKey().equals(value)) {
-				return newsType;
-			}
-		}
-		return ANNOUNCEMENT;
-	}
-		
+			
 	/**
 	 * @return the key
 	 */
