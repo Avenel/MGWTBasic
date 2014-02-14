@@ -10,7 +10,7 @@ import de.hska.iwi.mgwt.demo.client.model.HumanReadableEnum;
  */
 public enum StorageKey implements HumanReadableEnum {
 
-	NewsSettingsFilterIWI(""), NewsSettingsFilterIB(""), NewsSettingsFilterIM(""), NewsSettingsFilterMKI(""), 
+	NewsSettingsFilterIWI("IWI"), NewsSettingsFilterIB("IB"), NewsSettingsFilterIM("IM"), NewsSettingsFilterMKI("MKI"), 
 	ProcessesSeminarsList(""), ProcessesSeminarProfessor(""), ProcessesSeminarTerm(""), ProcessesSeminarTopic(""), ProcessesSeminarStatus(""),
 	HomeScreenTiles(""), IZAccountname("Benutzername"), IZAccountPassword("Passwort"), IZAccount("IZ Account"),
 	IsSendingPushMessages("Pushbenachrichtigungen"), MENUELINK("MenueLink"), MENSADAYCOUNT("Anzahl Tage");

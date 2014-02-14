@@ -33,8 +33,6 @@ import de.hska.iwi.mgwt.demo.client.activities.mensa.MensaView;
 import de.hska.iwi.mgwt.demo.client.activities.mensa.MensaViewImpl;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsDetailView;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsDetailViewImpl;
-import de.hska.iwi.mgwt.demo.client.activities.news.NewsSettingsView;
-import de.hska.iwi.mgwt.demo.client.activities.news.NewsSettingsViewImpl;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsView;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsViewImpl;
 import de.hska.iwi.mgwt.demo.client.activities.processes.ProcessDetailView;
@@ -63,7 +61,6 @@ public class ClientFactoryImpl implements ClientFactory {
 	private StudentViewImpl studentView;
 	private LectureViewImpl lectureView;
 	private NewsDetailViewImpl newsDetailView;
-	private NewsSettingsView newsSettingsView;
 	private RegisterSeminarViewImpl registerSeminarView;
 	private ProcessSeminarViewImpl processSeminarView;
 	private ProcessDetailViewImpl processDetailSeminarView;
@@ -183,14 +180,6 @@ public class ClientFactoryImpl implements ClientFactory {
 		return this.activityManager;
 	}
 
-	@Override
-	public NewsSettingsView getNewsSettingsView() {
-		if (newsSettingsView == null) {
-			newsSettingsView = new NewsSettingsViewImpl();
-		}
-		
-		return newsSettingsView;
-	}
 
 	@Override
 	public MensaView getMensaView() {

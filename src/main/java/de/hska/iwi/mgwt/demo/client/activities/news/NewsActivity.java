@@ -17,6 +17,8 @@ import de.hska.iwi.mgwt.demo.backend.constants.Course;
 import de.hska.iwi.mgwt.demo.backend.model.News;
 import de.hska.iwi.mgwt.demo.client.ClientFactory;
 import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
+import de.hska.iwi.mgwt.demo.client.activities.settings.SettingMenueName;
+import de.hska.iwi.mgwt.demo.client.activities.settings.SettingsPlace;
 import de.hska.iwi.mgwt.demo.client.model.NewsBoardUtility;
 
 public class NewsActivity extends MGWTAbstractActivity implements ObserverActivity<List<News>> {
@@ -62,7 +64,7 @@ public class NewsActivity extends MGWTAbstractActivity implements ObserverActivi
 		view.addTapHandlerToSettingsButton(new TapHandler() {
 			@Override
 			public void onTap(TapEvent event) {
-				clientFactory.getPlaceController().goTo(new NewsSettingsPlace());
+				clientFactory.getPlaceController().goTo(new SettingsPlace(SettingMenueName.NEWS.toString()));
 			}
 			
 		});

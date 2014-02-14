@@ -35,18 +35,31 @@ public class SettingStorage {
 		List<SettingItem> settingItemsMensa = new ArrayList<SettingItem>();
 		SettingItemImpl mensaDays = new SettingItemImpl(InputType.TEXT, StorageKey.MENSADAYCOUNT, "3", "fa-calendar", false);
 		settingItemsMensa.add(mensaDays);
-		
 		SettingItemMenueImpl mensaSettings = new SettingItemMenueImpl(SettingMenueName.MENSA, "fa-cutlery", settingItemsMensa);
+		
+		// MenuLink: NEWS
+		List<SettingItem> settingItemsNews = new ArrayList<SettingItem>();
+		SettingItemImpl filterIB = new SettingItemImpl(InputType.CHECKBOX, StorageKey.NewsSettingsFilterIB, "true", "fa-mail-forward", false);
+		SettingItemImpl filterIM = new SettingItemImpl(InputType.CHECKBOX, StorageKey.NewsSettingsFilterIM, "true", "fa-mail-forward", false);
+		SettingItemImpl filterMKI = new SettingItemImpl(InputType.CHECKBOX, StorageKey.NewsSettingsFilterMKI, "true", "fa-mail-forward", false);
+		
+		settingItemsNews.add(filterIB);
+		settingItemsNews.add(filterIM);
+		settingItemsNews.add(filterMKI);
+		
+		SettingItemMenueImpl newsSettings = new SettingItemMenueImpl(SettingMenueName.NEWS, "fa-bullhorn", settingItemsMensa);
 		
 		// General
 		SettingItemImpl pushMessagesAllowed = new SettingItemImpl(InputType.CHECKBOX, StorageKey.IsSendingPushMessages, "true", "fa-mail-forward", false);
 		
 		settingItemsHome.add(izUserMenu);
 		settingItemsHome.add(mensaSettings);
+		settingItemsHome.add(newsSettings);
 		settingItemsHome.add(pushMessagesAllowed);
 		
 		settingItems.put(SettingMenueName.HOME, settingItemsHome);
 		settingItems.put(SettingMenueName.MENSA, settingItemsMensa);
+		settingItems.put(SettingMenueName.NEWS, settingItemsNews);
 		settingItems.put(SettingMenueName.IZACCOUNT, settingItemsIZAccount);
 	}
 	

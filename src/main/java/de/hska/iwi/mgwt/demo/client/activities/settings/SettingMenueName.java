@@ -3,7 +3,7 @@ package de.hska.iwi.mgwt.demo.client.activities.settings;
 import de.hska.iwi.mgwt.demo.client.model.HumanReadableEnum;
 
 public enum SettingMenueName implements HumanReadableEnum {
-	HOME("Home"), IZACCOUNT("IZ Benuteraccount"), MENSA("Mensa");
+	HOME("Home"), IZACCOUNT("IZ Benuteraccount"), MENSA("Mensa"), NEWS("News");
 	
 	String humanReadableName;
 	
@@ -25,8 +25,10 @@ public enum SettingMenueName implements HumanReadableEnum {
 		if (name.compareTo("HOME") == 0) return HOME;
 		if (name.compareTo("IZACCOUNT") == 0) return IZACCOUNT;
 		if (name.compareTo("MENSA") == 0) return MENSA;
+		if (name.compareTo("NEWS") == 0) return NEWS;
 		
 		return HOME;
 	}
 }
+
 

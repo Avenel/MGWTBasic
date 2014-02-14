@@ -26,7 +26,6 @@ import de.hska.iwi.mgwt.demo.client.activities.home.HomeView;
 import de.hska.iwi.mgwt.demo.client.activities.lecture.LectureView;
 import de.hska.iwi.mgwt.demo.client.activities.mensa.MensaView;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsDetailView;
-import de.hska.iwi.mgwt.demo.client.activities.news.NewsSettingsView;
 import de.hska.iwi.mgwt.demo.client.activities.news.NewsView;
 import de.hska.iwi.mgwt.demo.client.activities.processes.ProcessDetailView;
 import de.hska.iwi.mgwt.demo.client.activities.processes.StudentView;
@@ -83,12 +82,6 @@ public interface ClientFactory {
 	 * @return NewsDetailView
 	 */
 	public NewsDetailView getNewsDetailView();
-	
-	/**
-	 * Get NewsSettingsView
-	 * @return NewsSettingsView
-	 */
-	public NewsSettingsView getNewsSettingsView();
 	
 	/**
 	 * Get ProcessSeminarView.
