@@ -14,23 +14,28 @@ public class ProcessDetailOverview implements IsWidget {
 	CellList<ProcessStep> processes;
 	int activeStep;
 	int maxStepIndex;
+	ProcessOverviewCell cell;
 	
 	public ProcessDetailOverview(int activeStep, int maxStepIndex){
 		this.activeStep=activeStep;
 		this.maxStepIndex=maxStepIndex;
+		cell= new ProcessOverviewCell(this.activeStep, this.maxStepIndex);
 	}
 
 	@Override
 	public Widget asWidget() {
-		processes= new CellList<ProcessStep>(new ProcessOverviewCell(this.activeStep, this.maxStepIndex));
+		processes= new CellList<ProcessStep>(cell);
 		
 		
 		return processes;
 	}
 	public void render(List<ProcessStep> steps){
+		cell=new ProcessOverviewCell(this.activeStep, steps.size()-1);
 		processes.render(steps);
 		processes.getElement().setClassName("processes-list");
 	}
+	
+	
 	
 	
 

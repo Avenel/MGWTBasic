@@ -24,6 +24,7 @@ import com.googlecode.mgwt.ui.client.widget.WidgetList;
 import de.hska.iwi.mgwt.demo.client.ClientFactory;
 import de.hska.iwi.mgwt.demo.client.model.Seminar;
 import de.hska.iwi.mgwt.demo.client.model.SeminarTempStorage;
+import de.hska.iwi.mgwt.demo.client.storage.SeminarStorage;
 import de.hska.iwi.mgwt.demo.client.storage.StorageKey;
 
 public class RegisterSeminarActivity extends MGWTAbstractActivity {
@@ -65,7 +66,6 @@ public class RegisterSeminarActivity extends MGWTAbstractActivity {
 				
 					
 				
-				JSONObject jsonSeminar= new JSONObject();
 				newSeminar = new Seminar();
 				Iterator<Widget> iter = parent.iterator();
 				while (iter.hasNext()) {
@@ -74,26 +74,21 @@ public class RegisterSeminarActivity extends MGWTAbstractActivity {
 						MTextBox textBox = (MTextBox) ((LayoutPanel) widget).getWidget(1);
 						if (textBox.getName().equals("term")) {
 							newSeminar.setTerm(textBox.getText());
-							jsonSeminar.put(StorageKey.ProcessesSeminarTerm.toString(), new JSONString(textBox.getText()));
 						}
 						if (textBox.getName().equals("topic")) {
 							newSeminar.setTopic(textBox.getText());
-							jsonSeminar.put(StorageKey.ProcessesSeminarTopic.toString(), new JSONString(textBox.getText()));
 						}
 						if (textBox.getName().equals("professor")) {
 							newSeminar.setProfessor(textBox.getText());
-							jsonSeminar.put(StorageKey.ProcessesSeminarProfessor.toString(), new JSONString(textBox.getText()));
 						}
-						newSeminar.setStatus(1);
-						jsonSeminar.put(StorageKey.ProcessesSeminarStatus.toString(),new JSONString("1"));
-
+						newSeminar.setStatus(0);
 					}
 
 				}
-
+				// Add to the temporary cache
 				SeminarTempStorage.addSeminar(newSeminar);
-				currentSeminars.set(currentSeminars.size(), jsonSeminar);
-				localStorage.setItem(StorageKey.ProcessesSeminarsList.toString(), currentSeminars.toString());
+				// Add to the persistent cache
+				SeminarStorage.addSeminar(newSeminar);
 				History.back();
 
 			}

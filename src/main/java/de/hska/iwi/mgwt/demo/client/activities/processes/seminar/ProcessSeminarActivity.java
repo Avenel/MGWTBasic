@@ -30,8 +30,8 @@ import de.hska.iwi.mgwt.demo.client.ClientFactory;
 import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
 import de.hska.iwi.mgwt.demo.client.activities.processes.ProcessDetailPlace;
 import de.hska.iwi.mgwt.demo.client.model.Seminar;
-import de.hska.iwi.mgwt.demo.client.model.SeminarStorage;
 import de.hska.iwi.mgwt.demo.client.model.SeminarTempStorage;
+import de.hska.iwi.mgwt.demo.client.storage.SeminarStorage;
 import de.hska.iwi.mgwt.demo.client.storage.StorageKey;
 
 public class ProcessSeminarActivity extends MGWTAbstractActivity implements ObserverActivity<WorkflowStatus>  {
@@ -48,54 +48,26 @@ public class ProcessSeminarActivity extends MGWTAbstractActivity implements Obse
 
 	}
 
-	private List<Seminar> generateSeminarEntriesFromJSON(String item) {
-		List<Seminar> retVal = new ArrayList<Seminar>();
-		try {
-			JSONValue value = JSONParser.parseStrict(item);
-			JSONArray storageContents = (JSONArray) value;
-			for (int i = 0; i < storageContents.size(); i++) {
-
-				JSONObject currentObject = (JSONObject) storageContents.get(i);
-				Seminar seminar = new Seminar();
-				String professor=currentObject.get(StorageKey.ProcessesSeminarProfessor.toString()).toString();
-				professor= professor.replace("\"", "");
-				seminar.setProfessor(professor);
-				String term= currentObject.get(StorageKey.ProcessesSeminarTerm.toString()).toString();
-				term= term.replace("\"", "");
-				seminar.setTerm(term);
-				String topic= currentObject.get(StorageKey.ProcessesSeminarTopic.toString()).toString();
-				topic= topic.replace("\"", "");
-				seminar.setTopic(topic);
-				String status= currentObject.get(StorageKey.ProcessesSeminarStatus.toString()).toString();
-				status= status.replace("\"", "");
-				seminar.setStatus(Integer.parseInt(status));
-				
-				retVal.add(seminar);
-
-			}
-		} catch (NullPointerException e) {
-			return retVal;
-		}
-
-		return retVal;
-	}
+	
 
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
 		view = this.clientFactory.getProcessSeminarView();
 		
 		Intranet intranetConn = (Intranet) BackendFactory.createIntranetInstance();
+		//TODO Get Username and password from settings
 		if(pWord== null){
 			pWord=Window.prompt("Enter Password", "password");
 		}
 		UserCredentials credentials= new UserCredentials("scsi1024", pWord);
-		intranetConn.getWorkflowStatus(this, WorkflowEvent.SEMINAR_MASTER, credentials);
+		//create entries of local storage- just for exemplaric use
 		localStorage = Storage.getLocalStorageIfSupported();
 
-		seminarEntries = generateSeminarEntriesFromJSON(localStorage.getItem(StorageKey.ProcessesSeminarsList
-				.toString()));
+		seminarEntries = SeminarStorage.getSeminars();
 		SeminarTempStorage.setSeminars(seminarEntries);
-
+		
+		//get the seminar from hska intranet
+		intranetConn.getWorkflowStatus(this, WorkflowEvent.SEMINAR_MASTER, credentials);
 		
 
 		view.render(seminarEntries);
@@ -123,8 +95,7 @@ public class ProcessSeminarActivity extends MGWTAbstractActivity implements Obse
 
 	@Override
 	public void update(WorkflowStatus arg) {
-		System.out.println(arg.getPhaseDescription());
-		System.out.println(arg.getPhaseString());
+		//build a new Seminar
 		Seminar seminar= new Seminar();
 		seminar.setProfessor("##liveData##");
 		seminar.setStatus(arg.getPhase().getIndex());

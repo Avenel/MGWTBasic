@@ -1,5 +1,10 @@
 package de.hska.iwi.mgwt.demo.client.model;
 
+/**
+ * Represents a Seminar. 
+ * @author Simon
+ *
+ */
 public class Seminar {
 	private String professor;
 	private String topic;

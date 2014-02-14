@@ -9,9 +9,7 @@ import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
 
 import de.hska.iwi.mgwt.demo.backend.BackendFactory;
 import de.hska.iwi.mgwt.demo.backend.Intranet;
-import de.hska.iwi.mgwt.demo.backend.connection.IntranetConnection;
 import de.hska.iwi.mgwt.demo.backend.constants.WorkflowEvent;
-import de.hska.iwi.mgwt.demo.backend.constants.WorkflowPhase;
 import de.hska.iwi.mgwt.demo.backend.model.WorkflowInformation;
 import de.hska.iwi.mgwt.demo.client.ClientFactory;
 import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
@@ -19,14 +17,21 @@ import de.hska.iwi.mgwt.demo.client.activities.processes.ProcessDetailView;
 import de.hska.iwi.mgwt.demo.client.model.ProcessStep;
 import de.hska.iwi.mgwt.demo.client.model.Seminar;
 import de.hska.iwi.mgwt.demo.client.model.SeminarTempStorage;
+import de.hska.iwi.mgwt.demo.client.storage.SeminarStorage;
 
+/**
+ * Activity for displaying a seminar Workflow.
+ * In this activity, we need to get the statuses, a seminar can be in, from the intranet server.
+ * After we got the data, it is cached in the local storage (Not currently).
+ *
+ */
 public class ProcessDetailSeminarActivity extends MGWTAbstractActivity implements ObserverActivity<WorkflowInformation> {
 
 	private ClientFactory clientFactory;
 	private ProcessDetailView view;
-	private List<ProcessStep> currentModel;
 	private Seminar seminar;
 	private String id;
+	private AcceptsOneWidget panel;
 
 	public ProcessDetailSeminarActivity(ClientFactory clientFactory) {
 		this.clientFactory = clientFactory;
@@ -39,29 +44,24 @@ public class ProcessDetailSeminarActivity extends MGWTAbstractActivity implement
 
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
-
+		this.panel=panel;
 		seminar = SeminarTempStorage.getSeminarList().get(Integer.parseInt(id));
+		List<ProcessStep> steps= new ArrayList<ProcessStep>();
 		Intranet intranetConn = (Intranet) BackendFactory.createIntranetInstance();
 		//TODO Case if Student is master or bachelor. In this Case student is always master
 		intranetConn.getWorkflowInformation(this, WorkflowEvent.SEMINAR_MASTER);
 		
+		//No steps in the local Storage, and the polling is running
+		if(SeminarStorage.getSeminarSteps().isEmpty()){
+			
+			steps.add(new ProcessStep("Datenabfrage...", 0, "Abfrage"));
+		}else{
+			steps=SeminarStorage.getSeminarSteps();
+		}
 		
-		List<ProcessStep> steps= new ArrayList<ProcessStep>();
-		steps.add(new ProcessStep("Anmeldung", 0, "Student meldet sich an"));
-		steps.add(new ProcessStep("Erstgutachter", 1, "Zur Ansicht bei Erstgutachter"));
-		steps.add(new ProcessStep("Zweitgutachter", 2, "Zur Ansicht bei Zweitgutachter"));
-		steps.add(new ProcessStep("Sekretariat", 3, "Zur Ansicht bei Sekretariat"));
-		steps.add(new ProcessStep("Leiter", 4, "Zur Ansicht beim Leiter der Veranstaltung"));
-		steps.add(new ProcessStep("Ergebnisse hochladen", 5, "Bitte Ergebnisse hochladen"));
-		steps.add(new ProcessStep("Note verfuegbar", 6, "Ihre Note kann eingesehen werden. Der Prozess ist abgeschlossen"));
 		
-		currentModel=steps;
-		view = this.clientFactory.getProcessDetailView(seminar.getStatus(), currentModel, Integer.parseInt(id));
+		view = this.clientFactory.getProcessDetailView(0, steps, Integer.parseInt(id));
 		view.setTitle(seminar.getTopic());
-		
-
-		
-		
 		view.render();
 		panel.setWidget(view);
 
@@ -75,7 +75,13 @@ public class ProcessDetailSeminarActivity extends MGWTAbstractActivity implement
 		for(String s : arg.getWorkflow()){
 			steps.add(new ProcessStep(s, i++, "desc"));
 		}
-		view.render(steps);
+		
+		//set to persistent web storage
+		SeminarStorage.setSeminarSteps(steps);
+		view = this.clientFactory.getProcessDetailView(seminar.getStatus(), steps, Integer.parseInt(id));
+		view.setTitle(seminar.getTopic());
+		view.render();
+		this.panel.setWidget(view);
 	}
 
 }
