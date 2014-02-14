@@ -162,7 +162,6 @@ public class MealGroupWidget implements IsWidget {
 			
 			HorizontalPanel modifierPricePanel = new HorizontalPanel();
 			modifierPricePanel.getElement().getStyle().setFloat(Style.Float.RIGHT);
-			modifierPricePanel.getElement().getStyle().setLineHeight(2.5, Unit.EM);
 			
 			modifierPricePanel.add(mealModifiers);		
 			line.setCellHorizontalAlignment(mealModifiers, HorizontalAlignmentConstant.startOf(Direction.RTL));
