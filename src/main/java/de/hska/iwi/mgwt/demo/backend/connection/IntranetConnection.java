@@ -77,11 +77,11 @@ public class IntranetConnection implements Intranet {
 	}
 
 
-	@Override
-	public void getConsultationHours(ObserverActivity<List<ConsultationHour>> observer) {
-		// TODO Auto-generated method stub
-
-	}
+//	@Override
+//	public void getConsultationHours(ObserverActivity<List<ConsultationHour>> observer) {
+//		// TODO Auto-generated method stub
+//
+//	}
 
 	@Override
 	public void getCompulsoryOptionalSubjects(ObserverActivity<CompulsoryOptionalSubjects> observer, Course course)

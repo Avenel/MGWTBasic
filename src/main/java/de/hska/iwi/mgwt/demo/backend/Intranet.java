@@ -21,7 +21,7 @@ public interface Intranet {
 		
 	public void getNewsBoard(ObserverActivity<List<News>> observer, Course course) throws IllegalArgumentException;
 	
-	public void getConsultationHours(ObserverActivity<List<ConsultationHour>> observer);
+//	public void getConsultationHours(ObserverActivity<List<ConsultationHour>> observer);
 		
 	public void getCompulsoryOptionalSubjects(ObserverActivity<CompulsoryOptionalSubjects> observer, Course course) throws IllegalArgumentException;
 	
