@@ -9,8 +9,6 @@ public class WorkflowStatus {
 	
 	private WorkflowPhase phase;
 	
-	private int phaseKey;
-	
 	private String phaseDescription;
 	
 	public WorkflowStatus(IWorkflowStatus iStatus) {
@@ -19,15 +17,6 @@ public class WorkflowStatus {
 			this.phaseDescription = entry.getValue();
 		}
 	}
-
-	/**
-	 * @return the phase
-	 */
-	public int getPhaseKey() {
-		return phaseKey;
-	}
-	
-	
 
 	/**
 	 * @return the phase

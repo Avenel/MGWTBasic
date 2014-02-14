@@ -12,11 +12,13 @@ public interface CustomBeanFactory extends AutoBeanFactory {
 	AutoBean<IMealGroup> mealGroup();
 	AutoBean<IMeal> meal();
 	
-	AutoBean<IWorkflowInformation> workflowInformation();
-	
 	AutoBean<ITutorials> tutorials();
 	AutoBean<ITutorial> tutorial();
 	
 	AutoBean<ICompulsoryOptionalSubjects> subjects();
 	AutoBean<ICompulsoryOptionalSubject> subject();
+	
+	AutoBean<IWorkflowInformation> workflowInformation();
+	
+	AutoBean<IWorkflowStatus> workflowStatus();
 }

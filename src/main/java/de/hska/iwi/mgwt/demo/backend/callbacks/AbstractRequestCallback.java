@@ -29,7 +29,7 @@ public abstract class AbstractRequestCallback<T extends ObserverActivity<?>> imp
 
 	@Override
 	public void onError(Request request, Throwable exception) {
-		// TODO Auto-generated method stub
+		System.out.println(exception);
 		
 	}
 	
