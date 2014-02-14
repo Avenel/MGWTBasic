@@ -221,6 +221,10 @@ body {
 	width: 95%;
 }
 
+.mealGroups-container .mgwt-List-last {
+	border: none;
+}
+
 .mealGroup-titlebar {
 	width: 100%;
 }
