@@ -31,13 +31,22 @@ public class SettingStorage {
 		settingItemsIZAccount.add(izUserPassword);
 		SettingItemMenueImpl izUserMenu = new SettingItemMenueImpl(SettingMenueName.IZACCOUNT, "fa-user", settingItemsIZAccount);
 		
+		// MenuLink: MENSA
+		List<SettingItem> settingItemsMensa = new ArrayList<SettingItem>();
+		SettingItemImpl mensaDays = new SettingItemImpl(InputType.TEXT, StorageKey.MENSADAYCOUNT, "3", "fa-calendar", false);
+		settingItemsMensa.add(mensaDays);
+		
+		SettingItemMenueImpl mensaSettings = new SettingItemMenueImpl(SettingMenueName.MENSA, "fa-cutlery", settingItemsMensa);
+		
 		// General
 		SettingItemImpl pushMessagesAllowed = new SettingItemImpl(InputType.CHECKBOX, StorageKey.IsSendingPushMessages, "true", "fa-mail-forward", false);
 		
 		settingItemsHome.add(izUserMenu);
+		settingItemsHome.add(mensaSettings);
 		settingItemsHome.add(pushMessagesAllowed);
 		
 		settingItems.put(SettingMenueName.HOME, settingItemsHome);
+		settingItems.put(SettingMenueName.MENSA, settingItemsMensa);
 		settingItems.put(SettingMenueName.IZACCOUNT, settingItemsIZAccount);
 	}
 	

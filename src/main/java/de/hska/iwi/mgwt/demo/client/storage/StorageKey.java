@@ -13,7 +13,7 @@ public enum StorageKey implements HumanReadableEnum {
 	NewsSettingsFilterIWI(""), NewsSettingsFilterIB(""), NewsSettingsFilterIM(""), NewsSettingsFilterMKI(""), 
 	ProcessesSeminarsList(""), ProcessesSeminarProfessor(""), ProcessesSeminarTerm(""), ProcessesSeminarTopic(""), ProcessesSeminarStatus(""),
 	HomeScreenTiles(""), IZAccountname("Benutzername"), IZAccountPassword("Passwort"), IZAccount("IZ Account"),
-	IsSendingPushMessages("Pushbenachrichtigungen"), MENUELINK("MenueLink");
+	IsSendingPushMessages("Pushbenachrichtigungen"), MENUELINK("MenueLink"), MENSADAYCOUNT("Anzahl Tage");
 	
 	private String humanReadableName;
 	
