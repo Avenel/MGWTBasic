@@ -10,7 +10,15 @@ public class SeminarStorage {
 	private static Seminar dummySeminar3=new Seminar();
 	
 	public static void addSeminar(Seminar seminar){
-		seminarList.add(seminar);
+		boolean contains=false;
+		for(Seminar s: seminarList){
+			if(s.getTopic().equals(seminar.getTopic())){
+				contains=true;
+			}
+		}
+		if(contains==false){	
+			seminarList.add(seminar);
+		}
 		
 	}
 	
