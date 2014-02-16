@@ -41,8 +41,6 @@ public class MensaActivity extends MGWTAbstractActivity implements ObserverActiv
 			
 		});
 		
-		panel.setWidget(view);
-		
 		// get meals for the next days
 		Intranet intranetConn = (Intranet) BackendFactory.createIntranetInstance();
 		int maxDays = 3;
@@ -54,9 +52,11 @@ public class MensaActivity extends MGWTAbstractActivity implements ObserverActiv
 		
 		view.setMaxMenuDays(maxDays);
 		
+		panel.setWidget(view);
+		
+		Date dueDate = new Date();
 		for (int i = 0; i < maxDays; i++) {
-			final Date dueDate = new Date();
-			CalendarUtil.addDaysToDate(dueDate, i);
+			CalendarUtil.addDaysToDate(dueDate, 1);
 			String dueDateString = DateTimeFormat.getFormat("yyyy-MM-dd").format(dueDate);
 			String weekDay = DateTimeFormat.getFormat("E").format(dueDate);
 			
@@ -64,8 +64,6 @@ public class MensaActivity extends MGWTAbstractActivity implements ObserverActiv
 			while (weekDay.contains("S")) {
 				CalendarUtil.addDaysToDate(dueDate, 1);
 				weekDay = DateTimeFormat.getFormat("E").format(dueDate);
-				i++;
-				maxDays++;
 			}
 			
 			dueDateString = DateTimeFormat.getFormat("yyyy-MM-dd").format(dueDate);

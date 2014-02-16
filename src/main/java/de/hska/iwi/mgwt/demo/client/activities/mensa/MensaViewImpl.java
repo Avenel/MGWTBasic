@@ -72,23 +72,9 @@ public class MensaViewImpl implements MensaView {
 		ScrollPanel menuScrollPanel = new ScrollPanel();
 		menuScrollPanel.getElement().getStyle().setPaddingBottom(2, Unit.EM);
 		
-		// add first date
+		// add loading screen
 		VerticalPanel mealGroups = new VerticalPanel();
 		mealGroups.getElement().addClassName("mealGroups-container");
-		
-		// add Date and progressbar
-		final Date dueDate = new Date();
-		String dueDateString = DateTimeFormat.getFormat("yyyy-MM-dd").format(dueDate);
-		
-		String weekDay = DateTimeFormat.getFormat("E").format(dueDate);
-		
-		// Determine if day is not a workday (Perhaps not the best way...)
-		while (weekDay.contains("S")) {
-			CalendarUtil.addDaysToDate(dueDate, 1);
-			weekDay = DateTimeFormat.getFormat("E").format(dueDate);
-		}
-		dueDateString = DateTimeFormat.getFormat("yyyy-MM-dd").format(dueDate);
-		menuScrollPanel.add(mealGroups);
 		
 		Label loadingLabel = new Label();
 		loadingLabel.setText("Lade Menü...");
@@ -100,21 +86,24 @@ public class MensaViewImpl implements MensaView {
 		ProgressBar pBar = new ProgressBar();
 		mealGroups.add(pBar);
 		
+		// add Date and progressbar
+		menuScrollPanel.add(mealGroups);
 		this.menuCarousel.add(menuScrollPanel);
 		
 		// put menu days in map
+		Date dueDate = new Date();
 		this.days = new ArrayList<String>();
 		for (int i = 0; i < this.maxMenuDays; i++) {
+			String weekDay = DateTimeFormat.getFormat("E").format(dueDate);
 			// Determine if day is not a workday (Perhaps not the best way...)
 			while (weekDay.contains("S")) {
 				CalendarUtil.addDaysToDate(dueDate, 1);
 				weekDay = DateTimeFormat.getFormat("E").format(dueDate);
 			}
-			dueDateString = DateTimeFormat.getFormat("yyyy-MM-dd").format(dueDate);
+			String dueDateString = DateTimeFormat.getFormat("yyyy-MM-dd").format(dueDate);
 			this.days.add(dueDateString);
-			CalendarUtil.addDaysToDate(dueDate, 1);
-			
 			this.menuScrollPanels.put(dueDateString, null);
+			CalendarUtil.addDaysToDate(dueDate, 1);
 		}
 			
 		main.add(this.menuCarousel);
