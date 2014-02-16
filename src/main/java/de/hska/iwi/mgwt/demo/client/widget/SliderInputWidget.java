@@ -23,6 +23,7 @@ public class SliderInputWidget implements IsWidget, InputWidget {
 	Label valueText;
 	StorageKey key;
 	ValueChangeHandler<Integer> handler;
+	int min;
 	
 	/**
 	 * Public constructor. Setting up widget.
@@ -30,25 +31,29 @@ public class SliderInputWidget implements IsWidget, InputWidget {
 	 * @param key
 	 * @param max
 	 */
-	public SliderInputWidget (String text, final StorageKey key, int max) {
+	public SliderInputWidget (String text, final StorageKey key, final int min, final int max) {
 		this.text = new Label(text);		
 		
 		this.slider = new MSlider();
 		this.slider.setTitle(text);
 		this.slider.getElement().getFirstChildElement().getStyle().setTextAlign(TextAlign.LEFT);
+		
+		this.min = min;
 		this.slider.setMax(max);
 		
 		this.handler = new ValueChangeHandler<Integer>() {
 			@Override
 			public void onValueChange(ValueChangeEvent<Integer> event) {
-				SettingStorage.storeValue(key, event.getValue().toString(), false);
-				valueText.setText(String.valueOf(event.getValue()));
+				int currVal = event.getValue();
+				int settingVal = (currVal + min > max) ? max : currVal + min;
+				SettingStorage.storeValue(key, String.valueOf(settingVal), false);
+				valueText.setText(String.valueOf(settingVal));
 			}
 		};
 		this.slider.addValueChangeHandler(handler);
 		
 		this.valueText = new Label();
-		this.valueText.setText(String.valueOf(0));
+		this.valueText.setText(String.valueOf(min));
 		
 		this.key = key;
 	}
@@ -89,7 +94,7 @@ public class SliderInputWidget implements IsWidget, InputWidget {
 		try {
 			this.slider.setValue(Integer.valueOf(SettingStorage.getValue(key, false)));
 		} catch (Exception e) {
-			this.slider.setValue(1);
+			this.slider.setValue(this.min);
 		}
 		
 		valueText.setText(String.valueOf(slider.getValue()));

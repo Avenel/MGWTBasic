@@ -9,5 +9,7 @@ public interface SettingItem {
 	public String getFontAwesomeIcon();
 	public void setValue(String value);
 	public String getValue();
+	public double getMinValue();
+	public double getMaxValue();
 	
 }

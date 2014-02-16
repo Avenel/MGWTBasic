@@ -90,5 +90,15 @@ public class SettingItemMenueImpl implements SettingItem {
 		
 		return handler;
 	}
+
+	@Override
+	public double getMinValue() {
+		return 0;
+	}
+
+	@Override
+	public double getMaxValue() {
+		return 0;
+	}
 	
 }

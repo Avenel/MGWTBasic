@@ -16,6 +16,7 @@ public class SettingItemImpl implements SettingItem {
 	private String value;
 	private String fontAwesomeIcon;
 	private boolean isSecure;
+	private double min, max;
 	
 	
 	
@@ -35,6 +36,26 @@ public class SettingItemImpl implements SettingItem {
 		this.value = value;
 		this.fontAwesomeIcon = fontAwesomeIcon;
 		this.isSecure = isSecure;
+	}
+	
+	/**
+	 * Public constructor
+	 * @param inputType
+	 * @param key
+	 * @param value
+	 * @param fontAwesomeIcon
+	 * @param isSecure
+	 */
+	public SettingItemImpl(InputType inputType, StorageKey key, String value,
+			String fontAwesomeIcon, boolean isSecure, double min, double max) {
+		super();
+		this.inputType = inputType;
+		this.key = key;
+		this.value = value;
+		this.fontAwesomeIcon = fontAwesomeIcon;
+		this.isSecure = isSecure;
+		this.min = min;
+		this.max = max;
 	}
 
 	@Override
@@ -66,5 +87,15 @@ public class SettingItemImpl implements SettingItem {
 			this.value = "[ERR]";
 		}
 		return this.value;
+	}
+
+	@Override
+	public double getMinValue() {
+		return this.min;
+	}
+
+	@Override
+	public double getMaxValue() {
+		return this.max;
 	}
 }

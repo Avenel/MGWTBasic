@@ -52,7 +52,7 @@ public class SettingsActivity extends MGWTAbstractActivity {
 	    	}
 	    	
 	    	if (item.getInputType().equals(InputType.SLIDER)) {
-	    		settingItemWidgets.add(new SliderInputWidget(item.getStorageKey().getHumanReadableName(), item.getStorageKey(), 10).asWidget());
+	    		settingItemWidgets.add(new SliderInputWidget(item.getStorageKey().getHumanReadableName(), item.getStorageKey(), (int) item.getMinValue(), (int) item.getMaxValue()).asWidget());
 	    	}
 	    }
 		
