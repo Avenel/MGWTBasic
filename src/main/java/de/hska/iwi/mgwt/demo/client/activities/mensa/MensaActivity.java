@@ -43,7 +43,7 @@ public class MensaActivity extends MGWTAbstractActivity implements ObserverActiv
 		
 		panel.setWidget(view);
 		
-		// get meals for the next 5 days
+		// get meals for the next days
 		Intranet intranetConn = (Intranet) BackendFactory.createIntranetInstance();
 		int maxDays = 3;
 		try {
@@ -59,16 +59,16 @@ public class MensaActivity extends MGWTAbstractActivity implements ObserverActiv
 			CalendarUtil.addDaysToDate(dueDate, i);
 			String dueDateString = DateTimeFormat.getFormat("yyyy-MM-dd").format(dueDate);
 			String weekDay = DateTimeFormat.getFormat("E").format(dueDate);
-			System.out.println(weekDay);
 			
 			// Determine if day is not a workday (Perhaps not the best way...)
-			if (weekDay.contains("S")) {
-				CalendarUtil.addDaysToDate(dueDate, 2);
-				dueDateString = DateTimeFormat.getFormat("yyyy-MM-dd").format(dueDate);
-				System.out.println("true! " + dueDateString);
-				i += 2;
-				maxDays += 2;
+			while (weekDay.contains("S")) {
+				CalendarUtil.addDaysToDate(dueDate, 1);
+				weekDay = DateTimeFormat.getFormat("E").format(dueDate);
+				i++;
+				maxDays++;
 			}
+			
+			dueDateString = DateTimeFormat.getFormat("yyyy-MM-dd").format(dueDate);
 			intranetConn.getMensaMenu(this, Canteen.MOLTKE, dueDateString);
 		}
 	}

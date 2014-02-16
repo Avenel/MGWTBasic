@@ -1,15 +1,8 @@
 package de.hska.iwi.mgwt.demo.client.activities.processes.seminar;
 
-import java.io.DataInputStream;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.json.client.JSONArray;
-import com.google.gwt.json.client.JSONObject;
-import com.google.gwt.json.client.JSONParser;
-import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.storage.client.Storage;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
@@ -21,9 +14,7 @@ import com.googlecode.mgwt.ui.client.widget.celllist.CellSelectedHandler;
 
 import de.hska.iwi.mgwt.demo.backend.BackendFactory;
 import de.hska.iwi.mgwt.demo.backend.Intranet;
-import de.hska.iwi.mgwt.demo.backend.constants.Course;
 import de.hska.iwi.mgwt.demo.backend.constants.WorkflowEvent;
-import de.hska.iwi.mgwt.demo.backend.model.News;
 import de.hska.iwi.mgwt.demo.backend.model.WorkflowStatus;
 import de.hska.iwi.mgwt.demo.backend.util.UserCredentials;
 import de.hska.iwi.mgwt.demo.client.ClientFactory;
@@ -32,6 +23,7 @@ import de.hska.iwi.mgwt.demo.client.activities.processes.ProcessDetailPlace;
 import de.hska.iwi.mgwt.demo.client.model.Seminar;
 import de.hska.iwi.mgwt.demo.client.model.SeminarTempStorage;
 import de.hska.iwi.mgwt.demo.client.storage.SeminarStorage;
+import de.hska.iwi.mgwt.demo.client.storage.SettingStorage;
 import de.hska.iwi.mgwt.demo.client.storage.StorageKey;
 
 public class ProcessSeminarActivity extends MGWTAbstractActivity implements ObserverActivity<WorkflowStatus>  {
@@ -39,15 +31,12 @@ public class ProcessSeminarActivity extends MGWTAbstractActivity implements Obse
 	private ClientFactory clientFactory;
 	private ProcessSeminarView view;
 	private List<Seminar> seminarEntries;
-	private Storage localStorage;
 	private String pWord= null;
 	boolean added= false;
 
 	public ProcessSeminarActivity(ClientFactory clientFactory) {
 		this.clientFactory = clientFactory;
-
 	}
-
 	
 
 	@Override
@@ -56,20 +45,21 @@ public class ProcessSeminarActivity extends MGWTAbstractActivity implements Obse
 		
 		Intranet intranetConn = (Intranet) BackendFactory.createIntranetInstance();
 		//TODO Get Username and password from settings
-		if(pWord== null){
-			pWord=Window.prompt("Enter Password", "password");
+		if(pWord == null){
+			try {
+				pWord = SettingStorage.getValue(StorageKey.IZAccountPassword, true);
+			} catch (Exception e) {
+				Window.prompt("Enter Password", "password");
+			}
 		}
 		UserCredentials credentials= new UserCredentials("scsi1024", pWord);
 		//create entries of local storage- just for exemplaric use
-		localStorage = Storage.getLocalStorageIfSupported();
-
 		seminarEntries = SeminarStorage.getSeminars();
 		SeminarTempStorage.setSeminars(seminarEntries);
 		
 		//get the seminar from hska intranet
 		intranetConn.getWorkflowStatus(this, WorkflowEvent.SEMINAR_MASTER, credentials);
 		
-
 		view.render(seminarEntries);
 		panel.setWidget(view);
 

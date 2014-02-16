@@ -33,7 +33,7 @@ public class SettingStorage {
 		
 		// MenuLink: MENSA
 		List<SettingItem> settingItemsMensa = new ArrayList<SettingItem>();
-		SettingItemImpl mensaDays = new SettingItemImpl(InputType.TEXT, StorageKey.MENSADAYCOUNT, "3", "fa-calendar", false);
+		SettingItemImpl mensaDays = new SettingItemImpl(InputType.SLIDER, StorageKey.MENSADAYCOUNT, "3", "fa-calendar", false);
 		settingItemsMensa.add(mensaDays);
 		SettingItemMenueImpl mensaSettings = new SettingItemMenueImpl(SettingMenueName.MENSA, "fa-cutlery", settingItemsMensa);
 		
@@ -77,7 +77,7 @@ public class SettingStorage {
 		if (stockStore != null) {
 			// TODO decrypt if necessary
 			if (isSecure) {
-				return "";
+				return stockStore.getItem(key.toString());
 			}
 			
 			return stockStore.getItem(key.toString());

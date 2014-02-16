@@ -14,7 +14,9 @@ import de.hska.iwi.mgwt.demo.client.model.SettingItem;
 import de.hska.iwi.mgwt.demo.client.model.SettingItemMenueImpl;
 import de.hska.iwi.mgwt.demo.client.storage.SettingStorage;
 import de.hska.iwi.mgwt.demo.client.widget.CheckBoxWidget;
+import de.hska.iwi.mgwt.demo.client.widget.PasswordInputWidget;
 import de.hska.iwi.mgwt.demo.client.widget.SettingItemMenuLink;
+import de.hska.iwi.mgwt.demo.client.widget.SliderInputWidget;
 import de.hska.iwi.mgwt.demo.client.widget.TextInputWidget;
 
 public class SettingsActivity extends MGWTAbstractActivity {
@@ -41,13 +43,16 @@ public class SettingsActivity extends MGWTAbstractActivity {
 	    		settingItemWidgets.add(new TextInputWidget(item.getStorageKey().getHumanReadableName(), item.getStorageKey()).asWidget());
 	    	}
 	    	
-	    	// TODO use secure textbox
 	    	if (item.getInputType().equals(InputType.PASSWORD)) {
-	    		settingItemWidgets.add(new TextInputWidget(item.getStorageKey().getHumanReadableName(), item.getStorageKey()).asWidget());
+	    		settingItemWidgets.add(new PasswordInputWidget(item.getStorageKey().getHumanReadableName(), item.getStorageKey()).asWidget());
 	    	}
 	    	
 	    	if (item.getInputType().equals(InputType.CHECKBOX)) {
 	    		settingItemWidgets.add(new CheckBoxWidget(item.getStorageKey().getHumanReadableName(), item.getStorageKey()).asWidget());
+	    	}
+	    	
+	    	if (item.getInputType().equals(InputType.SLIDER)) {
+	    		settingItemWidgets.add(new SliderInputWidget(item.getStorageKey().getHumanReadableName(), item.getStorageKey(), 10).asWidget());
 	    	}
 	    }
 		
