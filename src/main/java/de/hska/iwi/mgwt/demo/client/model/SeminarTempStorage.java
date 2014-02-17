@@ -44,28 +44,6 @@ public class SeminarTempStorage {
 	 * @return the Seminars as a List
 	 */
 	public static List<Seminar> getSeminarList() {
-		if (seminarList.isEmpty()) {
-			dummySeminar1.setStatus(6);
-			dummySeminar1.setProfessor("Prof. Dr. Ditzinger");
-			dummySeminar1.setTopic("DUMMY: Stromspartechniken: ARM");
-			dummySeminar1.setTerm("WS 13/14");
-
-			dummySeminar2.setStatus(3);
-			dummySeminar2.setProfessor("Prof. Dr. Mustermann");
-			dummySeminar2.setTopic("DUMMY: Random");
-			dummySeminar2.setTerm("WS 13/14");
-
-			dummySeminar3.setStatus(1);
-			dummySeminar3.setProfessor("Prof. Dr. Musterfrau");
-			dummySeminar3.setTopic("DUMMY: Randoma");
-			dummySeminar3.setTerm("WS 13/14");
-
-			seminarList.add(dummySeminar1);
-
-			seminarList.add(dummySeminar2);
-
-			seminarList.add(dummySeminar3);
-		}
 
 		return seminarList;
 	}

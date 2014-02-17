@@ -50,17 +50,17 @@ public class ProcessDetailSeminarActivity extends MGWTAbstractActivity implement
 		Intranet intranetConn = (Intranet) BackendFactory.createIntranetInstance();
 		//TODO Case if Student is master or bachelor. In this Case student is always master
 		intranetConn.getWorkflowInformation(this, WorkflowEvent.SEMINAR_MASTER);
-		
+		int activeStep=seminar.getStatus();
 		//No steps in the local Storage, and the polling is running
 		if(SeminarStorage.getSeminarSteps().isEmpty()){
-			
+			activeStep=0;
 			steps.add(new ProcessStep("Datenabfrage...", 0, "Abfrage"));
 		}else{
 			steps=SeminarStorage.getSeminarSteps();
 		}
 		
 		
-		view = this.clientFactory.getProcessDetailView(0, steps, Integer.parseInt(id));
+		view = this.clientFactory.getProcessDetailView(activeStep, steps, Integer.parseInt(id));
 		view.setTitle(seminar.getTopic());
 		view.render();
 		panel.setWidget(view);

@@ -25,75 +25,99 @@ import de.hska.iwi.mgwt.demo.client.storage.SeminarStorage;
 import de.hska.iwi.mgwt.demo.client.storage.SettingStorage;
 import de.hska.iwi.mgwt.demo.client.storage.StorageKey;
 
-public class ProcessSeminarActivity extends MGWTAbstractActivity implements ObserverActivity<WorkflowStatus>  {
+public class ProcessSeminarActivity extends MGWTAbstractActivity implements
+		ObserverActivity<WorkflowStatus> {
 
 	private ClientFactory clientFactory;
 	private ProcessSeminarView view;
 	private List<Seminar> seminarEntries;
-	private String pWord= null;
-	boolean added= false;
 
 	public ProcessSeminarActivity(ClientFactory clientFactory) {
 		this.clientFactory = clientFactory;
 	}
-	
 
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
 		view = this.clientFactory.getProcessSeminarView();
+
+		Intranet intranetConn = (Intranet) BackendFactory
+				.createIntranetInstance();
+		// TODO Get Username and password from settings
+		String username;
+		String pWord=null;
 		
-		Intranet intranetConn = (Intranet) BackendFactory.createIntranetInstance();
-		//TODO Get Username and password from settings
-		if(pWord == null){
-			try {
-				pWord = SettingStorage.getValue(StorageKey.IZAccountPassword, true);
-			} catch (Exception e) {
-				Window.prompt("Enter Password", "password");
-			}
+		try{
+			username= SettingStorage.getValue(StorageKey.IZAccountname, false);
+		}catch(Exception e){
+			username = Window.prompt("Enter Username", "username");
 		}
-		UserCredentials credentials= new UserCredentials("scsi1014", pWord);
-		//create entries of local storage- just for exemplaric use
+		
+		try {
+			pWord = SettingStorage.getValue(StorageKey.IZAccountPassword, true);
+		} catch (Exception e) {
+			pWord = Window.prompt("Enter Password", "password");
+
+		}
+	
+		UserCredentials credentials = new UserCredentials(username, pWord);
+		// create entries of local storage- just for exemplaric use
 		seminarEntries = SeminarStorage.getSeminars();
 		SeminarTempStorage.setSeminars(seminarEntries);
-		
-		//get the seminar from hska intranet
-		intranetConn.getWorkflowStatus(this, WorkflowEvent.SEMINAR_MASTER, credentials);
-		
+
+		// get the seminar from hska intranet
+		intranetConn.getWorkflowStatus(this, WorkflowEvent.SEMINAR_MASTER,
+				credentials);
+
 		view.render(seminarEntries);
 		panel.setWidget(view);
 
-		addHandlerRegistration(view.getRegisterButton().addTapHandler(new TapHandler() {
+		addHandlerRegistration(view.getRegisterButton().addTapHandler(
+				new TapHandler() {
 
-			@Override
-			public void onTap(TapEvent event) {
-				RegisterSeminarPlace registerSeminarPlace = new RegisterSeminarPlace();
-				clientFactory.getPlaceController().goTo(registerSeminarPlace);
-			}
-		}));
-		addHandlerRegistration(view.getSeminarCellList().addCellSelectedHandler(new CellSelectedHandler() {
+					@Override
+					public void onTap(TapEvent event) {
+						RegisterSeminarPlace registerSeminarPlace = new RegisterSeminarPlace();
+						clientFactory.getPlaceController().goTo(
+								registerSeminarPlace);
+					}
+				}));
+		addHandlerRegistration(view.getSeminarCellList()
+				.addCellSelectedHandler(new CellSelectedHandler() {
 
-			@Override
-			public void onCellSelected(CellSelectedEvent event) {
-				ProcessDetailPlace seminarProcessDetailPlace = new ProcessDetailPlace(event.getIndex() + "");
-				clientFactory.getPlaceController().goTo(seminarProcessDetailPlace);
-			}
+					@Override
+					public void onCellSelected(CellSelectedEvent event) {
+						ProcessDetailPlace seminarProcessDetailPlace = new ProcessDetailPlace(
+								event.getIndex() + "");
+						clientFactory.getPlaceController().goTo(
+								seminarProcessDetailPlace);
+					}
 
-		}));
+				}));
 
 	}
 
 	@Override
 	public void update(WorkflowStatus arg) {
-		//build a new Seminar
-		Seminar seminar= new Seminar();
+		// build a new Seminar
+		Seminar seminar = new Seminar();
+		boolean add= true;
 		seminar.setProfessor(arg.getLecturer());
 		seminar.setStatus(arg.getPhase().getIndex());
-		seminar.setTerm("##liveData##");
-		seminar.setTopic(arg.getTopic());	
+		seminar.setTerm("#livedata");
+		seminar.setTopic(arg.getTopic());
+		for(int i=0; i<seminarEntries.size();i++){
+			Seminar s= seminarEntries.get(i);
+			if (s.getTopic().equals(seminar.getTopic())){
+				seminarEntries.remove(i);
+			}
+		}
+				
 		seminarEntries.add(seminar);
-		SeminarTempStorage.setSeminars(seminarEntries);
-		view.render(seminarEntries);
 		
+		SeminarTempStorage.setSeminars(seminarEntries);
+		SeminarStorage.setSeminars(seminarEntries);
+		view.render(seminarEntries);
+
 	}
 
 }

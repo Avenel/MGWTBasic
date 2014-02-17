@@ -42,9 +42,19 @@ public class SeminarStorage {
 		jsonSeminar.put(StorageKey.ProcessesSeminarTerm.toString(), new JSONString(seminar.getTerm()));
 		jsonSeminar.put(StorageKey.ProcessesSeminarTopic.toString(), new JSONString(seminar.getTopic()));
 		jsonSeminar.put(StorageKey.ProcessesSeminarProfessor.toString(), new JSONString(seminar.getProfessor()));
-		jsonSeminar.put(StorageKey.ProcessesSeminarStatus.toString(),new JSONString("0"));
+		jsonSeminar.put(StorageKey.ProcessesSeminarStatus.toString(),new JSONString(seminar.getStatus()+""));
 		currentSeminars.set(currentSeminars.size(), jsonSeminar);
 		localStorage.setItem(StorageKey.ProcessesSeminarsList.toString(), currentSeminars.toString());
+		
+	}
+	
+	
+	public static void setSeminars(List<Seminar> seminars){
+		Storage localStorage=Storage.getLocalStorageIfSupported();
+		localStorage.removeItem(StorageKey.ProcessesSeminarsList.toString());
+		for(Seminar s: seminars){
+			addSeminar(s);
+		}
 	}
 	/**
 	 * Gets a List of Seminars, that are currently in the local storage
