@@ -1,5 +1,6 @@
 package de.hska.iwi.mgwt.demo.client.activities.processes.seminar;
 
+import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.mgwt.ui.client.widget.Button;
@@ -33,7 +34,7 @@ public class RegisterSeminarViewImpl implements RegisterSeminarView {
 		LayoutPanel professorFieldLayout = new LayoutPanel();
 		professorFieldLayout.setHorizontal(true);
 		Label professorLabel = new Label("Dozent ");
-		professorLabel.setStyleName("labelStyle");
+		professorLabel.getElement().getStyle().setMarginRight(10, Unit.PX);
 		professorFieldLayout.add(professorLabel);
 		MTextBox professorBox = new MTextBox();
 		professorBox.setName("professor");
@@ -44,7 +45,7 @@ public class RegisterSeminarViewImpl implements RegisterSeminarView {
 		LayoutPanel topicFieldLayout = new LayoutPanel();
 		topicFieldLayout.setHorizontal(true);
 		Label topicLabel = new Label("Thema ");
-		topicLabel.setStyleName("labelStyle");
+		topicLabel.getElement().getStyle().setMarginRight(10, Unit.PX);
 		topicFieldLayout.add(topicLabel);
 		MTextBox topicBox = new MTextBox();
 		topicBox.setName("topic");
@@ -55,7 +56,7 @@ public class RegisterSeminarViewImpl implements RegisterSeminarView {
 		LayoutPanel termFieldLayout = new LayoutPanel();
 		termFieldLayout.setHorizontal(true);
 		Label termLabel = new Label("Semester ");
-		termLabel.setStyleName("labelStyle");
+		termLabel.getElement().getStyle().setMarginRight(10, Unit.PX);
 		termFieldLayout.add(termLabel);
 		MTextBox termBox = new MTextBox();
 		termBox.setName("term");

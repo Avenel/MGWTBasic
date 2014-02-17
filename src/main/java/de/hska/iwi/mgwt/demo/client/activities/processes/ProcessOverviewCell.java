@@ -16,8 +16,8 @@ public class ProcessOverviewCell implements Cell<ProcessStep> {
 	private static Template TEMPLATE = GWT.create(Template.class);
 
 	public interface Template extends SafeHtmlTemplates {
-		@SafeHtmlTemplates.Template("<div style='text-align:center; display:block; margin:auto;'><div class='{0}'></div><div class='{1}'><div style='float:left; margin-left:45px;padding-right:500px;'>{2}</div></div><div class='{3}'></div></div>")
-		SafeHtml content(String lineStatusBefore, String processStatus, String stepText, String lineStatusAfter);
+		@SafeHtmlTemplates.Template("<div style='text-align:center; display:block; margin:auto;'><div class='{0}'></div><div><div style='float:left' class='{1}'></div><div class='{2}'>{3}</div></div><div class='{4}'></div></div>")
+		SafeHtml content(String lineBeforeClass, String processClass,String textClass, String stepTextString, String lineAfterClass);
 	}
 
 	public ProcessOverviewCell(int activeStepIndex, int maxStepIndex) {
@@ -31,19 +31,19 @@ public class ProcessOverviewCell implements Cell<ProcessStep> {
 		SafeHtml content = null;
 		// Process's status has index 0
 		if(currentStepIndex==activeStep&&activeStep==0){
-			content = TEMPLATE.content("process-placeholder", "process-active",step.getDisplayText(), "line");
+			content = TEMPLATE.content("process-placeholder", "process-active", "text-done",step.getDisplayText(), "line");
 		}else if (currentStepIndex == 0) { //we generate the first cell, active step has a higher index than 0
-			content = TEMPLATE.content("process-placeholder", "process-done-line",step.getDisplayText(), "line-done");
+			content = TEMPLATE.content("process-placeholder", "process-done-line","text-done",step.getDisplayText(), "line-done");
 		} else if (currentStepIndex < activeStep) { //we generate a cell, that is "before" the active step of the process's status
-			content = TEMPLATE.content("line-done","process-done-line", step.getDisplayText(), "line-done");
+			content = TEMPLATE.content("line-done","process-done-line","text-done", step.getDisplayText(), "line-done");
 		} else if (currentStepIndex == activeStep && activeStep == maxStepIndex) {// the current process's step is the last one and we generate that one
-			content = TEMPLATE.content("line-done", "process-active", step.getDisplayText(), "process-placeholder");
+			content = TEMPLATE.content("line-done", "process-active","text-done", step.getDisplayText(), "process-placeholder");
 		} else if (currentStepIndex == activeStep) { // the process's state is somewhere in the middle of the workflow
-			content = TEMPLATE.content("line-done","process-active", step.getDisplayText(), "line");
+			content = TEMPLATE.content("line-done","process-active","text-done", step.getDisplayText(), "line");
 		} else if (currentStepIndex == maxStepIndex) { // the cell we generate is after the current active step of the process and is the last to render
-			content = TEMPLATE.content("line","process-due-line", step.getDisplayText(), "line");
+			content = TEMPLATE.content("line","process-due-line","text-due", step.getDisplayText(), "line");
 		}  else if (currentStepIndex > activeStep) { //the cell we generate is after the current active step of the process
-			content = TEMPLATE.content("line", "process-due-line", step.getDisplayText(), "line");
+			content = TEMPLATE.content("line", "process-due-line", "text-due",step.getDisplayText(), "line");
 		}
 		safeHtmlBuilder.append(content);
 

@@ -30,32 +30,15 @@ body {
 	background-image: none;
 }
 
-
-.process-done {
-	width: 3px;
-	height: 3px;
-	margin-left: 9px;
-	background-color: #4ED001;
-	border-radius: 50%;
-	padding: 5px;
-	text-align: center;
-	line-height: 200px;
-	font-family: arial, serif;
-	font-size: 30px;
-	border: 2px solid black;
-	opacity: 0.5;
-}
-
 .process-done-line {
-	width: 0px;
+	height:40%;
 	margin-left: 16px;
 	color:grey;
 	background-color: none;
 /* 	padding-right: 1px; */
 	text-align: center;
 	font-family: arial, serif;
-	border-top: 2px solid grey;
-	opacity: 0.6;
+	border-left: 2px solid #DB0134;
 	position:absolute;
 	border-radius:2px;
 }
@@ -74,7 +57,27 @@ body {
 /* 	-webkit-box-shadow: 1px 1px 0 black, 2px 2px 0 grey, 3px 3px 0 lightgrey; */
 	margin-left: 5px;
 }
+.text-done{
+	margin-left: 35px;
+	text-align: left;
+	padding-top: 5px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	color: #DB0134;	
+	
+}
 
+.text-due{
+	margin-left: 35px;
+	text-align: left;
+	padding-top: 5px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	color: grey;
+	
+}
 .process-due {
 	width: 9px;
 	height: 9px;
@@ -90,14 +93,14 @@ body {
 
 .process-due-line {
 	width: 0px;
-	margin-left: 15px;
+	height:40%;
+	margin-left: 16px;
 	background-color: none;
 /* 	padding-right: 8px; */
 	font-family: arial, serif;
-	border-top: 2px solid #DB0134;
+	border-left: 2px solid lightgrey;
 	position:absolute;
 	border-radius:2px;
-	opacity:0.5;
 }
 
 .line-done {
@@ -108,11 +111,10 @@ body {
 }
 
 .line {
-	border-left: 2px solid grey;
+	border-left: 2px solid lightgrey;
 	height: 100%;
 	margin-left: 16px;
 	padding: 10px;
-	opacity: 0.3;
 }
 
 .process-placeholder {
