@@ -54,6 +54,7 @@ public class SliderInputWidget implements IsWidget, InputWidget {
 		
 		this.valueText = new Label();
 		this.valueText.setText(String.valueOf(min));
+		this.valueText.getElement().getStyle().setPaddingBottom(0.5, Unit.EM);
 		
 		this.key = key;
 	}
@@ -68,9 +69,9 @@ public class SliderInputWidget implements IsWidget, InputWidget {
 		VerticalPanel vPanel = new VerticalPanel();
 		vPanel.getElement().getStyle().setFloat(Style.Float.RIGHT);
 		vPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
-		vPanel.add(this.slider);
 		vPanel.add(this.valueText);
-		
+		vPanel.add(this.slider);
+	
 		panel.add(vPanel);
 		
 		// setup 1st cell - label

@@ -56,7 +56,6 @@ public class MensaActivity extends MGWTAbstractActivity implements ObserverActiv
 		
 		Date dueDate = new Date();
 		for (int i = 0; i < maxDays; i++) {
-			CalendarUtil.addDaysToDate(dueDate, 1);
 			String dueDateString = DateTimeFormat.getFormat("yyyy-MM-dd").format(dueDate);
 			String weekDay = DateTimeFormat.getFormat("E").format(dueDate);
 			
@@ -68,6 +67,7 @@ public class MensaActivity extends MGWTAbstractActivity implements ObserverActiv
 			
 			dueDateString = DateTimeFormat.getFormat("yyyy-MM-dd").format(dueDate);
 			intranetConn.getMensaMenu(this, Canteen.MOLTKE, dueDateString);
+			CalendarUtil.addDaysToDate(dueDate, 1);
 		}
 	}
 
