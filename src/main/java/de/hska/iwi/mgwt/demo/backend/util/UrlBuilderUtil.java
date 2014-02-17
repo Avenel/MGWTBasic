@@ -26,7 +26,6 @@ public class UrlBuilderUtil {
 	
 	private static final String WORKFLOW_STATUS = "/application/state/";
 	
-	// Complete url Intranetaccess/REST/canteen/<id>/<date>
 	private static final String MENSA_MENU = "/canteen/";
 	
 	
@@ -70,6 +69,10 @@ public class UrlBuilderUtil {
 	
 	public static String getWorkflowStatusUrl(WorkflowEvent workflowEvent) {
 		return BASE_URL_SECURE + WORKFLOW_STATUS + workflowEvent.getUrlKey();
+	}
+
+	public static String getConsultationHoursUrl() {
+		return BASE_URL + LECTURER_HOURS;
 	}
 
 }

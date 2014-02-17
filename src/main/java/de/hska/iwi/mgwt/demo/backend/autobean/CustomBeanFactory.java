@@ -21,4 +21,7 @@ public interface CustomBeanFactory extends AutoBeanFactory {
 	AutoBean<IWorkflowInformation> workflowInformation();
 	
 	AutoBean<IWorkflowStatus> workflowStatus();
+	
+	AutoBean<IConsultationHours> hours();
+	AutoBean<IConsultationHour> hour();
 }

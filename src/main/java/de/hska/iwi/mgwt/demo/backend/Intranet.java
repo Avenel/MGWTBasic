@@ -6,7 +6,7 @@ import de.hska.iwi.mgwt.demo.backend.constants.Canteen;
 import de.hska.iwi.mgwt.demo.backend.constants.Course;
 import de.hska.iwi.mgwt.demo.backend.constants.WorkflowEvent;
 import de.hska.iwi.mgwt.demo.backend.model.CompulsoryOptionalSubjects;
-import de.hska.iwi.mgwt.demo.backend.model.ConsultationHour;
+import de.hska.iwi.mgwt.demo.backend.model.ConsultationHours;
 import de.hska.iwi.mgwt.demo.backend.model.MensaMenu;
 import de.hska.iwi.mgwt.demo.backend.model.News;
 import de.hska.iwi.mgwt.demo.backend.model.Tutorials;
@@ -21,7 +21,7 @@ public interface Intranet {
 		
 	public void getNewsBoard(ObserverActivity<List<News>> observer, Course course) throws IllegalArgumentException;
 	
-//	public void getConsultationHours(ObserverActivity<List<ConsultationHour>> observer);
+	public void getConsultationHours(ObserverActivity<ConsultationHours> observer);
 		
 	public void getCompulsoryOptionalSubjects(ObserverActivity<CompulsoryOptionalSubjects> observer, Course course) throws IllegalArgumentException;
 	

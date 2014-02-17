@@ -1,35 +1,25 @@
 package de.hska.iwi.mgwt.demo.backend.callbacks;
 
-import java.util.List;
+import com.google.web.bindery.autobean.shared.AutoBean;
+import com.google.web.bindery.autobean.shared.AutoBeanCodex;
 
-import com.google.gwt.http.client.Request;
-import com.google.gwt.http.client.Response;
-
-import de.hska.iwi.mgwt.demo.backend.model.ConsultationHour;
+import de.hska.iwi.mgwt.demo.backend.autobean.IConsultationHours;
+import de.hska.iwi.mgwt.demo.backend.model.ConsultationHours;
 import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
 
-public class ConsultationHoursCallback extends AbstractRequestCallback<ObserverActivity<List<ConsultationHour>>> {
+public class ConsultationHoursCallback extends AbstractRequestCallback<ObserverActivity<ConsultationHours>> {
 
-	public ConsultationHoursCallback(ObserverActivity<List<ConsultationHour>> observer) {
+	public ConsultationHoursCallback(ObserverActivity<ConsultationHours> observer) {
 		super(observer);
 	}
 
 	@Override
-	public void onResponseReceived(Request request, Response response) {
-		// TODO Parse JSON etc
-		
-	}
-
-	@Override
-	public void onError(Request request, Throwable exception) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	protected void handleJson(String json) {
-		// TODO Auto-generated method stub
+		AutoBean<IConsultationHours> bean = AutoBeanCodex.decode(factory,
+																 IConsultationHours.class, 
+																 "{\"consultationHours\": " + json + "}");
 		
+		observer.update(new ConsultationHours(bean.as()));
 	}
 
 }
