@@ -85,6 +85,20 @@ public enum WorkflowPhase implements ITransitions {
 	public String getPhaseDescription() {
 		return phaseDescription;
 	}
+	
+	public static WorkflowPhase getEnumForKey(String key) {
+		int intKey = Integer.parseInt(key);
+		return getEnumForKey(intKey);
+	}
+	
+	public static WorkflowPhase getEnumForKey(int key) {
+		for (WorkflowPhase phase : WorkflowPhase.values()) {
+			if (phase.getIndex() == key) {
+				return phase;
+			}
+		}
+		return WorkflowPhase.APPLICATION;
+	}
 
 	@Override
 	public abstract void parseStatus(String status);

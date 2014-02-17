@@ -3,7 +3,6 @@ package de.hska.iwi.mgwt.demo.client.activities.processes.seminar;
 import java.util.List;
 
 import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.storage.client.Storage;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.googlecode.mgwt.dom.client.event.tap.TapEvent;
@@ -52,7 +51,7 @@ public class ProcessSeminarActivity extends MGWTAbstractActivity implements Obse
 				Window.prompt("Enter Password", "password");
 			}
 		}
-		UserCredentials credentials= new UserCredentials("scsi1024", pWord);
+		UserCredentials credentials= new UserCredentials("scsi1014", pWord);
 		//create entries of local storage- just for exemplaric use
 		seminarEntries = SeminarStorage.getSeminars();
 		SeminarTempStorage.setSeminars(seminarEntries);
@@ -87,10 +86,10 @@ public class ProcessSeminarActivity extends MGWTAbstractActivity implements Obse
 	public void update(WorkflowStatus arg) {
 		//build a new Seminar
 		Seminar seminar= new Seminar();
-		seminar.setProfessor("##liveData##");
+		seminar.setProfessor(arg.getLecturer());
 		seminar.setStatus(arg.getPhase().getIndex());
 		seminar.setTerm("##liveData##");
-		seminar.setTopic("##liveData##");	
+		seminar.setTopic(arg.getTopic());	
 		seminarEntries.add(seminar);
 		SeminarTempStorage.setSeminars(seminarEntries);
 		view.render(seminarEntries);
