@@ -1,14 +1,16 @@
 package de.hska.iwi.mgwt.demo.backend.constants;
 
+import com.google.web.bindery.autobean.shared.AutoBean.PropertyName;
+
 public enum NewsType implements IURLParameterEnum {
+	@PropertyName("announcement")
 	ANNOUNCEMENT("announcement"),
-	announcement("announcement"),
+	@PropertyName("rearrangement")
 	REARRANGEMENT("rearrangement"),
-	rearrangement("rearrangement"),
+	@PropertyName("cancellation")
 	CANCELLATION("cancellation"),
-	cancellation("cancellation"),
-	ROOM_CHANGE("room_change"),
-	room_change("room_change");
+	@PropertyName("room_change")
+	ROOM_CHANGE("room_change");
 	
 	private final String key;
 	
