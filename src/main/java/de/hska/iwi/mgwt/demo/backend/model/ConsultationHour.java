@@ -16,7 +16,7 @@ public class ConsultationHour implements IConsultationHour {
 	private String room;
 	private String building;
 	
-	private Weekday consultationDay;
+	private int consultationDay;
 
 	public ConsultationHour(IConsultationHour hour) {
 		this.id = hour.getId();
@@ -84,8 +84,12 @@ public class ConsultationHour implements IConsultationHour {
 	 * @return the consultationDay
 	 */
 	@Override
-	public Weekday getConsultationDay() {
+	public int getConsultationDay() {
 		return consultationDay;
+	}
+	
+	public Weekday getConsultationWeekday() {
+		return Weekday.getEnumForKey(this.consultationDay);
 	}
 
 	/**
@@ -164,8 +168,12 @@ public class ConsultationHour implements IConsultationHour {
 	 * @param consultationDay the consultationDay to set
 	 */
 	@Override
-	public void setConsultationDay(Weekday consultationDay) {
+	public void setConsultationDay(int consultationDay) {
 		this.consultationDay = consultationDay;
+	}
+	
+	public void setConsultationDay(Weekday consultationDay) {
+		this.consultationDay = consultationDay.getNumberOfWeekday();
 	}
 	
 	/**

@@ -37,7 +37,7 @@ public interface IConsultationHour {
 	/**
 	 * @return the consultationDay
 	 */
-	public Weekday getConsultationDay();
+	public int getConsultationDay();
 
 	/**
 	 * @return the consultationTime
@@ -87,7 +87,7 @@ public interface IConsultationHour {
 	/**
 	 * @param consultationDay the consultationDay to set
 	 */
-	public void setConsultationDay(Weekday consultationDay);
+	public void setConsultationDay(int consultationDay);
 
 	/**
 	 * @param consultationTime the consultationTime to set
