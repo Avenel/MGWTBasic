@@ -10,6 +10,8 @@ import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
 import de.hska.iwi.mgwt.demo.backend.BackendFactory;
 import de.hska.iwi.mgwt.demo.backend.Intranet;
 import de.hska.iwi.mgwt.demo.backend.constants.WorkflowEvent;
+import de.hska.iwi.mgwt.demo.backend.constants.WorkflowPhase;
+import de.hska.iwi.mgwt.demo.backend.constants.WorkflowRoles;
 import de.hska.iwi.mgwt.demo.backend.model.WorkflowInformation;
 import de.hska.iwi.mgwt.demo.client.ClientFactory;
 import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
@@ -71,9 +73,10 @@ public class ProcessDetailSeminarActivity extends MGWTAbstractActivity implement
 	@Override
 	public void update(WorkflowInformation arg) {
 		List<ProcessStep> steps= new ArrayList<ProcessStep>();
-		int i = 0;
-		for(String s : arg.getWorkflow()){
-			steps.add(new ProcessStep(s, i++, "desc"));
+		for(int i=0; i<arg.getWorkflow().size();i++){
+			List<WorkflowRoles> roles=arg.getRolesInPhase(WorkflowPhase.getEnumForKey(i));
+			String desc= i+1 +". "+roles.get(0).getDescription();
+			steps.add(new ProcessStep(desc, i, "desc"));
 		}
 		
 		//set to persistent web storage
