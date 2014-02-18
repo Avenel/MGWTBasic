@@ -16,7 +16,7 @@ import de.hska.iwi.mgwt.demo.client.storage.SettingStorage;
 import de.hska.iwi.mgwt.demo.client.widget.CheckBoxWidget;
 import de.hska.iwi.mgwt.demo.client.widget.PasswordInputWidget;
 import de.hska.iwi.mgwt.demo.client.widget.SettingItemMenuLink;
-import de.hska.iwi.mgwt.demo.client.widget.SliderInputWidget;
+import de.hska.iwi.mgwt.demo.client.widget.AccordionInputWidget;
 import de.hska.iwi.mgwt.demo.client.widget.TextInputWidget;
 
 public class SettingsActivity extends MGWTAbstractActivity {
@@ -52,7 +52,7 @@ public class SettingsActivity extends MGWTAbstractActivity {
 	    	}
 	    	
 	    	if (item.getInputType().equals(InputType.SLIDER)) {
-	    		settingItemWidgets.add(new SliderInputWidget(item.getStorageKey().getHumanReadableName(), item.getStorageKey(), (int) item.getMinValue(), (int) item.getMaxValue()).asWidget());
+	    		settingItemWidgets.add(new AccordionInputWidget(item.getStorageKey().getHumanReadableName(), item.getStorageKey(), (int) item.getMinValue(), (int) item.getMaxValue()).asWidget());
 	    	}
 	    }
 		
