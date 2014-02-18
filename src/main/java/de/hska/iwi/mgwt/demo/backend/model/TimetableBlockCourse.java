@@ -1,6 +1,7 @@
 package de.hska.iwi.mgwt.demo.backend.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import de.hska.iwi.mgwt.demo.backend.autobean.ILocation;
@@ -25,6 +26,10 @@ public class TimetableBlockCourse {
 	
 	private List<Location> locations;
 
+	/**
+	 * Constructor which makes a copy of a corresponding GWT AutoBean Interface type to this model
+	 * @param course the AutoBean Interfacetype
+	 */
 	public TimetableBlockCourse(ITimetableBlockCourse course) {
 		this.cancellation = course.getCancellation();
 		this.comment = course.getComment();
@@ -46,155 +51,176 @@ public class TimetableBlockCourse {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.TEST#getCancellation()
+	/**
+	 * @return hint of cancellation or empty String if nothing exists
 	 */
 	public String getCancellation() {
 		return cancellation;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.TEST#getComment()
+	/**
+	 * Getter for comment
+	 * @return comment
 	 */
 	public String getComment() {
 		return comment;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.TEST#getDuration()
+	/**
+	 * Getter for the duration
+	 * @return description of the duration of this course
 	 */
 	public String getDuration() {
 		return duration;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.TEST#getInternalName()
+	/**
+	 * Getter for internalName
+	 * @return the internal Name of this course
 	 */
 	public String getInternalName() {
 		return internalName;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.TEST#getLectureName()
+	/**
+	 * Getter for lecturer Name
+	 * @return name of the lecturer
 	 */
 	public String getLectureName() {
 		return lectureName;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.TEST#getGroups()
+	/**
+	 * Getter for the groups
+	 * @return the list of groups or an empty list if none is available
 	 */
 	public List<String> getGroups() {
-		return groups;
+		return groups == null ? Collections.<String>emptyList() : groups;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.TEST#getLecturerNames()
+	/**
+	 * Getter for the lecturerNames
+	 * @return the list of lectureres or an empty list if none is available
 	 */
 	public List<String> getLecturerNames() {
-		return lecturerNames;
+		return lecturerNames == null ? Collections.<String>emptyList() : lecturerNames;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.TEST#getStartTime()
+	/**
+	 * Getter for the starttime. This time is represented by the hours from midnight.
+	 * @return starttime in hours from midnight
 	 */
 	public int getStartTime() {
 		return startTime;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.TEST#getEndTime()
+	/**
+	 * Getter for the endtime. This time is represented by the hours from midnight.
+	 * @return endtime in hours from midnight
 	 */
 	public int getEndTime() {
 		return endTime;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.TEST#getInterval()
+	/**
+	 * Getter for the interval of the course
+	 * @return {@see CourseInterval}
 	 */
 	public CourseInterval getInterval() {
 		return interval;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.TEST#getLocations()
+	/**
+	 * Getter for the Locations
+	 * @return the list of locations
 	 */
 	public List<Location> getLocations() {
 		return locations;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.TEST#setCancellation(java.lang.String)
+	/**
+	 * setter for the cancellation
+	 * @param cancellation value to set
 	 */
 	public void setCancellation(String cancellation) {
 		this.cancellation = cancellation;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.TEST#setComment(java.lang.String)
+	/**
+	 * Setter for the comment
+	 * @param comment value to set
 	 */
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.TEST#setDuration(java.lang.String)
+	/**
+	 * Setter for the duration
+	 * @param duration value to set
 	 */
 	public void setDuration(String duration) {
 		this.duration = duration;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.TEST#setInternalName(java.lang.String)
+	/**
+	 * Setter for the internal name
+	 * @param internalName value to set
 	 */
 	public void setInternalName(String internalName) {
 		this.internalName = internalName;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.TEST#setLectureName(java.lang.String)
+	/**
+	 * Setter for the lecturer name
+	 * @param lectureName value to set
 	 */
 	public void setLectureName(String lectureName) {
 		this.lectureName = lectureName;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.TEST#setGroups(java.util.List)
+	/**
+	 * Setter for the groups
+	 * @param groups value to set
 	 */
 	public void setGroups(List<String> groups) {
 		this.groups = groups;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.TEST#setLecturerNames(java.util.List)
+	/**
+	 * Setter for the lecturerNames
+	 * @param lecturerNames value to set
 	 */
 	public void setLecturerNames(List<String> lecturerNames) {
 		this.lecturerNames = lecturerNames;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.TEST#setStartTime(int)
+	/**
+	 * Setter for the starttime
+	 * @param startTime value to set
 	 */
 	public void setStartTime(int startTime) {
 		this.startTime = startTime;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.TEST#setEndTime(int)
+	/**
+	 * Setter for the endTime
+	 * @param endTime value to set
 	 */
 	public void setEndTime(int endTime) {
 		this.endTime = endTime;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.TEST#setInterval(de.hska.iwi.mgwt.demo.backend.constants.CourseInterval)
+	/**
+	 * Setter for the interval
+	 * @param interval a {@link CourseInteval} to set
 	 */
 	public void setInterval(CourseInterval interval) {
 		this.interval = interval;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.TEST#setLocations(java.util.List)
+	/**
+	 * Setter for the Location
+	 * @param locations value to set
 	 */
 	public void setLocations(List<Location> locations) {
 		this.locations = locations;
