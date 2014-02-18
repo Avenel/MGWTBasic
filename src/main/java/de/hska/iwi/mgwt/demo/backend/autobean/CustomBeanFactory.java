@@ -24,4 +24,7 @@ public interface CustomBeanFactory extends AutoBeanFactory {
 	
 	AutoBean<IConsultationHours> hours();
 	AutoBean<IConsultationHour> hour();
+	
+	AutoBean<IBlockCourses> courses();
+	AutoBean<IBlockCourse> course();
 }

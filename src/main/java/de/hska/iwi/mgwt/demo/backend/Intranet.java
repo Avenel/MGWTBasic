@@ -5,6 +5,7 @@ import java.util.List;
 import de.hska.iwi.mgwt.demo.backend.constants.Canteen;
 import de.hska.iwi.mgwt.demo.backend.constants.Course;
 import de.hska.iwi.mgwt.demo.backend.constants.WorkflowEvent;
+import de.hska.iwi.mgwt.demo.backend.model.BlockCourses;
 import de.hska.iwi.mgwt.demo.backend.model.CompulsoryOptionalSubjects;
 import de.hska.iwi.mgwt.demo.backend.model.ConsultationHours;
 import de.hska.iwi.mgwt.demo.backend.model.MensaMenu;
@@ -30,5 +31,7 @@ public interface Intranet {
 	public void getWorkflowInformation(ObserverActivity<WorkflowInformation> observer, WorkflowEvent event);
 	
 	public void getWorkflowStatus(ObserverActivity<WorkflowStatus> observer, WorkflowEvent event, UserCredentials credentials);
+	
+	public void getBlockCourses(ObserverActivity<BlockCourses> observer, Course course);
 
 }

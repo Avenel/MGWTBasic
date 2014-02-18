@@ -18,7 +18,7 @@ public class UrlBuilderUtil {
 	
 	private static final String LECTURER_HOURS = "/lecturersconsultationhours/";
 	
-	private static final String BLOCK_COURSES = "/blockcourses/<stg>";
+	private static final String BLOCK_COURSES = "/blockcourses/";
 	
 	private static final String TIMETABLE = "/timetable/<stg>/<sem>";
 	
@@ -58,7 +58,6 @@ public class UrlBuilderUtil {
 				break;
 			default:
 				url = BASE_URL + NEWS_BOARD_ALL + course.getUrlKey();	
-				break;
 		}
 		return url;	
 	}
@@ -73,6 +72,18 @@ public class UrlBuilderUtil {
 
 	public static String getConsultationHoursUrl() {
 		return BASE_URL + LECTURER_HOURS;
+	}
+	
+	public static String getBlockCoursesUrl(Course course) {
+		String url = "";
+		switch (course) {
+			case ALL:
+				url = BASE_URL + BLOCK_COURSES;
+				break;
+			default:
+				url = BASE_URL + BLOCK_COURSES + course.getUrlKey();
+		}
+		return url;
 	}
 
 }

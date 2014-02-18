@@ -10,6 +10,7 @@ import com.google.gwt.user.server.Base64Utils;
 import com.googlecode.gwt.crypto.bouncycastle.util.encoders.Base64;
 
 import de.hska.iwi.mgwt.demo.backend.Intranet;
+import de.hska.iwi.mgwt.demo.backend.callbacks.BlockCoursesCallback;
 import de.hska.iwi.mgwt.demo.backend.callbacks.CompulsorySubjectCallback;
 import de.hska.iwi.mgwt.demo.backend.callbacks.ConsultationHoursCallback;
 import de.hska.iwi.mgwt.demo.backend.callbacks.MensaMenuCallback;
@@ -20,6 +21,7 @@ import de.hska.iwi.mgwt.demo.backend.callbacks.WorkflowStatusCallback;
 import de.hska.iwi.mgwt.demo.backend.constants.Canteen;
 import de.hska.iwi.mgwt.demo.backend.constants.Course;
 import de.hska.iwi.mgwt.demo.backend.constants.WorkflowEvent;
+import de.hska.iwi.mgwt.demo.backend.model.BlockCourses;
 import de.hska.iwi.mgwt.demo.backend.model.CompulsoryOptionalSubjects;
 import de.hska.iwi.mgwt.demo.backend.model.ConsultationHour;
 import de.hska.iwi.mgwt.demo.backend.model.ConsultationHours;
@@ -187,6 +189,25 @@ public class IntranetConnection implements Intranet {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	@Override
+	public void getBlockCourses(ObserverActivity<BlockCourses> observer, Course course) {
+		throwIfNull(observer, course);
+		
+		String url = UrlBuilderUtil.getBlockCoursesUrl(course);
+		
+		BlockCoursesCallback cb = new BlockCoursesCallback(observer);
+		
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, URL.encode(url));
+		builder.setCallback(cb);
+		
+		try {
+			builder.send();
+		} catch (RequestException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	private void throwIfNull(Object... args) {
