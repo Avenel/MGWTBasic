@@ -102,20 +102,21 @@ public class ProcessSeminarActivity extends MGWTAbstractActivity implements
 		// build a new Seminar
 		view.setLoading(false);
 		Seminar seminar = new Seminar();
-		boolean add= true;
-		seminar.setProfessor(arg.getLecturer());
-		seminar.setStatus(arg.getPhase().getIndex());
-		seminar.setStatusString(arg.getPhase().getCurrentPhaseDescription());
-		seminar.setTerm("#livedata");
-		seminar.setTopic(arg.getTopic());
-		for(int i=0; i<seminarEntries.size();i++){
-			Seminar s= seminarEntries.get(i);
-			if (s.getTopic().equals(seminar.getTopic())){
-				seminarEntries.remove(i);
+		if(arg.getLecturer()!=null){
+			seminar.setProfessor(arg.getLecturer());
+			seminar.setStatus(arg.getPhase().getIndex());
+			seminar.setStatusString(arg.getPhase().getCurrentPhaseDescription());
+			seminar.setTerm("#livedata");
+			seminar.setTopic(arg.getTopic());
+			for(int i=0; i<seminarEntries.size();i++){
+				Seminar s= seminarEntries.get(i);
+				if (s.getTopic().equals(seminar.getTopic())){
+					seminarEntries.remove(i);
+				}
 			}
+					
+			seminarEntries.add(seminar);
 		}
-				
-		seminarEntries.add(seminar);
 		
 		SeminarTempStorage.setSeminars(seminarEntries);
 		SeminarStorage.setSeminars(seminarEntries);
