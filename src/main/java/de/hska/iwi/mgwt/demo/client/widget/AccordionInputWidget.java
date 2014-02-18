@@ -111,6 +111,9 @@ public class AccordionInputWidget implements IsWidget, InputWidget {
 	@Override
 	public Widget asWidget() {
 		VerticalPanel wrapper = new VerticalPanel();
+		wrapper.setHeight("100%");
+		wrapper.setWidth("100%");
+		
 		HorizontalPanel panel = new HorizontalPanel();
 		panel.setWidth("100%");
 		panel.add(this.text);
