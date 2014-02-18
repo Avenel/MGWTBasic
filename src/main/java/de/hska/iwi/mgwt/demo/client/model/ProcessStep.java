@@ -4,14 +4,12 @@ public class ProcessStep {
 	
 	String displayText;
 	int stepIndex;
-	String description;
 	
 	
 	
-	public ProcessStep( String displayText, int stepIndex, String description){
+	public ProcessStep( String displayText, int stepIndex){
 		this.displayText=displayText;
 		this.stepIndex=stepIndex;
-		this.description=description;
 	}
 	
 	public String getDisplayText() {
@@ -26,12 +24,7 @@ public class ProcessStep {
 	public void setStepIndex(int stepIndex) {
 		this.stepIndex = stepIndex;
 	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
+	
 	
 }
 

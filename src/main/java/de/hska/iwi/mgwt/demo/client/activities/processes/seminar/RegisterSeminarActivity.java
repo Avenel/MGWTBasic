@@ -6,9 +6,7 @@ import java.util.List;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.json.client.JSONArray;
-import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONParser;
-import com.google.gwt.json.client.JSONString;
 import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.storage.client.Storage;
 import com.google.gwt.user.client.History;
@@ -82,6 +80,7 @@ public class RegisterSeminarActivity extends MGWTAbstractActivity {
 							newSeminar.setProfessor(textBox.getText());
 						}
 						newSeminar.setStatus(0);
+						newSeminar.setStatusString("");
 					}
 
 				}

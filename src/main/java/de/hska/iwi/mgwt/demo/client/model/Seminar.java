@@ -10,6 +10,7 @@ public class Seminar {
 	private String topic;
 	private String term;
 	private int status;
+	private String statusString;
 	
 	public int getStatus() {
 		return status;
@@ -34,6 +35,13 @@ public class Seminar {
 	}
 	public void setTerm(String term) {
 		this.term = term;
+	}
+	
+	public String getStatusString(){
+		return this.statusString;
+	}
+	public void setStatusString(String text){
+		this.statusString=text;
 	}
 	
 }

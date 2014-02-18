@@ -72,14 +72,15 @@ public class ProcessSeminarViewImpl implements ProcessSeminarView {
 		loadingProgress = new ProgressIndicator();
 		loadingProgress.setVisible(true);
 		loadingProgress.setSize("50px", "50px");
-		loadingProgress.getElement().getStyle().setMarginLeft(40, Unit.PCT);
-		loadingProgress.getElement().getStyle().setMarginTop(5, Unit.PCT);
+		loadingProgress.getElement().getStyle().setProperty("marginLeft", "auto");
+		loadingProgress.getElement().getStyle().setProperty("marginRight", "auto");
+		loadingProgress.getElement().getStyle().setMarginTop(10, Unit.PX);
 		loadingProgress.setTitle("getting Data from the server");
 		
 		loadingLabel= new Label();
 		loadingLabel.setText("Lade neueste Daten...");
 		loadingLabel.getElement().getStyle().setColor("grey");
-		loadingLabel.getElement().getStyle().setMarginTop(5, Unit.PCT);
+		loadingLabel.getElement().getStyle().setMarginTop(5, Unit.PX);
 		loadingLabel.getElement().getStyle().setTextAlign(TextAlign.CENTER);
 		
 		
@@ -88,7 +89,6 @@ public class ProcessSeminarViewImpl implements ProcessSeminarView {
 		
 		main.add(registerButton);
 		main.add(cellListSeminars);
-		//main.add(loadingPanel);
 		main.add(loadingProgress);
 		main.add(loadingLabel);
 	}

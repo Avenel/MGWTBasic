@@ -105,6 +105,7 @@ public class ProcessSeminarActivity extends MGWTAbstractActivity implements
 		boolean add= true;
 		seminar.setProfessor(arg.getLecturer());
 		seminar.setStatus(arg.getPhase().getIndex());
+		seminar.setStatusString(arg.getPhase().getCurrentPhaseDescription());
 		seminar.setTerm("#livedata");
 		seminar.setTopic(arg.getTopic());
 		for(int i=0; i<seminarEntries.size();i++){

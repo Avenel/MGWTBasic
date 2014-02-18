@@ -43,6 +43,7 @@ public class SeminarStorage {
 		jsonSeminar.put(StorageKey.ProcessesSeminarTopic.toString(), new JSONString(seminar.getTopic()));
 		jsonSeminar.put(StorageKey.ProcessesSeminarProfessor.toString(), new JSONString(seminar.getProfessor()));
 		jsonSeminar.put(StorageKey.ProcessesSeminarStatus.toString(),new JSONString(seminar.getStatus()+""));
+		jsonSeminar.put(StorageKey.ProcessesSeminarStatusString.toString(), new JSONString(seminar.getStatusString()));
 		currentSeminars.set(currentSeminars.size(), jsonSeminar);
 		localStorage.setItem(StorageKey.ProcessesSeminarsList.toString(), currentSeminars.toString());
 		
@@ -83,6 +84,9 @@ public class SeminarStorage {
 				String status= currentObject.get(StorageKey.ProcessesSeminarStatus.toString()).toString();
 				status= status.replace("\"", "");
 				seminar.setStatus(Integer.parseInt(status));
+				String statusText= currentObject.get(StorageKey.ProcessesSeminarStatusString.toString()).toString();
+				statusText= statusText.replace("\"", "");
+				seminar.setStatusString(statusText);
 				
 				retVal.add(seminar);
 
@@ -93,39 +97,5 @@ public class SeminarStorage {
 
 		return retVal;
 	}
-	/**
-	 * Writes the ProcessesSteps of Seminars to the local storage
-	 * @param steps the ProcessSteps to save
-	 */
-	public static void setSeminarSteps(List<ProcessStep> steps){
-		JSONObject jSteps= new JSONObject();
-		Storage localStorage = Storage.getLocalStorageIfSupported();
-		for (ProcessStep s: steps){
-			jSteps.put(s.getStepIndex()+"", new JSONString(s.getDisplayText()));
-		}
-		localStorage.setItem(StorageKey.ProcessesSeminarSteps.toString(), jSteps.toString());
-		
-		
-	}
-	/**
-	 * Gets a List of Seminarsteps, that are currently in the local storage
-	 * @return a List of ProcessSteps for a Seminar. Not particularily ordered. Trailing and leading " are cut
-	 */
-	public static List<ProcessStep> getSeminarSteps(){
-		List<ProcessStep> steps= new ArrayList<ProcessStep>();
-		Storage localStorage = Storage.getLocalStorageIfSupported();
-		String item= localStorage.getItem(StorageKey.ProcessesSeminarSteps.toString());
-		if (item==null){
-			return steps;
-		}
-		JSONValue value = JSONParser.parseStrict(item);
-		JSONObject jSteps= (JSONObject)value;
-		for(int i=0; i<jSteps.size();i++){
-			String displayString=jSteps.get(i+"").toString();
-			displayString=displayString.replace("\"", "");
-			ProcessStep p= new ProcessStep(displayString,i,"desc");
-			steps.add(p);
-		}
-		return steps;
-	}
+	
 }
