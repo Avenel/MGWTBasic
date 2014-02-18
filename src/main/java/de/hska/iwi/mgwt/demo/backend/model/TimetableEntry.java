@@ -18,20 +18,19 @@ public class TimetableEntry {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.TEST#getEntries()
+	/**
+	 * @return the entries
 	 */
 	public List<TimetableBlockCourse> getEntries() {
 		return entries;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.TEST#setEntries(java.util.List)
+
+	/**
+	 * @param entries the entries to set
 	 */
 	public void setEntries(List<TimetableBlockCourse> entries) {
 		this.entries = entries;
 	}
 	
-	
-
 }
