@@ -13,5 +13,6 @@ public interface ProcessSeminarView extends IsWidget {
 	public void render(List<Seminar> seminarList);
 	public Button getRegisterButton();
 	public CellList<Seminar> getSeminarCellList();
+	void setLoading(boolean loading);
 	
 }

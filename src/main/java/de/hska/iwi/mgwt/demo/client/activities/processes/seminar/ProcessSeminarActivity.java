@@ -99,6 +99,7 @@ public class ProcessSeminarActivity extends MGWTAbstractActivity implements
 	@Override
 	public void update(WorkflowStatus arg) {
 		// build a new Seminar
+		view.setLoading(false);
 		Seminar seminar = new Seminar();
 		boolean add= true;
 		seminar.setProfessor(arg.getLecturer());
