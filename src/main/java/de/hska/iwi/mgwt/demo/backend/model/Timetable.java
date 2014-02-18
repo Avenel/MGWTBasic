@@ -12,7 +12,7 @@ public class Timetable {
 
 	private Course courseOfStudies;
 	
-	private List<TimetableBlockCourse> blockcourses;
+	private List<TimetableBlockCourse> blockCourses;
 	private List<TimetableEntry> timetables;
 		
 	private int semester;
@@ -22,9 +22,9 @@ public class Timetable {
 	public Timetable(ITimetable iTimetable) {
 		this.courseOfStudies = iTimetable.getCourseOfStudies();
 		
-		this.blockcourses = new ArrayList<TimetableBlockCourse>();
-		for (ITimetableBlockCourse course : iTimetable.getBlockcourses()) {
-			this.blockcourses.add(new TimetableBlockCourse(course));
+		this.blockCourses = new ArrayList<TimetableBlockCourse>();
+		for (ITimetableBlockCourse course : iTimetable.getBlockCourses()) {
+			this.blockCourses.add(new TimetableBlockCourse(course));
 		}
 		
 		this.timetables = new ArrayList<TimetableEntry>();
@@ -47,8 +47,8 @@ public class Timetable {
 	/* (non-Javadoc)
 	 * @see de.hska.iwi.mgwt.demo.backend.model.ItestTimeTable#getBlockcourses()
 	 */
-	public List<TimetableBlockCourse> getBlockcourses() {
-		return blockcourses;
+	public List<TimetableBlockCourse> getBlockCourses() {
+		return blockCourses;
 	}
 
 	/* (non-Javadoc)
@@ -83,7 +83,7 @@ public class Timetable {
 	 * @see de.hska.iwi.mgwt.demo.backend.model.ItestTimeTable#setBlockcourses(java.util.List)
 	 */
 	public void setBlockcourses(List<TimetableBlockCourse> blockcourses) {
-		this.blockcourses = blockcourses;
+		this.blockCourses = blockcourses;
 	}
 
 	/* (non-Javadoc)

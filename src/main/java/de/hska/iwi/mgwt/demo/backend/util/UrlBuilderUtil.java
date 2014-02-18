@@ -86,7 +86,7 @@ public class UrlBuilderUtil {
 	}
 
 	public static String getTimetableUrl(Course course, int semester) {
-		return BASE_URL + TIMETABLE + course.getUrlKey() + "/" + "semester";
+		return BASE_URL + TIMETABLE + course.getUrlKey() + "/" + semester;
 	}
 
 }

@@ -14,7 +14,7 @@ public interface ITimetable {
 	/**
 	 * @return the blockcourses
 	 */
-	public List<ITimetableBlockCourse> getBlockcourses();
+	public List<ITimetableBlockCourse> getBlockCourses();
 
 	/**
 	 * @return the timetables
@@ -39,7 +39,7 @@ public interface ITimetable {
 	/**
 	 * @param blockcourses the blockcourses to set
 	 */
-	public void setBlockcourses(List<ITimetableBlockCourse> blockcourses);
+	public void setBlockCourses(List<ITimetableBlockCourse> blockCourses);
 
 	/**
 	 * @param timetables the timetables to set

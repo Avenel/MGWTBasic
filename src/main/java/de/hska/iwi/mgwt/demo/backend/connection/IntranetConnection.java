@@ -6,7 +6,6 @@ import java.util.List;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.URL;
-import com.google.gwt.user.server.Base64Utils;
 import com.googlecode.gwt.crypto.bouncycastle.util.encoders.Base64;
 
 import de.hska.iwi.mgwt.demo.backend.Intranet;
@@ -25,7 +24,6 @@ import de.hska.iwi.mgwt.demo.backend.constants.Course;
 import de.hska.iwi.mgwt.demo.backend.constants.WorkflowEvent;
 import de.hska.iwi.mgwt.demo.backend.model.BlockCourses;
 import de.hska.iwi.mgwt.demo.backend.model.CompulsoryOptionalSubjects;
-import de.hska.iwi.mgwt.demo.backend.model.ConsultationHour;
 import de.hska.iwi.mgwt.demo.backend.model.ConsultationHours;
 import de.hska.iwi.mgwt.demo.backend.model.MensaMenu;
 import de.hska.iwi.mgwt.demo.backend.model.News;
@@ -39,8 +37,6 @@ import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
 
 public class IntranetConnection implements Intranet {
 	
-	private static final String AUTH_HEADER = "Authorization";
-	private static final String CHARSET = "UTF-8";
 
 	@Override
 	public void getTutorials(ObserverActivity<Tutorials> observer, Course course) {
@@ -50,15 +46,7 @@ public class IntranetConnection implements Intranet {
 		
 		TutorialsCallback cb = new TutorialsCallback(observer);
 		
-		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, URL.encode(url));
-		builder.setCallback(cb);
-		
-		try {
-			builder.send();
-		} catch (RequestException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		doRequest(cb, RequestBuilder.GET, url);
 	}
 
 	@Override
@@ -69,16 +57,7 @@ public class IntranetConnection implements Intranet {
 		
 		NewsBoardCallback cb = new NewsBoardCallback(observer);
 		
-		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, URL.encode(url));
-		builder.setCallback(cb);
-		
-		try {
-			builder.send();
-		} catch (RequestException e) {
-			System.out.println("error");
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		doRequest(cb, RequestBuilder.GET, url);
 	}
 
 	@Override
@@ -93,16 +72,7 @@ public class IntranetConnection implements Intranet {
 		
 		CompulsorySubjectCallback cb = new CompulsorySubjectCallback(observer);
 		
-		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, URL.encode(url));
-		builder.setCallback(cb);
-		
-		try {
-			builder.send();
-		} catch (RequestException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+		doRequest(cb, RequestBuilder.GET, url);
 	}
 	
 	@Override
@@ -113,15 +83,7 @@ public class IntranetConnection implements Intranet {
 		
 		ConsultationHoursCallback cb = new ConsultationHoursCallback(observer);
 		
-		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, URL.encode(url));
-		builder.setCallback(cb);
-		
-		try {
-			builder.send();
-		} catch (RequestException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		doRequest(cb, RequestBuilder.GET, url);
 	}
 
 	@Override
@@ -132,15 +94,7 @@ public class IntranetConnection implements Intranet {
 		
 		MensaMenuCallback cb = new MensaMenuCallback(observer);
 		
-		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, URL.encode(url));
-		builder.setCallback(cb);
-		
-		try {
-			builder.send();
-		} catch (RequestException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		doRequest(cb, RequestBuilder.GET, url);
 	}
 
 	@Override
@@ -151,21 +105,15 @@ public class IntranetConnection implements Intranet {
 		
 		WorkflowInformationCallback cb = new WorkflowInformationCallback(observer);
 		
-		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, URL.encode(url));
-		builder.setCallback(cb);
-		
-		try {
-			builder.send();
-		} catch (RequestException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		doRequest(cb, RequestBuilder.GET, url);
 	}
 	
 	@Override
 	public void getWorkflowStatus(ObserverActivity<WorkflowStatus> observer, WorkflowEvent event, UserCredentials credentials) {
 		throwIfNull(observer, event, credentials);
+		
+		final String AUTH_HEADER = "Authorization";
+		final String CHARSET = "UTF-8";
 		
 		String url = UrlBuilderUtil.getWorkflowStatusUrl(event);
 		
@@ -202,15 +150,7 @@ public class IntranetConnection implements Intranet {
 		
 		BlockCoursesCallback cb = new BlockCoursesCallback(observer);
 		
-		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, URL.encode(url));
-		builder.setCallback(cb);
-		
-		try {
-			builder.send();
-		} catch (RequestException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		doRequest(cb, RequestBuilder.GET, url);
 	}
 	
 	@Override
@@ -223,7 +163,7 @@ public class IntranetConnection implements Intranet {
 		String url = UrlBuilderUtil.getTimetableUrl(course, semester);
 		
 		TimetableCallback cb = new TimetableCallback(observer);
-
+		
 		doRequest(cb, RequestBuilder.GET, url);
 	}
 	
@@ -250,6 +190,4 @@ public class IntranetConnection implements Intranet {
 			}
 		}
 	}
-
-
 }
