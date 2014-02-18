@@ -7,7 +7,6 @@ import de.hska.iwi.mgwt.demo.backend.constants.WorkflowEvent;
 public class UrlBuilderUtil {
 	
 	private static final String BASE_URL = "http://www.iwi.hs-karlsruhe.de/Intranetaccess/REST";
-	
 	private static final String BASE_URL_SECURE = "https://www.iwi.hs-karlsruhe.de/Intranetaccess/REST";
 	
 	private static final String TUTORIALS_ALL = "/tutorials/";
@@ -20,7 +19,7 @@ public class UrlBuilderUtil {
 	
 	private static final String BLOCK_COURSES = "/blockcourses/";
 	
-	private static final String TIMETABLE = "/timetable/<stg>/<sem>";
+	private static final String TIMETABLE = "/timetable/";
 	
 	private static final String WORKFLOW_INFORMATION = "/application/workflow/";
 	
@@ -84,6 +83,10 @@ public class UrlBuilderUtil {
 				url = BASE_URL + BLOCK_COURSES + course.getUrlKey();
 		}
 		return url;
+	}
+
+	public static String getTimetableUrl(Course course, int semester) {
+		return BASE_URL + TIMETABLE + course.getUrlKey() + "/" + "semester";
 	}
 
 }

@@ -10,11 +10,13 @@ import com.google.gwt.user.server.Base64Utils;
 import com.googlecode.gwt.crypto.bouncycastle.util.encoders.Base64;
 
 import de.hska.iwi.mgwt.demo.backend.Intranet;
+import de.hska.iwi.mgwt.demo.backend.callbacks.AbstractRequestCallback;
 import de.hska.iwi.mgwt.demo.backend.callbacks.BlockCoursesCallback;
 import de.hska.iwi.mgwt.demo.backend.callbacks.CompulsorySubjectCallback;
 import de.hska.iwi.mgwt.demo.backend.callbacks.ConsultationHoursCallback;
 import de.hska.iwi.mgwt.demo.backend.callbacks.MensaMenuCallback;
 import de.hska.iwi.mgwt.demo.backend.callbacks.NewsBoardCallback;
+import de.hska.iwi.mgwt.demo.backend.callbacks.TimetableCallback;
 import de.hska.iwi.mgwt.demo.backend.callbacks.TutorialsCallback;
 import de.hska.iwi.mgwt.demo.backend.callbacks.WorkflowInformationCallback;
 import de.hska.iwi.mgwt.demo.backend.callbacks.WorkflowStatusCallback;
@@ -27,6 +29,7 @@ import de.hska.iwi.mgwt.demo.backend.model.ConsultationHour;
 import de.hska.iwi.mgwt.demo.backend.model.ConsultationHours;
 import de.hska.iwi.mgwt.demo.backend.model.MensaMenu;
 import de.hska.iwi.mgwt.demo.backend.model.News;
+import de.hska.iwi.mgwt.demo.backend.model.Timetable;
 import de.hska.iwi.mgwt.demo.backend.model.Tutorials;
 import de.hska.iwi.mgwt.demo.backend.model.WorkflowInformation;
 import de.hska.iwi.mgwt.demo.backend.model.WorkflowStatus;
@@ -181,7 +184,7 @@ public class IntranetConnection implements Intranet {
 		
 		WorkflowStatusCallback cb = new WorkflowStatusCallback(observer);
 		builder.setCallback(cb);
-		builder.setRequestData(null);
+		
 		try {
 			builder.send();
 		} catch (RequestException e) {
@@ -210,6 +213,36 @@ public class IntranetConnection implements Intranet {
 		}
 	}
 	
+	@Override
+	public void getTimetable(ObserverActivity<Timetable> observer, Course course, int semester) throws IllegalArgumentException {
+		throwIfNull(observer, course, semester);
+		if (semester < 1 || semester >= course.getCountOfSemester()) {
+			throw new IllegalArgumentException("Semester must be between 1 and " + course.getCountOfSemester() + ".\n Was actual: " + semester);
+		}
+		
+		String url = UrlBuilderUtil.getTimetableUrl(course, semester);
+		
+		TimetableCallback cb = new TimetableCallback(observer);
+
+		doRequest(cb, RequestBuilder.GET, url);
+	}
+	
+	private <T extends AbstractRequestCallback<?>> void doRequest(T callback, 
+																  RequestBuilder.Method httpMethod,
+																  String plainUrl) {
+		RequestBuilder builder = new RequestBuilder(httpMethod, URL.encode(plainUrl));
+		builder.setCallback(callback);
+		
+		try {
+			builder.send();
+		} catch (RequestException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
 	private void throwIfNull(Object... args) {
 		for (Object obj : args) {
 			if (obj == null) {
@@ -217,4 +250,6 @@ public class IntranetConnection implements Intranet {
 			}
 		}
 	}
+
+
 }
