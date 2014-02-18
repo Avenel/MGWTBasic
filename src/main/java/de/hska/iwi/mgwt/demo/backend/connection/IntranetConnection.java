@@ -1,6 +1,7 @@
 package de.hska.iwi.mgwt.demo.backend.connection;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
 import java.util.List;
 
 import com.google.gwt.http.client.RequestBuilder;
@@ -22,6 +23,7 @@ import de.hska.iwi.mgwt.demo.backend.callbacks.WorkflowStatusCallback;
 import de.hska.iwi.mgwt.demo.backend.constants.Canteen;
 import de.hska.iwi.mgwt.demo.backend.constants.Course;
 import de.hska.iwi.mgwt.demo.backend.constants.WorkflowEvent;
+import de.hska.iwi.mgwt.demo.backend.constants.WorkflowPhase;
 import de.hska.iwi.mgwt.demo.backend.model.BlockCourses;
 import de.hska.iwi.mgwt.demo.backend.model.CompulsoryOptionalSubjects;
 import de.hska.iwi.mgwt.demo.backend.model.ConsultationHours;
@@ -167,6 +169,12 @@ public class IntranetConnection implements Intranet {
 		doRequest(cb, RequestBuilder.GET, url);
 	}
 	
+
+	@Override
+	public List<WorkflowPhase> getAvailablePhases() {
+		return Arrays.asList(WorkflowPhase.values());
+	}
+	
 	private <T extends AbstractRequestCallback<?>> void doRequest(T callback, 
 																  RequestBuilder.Method httpMethod,
 																  String plainUrl) {
@@ -190,4 +198,5 @@ public class IntranetConnection implements Intranet {
 			}
 		}
 	}
+
 }

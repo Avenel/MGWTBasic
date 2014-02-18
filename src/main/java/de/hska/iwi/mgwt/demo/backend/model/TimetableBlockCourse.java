@@ -124,7 +124,7 @@ public class TimetableBlockCourse {
 
 	/**
 	 * Getter for the interval of the course
-	 * @return {@see CourseInterval}
+	 * @return the interval
 	 */
 	public CourseInterval getInterval() {
 		return interval;
@@ -212,7 +212,7 @@ public class TimetableBlockCourse {
 
 	/**
 	 * Setter for the interval
-	 * @param interval a {@link CourseInteval} to set
+	 * @param interval a {@link CourseInterval} to set
 	 */
 	public void setInterval(CourseInterval interval) {
 		this.interval = interval;

@@ -261,7 +261,7 @@ public class WorkflowStatus implements IWorkflowStatus {
 			String[] splitString = workFlowState.split(":");
 			this.phase = WorkflowPhase.getEnumForKey(splitString[PHASE_INDEX]);
 			this.phase.parseStatus(splitString[ROLE_INDEX]);
-			this.roleDescription = phase.getPhaseDescription();
+			this.roleDescription = phase.getCurrentPhaseDescription();
 		}
 
 		/**
