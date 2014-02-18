@@ -1,5 +1,9 @@
 package de.hska.iwi.mgwt.demo.backend.callbacks;
 
+import com.google.web.bindery.autobean.shared.AutoBean;
+import com.google.web.bindery.autobean.shared.AutoBeanCodex;
+
+import de.hska.iwi.mgwt.demo.backend.autobean.IBlockCourses;
 import de.hska.iwi.mgwt.demo.backend.model.BlockCourses;
 import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
 
@@ -11,9 +15,10 @@ public class BlockCoursesCallback extends AbstractRequestCallback<ObserverActivi
 
 	@Override
 	protected void handleJson(String json) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not yet implemented");
-		
+		AutoBean<IBlockCourses> bean = AutoBeanCodex.decode(factory,
+															IBlockCourses.class,
+															"{\"courses\" : " + json + "}");
+		observer.update(new BlockCourses(bean.as()));
 	}
 
 }
