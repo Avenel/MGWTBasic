@@ -1,6 +1,5 @@
 package de.hska.iwi.mgwt.demo.backend.autobean;
 
-import de.hska.iwi.mgwt.demo.backend.constants.Weekday;
 
 public interface IConsultationHour {
 

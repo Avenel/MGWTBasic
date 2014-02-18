@@ -6,25 +6,28 @@ import java.util.List;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.URL;
-import com.google.gwt.user.server.Base64Utils;
 import com.googlecode.gwt.crypto.bouncycastle.util.encoders.Base64;
 
 import de.hska.iwi.mgwt.demo.backend.Intranet;
+import de.hska.iwi.mgwt.demo.backend.callbacks.AbstractRequestCallback;
+import de.hska.iwi.mgwt.demo.backend.callbacks.BlockCoursesCallback;
 import de.hska.iwi.mgwt.demo.backend.callbacks.CompulsorySubjectCallback;
 import de.hska.iwi.mgwt.demo.backend.callbacks.ConsultationHoursCallback;
 import de.hska.iwi.mgwt.demo.backend.callbacks.MensaMenuCallback;
 import de.hska.iwi.mgwt.demo.backend.callbacks.NewsBoardCallback;
+import de.hska.iwi.mgwt.demo.backend.callbacks.TimetableCallback;
 import de.hska.iwi.mgwt.demo.backend.callbacks.TutorialsCallback;
 import de.hska.iwi.mgwt.demo.backend.callbacks.WorkflowInformationCallback;
 import de.hska.iwi.mgwt.demo.backend.callbacks.WorkflowStatusCallback;
 import de.hska.iwi.mgwt.demo.backend.constants.Canteen;
 import de.hska.iwi.mgwt.demo.backend.constants.Course;
 import de.hska.iwi.mgwt.demo.backend.constants.WorkflowEvent;
+import de.hska.iwi.mgwt.demo.backend.model.BlockCourses;
 import de.hska.iwi.mgwt.demo.backend.model.CompulsoryOptionalSubjects;
-import de.hska.iwi.mgwt.demo.backend.model.ConsultationHour;
 import de.hska.iwi.mgwt.demo.backend.model.ConsultationHours;
 import de.hska.iwi.mgwt.demo.backend.model.MensaMenu;
 import de.hska.iwi.mgwt.demo.backend.model.News;
+import de.hska.iwi.mgwt.demo.backend.model.Timetable;
 import de.hska.iwi.mgwt.demo.backend.model.Tutorials;
 import de.hska.iwi.mgwt.demo.backend.model.WorkflowInformation;
 import de.hska.iwi.mgwt.demo.backend.model.WorkflowStatus;
@@ -34,8 +37,6 @@ import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
 
 public class IntranetConnection implements Intranet {
 	
-	private static final String AUTH_HEADER = "Authorization";
-	private static final String CHARSET = "UTF-8";
 
 	@Override
 	public void getTutorials(ObserverActivity<Tutorials> observer, Course course) {
@@ -45,15 +46,7 @@ public class IntranetConnection implements Intranet {
 		
 		TutorialsCallback cb = new TutorialsCallback(observer);
 		
-		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, URL.encode(url));
-		builder.setCallback(cb);
-		
-		try {
-			builder.send();
-		} catch (RequestException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		doRequest(cb, RequestBuilder.GET, url);
 	}
 
 	@Override
@@ -64,16 +57,7 @@ public class IntranetConnection implements Intranet {
 		
 		NewsBoardCallback cb = new NewsBoardCallback(observer);
 		
-		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, URL.encode(url));
-		builder.setCallback(cb);
-		
-		try {
-			builder.send();
-		} catch (RequestException e) {
-			System.out.println("error");
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		doRequest(cb, RequestBuilder.GET, url);
 	}
 
 	@Override
@@ -88,16 +72,7 @@ public class IntranetConnection implements Intranet {
 		
 		CompulsorySubjectCallback cb = new CompulsorySubjectCallback(observer);
 		
-		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, URL.encode(url));
-		builder.setCallback(cb);
-		
-		try {
-			builder.send();
-		} catch (RequestException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+		doRequest(cb, RequestBuilder.GET, url);
 	}
 	
 	@Override
@@ -108,15 +83,7 @@ public class IntranetConnection implements Intranet {
 		
 		ConsultationHoursCallback cb = new ConsultationHoursCallback(observer);
 		
-		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, URL.encode(url));
-		builder.setCallback(cb);
-		
-		try {
-			builder.send();
-		} catch (RequestException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		doRequest(cb, RequestBuilder.GET, url);
 	}
 
 	@Override
@@ -127,15 +94,7 @@ public class IntranetConnection implements Intranet {
 		
 		MensaMenuCallback cb = new MensaMenuCallback(observer);
 		
-		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, URL.encode(url));
-		builder.setCallback(cb);
-		
-		try {
-			builder.send();
-		} catch (RequestException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		doRequest(cb, RequestBuilder.GET, url);
 	}
 
 	@Override
@@ -146,21 +105,15 @@ public class IntranetConnection implements Intranet {
 		
 		WorkflowInformationCallback cb = new WorkflowInformationCallback(observer);
 		
-		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, URL.encode(url));
-		builder.setCallback(cb);
-		
-		try {
-			builder.send();
-		} catch (RequestException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		doRequest(cb, RequestBuilder.GET, url);
 	}
 	
 	@Override
 	public void getWorkflowStatus(ObserverActivity<WorkflowStatus> observer, WorkflowEvent event, UserCredentials credentials) {
 		throwIfNull(observer, event, credentials);
+		
+		final String AUTH_HEADER = "Authorization";
+		final String CHARSET = "UTF-8";
 		
 		String url = UrlBuilderUtil.getWorkflowStatusUrl(event);
 		
@@ -179,13 +132,54 @@ public class IntranetConnection implements Intranet {
 		
 		WorkflowStatusCallback cb = new WorkflowStatusCallback(observer);
 		builder.setCallback(cb);
-		builder.setRequestData(null);
+		
 		try {
 			builder.send();
 		} catch (RequestException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+	}
+	
+	@Override
+	public void getBlockCourses(ObserverActivity<BlockCourses> observer, Course course) {
+		throwIfNull(observer, course);
+		
+		String url = UrlBuilderUtil.getBlockCoursesUrl(course);
+		
+		BlockCoursesCallback cb = new BlockCoursesCallback(observer);
+		
+		doRequest(cb, RequestBuilder.GET, url);
+	}
+	
+	@Override
+	public void getTimetable(ObserverActivity<Timetable> observer, Course course, int semester) throws IllegalArgumentException {
+		throwIfNull(observer, course, semester);
+		if (semester < 1 || semester >= course.getCountOfSemester()) {
+			throw new IllegalArgumentException("Semester must be between 1 and " + course.getCountOfSemester() + ".\n Was actual: " + semester);
+		}
+		
+		String url = UrlBuilderUtil.getTimetableUrl(course, semester);
+		
+		TimetableCallback cb = new TimetableCallback(observer);
+		
+		doRequest(cb, RequestBuilder.GET, url);
+	}
+	
+	private <T extends AbstractRequestCallback<?>> void doRequest(T callback, 
+																  RequestBuilder.Method httpMethod,
+																  String plainUrl) {
+		RequestBuilder builder = new RequestBuilder(httpMethod, URL.encode(plainUrl));
+		builder.setCallback(callback);
+		
+		try {
+			builder.send();
+		} catch (RequestException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 	}
 	
