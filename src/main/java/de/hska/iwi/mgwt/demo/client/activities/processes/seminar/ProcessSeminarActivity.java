@@ -39,6 +39,7 @@ public class ProcessSeminarActivity extends MGWTAbstractActivity implements
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
 		view = this.clientFactory.getProcessSeminarView();
+		view.setLoading(true);
 
 		Intranet intranetConn = (Intranet) BackendFactory
 				.createIntranetInstance();

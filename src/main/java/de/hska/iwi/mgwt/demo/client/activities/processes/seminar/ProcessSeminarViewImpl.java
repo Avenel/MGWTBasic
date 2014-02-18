@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.google.gwt.dom.client.Style.TextAlign;
 import com.google.gwt.dom.client.Style.Unit;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
@@ -30,7 +31,8 @@ public class ProcessSeminarViewImpl implements ProcessSeminarView {
 	private CellList<Seminar> cellListSeminars;
 	private HeaderPinTileButton pinTileButton;
 	private HeaderPanel headerPanel;
-	private VerticalPanel loadingPanel;
+	private Label loadingLabel;
+	private ProgressIndicator loadingProgress;
 	
 	/**
 	 * Public constructor.
@@ -65,32 +67,30 @@ public class ProcessSeminarViewImpl implements ProcessSeminarView {
 		ScrollPanel panelIM = new ScrollPanel();
 		panelIM.add(cellListSeminars);
 		
-		loadingPanel = new VerticalPanel();
-		ProgressIndicator loadingProgress;
+		
+		
 		loadingProgress = new ProgressIndicator();
 		loadingProgress.setVisible(true);
 		loadingProgress.setSize("50px", "50px");
-		loadingProgress.getElement().getStyle().setMarginLeft(37, Unit.PCT);
-		//loadingProgress.getElement().getStyle().setMarginLeft(50, Unit.PCT);
+		loadingProgress.getElement().getStyle().setMarginLeft(40, Unit.PCT);
+		loadingProgress.getElement().getStyle().setMarginTop(5, Unit.PCT);
 		loadingProgress.setTitle("getting Data from the server");
 		
-		Label test= new Label();
-		test.setText("Lade neueste Daten vom Server...");
-		test.getElement().getStyle().setColor("grey");
-		test.getElement().getStyle().setMarginTop(5, Unit.PCT);
-		test.getElement().getStyle().setTextAlign(TextAlign.CENTER);
-		loadingPanel.add(loadingProgress);
-		loadingPanel.add(test);
-		loadingPanel.getElement().getStyle().setProperty("margin"," 0 auto");
-		loadingPanel.getElement().getStyle().setProperty("marginTop"," 10px");
-
+		loadingLabel= new Label();
+		loadingLabel.setText("Lade neueste Daten...");
+		loadingLabel.getElement().getStyle().setColor("grey");
+		loadingLabel.getElement().getStyle().setMarginTop(5, Unit.PCT);
+		loadingLabel.getElement().getStyle().setTextAlign(TextAlign.CENTER);
+		
 		
 		registerButton= new Button();
 		registerButton.setText("Arbeit anmelden");
 		
 		main.add(registerButton);
 		main.add(cellListSeminars);
-		main.add(loadingPanel);
+		//main.add(loadingPanel);
+		main.add(loadingProgress);
+		main.add(loadingLabel);
 	}
 
 	@Override
@@ -123,7 +123,8 @@ public class ProcessSeminarViewImpl implements ProcessSeminarView {
 	
 	@Override
 	public void setLoading(boolean loading){
-		loadingPanel.setVisible(loading);
+		loadingProgress.setVisible(loading);
+		loadingLabel.setVisible(loading);
 	}
 
 }
