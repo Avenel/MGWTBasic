@@ -27,4 +27,8 @@ public interface CustomBeanFactory extends AutoBeanFactory {
 	
 	AutoBean<IBlockCourses> courses();
 	AutoBean<IBlockCourse> course();
+	
+	AutoBean<ITimetable> timetable();
+	AutoBean<ITimetableBlockCourse> blockCourse();
+	AutoBean<ITimetableEntry> entry();
 }
