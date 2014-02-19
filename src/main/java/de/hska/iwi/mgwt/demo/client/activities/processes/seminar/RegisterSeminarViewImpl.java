@@ -9,6 +9,7 @@ import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
 import com.googlecode.mgwt.ui.client.widget.MTextBox;
 import com.googlecode.mgwt.ui.client.widget.WidgetList;
 
+import de.hska.iwi.mgwt.demo.client.widget.AccordionInputWidget;
 import de.hska.iwi.mgwt.demo.client.widget.HeaderBackButton;
 
 public class RegisterSeminarViewImpl implements RegisterSeminarView {
@@ -62,7 +63,12 @@ public class RegisterSeminarViewImpl implements RegisterSeminarView {
 		termBox.setName("term");
 		termFieldLayout.add(termBox);
 		widgetList.add(termFieldLayout);
+		
 
+		// "Professor"Field and Label
+		
+		AccordionInputWidget accordion= new AccordionInputWidget("Dozent: ", null, new String[]{"1","2","3"}, false);
+		widgetList.add(accordion.asWidget());
 		
 		registerButton= new Button();
 		registerButton.setText("Arbeit anmelden");

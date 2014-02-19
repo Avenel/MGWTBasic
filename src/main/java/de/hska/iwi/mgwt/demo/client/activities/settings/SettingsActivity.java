@@ -52,7 +52,7 @@ public class SettingsActivity extends MGWTAbstractActivity {
 	    	}
 	    	
 	    	if (item.getInputType().equals(InputType.ACCORDION)) {
-	    		settingItemWidgets.add(new AccordionInputWidget(item.getStorageKey().getHumanReadableName(), item.getStorageKey(), item.getValues()).asWidget());
+	    		settingItemWidgets.add(new AccordionInputWidget(item.getStorageKey().getHumanReadableName(), item.getStorageKey(), item.getValues(),true).asWidget());
 	    	}
 	    }
 		

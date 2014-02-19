@@ -34,6 +34,7 @@ public class AccordionInputWidget implements IsWidget, InputWidget {
 	ClickHandler handler;
 	FocusPanel focusValuePanel;
 	Label arrowDown;
+	String value;
 	
 	String[] possibleValues;
 	
@@ -43,7 +44,7 @@ public class AccordionInputWidget implements IsWidget, InputWidget {
 	 * @param key
 	 * @param values
 	 */
-	public AccordionInputWidget (String text, final StorageKey key, String[] values) {
+	public AccordionInputWidget (String text, final StorageKey key, String[] values, final boolean saveInLocalStorage) {
 		this.text = new Label(text);		
 		
 		this.key = key;
@@ -61,7 +62,10 @@ public class AccordionInputWidget implements IsWidget, InputWidget {
 					valuePanelsWrapper.setVisible(false);
 					// store value
 					String val = currentValueText.getText();
-					SettingStorage.storeValue(key, val, false);
+					if(saveInLocalStorage){
+						SettingStorage.storeValue(key, val, false);
+					}
+					value=val;
 					
 					arrowDown.getElement().removeClassName("arrowUp");
 					arrowDown.getElement().removeClassName("arrowRotateDown");
@@ -94,7 +98,11 @@ public class AccordionInputWidget implements IsWidget, InputWidget {
 					valuePanelsWrapper.setVisible(false);
 					// store value
 					String val = currentValueText.getText();
-					SettingStorage.storeValue(key, val, false);
+					if(saveInLocalStorage){
+						SettingStorage.storeValue(key, val, false);
+					}
+					value=val;
+					
 
 					arrowDown.getElement().removeClassName("arrowUp");
 					arrowDown.getElement().removeClassName("arrowRotateDown");
@@ -170,6 +178,10 @@ public class AccordionInputWidget implements IsWidget, InputWidget {
 			value = this.possibleValues[0]; 
 		}
 		currentValueText.setText(value);
+	}
+	
+	public String getValue(){
+		return value;
 	}
 
 }
