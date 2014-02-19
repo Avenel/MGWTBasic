@@ -34,6 +34,7 @@ public class AccordionInputWidget implements IsWidget, InputWidget {
 	ClickHandler handler;
 	int min, max;
 	FocusPanel focusValuePanel;
+	Label arrowDown;
 	
 	/**
 	 * Public constructor. Setting up widget.
@@ -62,8 +63,15 @@ public class AccordionInputWidget implements IsWidget, InputWidget {
 					// store value
 					String val = currentValueText.getText();
 					SettingStorage.storeValue(key, val, false);
+					
+					arrowDown.getElement().removeClassName("arrowUp");
+					arrowDown.getElement().removeClassName("arrowRotateDown");
+					arrowDown.getElement().addClassName("arrowRotateUp");
 				} else {
 					valuePanelsWrapper.setVisible(true);
+					arrowDown.getElement().removeClassName("arrowRotateUp");
+					arrowDown.getElement().addClassName("arrowRotateDown");
+					arrowDown.getElement().addClassName("arrowUp");
 				}
 			}
 		};
@@ -82,15 +90,15 @@ public class AccordionInputWidget implements IsWidget, InputWidget {
 				@Override
 				public void onClick(ClickEvent event) {
 					currentValueText.setText(String.valueOf(((FocusPanel) event.getSource()).getWidget().getElement().getInnerHTML()));
-					
-					if (valuePanelsWrapper.isVisible()) {
-						valuePanelsWrapper.setVisible(false);
-						// store value
-						String val = currentValueText.getText();
-						SettingStorage.storeValue(key, val, false);
-					} else {
-						valuePanelsWrapper.setVisible(true);
-					}
+
+					valuePanelsWrapper.setVisible(false);
+					// store value
+					String val = currentValueText.getText();
+					SettingStorage.storeValue(key, val, false);
+
+					arrowDown.getElement().removeClassName("arrowUp");
+					arrowDown.getElement().removeClassName("arrowRotateDown");
+					arrowDown.getElement().addClassName("arrowRotateUp");
 				}
 			});
 			
@@ -128,7 +136,7 @@ public class AccordionInputWidget implements IsWidget, InputWidget {
 		
 		hValuePanel.add(this.valuePanel);
 		
-		Label arrowDown = new Label();
+		arrowDown = new Label();
 		ParagraphElement pElement = Document.get().createPElement();
 		pElement.setInnerHTML("<i class='fa fa-chevron-down fa-lg'></i>");
 		arrowDown.getElement().appendChild(pElement);

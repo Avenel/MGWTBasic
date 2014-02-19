@@ -366,6 +366,35 @@ tr > td {
 	-webkit-animation-timing-function: linear;
 }
 
+/* Rotate Arrow for AccordionWidget */
+@-webkit-keyframes rotateDown {
+	from { -webkit-transform: rotate(0deg); }
+	to { -webkit-transform: rotate(180deg); }
+}
+
+@-webkit-keyframes rotateUp {
+	from { -webkit-transform: rotate(180deg); }
+	to { -webkit-transform: rotate(0deg); }
+}
+
+.arrowRotateDown {
+	-webkit-animation-name: rotateDown;
+	-webkit-animation-duration: 0.25s;
+	-webkit-transform-origin:50% 50%;
+	-webkit-animation-timing-function: linear;
+}
+
+.arrowRotateUp {
+	-webkit-animation-name: rotateUp;
+	-webkit-animation-duration: 0.25s;
+	-webkit-transform-origin:50% 50%;
+	-webkit-animation-timing-function: linear;
+}
+
+.arrowUp {
+	-webkit-transform: rotate(180deg);
+}
+
 .mgwt-List-settings > li {
 	border: none!important;
 }
