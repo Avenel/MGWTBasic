@@ -1,5 +1,8 @@
 package de.hska.iwi.mgwt.demo.client.activities.processes.seminar;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
@@ -16,6 +19,9 @@ public class RegisterSeminarViewImpl implements RegisterSeminarView {
 
 	private LayoutPanel main;
 	private Button registerButton;
+	private AccordionInputWidget professorAccordion;
+	private AccordionInputWidget termAccordion;
+	private MTextBox topicBox;
 
 	public RegisterSeminarViewImpl() {
 
@@ -32,15 +38,8 @@ public class RegisterSeminarViewImpl implements RegisterSeminarView {
 		widgetList.setRound(true);
 		
 		// "Professor"Field and Label
-		LayoutPanel professorFieldLayout = new LayoutPanel();
-		professorFieldLayout.setHorizontal(true);
-		Label professorLabel = new Label("Dozent ");
-		professorLabel.getElement().getStyle().setMarginRight(10, Unit.PX);
-		professorFieldLayout.add(professorLabel);
-		MTextBox professorBox = new MTextBox();
-		professorBox.setName("professor");
-		professorFieldLayout.add(professorBox);
-		widgetList.add(professorFieldLayout);
+		professorAccordion= new AccordionInputWidget("Dozent: ", null, new String[]{"1","2","3"}, false);
+		widgetList.add(professorAccordion.asWidget());
 		
 		// "Topic"Field and Label
 		LayoutPanel topicFieldLayout = new LayoutPanel();
@@ -48,33 +47,27 @@ public class RegisterSeminarViewImpl implements RegisterSeminarView {
 		Label topicLabel = new Label("Thema ");
 		topicLabel.getElement().getStyle().setMarginRight(10, Unit.PX);
 		topicFieldLayout.add(topicLabel);
-		MTextBox topicBox = new MTextBox();
+		topicBox = new MTextBox();
 		topicBox.setName("topic");
 		topicFieldLayout.add(topicBox);
 		widgetList.add(topicFieldLayout);
 		
 		// "term"Field and Label
-		LayoutPanel termFieldLayout = new LayoutPanel();
-		termFieldLayout.setHorizontal(true);
-		Label termLabel = new Label("Semester ");
-		termLabel.getElement().getStyle().setMarginRight(10, Unit.PX);
-		termFieldLayout.add(termLabel);
-		MTextBox termBox = new MTextBox();
-		termBox.setName("term");
-		termFieldLayout.add(termBox);
-		widgetList.add(termFieldLayout);
+		termAccordion= new AccordionInputWidget("Semester: ", null, new String[]{"1","2","3"}, false);
+		widgetList.add(termAccordion.asWidget());
 		
 
-		// "Professor"Field and Label
 		
-		AccordionInputWidget accordion= new AccordionInputWidget("Dozent: ", null, new String[]{"1","2","3"}, false);
-		widgetList.add(accordion.asWidget());
+		
+		
 		
 		registerButton= new Button();
 		registerButton.setText("Arbeit anmelden");
-		widgetList.add(registerButton);
+		registerButton.getElement().getStyle().setProperty("horizontalAlign", "center");
+		
 				
 		main.add(widgetList);
+		main.add(registerButton);
 	}
 
 	@Override
@@ -91,6 +84,15 @@ public class RegisterSeminarViewImpl implements RegisterSeminarView {
 	@Override
 	public Button getRegisterButton() {
 		return registerButton;
+	}
+	
+	public List<String> getInputs(){
+		List<String> retList= new ArrayList<String>();
+		retList.add(professorAccordion.getValue());
+		retList.add(topicBox.getValue());
+		retList.add(termAccordion.getValue());
+		
+		return retList;
 	}
 
 }

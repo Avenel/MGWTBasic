@@ -10,6 +10,7 @@ import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.storage.client.Storage;
 import com.google.gwt.user.client.History;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.mgwt.dom.client.event.tap.TapEvent;
@@ -24,6 +25,7 @@ import de.hska.iwi.mgwt.demo.client.model.Seminar;
 import de.hska.iwi.mgwt.demo.client.model.SeminarTempStorage;
 import de.hska.iwi.mgwt.demo.client.storage.SeminarStorage;
 import de.hska.iwi.mgwt.demo.client.storage.StorageKey;
+import de.hska.iwi.mgwt.demo.client.widget.AccordionInputWidget;
 
 public class RegisterSeminarActivity extends MGWTAbstractActivity {
 
@@ -45,8 +47,7 @@ public class RegisterSeminarActivity extends MGWTAbstractActivity {
 		panel.setWidget(view);
 
 		addHandlerRegistration(view.getRegisterButton().addTapHandler(new TapHandler() {
-			//well.... try and error :)
-			WidgetList parent = (WidgetList) view.getRegisterButton().getParent().getParent().getParent().getParent();
+			
 
 			@Override
 			public void onTap(TapEvent event) {
@@ -65,25 +66,17 @@ public class RegisterSeminarActivity extends MGWTAbstractActivity {
 					
 				
 				newSeminar = new Seminar();
-				Iterator<Widget> iter = parent.iterator();
-				while (iter.hasNext()) {
-					Widget widget = iter.next();
-					if (widget instanceof LayoutPanel) {
-						MTextBox textBox = (MTextBox) ((LayoutPanel) widget).getWidget(1);
-						if (textBox.getName().equals("term")) {
-							newSeminar.setTerm(textBox.getText());
-						}
-						if (textBox.getName().equals("topic")) {
-							newSeminar.setTopic(textBox.getText());
-						}
-						if (textBox.getName().equals("professor")) {
-							newSeminar.setProfessor(textBox.getText());
-						}
-						newSeminar.setStatus(0);
-						newSeminar.setStatusString("");
-					}
+				List<String> input= view.getInputs();
+				newSeminar.setTopic(input.get(0));
+				newSeminar.setProfessor(input.get(1));
+				newSeminar.setTerm(input.get(2));
+				newSeminar.setStatus(0);
+				newSeminar.setStatusString("");
+				
+						
+					
 
-				}
+				
 				// Add to the temporary cache
 				SeminarTempStorage.addSeminar(newSeminar);
 				// Add to the persistent cache
