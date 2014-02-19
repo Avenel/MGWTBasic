@@ -67,8 +67,8 @@ public class RegisterSeminarActivity extends MGWTAbstractActivity {
 				
 				newSeminar = new Seminar();
 				List<String> input= view.getInputs();
-				newSeminar.setTopic(input.get(0));
-				newSeminar.setProfessor(input.get(1));
+				newSeminar.setProfessor(input.get(0));
+				newSeminar.setTopic(input.get(1));
 				newSeminar.setTerm(input.get(2));
 				newSeminar.setStatus(0);
 				newSeminar.setStatusString("");
