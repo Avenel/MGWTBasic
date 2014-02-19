@@ -59,7 +59,8 @@ public class ProcessSeminarActivity extends MGWTAbstractActivity implements
 			pWord = Window.prompt("Enter Password", "password");
 
 		}
-	
+
+		
 		UserCredentials credentials = new UserCredentials(username, pWord);
 		// create entries of local storage- just for exemplaric use
 		seminarEntries = SeminarStorage.getSeminars();

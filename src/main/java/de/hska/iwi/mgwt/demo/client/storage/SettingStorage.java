@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import com.google.gwt.storage.client.Storage;
+import com.googlecode.gwt.crypto.bouncycastle.DataLengthException;
+import com.googlecode.gwt.crypto.bouncycastle.InvalidCipherTextException;
+import com.googlecode.gwt.crypto.client.TripleDesCipher;
 
 import de.hska.iwi.mgwt.demo.client.activities.settings.SettingMenueName;
 import de.hska.iwi.mgwt.demo.client.model.InputType;
@@ -15,6 +18,11 @@ import de.hska.iwi.mgwt.demo.client.model.SettingItemMenueImpl;
 
 public class SettingStorage {
 
+	private static final byte[] GWT_DES_KEY = new byte[]{
+        (byte)4,(byte)8,(byte)3,(byte)80,(byte)12,(byte)-9,(byte)-5,(byte)101, 
+        (byte)15,(byte)-8,(byte)3,(byte)0,(byte)90,(byte)-9,(byte)55,(byte)-41, 
+        (byte)-9,(byte)90,(byte)3,(byte)100,(byte)-40,(byte)79,(byte)5,(byte)102};
+	
 	private static Map<SettingMenueName, List<SettingItem>> settingItems;
 	
 	public static void init() {
@@ -75,12 +83,24 @@ public class SettingStorage {
 		Storage stockStore = Storage.getLocalStorageIfSupported();
 		
 		if (stockStore != null) {
-			// TODO decrypt if necessary
+			String returnValue = stockStore.getItem(key.toString());
+			
+			// decrypt if necessary
 			if (isSecure) {
-				return stockStore.getItem(key.toString());
+				TripleDesCipher cipher = new TripleDesCipher();
+				cipher.setKey(GWT_DES_KEY);
+				try {
+				  returnValue = cipher.decrypt(returnValue);
+				} catch (DataLengthException e) {
+				  e.printStackTrace();
+				} catch (IllegalStateException e) {
+				  e.printStackTrace();
+				} catch (InvalidCipherTextException e) {
+				  e.printStackTrace();
+				}
 			}
 			
-			return stockStore.getItem(key.toString());
+			return returnValue;
 		} else {
 			// TODO find better exception
 			throw new Exception();
@@ -91,8 +111,22 @@ public class SettingStorage {
 		// store value in local storage
 		Storage stockStore = Storage.getLocalStorageIfSupported();
 		
-		// TODO encrypt if necessary
 		if (stockStore != null) {
+			// encrypt if necessary
+			if (isSecure) {
+				TripleDesCipher cipher = new TripleDesCipher();
+				cipher.setKey(GWT_DES_KEY);
+				try {
+				  value = cipher.encrypt(String.valueOf(value));
+				} catch (DataLengthException e1) {
+				  e1.printStackTrace();
+				} catch (IllegalStateException e1) {
+				  e1.printStackTrace();
+				} catch (InvalidCipherTextException e1) {
+				  e1.printStackTrace();
+				}
+			} 
+			
 			stockStore.setItem(key.toString(), value);
 		}
 	}
