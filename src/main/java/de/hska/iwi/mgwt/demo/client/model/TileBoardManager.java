@@ -3,15 +3,12 @@ package de.hska.iwi.mgwt.demo.client.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.gwt.dom.client.Style.TextAlign;
-import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.storage.client.Storage;
 import com.google.gwt.user.client.ui.Label;
-import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
 
 import de.hska.iwi.mgwt.demo.client.activities.lecture.LecturePlace;
 import de.hska.iwi.mgwt.demo.client.activities.mensa.MensaPlace;
@@ -63,32 +60,12 @@ public class TileBoardManager {
 			
 			// Processes Tile
 			Tile processTile = new Tile("fa-ellipsis-v fa-3x", "Prozesse", new StudentPlace(), false, true);
+			tiles.add(processTile);
 			
 			// showcase update
-			LayoutPanel updatePanel = new LayoutPanel();
-			updatePanel.getElement().getStyle().setPaddingTop(25, Unit.PX);
-			updatePanel.getElement().getStyle().setProperty("display", "table-cell");
-			updatePanel.getElement().getStyle().setProperty("verticalAlign", "middle");
-			updatePanel.getElement().getStyle().setTextAlign(TextAlign.CENTER);
-			
-			Label updateLabel = new Label();
-			updateLabel.setText("Seminar updates:\n 2");
-			updateLabel.setWidth("70px");
-			
-			// font style
-			updateLabel.getElement().getStyle().setFontSize(12, Unit.PX);
-			updateLabel.getElement().getStyle().setProperty("fontFamily", "HelveticaNeue, consolas");
-			updateLabel.getElement().getStyle().setColor("#FFFFFF");
-			
-			// setup margin titlebox
-			updateLabel.getElement().getStyle().setMarginLeft(5, Unit.PX);
-			updateLabel.getElement().getStyle().setMarginRight(5, Unit.PX);
-			updateLabel.getElement().getStyle().setLineHeight(12, Unit.PX);
-			
-			updatePanel.add(updateLabel);
-			
-			processTile.update(2, updatePanel);
-			tiles.add(processTile);
+			Label updateText = new Label();
+			updateText.setText("Updates:\n 2");
+			TileUpdateManager.updateTile(processTile.getTilePlace(), updateText);
 			
 			// Lecture Tile
 			Tile lectureTile = new Tile("fa-comments-o fa-3x", "Vorlesung", new LecturePlace(), false, false);
@@ -115,7 +92,7 @@ public class TileBoardManager {
 		if (tiles == null) tiles = new ArrayList<Tile>();
 		return tiles;
 	}
-	
+
 	/**
 	 * Add tile to Tileboard.
 	 * @param newTile
@@ -193,5 +170,19 @@ public class TileBoardManager {
 	
 	public static void switchIsOrganizing() {
 		isOrganizing = !isOrganizing;
+	}
+	
+	public static Tile getTileByPlace(Place tilePlace) {
+		if (tiles == null) return null;
+		
+		Tile returnTile = null;
+		for (Tile tile : tiles) {
+			if (tile.getTilePlace().equals(tilePlace)) {
+				returnTile = tile;
+				break;
+			}
+		}
+		
+		return returnTile;
 	}
 }
