@@ -93,7 +93,6 @@ public class SettingStorage {
 		
 		// TODO encrypt if necessary
 		if (stockStore != null) {
-			System.out.println("store value: " + value);
 			stockStore.setItem(key.toString(), value);
 		}
 	}

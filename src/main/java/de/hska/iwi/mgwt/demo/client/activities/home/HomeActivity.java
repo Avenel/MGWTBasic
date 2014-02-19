@@ -22,6 +22,10 @@ public class HomeActivity extends MGWTAbstractActivity {
 	private HomeView view;
 	
 	
+	/**
+	 * Public Constructor. Setup HomeActivity with ClientFactory.
+	 * @param clientFactory
+	 */
 	public HomeActivity(ClientFactory clientFactory) {
 		this.clientFactory = clientFactory;
 		this.view = null;
@@ -35,6 +39,9 @@ public class HomeActivity extends MGWTAbstractActivity {
 		addTapHandlers();
 	}
 	
+	/**
+	 * Adds TapHandlers to each tile on homescreen.
+	 */
 	public void addTapHandlers() {
 		// Adding Tile handlers
 		for (final Tile tile : TileBoardManager.getTiles()) {

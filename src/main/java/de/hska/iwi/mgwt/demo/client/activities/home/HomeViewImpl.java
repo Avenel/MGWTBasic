@@ -4,7 +4,6 @@ import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.mgwt.dom.client.event.tap.TapEvent;
 import com.googlecode.mgwt.dom.client.event.tap.TapHandler;
 import com.googlecode.mgwt.ui.client.dialog.Dialogs;
-import com.googlecode.mgwt.ui.client.widget.Button;
 import com.googlecode.mgwt.ui.client.widget.Carousel;
 import com.googlecode.mgwt.ui.client.widget.HeaderPanel;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
@@ -13,7 +12,6 @@ import com.googlecode.mgwt.ui.client.widget.ScrollPanel;
 
 import de.hska.iwi.mgwt.demo.client.model.TileBoardManager;
 import de.hska.iwi.mgwt.demo.client.widget.HeaderOrganizeTilesButton;
-import de.hska.iwi.mgwt.demo.client.widget.NavigationBar;
 import de.hska.iwi.mgwt.demo.client.widget.Tile;
 import de.hska.iwi.mgwt.demo.client.widget.TileBoard;
 
@@ -25,15 +23,13 @@ import de.hska.iwi.mgwt.demo.client.widget.TileBoard;
 public class HomeViewImpl implements HomeView{
 
 	private LayoutPanel main;
-	private Button newsButton;
-	private Button studentButton;
-	private Button lectureButton;
-	private NavigationBar navigation;
 	private HeaderOrganizeTilesButton organizeTilesButton;
 	private TileBoard tileBoard;
 	
-	public HomeViewImpl() {
-	}
+	/**
+	 * Public constructor.
+	 */
+	public HomeViewImpl() {}
 
 	@Override
 	public Widget asWidget() {
@@ -104,26 +100,6 @@ public class HomeViewImpl implements HomeView{
 		
 		this.main.add(carousel);
 		return this.main;
-	}
-
-	@Override
-	public Button getNewsButton() {
-		return this.newsButton;
-	}
-
-	@Override
-	public Button getStudentButton() {
-		return this.studentButton;
-	}
-
-	@Override
-	public Button getLectureButton() {
-		return this.lectureButton;
-	}
-
-	@Override
-	public NavigationBar getNavigation() {
-		return navigation;
 	}
 
 	@Override

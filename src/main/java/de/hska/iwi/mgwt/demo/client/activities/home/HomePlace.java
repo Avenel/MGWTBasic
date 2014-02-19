@@ -7,8 +7,18 @@ import com.google.gwt.place.shared.PlaceTokenizer;
 
 import de.hska.iwi.mgwt.demo.client.model.PlaceJSONObject;
 
+/**
+ * Place for HomeActivity.
+ * @author Martin
+ *
+ */
 public class HomePlace extends Place implements PlaceJSONObject {
 
+	/**
+	 * Tokenizer class for ActivityPlace.
+	 * @author Martin
+	 *
+	 */
 	public static class HomePlaceTokenizer implements PlaceTokenizer<HomePlace> {
 
 		@Override

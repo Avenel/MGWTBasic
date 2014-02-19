@@ -6,10 +6,19 @@ import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
 
 import de.hska.iwi.mgwt.demo.client.ClientFactory;
 
+/**
+ * Implements the lecture activity.
+ * @author Martin
+ *
+ */
 public class LectureActivity extends MGWTAbstractActivity {
 	
 	private final ClientFactory clientFactory;
 	
+	/**
+	 * Public constructor. Setup lecture activity with ClientFactory.
+	 * @param clientFactory
+	 */
 	public LectureActivity(ClientFactory clientFactory) {
 		this.clientFactory = clientFactory;
 	}

@@ -7,8 +7,18 @@ import com.google.gwt.place.shared.PlaceTokenizer;
 
 import de.hska.iwi.mgwt.demo.client.model.PlaceJSONObject;
 
+/**
+ * Place for MensaActivity.
+ * @author Martin
+ *
+ */
 public class MensaPlace extends Place implements PlaceJSONObject {
 
+	/**
+	 * Tokenizer class for MensaPlace.
+	 * @author Martin
+	 *
+	 */
 	public static class MensaPlaceTokenizer implements PlaceTokenizer<MensaPlace> {
 
 		@Override

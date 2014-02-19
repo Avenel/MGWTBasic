@@ -6,6 +6,11 @@ import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
 
 import de.hska.iwi.mgwt.demo.client.widget.HeaderBackButton;
 
+/**
+ * Implementation of LectureView.
+ * @author Martin
+ *
+ */
 public class LectureViewImpl implements LectureView {
 
 	private LayoutPanel main;

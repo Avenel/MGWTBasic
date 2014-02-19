@@ -21,10 +21,19 @@ import de.hska.iwi.mgwt.demo.client.activities.settings.SettingsPlace;
 import de.hska.iwi.mgwt.demo.client.storage.SettingStorage;
 import de.hska.iwi.mgwt.demo.client.storage.StorageKey;
 
+/**
+ * Implements the mensa activity. Getting mensa menus for a given amount of days.
+ * @author Martin
+ *
+ */
 public class MensaActivity extends MGWTAbstractActivity implements ObserverActivity<MensaMenu> {
 	
 	private final ClientFactory clientFactory;
 	
+	/**
+	 * Public constructor. Setup mensa activity with ClientFactory.
+	 * @param clientFactory
+	 */
 	public MensaActivity(ClientFactory clientFactory) {
 		this.clientFactory = clientFactory;
 	}
@@ -73,6 +82,7 @@ public class MensaActivity extends MGWTAbstractActivity implements ObserverActiv
 
 	@Override
 	public void update(MensaMenu arg) {
+		// update mensa view with received data.
 		this.clientFactory.getMensaView().setMensaMenu(arg);
 	}
 

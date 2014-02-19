@@ -8,12 +8,22 @@ import de.hska.iwi.mgwt.demo.backend.model.News;
 import de.hska.iwi.mgwt.demo.client.ClientFactory;
 import de.hska.iwi.mgwt.demo.client.model.NewsBoardUtility;
 
+/**
+ * Implements an activity for a newsitem. 
+ * @author Martin
+ *
+ */
 public class NewsDetailActivity extends MGWTAbstractActivity {
 	
 	private final ClientFactory clientFactory;
 	
 	private News currentModel;
 	
+	/**
+	 * Public constructor. Setup activity with ClientFactory and its NewsItem-ID.
+	 * @param clientFactory
+	 * @param id
+	 */
 	public NewsDetailActivity(ClientFactory clientFactory, String id) {
 		this.clientFactory = clientFactory;
 		this.currentModel = NewsBoardUtility.getNewsBoardById(Integer.valueOf(id));

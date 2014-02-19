@@ -21,6 +21,11 @@ import de.hska.iwi.mgwt.demo.client.activities.settings.SettingMenueName;
 import de.hska.iwi.mgwt.demo.client.activities.settings.SettingsPlace;
 import de.hska.iwi.mgwt.demo.client.model.NewsBoardUtility;
 
+/**
+ * Implements the news activity. 
+ * @author Martin
+ *
+ */
 public class NewsActivity extends MGWTAbstractActivity implements ObserverActivity<List<News>> {
 
 	private final ClientFactory clientFactory;
@@ -29,6 +34,10 @@ public class NewsActivity extends MGWTAbstractActivity implements ObserverActivi
 	
 	private NewsView view;
 
+	/**
+	 * Public constructor. Setup activity with ClientFactory.
+	 * @param clientFactory
+	 */
 	public NewsActivity(ClientFactory clientFactory) {
 		this.clientFactory = clientFactory;
 	}
@@ -70,10 +79,10 @@ public class NewsActivity extends MGWTAbstractActivity implements ObserverActivi
 		});
 	}
 
-	public List<News> getCurrentModel() {
-		return currentModel;
-	}
-
+	/**
+	 * Setter for the currentModel = NewsItems.
+	 * @param currentModel
+	 */
 	public void setCurrentModel(List<News> currentModel) {
 		this.currentModel = currentModel;
 	}

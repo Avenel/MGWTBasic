@@ -27,7 +27,7 @@ import de.hska.iwi.mgwt.demo.client.widget.HeaderSettingsButton;
 import de.hska.iwi.mgwt.demo.client.widget.MealGroupWidget;
 
 /**
- * MensaView
+ * Implementation of the MensaView. Displays the menu for a given amount of days. 
  * @author Martin
  *
  */
@@ -41,8 +41,10 @@ public class MensaViewImpl implements MensaView {
 	private HeaderSettingsButton settingsButton;
 	private List<String> days;
 
+	/**
+	 * Public constructor. Setup class fields.
+	 */
 	public MensaViewImpl() {
-		System.out.println("constructor");
 		this.main = new LayoutPanel();
 		this.menuScrollPanels = new HashMap<String, ScrollPanel>();
 		this.menuCarousel = new Carousel();
@@ -52,7 +54,6 @@ public class MensaViewImpl implements MensaView {
 	
 	@Override
 	public Widget asWidget() {
-		System.out.println("asWidget");
 		this.main = new LayoutPanel();
 		
 		HeaderPanel headerPanel = new HeaderPanel();
@@ -165,11 +166,20 @@ public class MensaViewImpl implements MensaView {
 		}
 	}
 	
+	/**
+	 * Setter for a given mensa menu.
+	 * @param mensaMenu
+	 */
 	public void setMensaMenu(MensaMenu mensaMenu) {
 		generateMensaMenueView(mensaMenu);
 		this.menuDaysCounter++;
 	}
 
+	/**
+	 * Creates a Date label.
+	 * @param date
+	 * @return Widget dateLabel
+	 */
 	private Widget createDateWidget(String date) {
 		// add Date
 		Label dateLabel = new Label();
