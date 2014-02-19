@@ -10,14 +10,17 @@ import com.googlecode.mgwt.ui.client.widget.Button;
 import com.googlecode.mgwt.ui.client.widget.HeaderPanel;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
 import com.googlecode.mgwt.ui.client.widget.MTextBox;
+import com.googlecode.mgwt.ui.client.widget.ScrollPanel;
 import com.googlecode.mgwt.ui.client.widget.WidgetList;
 
+import de.hska.iwi.mgwt.demo.client.model.SeminarTempStorage;
 import de.hska.iwi.mgwt.demo.client.widget.AccordionInputWidget;
 import de.hska.iwi.mgwt.demo.client.widget.HeaderBackButton;
 
 public class RegisterSeminarViewImpl implements RegisterSeminarView {
 
-	private LayoutPanel main;
+	private ScrollPanel main;
+	private LayoutPanel panel;
 	private Button registerButton;
 	private AccordionInputWidget professorAccordion;
 	private AccordionInputWidget termAccordion;
@@ -25,11 +28,12 @@ public class RegisterSeminarViewImpl implements RegisterSeminarView {
 
 	public RegisterSeminarViewImpl() {
 
-		main = new LayoutPanel();
+		main = new ScrollPanel();
+		panel= new LayoutPanel();
 
 		HeaderPanel headerPanel = new HeaderPanel();
 		headerPanel.setCenter("Seminararbeiten");
-		main.add(headerPanel);
+		panel.add(headerPanel);
 
 		HeaderBackButton backButton = new HeaderBackButton();
 		headerPanel.setLeftWidget(backButton.asWidget());
@@ -38,7 +42,7 @@ public class RegisterSeminarViewImpl implements RegisterSeminarView {
 		widgetList.setRound(true);
 		
 		// "Professor"Field and Label
-		professorAccordion= new AccordionInputWidget("Dozent: ", null, new String[]{"1","2","3"}, false);
+		professorAccordion= new AccordionInputWidget("Dozent: ", null, SeminarTempStorage.getLecturers(), false);
 		widgetList.add(professorAccordion.asWidget());
 		
 		// "Topic"Field and Label
@@ -53,7 +57,8 @@ public class RegisterSeminarViewImpl implements RegisterSeminarView {
 		widgetList.add(topicFieldLayout);
 		
 		// "term"Field and Label
-		termAccordion= new AccordionInputWidget("Semester: ", null, new String[]{"1","2","3"}, false);
+		termAccordion= new AccordionInputWidget("Semester: ", null, new String[]{"WS13/14","SS14"}, false);
+		termAccordion.asWidget().getElement().getStyle().setProperty("horizontalAlign", "left");
 		widgetList.add(termAccordion.asWidget());
 		
 
@@ -66,8 +71,9 @@ public class RegisterSeminarViewImpl implements RegisterSeminarView {
 		registerButton.getElement().getStyle().setProperty("horizontalAlign", "center");
 		
 				
-		main.add(widgetList);
-		main.add(registerButton);
+		panel.add(widgetList);
+		panel.add(registerButton);
+		main.add(panel);
 	}
 
 	@Override
