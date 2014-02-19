@@ -10,7 +10,6 @@ import com.google.gwt.json.client.JSONString;
 import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.storage.client.Storage;
 
-import de.hska.iwi.mgwt.demo.client.model.ProcessStep;
 import de.hska.iwi.mgwt.demo.client.model.Seminar;
 
 /**
