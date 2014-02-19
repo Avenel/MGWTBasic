@@ -16,7 +16,7 @@ public class SettingItemImpl implements SettingItem {
 	private String value;
 	private String fontAwesomeIcon;
 	private boolean isSecure;
-	private double min, max;
+	private String[] values;
 	
 	
 	
@@ -47,15 +47,14 @@ public class SettingItemImpl implements SettingItem {
 	 * @param isSecure
 	 */
 	public SettingItemImpl(InputType inputType, StorageKey key, String value,
-			String fontAwesomeIcon, boolean isSecure, double min, double max) {
+			String fontAwesomeIcon, boolean isSecure, String[] values) {
 		super();
 		this.inputType = inputType;
 		this.key = key;
 		this.value = value;
 		this.fontAwesomeIcon = fontAwesomeIcon;
 		this.isSecure = isSecure;
-		this.min = min;
-		this.max = max;
+		this.values = values;
 	}
 
 	@Override
@@ -90,12 +89,7 @@ public class SettingItemImpl implements SettingItem {
 	}
 
 	@Override
-	public double getMinValue() {
-		return this.min;
-	}
-
-	@Override
-	public double getMaxValue() {
-		return this.max;
+	public String[] getValues() {
+		return this.values;
 	}
 }

@@ -92,13 +92,9 @@ public class SettingItemMenueImpl implements SettingItem {
 	}
 
 	@Override
-	public double getMinValue() {
-		return 0;
-	}
-
-	@Override
-	public double getMaxValue() {
-		return 0;
+	public String[] getValues() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

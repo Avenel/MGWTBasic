@@ -51,8 +51,8 @@ public class SettingsActivity extends MGWTAbstractActivity {
 	    		settingItemWidgets.add(new CheckBoxWidget(item.getStorageKey().getHumanReadableName(), item.getStorageKey()).asWidget());
 	    	}
 	    	
-	    	if (item.getInputType().equals(InputType.SLIDER)) {
-	    		settingItemWidgets.add(new AccordionInputWidget(item.getStorageKey().getHumanReadableName(), item.getStorageKey(), (int) item.getMinValue(), (int) item.getMaxValue()).asWidget());
+	    	if (item.getInputType().equals(InputType.ACCORDION)) {
+	    		settingItemWidgets.add(new AccordionInputWidget(item.getStorageKey().getHumanReadableName(), item.getStorageKey(), item.getValues()).asWidget());
 	    	}
 	    }
 		

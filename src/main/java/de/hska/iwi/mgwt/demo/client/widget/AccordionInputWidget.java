@@ -32,27 +32,26 @@ public class AccordionInputWidget implements IsWidget, InputWidget {
 	
 	StorageKey key;
 	ClickHandler handler;
-	int min, max;
 	FocusPanel focusValuePanel;
 	Label arrowDown;
+	
+	String[] possibleValues;
 	
 	/**
 	 * Public constructor. Setting up widget.
 	 * @param text
 	 * @param key
-	 * @param max
+	 * @param values
 	 */
-	public AccordionInputWidget (String text, final StorageKey key, final int min, final int max) {
+	public AccordionInputWidget (String text, final StorageKey key, String[] values) {
 		this.text = new Label(text);		
 		
-		this.min = min;
-		this.max = max;
 		this.key = key;
 		
 		// setting up valuePanel (displays current Value)
 		this.valuePanel = new LayoutPanel();
 		this.currentValueText = new Label();
-		this.currentValueText.setText(String.valueOf(min));
+		this.currentValueText.setText(values[0]);
 		this.valuePanel.add(currentValueText);
 		
 		this.handler = new ClickHandler() {
@@ -78,11 +77,12 @@ public class AccordionInputWidget implements IsWidget, InputWidget {
 		
 		// setting up possible values
 		this.valuePanels = new ArrayList<FocusPanel>();
-		for (int i = min; i <= max; i++) {
+		this.possibleValues = values;
+		for (String cellValue : values) {
 			FocusPanel valueP = new FocusPanel();
 			Label valueText = new Label();
-			valueText.setText(String.valueOf(i));
-			valueText.setTitle(String.valueOf(i));
+			valueText.setText(cellValue);
+			valueText.setTitle(cellValue);
 			valueP.add(valueText);
 			
 			valueP.addClickHandler(new ClickHandler() {
@@ -163,11 +163,11 @@ public class AccordionInputWidget implements IsWidget, InputWidget {
 	
 	@Override
 	public void setValueFromStorage() {
-		String value = String.valueOf(this.min);
+		String value = this.possibleValues[0];
 		try {
 			value = SettingStorage.getValue(this.key, false);
 		} catch (Exception e) {
-			value = String.valueOf(this.min); 
+			value = this.possibleValues[0]; 
 		}
 		currentValueText.setText(value);
 	}
