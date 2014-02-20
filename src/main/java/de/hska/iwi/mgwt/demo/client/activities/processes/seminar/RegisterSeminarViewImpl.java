@@ -19,8 +19,8 @@ import de.hska.iwi.mgwt.demo.client.widget.HeaderBackButton;
 
 public class RegisterSeminarViewImpl implements RegisterSeminarView {
 
-	private ScrollPanel main;
-	private LayoutPanel panel;
+	private ScrollPanel panel;
+	private LayoutPanel main;
 	private Button registerButton;
 	private AccordionInputWidget professorAccordion;
 	private AccordionInputWidget termAccordion;
@@ -28,12 +28,13 @@ public class RegisterSeminarViewImpl implements RegisterSeminarView {
 
 	public RegisterSeminarViewImpl() {
 
-		main = new ScrollPanel();
-		panel= new LayoutPanel();
+		panel = new ScrollPanel();
+		main = new LayoutPanel();
+		LayoutPanel wrapper = new LayoutPanel();
 
 		HeaderPanel headerPanel = new HeaderPanel();
 		headerPanel.setCenter("Seminararbeiten");
-		panel.add(headerPanel);
+		wrapper.add(headerPanel);
 
 		HeaderBackButton backButton = new HeaderBackButton();
 		headerPanel.setLeftWidget(backButton.asWidget());
@@ -42,7 +43,7 @@ public class RegisterSeminarViewImpl implements RegisterSeminarView {
 		widgetList.setRound(true);
 		
 		// "Professor"Field and Label
-		professorAccordion= new AccordionInputWidget("Dozent: ", null, SeminarTempStorage.getLecturers(), false);
+		professorAccordion= new AccordionInputWidget("Dozent: ", null, SeminarTempStorage.getLecturers(), false, panel);
 		widgetList.add(professorAccordion.asWidget());
 		
 		// "Topic"Field and Label
@@ -57,22 +58,18 @@ public class RegisterSeminarViewImpl implements RegisterSeminarView {
 		widgetList.add(topicFieldLayout);
 		
 		// "term"Field and Label
-		termAccordion= new AccordionInputWidget("Semester: ", null, new String[]{"WS13/14","SS14"}, false);
+		termAccordion= new AccordionInputWidget("Semester: ", null, new String[]{"WS13/14","SS14"}, false, panel);
 		termAccordion.asWidget().getElement().getStyle().setProperty("horizontalAlign", "left");
 		widgetList.add(termAccordion.asWidget());
-		
-
-		
-		
-		
 		
 		registerButton= new Button();
 		registerButton.setText("Arbeit anmelden");
 		registerButton.getElement().getStyle().setProperty("horizontalAlign", "center");
 		
 				
-		panel.add(widgetList);
-		panel.add(registerButton);
+		wrapper.add(widgetList);
+		wrapper.add(registerButton);
+		panel.add(wrapper);
 		main.add(panel);
 	}
 

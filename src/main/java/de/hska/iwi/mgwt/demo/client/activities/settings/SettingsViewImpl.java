@@ -14,6 +14,7 @@ import de.hska.iwi.mgwt.demo.client.widget.HeaderBackButton;
 public class SettingsViewImpl implements SettingsView {
 	private LayoutPanel main;
 	private List<Widget> settingItems;
+	private ScrollPanel panelSettings;
 	
 	public SettingsViewImpl() {
 		this.settingItems = new ArrayList<Widget>();
@@ -41,7 +42,7 @@ public class SettingsViewImpl implements SettingsView {
 	    	widgetList.add(item);
 	    }
 		
-		ScrollPanel panelSettings = new ScrollPanel();
+		panelSettings = new ScrollPanel();
 		panelSettings.add(widgetList);
 
 		this.main.add(panelSettings);
@@ -51,6 +52,11 @@ public class SettingsViewImpl implements SettingsView {
 	public Widget asWidget() {	
 		init(this.settingItems);
 		return this.main;
+	}
+
+	@Override
+	public ScrollPanel getWrapperScrollPanel() {
+		return this.panelSettings;
 	}
 
 }

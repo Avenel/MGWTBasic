@@ -16,6 +16,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
+import com.googlecode.mgwt.ui.client.widget.ScrollPanel;
 import com.googlecode.mgwt.ui.client.widget.WidgetList;
 
 import de.hska.iwi.mgwt.demo.client.storage.SettingStorage;
@@ -29,6 +30,8 @@ public class AccordionInputWidget implements IsWidget, InputWidget {
 	
 	WidgetList valuePanelsWrapper;
 	List<FocusPanel> valuePanels;
+	
+	ScrollPanel parentScrollPanel;
 	
 	StorageKey key;
 	ClickHandler handler;
@@ -44,10 +47,11 @@ public class AccordionInputWidget implements IsWidget, InputWidget {
 	 * @param key
 	 * @param values
 	 */
-	public AccordionInputWidget (String text, final StorageKey key, String[] values, final boolean saveInLocalStorage) {
+	public AccordionInputWidget (String text, final StorageKey key, String[] values, final boolean saveInLocalStorage, ScrollPanel parent) {
 		this.text = new Label(text);		
 		
 		this.key = key;
+		this.parentScrollPanel = parent;
 		
 		// setting up valuePanel (displays current Value)
 		this.valuePanel = new LayoutPanel();
@@ -70,11 +74,15 @@ public class AccordionInputWidget implements IsWidget, InputWidget {
 					arrowDown.getElement().removeClassName("arrowUp");
 					arrowDown.getElement().removeClassName("arrowRotateDown");
 					arrowDown.getElement().addClassName("arrowRotateUp");
+					
+					parentScrollPanel.refresh();
 				} else {
 					valuePanelsWrapper.setVisible(true);
 					arrowDown.getElement().removeClassName("arrowRotateUp");
 					arrowDown.getElement().addClassName("arrowRotateDown");
 					arrowDown.getElement().addClassName("arrowUp");
+					
+					parentScrollPanel.refresh();
 				}
 			}
 		};
@@ -101,12 +109,14 @@ public class AccordionInputWidget implements IsWidget, InputWidget {
 					if(saveInLocalStorage){
 						SettingStorage.storeValue(key, val, false);
 					}
-					value=val;
+					value  = val;
 					
 
 					arrowDown.getElement().removeClassName("arrowUp");
 					arrowDown.getElement().removeClassName("arrowRotateDown");
 					arrowDown.getElement().addClassName("arrowRotateUp");
+					
+					parentScrollPanel.refresh();
 				}
 			});
 			

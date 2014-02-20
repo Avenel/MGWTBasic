@@ -31,6 +31,8 @@ public class SettingsActivity extends MGWTAbstractActivity {
 	
 	@Override 
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
+		SettingsView view = this.clientFactory.getSettingsView();
+		
 		List<Widget> settingItemWidgets = new ArrayList<Widget>();
 		
 		for (SettingItem item : SettingStorage.getSettingItems(SettingMenueName.getKey(id))) {
@@ -52,11 +54,11 @@ public class SettingsActivity extends MGWTAbstractActivity {
 	    	}
 	    	
 	    	if (item.getInputType().equals(InputType.ACCORDION)) {
-	    		settingItemWidgets.add(new AccordionInputWidget(item.getStorageKey().getHumanReadableName(), item.getStorageKey(), item.getValues(),true).asWidget());
+	    		settingItemWidgets.add(new AccordionInputWidget(item.getStorageKey().getHumanReadableName(), item.getStorageKey(), 
+	    								item.getValues(),true, view.getWrapperScrollPanel()).asWidget());
 	    	}
 	    }
 		
-		SettingsView view = this.clientFactory.getSettingsView();
 		view.setSettingItems(settingItemWidgets);
 		
 		panel.setWidget(view);
