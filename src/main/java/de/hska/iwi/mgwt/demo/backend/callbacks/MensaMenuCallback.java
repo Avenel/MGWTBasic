@@ -6,7 +6,11 @@ import com.google.web.bindery.autobean.shared.AutoBeanCodex;
 import de.hska.iwi.mgwt.demo.backend.autobean.IMensaMenu;
 import de.hska.iwi.mgwt.demo.backend.model.MensaMenu;
 import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
-
+/**
+ * Responsible for creating the {@link MensaMenu}-Model.
+ * @author Nico
+ *
+ */
 public class MensaMenuCallback extends AbstractRequestCallback<ObserverActivity<MensaMenu>> {
 
 	public MensaMenuCallback(ObserverActivity<MensaMenu> observer) {

@@ -6,7 +6,11 @@ import com.google.web.bindery.autobean.shared.AutoBeanCodex;
 import de.hska.iwi.mgwt.demo.backend.autobean.ITimetable;
 import de.hska.iwi.mgwt.demo.backend.model.Timetable;
 import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
-
+/**
+ * Responsible for creating the {@link Timetable}-Model.
+ * @author Nico
+ *
+ */
 public class TimetableCallback extends AbstractRequestCallback<ObserverActivity<Timetable>> {
 
 	public TimetableCallback(ObserverActivity<Timetable> observer) {

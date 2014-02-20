@@ -6,7 +6,11 @@ import com.google.web.bindery.autobean.shared.AutoBeanCodex;
 import de.hska.iwi.mgwt.demo.backend.autobean.IWorkflowStatus;
 import de.hska.iwi.mgwt.demo.backend.model.WorkflowStatus;
 import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
-
+/**
+ * Responsible for creating the {@link WorkflowStatus}-Model.
+ * @author Nico
+ *
+ */
 public class WorkflowStatusCallback extends AbstractRequestCallback<ObserverActivity<WorkflowStatus>> {
 
 	public WorkflowStatusCallback(ObserverActivity<WorkflowStatus> observer) {

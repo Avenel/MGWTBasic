@@ -6,7 +6,11 @@ import com.google.web.bindery.autobean.shared.AutoBeanCodex;
 import de.hska.iwi.mgwt.demo.backend.autobean.IBlockCourses;
 import de.hska.iwi.mgwt.demo.backend.model.BlockCourses;
 import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
-
+/**
+ * Responsible for creating the {@link BlockCourses}-Model.
+ * @author Nico
+ *
+ */
 public class BlockCoursesCallback extends AbstractRequestCallback<ObserverActivity<BlockCourses>> {
 
 	public BlockCoursesCallback(ObserverActivity<BlockCourses> observer) {

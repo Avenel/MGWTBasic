@@ -2,7 +2,12 @@ package de.hska.iwi.mgwt.demo.backend.autobean;
 
 import com.google.web.bindery.autobean.shared.AutoBean;
 import com.google.web.bindery.autobean.shared.AutoBeanFactory;
-
+/**
+ * Factory Interface for the GWT AutoBean-creation.
+ * Specifies methods with type declarations, which are later on used to generate the JSON <-> Java mapping.
+ * @author Nico
+ *
+ */
 public interface CustomBeanFactory extends AutoBeanFactory {
 	
 	AutoBean<INewsBoard> newsBoard();

@@ -10,7 +10,11 @@ import de.hska.iwi.mgwt.demo.backend.autobean.INews;
 import de.hska.iwi.mgwt.demo.backend.autobean.INewsBoard;
 import de.hska.iwi.mgwt.demo.backend.model.News;
 import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
-
+/**
+ * Responsible for creating a List of {@link News}-Model.
+ * @author Nico
+ *
+ */
 public class NewsBoardCallback extends AbstractRequestCallback<ObserverActivity<List<News>>> {
 
 	public NewsBoardCallback(ObserverActivity<List<News>> observer) {

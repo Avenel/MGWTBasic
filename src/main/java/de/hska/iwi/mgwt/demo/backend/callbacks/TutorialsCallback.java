@@ -6,7 +6,11 @@ import com.google.web.bindery.autobean.shared.AutoBeanCodex;
 import de.hska.iwi.mgwt.demo.backend.autobean.ITutorials;
 import de.hska.iwi.mgwt.demo.backend.model.Tutorials;
 import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
-
+/**
+ * Responsible for creating the {@link Tutorials}-Model.
+ * @author Nico
+ *
+ */
 public class TutorialsCallback extends AbstractRequestCallback<ObserverActivity<Tutorials>>{
 
 	public TutorialsCallback(ObserverActivity<Tutorials> observer) {
