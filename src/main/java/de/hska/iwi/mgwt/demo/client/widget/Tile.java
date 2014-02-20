@@ -291,8 +291,8 @@ public class Tile implements IsWidget, ObserverTile, TileJSONObject {
 		this.updateBubble.getElement().getStyle().setWidth(20, Unit.PX);
 		this.updateBubble.getElement().getStyle().setHeight(20, Unit.PX);
 		
-		this.updateBubble.getElement().getStyle().setProperty("top", "5px");
-		this.updateBubble.getElement().getStyle().setProperty("right", "15px");
+		this.updateBubble.getElement().getStyle().setProperty("top", "10px");
+		this.updateBubble.getElement().getStyle().setProperty("right", "0px");
 		this.updateBubble.getElement().getStyle().setProperty("position", "absolute");
 		this.updateBubble.getElement().getStyle().setTextAlign(TextAlign.CENTER);
 		this.updateBubble.getElement().getStyle().setLineHeight(20, Unit.PX);
