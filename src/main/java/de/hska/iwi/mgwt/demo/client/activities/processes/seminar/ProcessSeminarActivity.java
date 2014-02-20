@@ -15,7 +15,7 @@ import de.hska.iwi.mgwt.demo.backend.BackendFactory;
 import de.hska.iwi.mgwt.demo.backend.Intranet;
 import de.hska.iwi.mgwt.demo.backend.constants.WorkflowEvent;
 import de.hska.iwi.mgwt.demo.backend.model.WorkflowStatus;
-import de.hska.iwi.mgwt.demo.backend.util.UserCredentials;
+import de.hska.iwi.mgwt.demo.backend.util.UserCredential;
 import de.hska.iwi.mgwt.demo.client.ClientFactory;
 import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
 import de.hska.iwi.mgwt.demo.client.activities.processes.ProcessDetailPlace;
@@ -61,7 +61,7 @@ public class ProcessSeminarActivity extends MGWTAbstractActivity implements
 		}
 
 		
-		UserCredentials credentials = new UserCredentials(username, pWord);
+		UserCredential credentials = new UserCredential(username, pWord);
 		// create entries of local storage- just for exemplaric use
 		seminarEntries = SeminarStorage.getSeminars();
 		SeminarTempStorage.setSeminars(seminarEntries);

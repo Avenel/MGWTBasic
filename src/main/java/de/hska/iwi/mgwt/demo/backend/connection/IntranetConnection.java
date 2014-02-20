@@ -1,12 +1,12 @@
 package de.hska.iwi.mgwt.demo.backend.connection;
 
 import java.io.UnsupportedEncodingException;
-import java.util.Arrays;
 import java.util.List;
 
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.URL;
+import com.google.gwt.regexp.shared.RegExp;
 import com.googlecode.gwt.crypto.bouncycastle.util.encoders.Base64;
 
 import de.hska.iwi.mgwt.demo.backend.Intranet;
@@ -23,7 +23,6 @@ import de.hska.iwi.mgwt.demo.backend.callbacks.WorkflowStatusCallback;
 import de.hska.iwi.mgwt.demo.backend.constants.Canteen;
 import de.hska.iwi.mgwt.demo.backend.constants.Course;
 import de.hska.iwi.mgwt.demo.backend.constants.WorkflowEvent;
-import de.hska.iwi.mgwt.demo.backend.constants.WorkflowPhase;
 import de.hska.iwi.mgwt.demo.backend.model.BlockCourses;
 import de.hska.iwi.mgwt.demo.backend.model.CompulsoryOptionalSubjects;
 import de.hska.iwi.mgwt.demo.backend.model.ConsultationHours;
@@ -34,12 +33,14 @@ import de.hska.iwi.mgwt.demo.backend.model.Tutorials;
 import de.hska.iwi.mgwt.demo.backend.model.WorkflowInformation;
 import de.hska.iwi.mgwt.demo.backend.model.WorkflowStatus;
 import de.hska.iwi.mgwt.demo.backend.util.UrlBuilderUtil;
-import de.hska.iwi.mgwt.demo.backend.util.UserCredentials;
+import de.hska.iwi.mgwt.demo.backend.util.UserCredential;
 import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
 
 public class IntranetConnection implements Intranet {
 	
-
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void getTutorials(ObserverActivity<Tutorials> observer, Course course) {
 		throwIfNull(observer, course);
@@ -51,6 +52,9 @@ public class IntranetConnection implements Intranet {
 		doRequest(cb, RequestBuilder.GET, url);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void getNewsBoard(ObserverActivity<List<News>> observer, Course course) throws IllegalArgumentException {
 		throwIfNull(observer, course);
@@ -62,6 +66,9 @@ public class IntranetConnection implements Intranet {
 		doRequest(cb, RequestBuilder.GET, url);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void getCompulsoryOptionalSubjects(ObserverActivity<CompulsoryOptionalSubjects> observer, Course course)
 													throws IllegalArgumentException {
@@ -77,6 +84,9 @@ public class IntranetConnection implements Intranet {
 		doRequest(cb, RequestBuilder.GET, url);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void getConsultationHours(ObserverActivity<ConsultationHours> observer) {
 		throwIfNull(observer);
@@ -88,9 +98,17 @@ public class IntranetConnection implements Intranet {
 		doRequest(cb, RequestBuilder.GET, url);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void getMensaMenu(ObserverActivity<MensaMenu> observer, Canteen canteen, String date) throws IllegalArgumentException {
 		throwIfNull(observer, canteen, date);
+		String datePattern = "\\d{4}-\\d{2}-\\d{2}";
+		
+		if (!date.matches(datePattern)) {
+			throw new IllegalArgumentException("Malformed date, must be in the following format: yyyy-MM-dd");
+		}
 		
 		String url = UrlBuilderUtil.getMensaUrl(canteen, date);
 		
@@ -99,6 +117,9 @@ public class IntranetConnection implements Intranet {
 		doRequest(cb, RequestBuilder.GET, url);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void getWorkflowInformation(ObserverActivity<WorkflowInformation> observer, WorkflowEvent event) {
 		throwIfNull(observer, event);
@@ -110,8 +131,11 @@ public class IntranetConnection implements Intranet {
 		doRequest(cb, RequestBuilder.GET, url);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public void getWorkflowStatus(ObserverActivity<WorkflowStatus> observer, WorkflowEvent event, UserCredentials credentials) {
+	public void getWorkflowStatus(ObserverActivity<WorkflowStatus> observer, WorkflowEvent event, UserCredential credentials) {
 		throwIfNull(observer, event, credentials);
 		
 		final String AUTH_HEADER = "Authorization";
@@ -144,6 +168,9 @@ public class IntranetConnection implements Intranet {
 		
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void getBlockCourses(ObserverActivity<BlockCourses> observer, Course course) {
 		throwIfNull(observer, course);
@@ -155,11 +182,16 @@ public class IntranetConnection implements Intranet {
 		doRequest(cb, RequestBuilder.GET, url);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void getTimetable(ObserverActivity<Timetable> observer, Course course, int semester) throws IllegalArgumentException {
 		throwIfNull(observer, course, semester);
 		if (semester < 1 || semester >= course.getCountOfSemester()) {
 			throw new IllegalArgumentException("Semester must be between 1 and " + course.getCountOfSemester() + ".\n Was actual: " + semester);
+		} else if (course == Course.ALL) {
+			throw new IllegalArgumentException("Course.ALL is invalid for this method, please specify a particular course");
 		}
 		
 		String url = UrlBuilderUtil.getTimetableUrl(course, semester);
@@ -168,13 +200,7 @@ public class IntranetConnection implements Intranet {
 		
 		doRequest(cb, RequestBuilder.GET, url);
 	}
-	
-
-	@Override
-	public List<WorkflowPhase> getAvailablePhases() {
-		return Arrays.asList(WorkflowPhase.values());
-	}
-	
+		
 	private <T extends AbstractRequestCallback<?>> void doRequest(T callback, 
 																  RequestBuilder.Method httpMethod,
 																  String plainUrl) {
