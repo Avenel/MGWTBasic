@@ -5,11 +5,19 @@ import java.util.List;
 
 import de.hska.iwi.mgwt.demo.backend.autobean.IConsultationHour;
 import de.hska.iwi.mgwt.demo.backend.autobean.IConsultationHours;
-
+/**
+ * Model class for ConsultationHours, holds one or more {@link ConsultationHours}-objects.
+ * @author Nico
+ *
+ */
 public class ConsultationHours {
 	
 	List<ConsultationHour> hours;
 
+	/**
+	 * C'tor which creates a deep copy of the given Interface implementation.
+	 * @param hours the given Implementation 
+	 */
 	public ConsultationHours(IConsultationHours hours) {
 		this.hours = new ArrayList<ConsultationHour>();
 		for (IConsultationHour hour : hours.getConsultationHours()) {

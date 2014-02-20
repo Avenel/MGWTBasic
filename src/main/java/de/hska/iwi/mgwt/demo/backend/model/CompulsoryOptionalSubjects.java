@@ -7,10 +7,19 @@ import java.util.Map;
 import de.hska.iwi.mgwt.demo.backend.autobean.ICompulsoryOptionalSubject;
 import de.hska.iwi.mgwt.demo.backend.autobean.ICompulsoryOptionalSubjects;
 
+/**
+ * Model class for all available CompulsoryOptionalSubjects, holds one or more then {@link CompulsoryOptionalSubject}.
+ * @author Nico
+ *
+ */
 public class CompulsoryOptionalSubjects {
 	
 	private Map<String, List<CompulsoryOptionalSubject>> subjects;
 	
+	/**
+	 * C'tor which creates a deep copy of the given Interface implementation.
+	 * @param iSubjects the given interface type
+	 */
 	public CompulsoryOptionalSubjects(ICompulsoryOptionalSubjects iSubjects) {
 		for (Map.Entry<String, List<ICompulsoryOptionalSubject>> entry : iSubjects.getCompulsorySubjects().entrySet()) {
 			ArrayList<CompulsoryOptionalSubject> subjectsModel = new ArrayList<CompulsoryOptionalSubject>();

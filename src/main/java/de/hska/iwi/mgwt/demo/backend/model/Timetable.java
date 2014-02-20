@@ -7,7 +7,11 @@ import de.hska.iwi.mgwt.demo.backend.autobean.ITimetable;
 import de.hska.iwi.mgwt.demo.backend.autobean.ITimetableBlockCourse;
 import de.hska.iwi.mgwt.demo.backend.autobean.ITimetableEntry;
 import de.hska.iwi.mgwt.demo.backend.constants.Course;
-
+/**
+ * Model class for a Timetable.
+ * @author Nico
+ *
+ */
 public class Timetable {
 
 	private Course courseOfStudies;
@@ -19,6 +23,10 @@ public class Timetable {
 	
 	private String semesterName;
 	
+	/**
+	 * C'tor which created a deep copy of the given interface type.
+	 * @param iTimetable the given interface implementation.
+	 */
 	public Timetable(ITimetable iTimetable) {
 		this.courseOfStudies = iTimetable.getCourseOfStudies();
 		
@@ -37,71 +45,71 @@ public class Timetable {
 		this.semesterName = iTimetable.getSemesterName();
 	}
 
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.ItestTimeTable#getCourseOfStudies()
+	/**
+	 * @return the courseOfStudies
 	 */
 	public Course getCourseOfStudies() {
 		return courseOfStudies;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.ItestTimeTable#getBlockcourses()
+	/**
+	 * @return the blockCourses
 	 */
 	public List<TimetableBlockCourse> getBlockCourses() {
 		return blockCourses;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.ItestTimeTable#getTimetables()
+	/**
+	 * @return the timetables
 	 */
 	public List<TimetableEntry> getTimetables() {
 		return timetables;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.ItestTimeTable#getSemester()
+	/**
+	 * @return the semester
 	 */
 	public int getSemester() {
 		return semester;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.ItestTimeTable#getSemesterName()
+	/**
+	 * @return the semesterName
 	 */
 	public String getSemesterName() {
 		return semesterName;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.ItestTimeTable#setCourseOfStudies(de.hska.iwi.mgwt.demo.backend.constants.Course)
+	/**
+	 * @param courseOfStudies the courseOfStudies to set
 	 */
 	public void setCourseOfStudies(Course courseOfStudies) {
 		this.courseOfStudies = courseOfStudies;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.ItestTimeTable#setBlockcourses(java.util.List)
+	/**
+	 * @param blockCourses the blockCourses to set
 	 */
-	public void setBlockcourses(List<TimetableBlockCourse> blockcourses) {
-		this.blockCourses = blockcourses;
+	public void setBlockCourses(List<TimetableBlockCourse> blockCourses) {
+		this.blockCourses = blockCourses;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.ItestTimeTable#setTimetables(java.util.List)
+	/**
+	 * @param timetables the timetables to set
 	 */
 	public void setTimetables(List<TimetableEntry> timetables) {
 		this.timetables = timetables;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.ItestTimeTable#setSemester(int)
+	/**
+	 * @param semester the semester to set
 	 */
 	public void setSemester(int semester) {
 		this.semester = semester;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.ItestTimeTable#setSemesterName(java.lang.String)
+	/**
+	 * @param semesterName the semesterName to set
 	 */
 	public void setSemesterName(String semesterName) {
 		this.semesterName = semesterName;

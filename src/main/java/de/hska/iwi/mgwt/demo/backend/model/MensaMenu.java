@@ -7,16 +7,24 @@ import de.hska.iwi.mgwt.demo.backend.autobean.IMealGroup;
 import de.hska.iwi.mgwt.demo.backend.autobean.IMensaMenu;
 import de.hska.iwi.mgwt.demo.backend.constants.CanteenStatus;
 
+/**
+ * Model which holds information about a MensaMenu. The name, date and the MealGroups.
+ * @author Nico
+ *
+ */
 public class MensaMenu {
 
 	private String name;
+	private String date;
 	
 	private List<MealGroup> mealGroups;
 	
 	private CanteenStatus status;
 	
-	private String date;
-	
+	/**
+	 * C'tor which creates a deep copy of the given Interface type.
+	 * @param mensaMenu the given interface implementation type.
+	 */
 	public MensaMenu(IMensaMenu mensaMenu) {
 		this.name = mensaMenu.getName();
 		this.status = mensaMenu.getMensaStatus();

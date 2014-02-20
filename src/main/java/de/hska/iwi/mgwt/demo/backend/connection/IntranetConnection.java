@@ -6,7 +6,6 @@ import java.util.List;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.URL;
-import com.google.gwt.regexp.shared.RegExp;
 import com.googlecode.gwt.crypto.bouncycastle.util.encoders.Base64;
 
 import de.hska.iwi.mgwt.demo.backend.Intranet;
@@ -36,6 +35,11 @@ import de.hska.iwi.mgwt.demo.backend.util.UrlBuilderUtil;
 import de.hska.iwi.mgwt.demo.backend.util.UserCredential;
 import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
 
+/**
+ * Implementation of {@link Intranet}. This class handles the calls to a REST-API.
+ * @author Nico
+ *
+ */
 public class IntranetConnection implements Intranet {
 	
 	/**

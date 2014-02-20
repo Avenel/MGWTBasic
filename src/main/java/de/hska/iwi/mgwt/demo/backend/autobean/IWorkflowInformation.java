@@ -1,35 +1,81 @@
 package de.hska.iwi.mgwt.demo.backend.autobean;
 
 import java.util.List;
-
+/**
+ * Interface for the Model type of a WorkflowInformation. This is necessarry for the GWT AutoBean creation.
+ * @author Nico
+ *
+ */
 public interface IWorkflowInformation {
 	
+	/**
+	 * @return the workflow
+	 */
 	public List<String> getWorkflow();
-	
-	public void setWorkflow(List<String> workflow);
-	
+
+	/**
+	 * @return the applicationHint
+	 */
 	public String getApplicationHint();
-	
-	public void setApplicationHint(String applicationHint);
-	
+
+	/**
+	 * @return the uploadHint
+	 */
 	public String getUploadHint();
-	
-	public void setUploadHint(String uploadHint);
-	
+
+	/**
+	 * @return the noteHint
+	 */
 	public String getNoteHint();
-	
-	public void setNoteHint(String noteHint);
-	
+
+	/**
+	 * @return the applicationDeadlineHint
+	 */
 	public String getApplicationDeadlineHint();
-	
-	public void setApplicationDeadlineHint(String applicationDeadlineHint);
-	
+
+	/**
+	 * @return the uploadDeadlineHint
+	 */
 	public String getUploadDeadlineHint();
-	
-	public void setUploadDeadlineHint(String uploadDeadlineHint);
-	
+
+	/**
+	 * @return the handOverDeadlineHint
+	 */
 	public String getHandOverDeadlineHint();
-	
+
+	/**
+	 * @param workflow the workflow to set
+	 */
+	public void setWorkflow(List<String> workflow);
+
+	/**
+	 * @param applicationHint the applicationHint to set
+	 */
+	public void setApplicationHint(String applicationHint);
+
+	/**
+	 * @param uploadHint the uploadHint to set
+	 */
+	public void setUploadHint(String uploadHint);
+
+	/**
+	 * @param noteHint the noteHint to set
+	 */
+	public void setNoteHint(String noteHint);
+
+	/**
+	 * @param applicationDeadlineHint the applicationDeadlineHint to set
+	 */
+	public void setApplicationDeadlineHint(String applicationDeadlineHint);
+
+	/**
+	 * @param uploadDeadlineHint the uploadDeadlineHint to set
+	 */
+	public void setUploadDeadlineHint(String uploadDeadlineHint);
+
+	/**
+	 * @param handOverDeadlineHint the handOverDeadlineHint to set
+	 */
 	public void setHandOverDeadlineHint(String handOverDeadlineHint);
 
 }

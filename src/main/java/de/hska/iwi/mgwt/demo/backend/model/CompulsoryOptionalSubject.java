@@ -5,6 +5,11 @@ import java.util.List;
 
 import de.hska.iwi.mgwt.demo.backend.autobean.ICompulsoryOptionalSubject;
 
+/**
+ * Model class for a CompulsoryOptionalSUbject, holds the provided data.
+ * @author Nico
+ *
+ */
 public class CompulsoryOptionalSubject implements ICompulsoryOptionalSubject {
 
 	private int id;
@@ -15,6 +20,10 @@ public class CompulsoryOptionalSubject implements ICompulsoryOptionalSubject {
 	private String lectureName;
 	private String lecturerName;	
 	
+	/**
+	 * C'tor which creates a deep copy of the given Interface implementation.
+	 * @param iSubject the given Interface type
+	 */
 	public CompulsoryOptionalSubject(ICompulsoryOptionalSubject iSubject) {
 		this.id = iSubject.getId();
 		this.contactHours = iSubject.getContactHours();
@@ -25,7 +34,7 @@ public class CompulsoryOptionalSubject implements ICompulsoryOptionalSubject {
 	}
 
 	/**
-	 * @return the id
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int getId() {
@@ -33,7 +42,7 @@ public class CompulsoryOptionalSubject implements ICompulsoryOptionalSubject {
 	}
 
 	/**
-	 * @return the contactHours
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int getContactHours() {
@@ -41,7 +50,7 @@ public class CompulsoryOptionalSubject implements ICompulsoryOptionalSubject {
 	}
 
 	/**
-	 * @return the exam
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getExam() {
@@ -49,7 +58,7 @@ public class CompulsoryOptionalSubject implements ICompulsoryOptionalSubject {
 	}
 
 	/**
-	 * @return the internalName
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getInternalName() {
@@ -57,7 +66,7 @@ public class CompulsoryOptionalSubject implements ICompulsoryOptionalSubject {
 	}
 
 	/**
-	 * @return the lectureName
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getLectureName() {
@@ -65,13 +74,17 @@ public class CompulsoryOptionalSubject implements ICompulsoryOptionalSubject {
 	}
 
 	/**
-	 * @return the lecturerName
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getLecturerName() {
 		return lecturerName;
 	}
 	
+	/**
+	 * Splits the lecturere names by each value, normally it is one long string, seperated by commas.
+	 * @return a list where each entry is a lecturer.
+	 */
 	public List<String> getLecturerNameSeperated() {
 		ArrayList<String> list = new ArrayList<String>();
 		for (String s : this.lecturerName.split(",")) {
@@ -81,7 +94,7 @@ public class CompulsoryOptionalSubject implements ICompulsoryOptionalSubject {
 	}
 
 	/**
-	 * @param id the id to set
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setId(int id) {
@@ -89,7 +102,7 @@ public class CompulsoryOptionalSubject implements ICompulsoryOptionalSubject {
 	}
 
 	/**
-	 * @param contactHours the contactHours to set
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setContactHours(int contactHours) {
@@ -97,7 +110,7 @@ public class CompulsoryOptionalSubject implements ICompulsoryOptionalSubject {
 	}
 
 	/**
-	 * @param exam the exam to set
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setExam(String exam) {
@@ -105,7 +118,7 @@ public class CompulsoryOptionalSubject implements ICompulsoryOptionalSubject {
 	}
 
 	/**
-	 * @param internalName the internalName to set
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setInternalName(String internalName) {
@@ -113,7 +126,7 @@ public class CompulsoryOptionalSubject implements ICompulsoryOptionalSubject {
 	}
 
 	/**
-	 * @param lectureName the lectureName to set
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setLectureName(String lectureName) {
@@ -121,7 +134,7 @@ public class CompulsoryOptionalSubject implements ICompulsoryOptionalSubject {
 	}
 
 	/**
-	 * @param lecturerName the lecturerName to set
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setLecturerName(String lecturerName) {

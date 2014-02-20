@@ -29,103 +29,120 @@ public class Meal implements IMeal {
 	}
 
 	/**
-	 * @return the name
+	 * {@inheritDoc}
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
 
 	/**
-	 * @return the priceAdditive
+	 * {@inheritDoc}
 	 */
+	@Override
 	public String getPriceAdditive() {
 		return priceAdditive;
 	}
 
 	/**
-	 * @return the priceStudent
+	 * {@inheritDoc}
 	 */
+	@Override
 	public double getPriceStudent() {
 		return priceStudent;
 	}
 
 	/**
-	 * @return the priceGuest
+	 * {@inheritDoc}
 	 */
+	@Override
 	public double getPriceGuest() {
 		return priceGuest;
 	}
 
 	/**
-	 * @return the priceEmployee
+	 * {@inheritDoc}
 	 */
+	@Override
 	public double getPriceEmployee() {
 		return priceEmployee;
 	}
 
 	/**
-	 * @return the pricePupil
+	 * {@inheritDoc}
 	 */
+	@Override
 	public double getPricePupil() {
 		return pricePupil;
 	}
 
 	/**
-	 * @param name the name to set
+	 * {@inheritDoc}
 	 */
+	@Override
 	public void setName(String name) {
 		this.name = name;
 	}
 
 	/**
-	 * @param priceAdditive the priceAdditive to set
+	 * {@inheritDoc}
 	 */
+	@Override
 	public void setPriceAdditive(String priceAdditive) {
 		this.priceAdditive = priceAdditive;
 	}
 
 	/**
-	 * @param priceStudent the priceStudent to set
+	 * {@inheritDoc}
 	 */
+	@Override
 	public void setPriceStudent(double priceStudent) {
 		this.priceStudent = priceStudent;
 	}
 
 	/**
-	 * @param priceGuest the priceGuest to set
+	 * {@inheritDoc}
 	 */
+	@Override
 	public void setPriceGuest(double priceGuest) {
 		this.priceGuest = priceGuest;
 	}
 
 	/**
-	 * @param priceEmployee the priceEmployee to set
+	 * {@inheritDoc}
 	 */
+	@Override
 	public void setPriceEmployee(double priceEmployee) {
 		this.priceEmployee = priceEmployee;
 	}
 
 	/**
-	 * @param pricePupil the pricePupil to set
+	 * {@inheritDoc}
 	 */
+	@Override
 	public void setPricePupil(double pricePupil) {
 		this.pricePupil = pricePupil;
 	}
 	
 	/**
-	 * @return the foodAdditiveNumbers
+	 * {@inheritDoc}
 	 */
+	@Override
 	public List<Integer> getFoodAdditiveNumbers() {
 		return foodAdditiveNumbers;
 	}
 
 	/**
-	 * @param foodAdditiveNumbers the foodAdditiveNumbers to set
+	 * {@inheritDoc}
 	 */
+	@Override
 	public void setFoodAdditiveNumbers(List<Integer> foodAdditiveNumbers) {
 		this.foodAdditiveNumbers = foodAdditiveNumbers;
 	}
-	
+	/**
+	 * Converts the integers of the Foodadditive number to a corresponding {@link FoodAdditive}-Enum.
+	 * @return list with the enums
+	 */
 	public List<FoodAdditive> getFoodAdditiveNumbersAsEnum() {
 		ArrayList<FoodAdditive> result = new ArrayList<FoodAdditive>();
 		for (int number : this.foodAdditiveNumbers) {

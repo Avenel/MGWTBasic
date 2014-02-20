@@ -43,211 +43,180 @@ public class WorkflowStatus implements IWorkflowStatus {
 		this.parser = new WorkflowStateParser(iState.getWorkFlowState());
 	}
 	
+	/**
+	 * @return the phase of the current status of the student's event.
+	 */
 	public WorkflowPhase getPhase() {
 		return parser.getPhase();
 	}
-	
+	/**
+	 * @return the description of the status of the current phase.
+	 */
 	public String getRoleDescription() {
 		return parser.getRoleDescription();
 	}
 
 	/**
-	 * @return the topic
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getTopic() {
 		return topic;
 	}
-
-
 	/**
-	 * @return the lecturer
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getLecturer() {
 		return lecturer;
 	}
-
-
 	/**
-	 * @return the dateOfIssue
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getDateOfIssue() {
 		return dateOfIssue;
 	}
-
-
 	/**
-	 * @return the dateOfHandOver
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getDateOfHandOver() {
 		return dateOfHandOver;
 	}
-
-
 	/**
-	 * @return the deadline
-	 */
+	 * {@inheritDoc}
+	 */	
 	@Override
 	public String getDeadline() {
 		return deadline;
 	}
-
-
 	/**
-	 * @return the secondExaminer
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getSecondExaminer() {
 		return secondExaminer;
 	}
-
-
 	/**
-	 * @return the workFlowState
-	 */
+	 * {@inheritDoc}
+	 */	
 	@Override
 	public String getWorkFlowState() {
 		return workFlowState;
 	}
-
-
 	/**
-	 * @return the attempt
-	 */
+	 * {@inheritDoc}
+	 */	
 	@Override
 	public int getAttempt() {
 		return attempt;
 	}
-
-
 	/**
-	 * @return the overtime
-	 */
+	 * {@inheritDoc}
+	 */	
 	@Override
 	public int getOvertime() {
 		return overtime;
 	}
-
-
 	/**
-	 * @return the resultFileUploadState
-	 */
+	 * {@inheritDoc}
+	 */	
 	@Override
 	public WorkflowStatusEnum getResultFileUploadState() {
 		return resultFileUploadState;
 	}
-
-
 	/**
-	 * @return the type
-	 */
+	 * {@inheritDoc}
+	 */	
 	@Override
 	public WorkflowEvent getType() {
 		return type;
 	}
-
-
 	/**
-	 * @param topic the topic to set
-	 */
+	 * {@inheritDoc}
+	 */	
 	@Override
 	public void setTopic(String topic) {
 		this.topic = topic;
 	}
-
-
 	/**
-	 * @param lecturer the lecturer to set
-	 */
+	 * {@inheritDoc}
+	 */	
 	@Override
 	public void setLecturer(String lecturer) {
 		this.lecturer = lecturer;
 	}
-
-
 	/**
-	 * @param dateOfIssue the dateOfIssue to set
-	 */
+	 * {@inheritDoc}
+	 */	
 	@Override
 	public void setDateOfIssue(String dateOfIssue) {
 		this.dateOfIssue = dateOfIssue;
 	}
-
-
 	/**
-	 * @param dateOfHandOver the dateOfHandOver to set
-	 */
+	 * {@inheritDoc}
+	 */	
 	@Override
 	public void setDateOfHandOver(String dateOfHandOver) {
 		this.dateOfHandOver = dateOfHandOver;
 	}
-
-
 	/**
-	 * @param deadline the deadline to set
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setDeadline(String deadline) {
 		this.deadline = deadline;
 	}
-
-
 	/**
-	 * @param secondExaminer the secondExaminer to set
-	 */
+	 * {@inheritDoc}
+	 */	
 	@Override
 	public void setSecondExaminer(String secondExaminer) {
 		this.secondExaminer = secondExaminer;
 	}
-
-
 	/**
-	 * @param workFlowState the workFlowState to set
-	 */
+	 * {@inheritDoc}
+	 */	
 	@Override
 	public void setWorkFlowState(String workFlowState) {
 		this.workFlowState = workFlowState;
 	}
-
-
 	/**
-	 * @param attempt the attempt to set
-	 */
+	 * {@inheritDoc}
+	 */	
 	@Override
 	public void setAttempt(int attempt) {
 		this.attempt = attempt;
 	}
-
-
 	/**
-	 * @param overtime the overtime to set
-	 */
+	 * {@inheritDoc}
+	 */	
 	@Override
 	public void setOvertime(int overtime) {
 		this.overtime = overtime;
 	}
-
-
 	/**
-	 * @param resultFileUploadState the resultFileUploadState to set
-	 */
+	 * {@inheritDoc}
+	 */	
 	@Override
 	public void setResultFileUploadState(WorkflowStatusEnum resultFileUploadState) {
 		this.resultFileUploadState = resultFileUploadState;
 	}
-
-
 	/**
-	 * @param type the type to set
-	 */
+	 * {@inheritDoc}
+	 */	
 	@Override
 	public void setType(WorkflowEvent type) {
 		this.type = type;
 	}
 	
+	/**
+	 * Parses the state of a given WorkflowState and creates the description string as well as the corressponding enum.
+	 * Example: Given "„1:D2“ The reuslt will be the WorkflowPhase.UPLOAD with the corresponding description to D2 like "Die Anmeldefrist war bereits verstrichen."
+	 * @author Nico
+	 *
+	 */
 	private class WorkflowStateParser {
 		
 		private static final int PHASE_INDEX = 0;
@@ -257,6 +226,10 @@ public class WorkflowStatus implements IWorkflowStatus {
 		
 		private final String roleDescription;
 		
+		/**
+		 * C'tor which initializes the parser by the given a given stat. For example: „1:D2“ 
+		 * @param workFlowState
+		 */
 		public WorkflowStateParser(String workFlowState) {
 			String[] splitString = workFlowState.split(":");
 			this.phase = WorkflowPhase.getEnumForKey(splitString[PHASE_INDEX]);

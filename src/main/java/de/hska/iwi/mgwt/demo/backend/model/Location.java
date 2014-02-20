@@ -2,43 +2,52 @@ package de.hska.iwi.mgwt.demo.backend.model;
 
 import de.hska.iwi.mgwt.demo.backend.autobean.ILocation;
 
+/**
+ * Model class for a Location, holds the information about such a Location-object.
+ * @author Nico
+ *
+ */
 public class Location implements ILocation {
 	
 	private String building;
 	
 	private String room;
 	
+	/**
+	 * C#tor which creates a deep copy of the given interface implementation
+	 * @param iLoc the interface implementation type
+	 */
 	public Location(ILocation iLoc) {
 		this.building = iLoc.getBuilding();
 		this.room = iLoc.getRoom();
 	}
 
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.ILocation#getBuilding()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getBuilding() {
 		return building;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.ILocation#getRoom()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getRoom() {
 		return room;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.ILocation#setBuilding(java.lang.String)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setBuilding(String building) {
 		this.building = building;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.ILocation#setRoom(java.lang.String)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setRoom(String room) {

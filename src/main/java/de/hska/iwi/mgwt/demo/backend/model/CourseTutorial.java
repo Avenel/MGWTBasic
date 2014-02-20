@@ -6,28 +6,30 @@ import de.hska.iwi.mgwt.demo.backend.autobean.ITutorial;
 import de.hska.iwi.mgwt.demo.backend.constants.Course;
 import de.hska.iwi.mgwt.demo.backend.constants.Weekday;
 
+/**
+ * Holds the provided information about an CourseTutorial
+ * @author Nico
+ *
+ */
 public class CourseTutorial implements ITutorial {
 	
 	private int id;
+	private int room;
 	
 	private List<Course> courseOfStudies;
 	
 	private String lectureName;
-	
 	private String tutorName;
+	private String time;
+	private String building;
+	private String startDate;
 	
 	private Weekday day;
 	
-	private String time;
-	
-	private int room;
-	
-	private String building;
-	
-	//yyyy.MM.dd
-	private String startDate;
-
-	
+	/**
+	 * C'tor which created a deep copy of the given interface type.
+	 * @param iTutorial the given interface implementation.
+	 */
 	public CourseTutorial(ITutorial iTutorial) {
 		this.id = iTutorial.getId();
 		this.courseOfStudies = iTutorial.getCourseOfStudies();
@@ -41,135 +43,129 @@ public class CourseTutorial implements ITutorial {
 	}
 	
 	/**
-	 * @return the id
+	 * {@inheritDoc}
 	 */
 	public int getId() {
 		return id;
 	}
 
 	/**
-	 * @return the courseOfStudies
+	 * {@inheritDoc}
 	 */
 	public List<Course> getCourseOfStudies() {
 		return courseOfStudies;
 	}
 
 	/**
-	 * @return the lectureName
+	 * {@inheritDoc}
 	 */
 	public String getLectureName() {
 		return lectureName;
 	}
 
 	/**
-	 * @return the tutorName
+	 * {@inheritDoc}
 	 */
 	public String getTutorName() {
 		return tutorName;
 	}
 
 	/**
-	 * @return the day
+	 * {@inheritDoc}
 	 */
 	public Weekday getDay() {
 		return day;
 	}
 
 	/**
-	 * @return the time
+	 * {@inheritDoc}
 	 */
 	public String getTime() {
 		return time;
 	}
 
 	/**
-	 * @return the room
+	 * {@inheritDoc}
 	 */
 	public int getRoom() {
 		return room;
 	}
 
 	/**
-	 * @return the building
+	 * {@inheritDoc}
 	 */
 	public String getBuilding() {
 		return building;
 	}
 
 	/**
-	 * @return the startDate
+	 * {@inheritDoc}
 	 */
 	public String getStartDate() {
 		return startDate;
 	}
 
 	/**
-	 * @param id the id to set
+	 * {@inheritDoc}
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
 	/**
-	 * @param courseOfStudies the courseOfStudies to set
+	 * {@inheritDoc}
 	 */
 	public void setCourseOfStudies(List<Course> courseOfStudies) {
 		this.courseOfStudies = courseOfStudies;
 	}
 
 	/**
-	 * @param lectureName the lectureName to set
+	 * {@inheritDoc}
 	 */
 	public void setLectureName(String lectureName) {
 		this.lectureName = lectureName;
 	}
 
 	/**
-	 * @param tutorName the tutorName to set
+	 * {@inheritDoc}
 	 */
 	public void setTutorName(String tutorName) {
 		this.tutorName = tutorName;
 	}
 
 	/**
-	 * @param day the day to set
+	 * {@inheritDoc}
 	 */
 	public void setDay(Weekday day) {
 		this.day = day;
 	}
 
 	/**
-	 * @param time the time to set
+	 * {@inheritDoc}
 	 */
 	public void setTime(String time) {
 		this.time = time;
 	}
 
 	/**
-	 * @param room the room to set
+	 * {@inheritDoc}
 	 */
 	public void setRoom(int room) {
 		this.room = room;
 	}
 
 	/**
-	 * @param building the building to set
+	 * {@inheritDoc}
 	 */
 	public void setBuilding(String building) {
 		this.building = building;
 	}
 
 	/**
-	 * Sets the startDate of this Turtoial and formats the Date to yyyy-MM-dd if possible
-	 * @param startDate the startDate to set
+	 * {@inheritDoc}
 	 */
 	public void setStartDate(String startDate) {
-//		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//		try {
-//			this.startDate = dateFormat.parse(dateFormat.format(startDate));
-//		} catch (ParseException e) {
-			this.startDate = startDate;
-//		}
+		this.startDate = startDate;
 	}
 	
 	

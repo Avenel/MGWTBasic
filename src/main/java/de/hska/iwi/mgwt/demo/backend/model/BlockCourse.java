@@ -5,6 +5,11 @@ import java.util.List;
 import de.hska.iwi.mgwt.demo.backend.autobean.IBlockCourse;
 import de.hska.iwi.mgwt.demo.backend.constants.Course;
 
+/**
+ * Model class for a Blockcourse, holds the provided data.
+ * @author Nico
+ *
+ */
 public class BlockCourse implements IBlockCourse {
 	
 	private int id;
@@ -18,6 +23,10 @@ public class BlockCourse implements IBlockCourse {
 	private String times;
 	private String buildingAndRoom;
 	
+	/**
+	 * C'tor which does a deep copy any IBlockCourse-implementation into a BlockCourse.
+	 * @param course an IBlockCourse implementation
+	 */
 	public BlockCourse(IBlockCourse course) {
 		this.id = course.getId();
 		
@@ -30,99 +39,99 @@ public class BlockCourse implements IBlockCourse {
 		this.buildingAndRoom = course.getBuildingAndRoom();
 	}
 	
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.ITest#getId()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int getId() {
 		return id;
 	}
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.ITest#getCourseOfStudies()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public List<Course> getCourseOfStudies() {
 		return courseOfStudies;
 	}
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.ITest#getLectureName()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getLectureName() {
 		return lectureName;
 	}
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.ITest#getLecturerNames()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getLecturerNames() {
 		return lecturerNames;
 	}
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.ITest#getDates()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getDates() {
 		return dates;
 	}
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.ITest#getTimes()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getTimes() {
 		return times;
 	}
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.ITest#getBuildingAndRoom()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getBuildingAndRoom() {
 		return buildingAndRoom;
 	}
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.ITest#setId(int)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setId(int id) {
 		this.id = id;
 	}
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.ITest#setCourseOfStudies(java.util.List)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setCourseOfStudies(List<Course> courseOfStudies) {
 		this.courseOfStudies = courseOfStudies;
 	}
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.ITest#setLectureName(java.lang.String)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setLectureName(String lectureName) {
 		this.lectureName = lectureName;
 	}
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.ITest#setLecturerNames(java.lang.String)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setLecturerNames(String lecturerNames) {
 		this.lecturerNames = lecturerNames;
 	}
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.ITest#setDates(java.lang.String)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setDates(String dates) {
 		this.dates = dates;
 	}
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.ITest#setTimes(java.lang.String)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setTimes(String times) {
 		this.times = times;
 	}
-	/* (non-Javadoc)
-	 * @see de.hska.iwi.mgwt.demo.backend.model.ITest#setBuildingAndRoom(java.lang.String)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setBuildingAndRoom(String buildingAndRoom) {

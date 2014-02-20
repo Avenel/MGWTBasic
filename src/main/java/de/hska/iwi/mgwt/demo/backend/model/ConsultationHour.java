@@ -2,7 +2,11 @@ package de.hska.iwi.mgwt.demo.backend.model;
 
 import de.hska.iwi.mgwt.demo.backend.autobean.IConsultationHour;
 import de.hska.iwi.mgwt.demo.backend.constants.Weekday;
-
+/**
+ * Model class for ConsultationHour, holds the provided data and adds some additional fuctionality.
+ * @author Nico
+ *
+ */
 public class ConsultationHour implements IConsultationHour {
 	
 	private int id;
@@ -18,6 +22,10 @@ public class ConsultationHour implements IConsultationHour {
 	
 	private int consultationDay;
 
+	/**
+	 * C'tor which creates a deep copy of the given Interface implementation.
+	 * @param hour the given Implementation 
+	 */
 	public ConsultationHour(IConsultationHour hour) {
 		this.id = hour.getId();
 		this.firstname = hour.getFirstname();
@@ -33,7 +41,7 @@ public class ConsultationHour implements IConsultationHour {
 	}
 
 	/**
-	 * @return the id
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int getId() {
@@ -41,7 +49,7 @@ public class ConsultationHour implements IConsultationHour {
 	}
 
 	/**
-	 * @return the firstname
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getFirstname() {
@@ -49,7 +57,7 @@ public class ConsultationHour implements IConsultationHour {
 	}
 
 	/**
-	 * @return the lastname
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getLastname() {
@@ -57,7 +65,7 @@ public class ConsultationHour implements IConsultationHour {
 	}
 
 	/**
-	 * @return the title
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getTitle() {
@@ -65,7 +73,7 @@ public class ConsultationHour implements IConsultationHour {
 	}
 
 	/**
-	 * @return the adsAccount
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getAdsAccount() {
@@ -73,7 +81,7 @@ public class ConsultationHour implements IConsultationHour {
 	}
 
 	/**
-	 * @return the mailAddress
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getMailAddress() {
@@ -81,19 +89,22 @@ public class ConsultationHour implements IConsultationHour {
 	}
 
 	/**
-	 * @return the consultationDay
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int getConsultationDay() {
 		return consultationDay;
 	}
-	
+	/**
+	 * 
+	 * @return the consultationDay as a {@link Weekday}-Enum
+	 */
 	public Weekday getConsultationWeekday() {
 		return Weekday.getEnumForKey(this.consultationDay);
 	}
 
 	/**
-	 * @return the consultationTime
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getConsultationTime() {
@@ -101,7 +112,7 @@ public class ConsultationHour implements IConsultationHour {
 	}
 
 	/**
-	 * @return the room
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getRoom() {
@@ -109,7 +120,7 @@ public class ConsultationHour implements IConsultationHour {
 	}
 	
 	/**
-	 * @return the building
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getBuilding() {
@@ -117,7 +128,7 @@ public class ConsultationHour implements IConsultationHour {
 	}
 
 	/**
-	 * @param id the id to set
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setId(int id) {
@@ -125,7 +136,7 @@ public class ConsultationHour implements IConsultationHour {
 	}
 
 	/**
-	 * @param firstname the firstname to set
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setFirstname(String firstname) {
@@ -133,7 +144,7 @@ public class ConsultationHour implements IConsultationHour {
 	}
 
 	/**
-	 * @param lastname the lastname to set
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setLastname(String lastname) {
@@ -141,7 +152,7 @@ public class ConsultationHour implements IConsultationHour {
 	}
 
 	/**
-	 * @param title the title to set
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setTitle(String title) {
@@ -149,7 +160,7 @@ public class ConsultationHour implements IConsultationHour {
 	}
 
 	/**
-	 * @param adsAccount the adsAccount to set
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setAdsAccount(String adsAccount) {
@@ -157,7 +168,7 @@ public class ConsultationHour implements IConsultationHour {
 	}
 
 	/**
-	 * @param mailAddress the mailAddress to set
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setMailAddress(String mailAddress) {
@@ -165,19 +176,22 @@ public class ConsultationHour implements IConsultationHour {
 	}
 
 	/**
-	 * @param consultationDay the consultationDay to set
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setConsultationDay(int consultationDay) {
 		this.consultationDay = consultationDay;
 	}
-	
+	/**
+	 * 
+	 * @param consultationDay a {@link Weekday}-enum which sets the consultationDay
+	 */
 	public void setConsultationDay(Weekday consultationDay) {
 		this.consultationDay = consultationDay.getNumberOfWeekday();
 	}
 	
 	/**
-	 * @param consultationTime the consultationTime to set
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setConsultationTime(String consultationTime) {
@@ -185,7 +199,7 @@ public class ConsultationHour implements IConsultationHour {
 	}
 
 	/**
-	 * @param room the room to set
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setRoom(String room) {
@@ -193,7 +207,7 @@ public class ConsultationHour implements IConsultationHour {
 	}
 
 	/**
-	 * @param building the building to set
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setBuilding(String building) {

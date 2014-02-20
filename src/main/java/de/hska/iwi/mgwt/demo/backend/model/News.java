@@ -7,26 +7,34 @@ import de.hska.iwi.mgwt.demo.backend.autobean.INews;
 import de.hska.iwi.mgwt.demo.backend.constants.Course;
 import de.hska.iwi.mgwt.demo.backend.constants.NewsType;
 
+/**
+ * Model which holds information about a News, like the title, id, content etc.
+ * @author Nico
+ *
+ */
 public class News implements INews {
 	
 	private int id;
 	
 	private String title;
-	
+	private String content;
 	private String subTitle;
 	
 	private List<Course> courseOfStudies;
-	
-	private String content;
-	
 	private List<String> links;
 	
 	private NewsType type;
 	
+	/**
+	 * Default C'tor.
+	 */
 	public News() {
 		
 	}
-	
+	/**
+	 * C'tor which creates a deep copy of the given Interface type.
+	 * @param currNews the given interface implementation type.
+	 */
 	public News(INews currNews) {
 		this.content = currNews.getContent();
 		this.courseOfStudies = currNews.getCourseOfStudies();
@@ -38,29 +46,33 @@ public class News implements INews {
 	}
 
 	/**
-	 * @return the id
+	 * {@inheritDoc}
 	 */
+	@Override
 	public int getId() {
 		return id;
 	}
 
 	/**
-	 * @return the title
+	 * {@inheritDoc}
 	 */
+	@Override
 	public String getTitle() {
 		return title;
 	}
 
 	/**
-	 * @return the subTitle
+	 * {@inheritDoc}
 	 */
+	@Override
 	public String getSubTitle() {
 		return subTitle;
 	}
 
 	/**
-	 * @return the courseOfStudies
+	 * {@inheritDoc}
 	 */
+	@Override
 	public List<Course> getCourseOfStudies() {
 		if (courseOfStudies == null) {
 			ArrayList<Course> studies = new ArrayList<Course>();
@@ -71,71 +83,81 @@ public class News implements INews {
 	}
 
 	/**
-	 * @return the content
+	 * {@inheritDoc}
 	 */
+	@Override
 	public String getContent() {
 		return content;
 	}
 
 	/**
-	 * @return the links
+	 * {@inheritDoc}
 	 */
+	@Override
 	public List<String> getLinks() {
 		return links;
 	}
 
 	/**
-	 * @return the type
+	 * {@inheritDoc}
 	 */
+	@Override
 	public NewsType getType() {
 		return type;
 	}
 
 	/**
-	 * @param id the id to set
+	 * {@inheritDoc}
 	 */
+	@Override
 	public void setId(int id) {
 		this.id = id;
 	}
 
 	/**
-	 * @param title the title to set
+	 * {@inheritDoc}
 	 */
+	@Override
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
 	/**
-	 * @param subTitle the subTitle to set
+	 * {@inheritDoc}
 	 */
+	@Override
 	public void setSubTitle(String subTitle) {
 		this.subTitle = subTitle;
 	}
 
 	/**
-	 * @param courseOfStudies the courseOfStudies to set
+	 * {@inheritDoc}
 	 */
+	@Override
 	public void setCourseOfStudies(List<Course> courseOfStudies) {
 		this.courseOfStudies = courseOfStudies;
 	}
 
 	/**
-	 * @param content the content to set
+	 * {@inheritDoc}
 	 */
+	@Override
 	public void setContent(String content) {
 		this.content = content;
 	}
 
 	/**
-	 * @param links the links to set
+	 * {@inheritDoc}
 	 */
+	@Override
 	public void setLinks(List<String> links) {
 		this.links = links;
 	}
 
 	/**
-	 * @param type the type to set
+	 * {@inheritDoc}
 	 */
+	@Override
 	public void setType(NewsType type) {
 		this.type = type;
 	}

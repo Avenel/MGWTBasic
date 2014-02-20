@@ -6,15 +6,22 @@ import java.util.List;
 import de.hska.iwi.mgwt.demo.backend.autobean.IMeal;
 import de.hska.iwi.mgwt.demo.backend.autobean.IMealGroup;
 
+/**
+ * Model which holds information about a MealGroup. Title a message as well as one or more Meals.
+ * @author Nico
+ *
+ */
 public class MealGroup {
 	
 	private String title;
+	private String message;
 	
 	private List<Meal> meals;
 	
-	private String message;
-	
-	
+	/**
+	 * C'tor which creates a deep copy of the given Interface type.
+	 * @param mealGroup the given interface implementation type.
+	 */
 	public MealGroup(IMealGroup mealGroup) {
 		this.title = mealGroup.getTitle();
 		this.message = mealGroup.getMessage();
