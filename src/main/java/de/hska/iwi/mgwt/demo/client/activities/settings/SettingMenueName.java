@@ -3,7 +3,7 @@ package de.hska.iwi.mgwt.demo.client.activities.settings;
 import de.hska.iwi.mgwt.demo.client.model.HumanReadableEnum;
 
 public enum SettingMenueName implements HumanReadableEnum {
-	HOME("Home"), IZACCOUNT("IZ Benuteraccount"), MENSA("Mensa"), NEWS("News");
+	HOME("Home"), IZACCOUNT("IZ Benutzeraccount"), MENSA("Mensa"), NEWS("News");
 	
 	String humanReadableName;
 	
