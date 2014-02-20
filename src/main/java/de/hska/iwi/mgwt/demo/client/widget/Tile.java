@@ -218,9 +218,11 @@ public class Tile implements IsWidget, ObserverTile, TileJSONObject {
 		this.animationHelper = new AnimationHelper();
 
 		// set size
-		this.focusPanel.setWidth("100px");
+		this.focusPanel.setWidth("80px");
 		this.focusPanel.setHeight("100px");
 		this.focusPanel.getElement().getStyle().setMarginTop(10, Unit.PX);
+		this.focusPanel.getElement().getStyle().setMarginRight(10, Unit.PX);
+		this.focusPanel.getElement().getStyle().setMarginLeft(10, Unit.PX);
 	}
 
 

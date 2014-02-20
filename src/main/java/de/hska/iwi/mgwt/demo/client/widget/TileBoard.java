@@ -2,10 +2,16 @@ package de.hska.iwi.mgwt.demo.client.widget;
 
 import java.util.List;
 
+import com.google.gwt.dom.client.Document;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Widget;
+import com.googlecode.mgwt.dom.client.event.orientation.OrientationChangeEvent;
+import com.googlecode.mgwt.dom.client.event.orientation.OrientationChangeHandler;
+import com.googlecode.mgwt.ui.client.MGWT;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
+
+import de.hska.iwi.mgwt.demo.client.model.TileBoardManager;
 
 /**
  * Inherits an amount of tiles. Arranged in a table like layout.
@@ -16,10 +22,22 @@ public class TileBoard implements IsWidget {
 
 	LayoutPanel tileBoardPanel;
 	List<ClickHandler> handlers;
+	int width = 0;
 	
 	public TileBoard() {
 		this.tileBoardPanel = new LayoutPanel();
 		this.tileBoardPanel.getElement().addClassName("tileBoard");
+		this.tileBoardPanel.setWidth("0px");
+		
+		// if screen orientation changes
+		MGWT.addOrientationChangeHandler(new OrientationChangeHandler(){
+
+			@Override
+			public void onOrientationChanged(OrientationChangeEvent event) {
+				refreshTileBoard();
+			}
+	
+		});
 	}
 	
 	@Override
@@ -33,7 +51,8 @@ public class TileBoard implements IsWidget {
 	 * @param tile
 	 */
 	public void add(Tile tile) {
-		this.tileBoardPanel.add(tile.asWidget());
+		this.tileBoardPanel.add(tile.asWidget());		
+		refreshTileBoard();
 	}
 	
 	/**
@@ -60,6 +79,18 @@ public class TileBoard implements IsWidget {
 	public void refreshTiles(List<Tile> tiles) {
 		this.tileBoardPanel.clear();
 		addAll(tiles);
+	}
+	
+	/**
+	 * Refresh size of TileBoard Div
+	 */
+	private void refreshTileBoard() {
+		int maxWidth = (int) (Math.rint(Document.get().getClientWidth() / 100) * 100); 
+		this.width = TileBoardManager.getTiles().size() * 100;
+		
+		if (this.width > maxWidth) this.width = maxWidth;
+		
+		this.tileBoardPanel.setWidth(String.valueOf(this.width) + "px");
 	}
 	
 	

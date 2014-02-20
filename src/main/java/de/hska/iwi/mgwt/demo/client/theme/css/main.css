@@ -125,22 +125,36 @@ body {
 }
 
 .tileBoard {
-	margin: 0px!important;
 	padding: 10px!important;
-	display: -webkit-flex!important;
-	display: -moz-flex!important;
-	display: flex!important;
-	-webkit-flex-flow: row wrap!important;
-	-moz-flex-flow: row wrap!important;
-	flex-flow: row wrap!important;
-	-webkit-justify-content: center!important;
-	-webkit-align-content: flex-start!important;
+	margin: 0 auto!important;
+/* 	display: -webkit-flex!important; */
+/* 	display: -moz-flex!important; */
+/* 	display: flex!important; */
+/* 	-webkit-flex-flow: row wrap!important; */
+/* 	-moz-flex-flow: row wrap!important; */
+/* 	flex-flow: row wrap!important; */
+/* 	-webkit-justify-content: center!important; */
+/* 	-webkit-align-content: flex-start!important; */
+
+	display: block!important;
+	max-width: 100%!important;
 }
 
 .tileBoard .GOE-WOTBAJ {
 	position: relative;
  	max-height: 100px!important; 
-	max-width: 100px!important;
+/* 	max-width: 100px!important; */
+	float: left;
+	margin-right: 10px;
+}
+
+
+.GOE-WOTBAO .tileBoard .mgwt-ScrollPanel-container {
+	display: block!important;
+}
+
+.tileBoard > div {
+	float: left;
 }
 
 .tileBoard .GOE-WOTBAJ .GOE-WOTBBJ {
