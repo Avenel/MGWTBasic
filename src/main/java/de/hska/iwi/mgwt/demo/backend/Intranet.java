@@ -28,7 +28,7 @@ public interface Intranet {
 	 * Calling this method will result in an Asynchronous call and the result will be pushed back into the provided observer.
 	 * 
 	 * @param observer implementation of an {@link ObserverActivity} where the result will be pushed back to the caller.
-	 * @param course an {@link Course}-Enum for specifying which tutorials are requested. {@link Course.ALL} will request for every Course.
+	 * @param course an {@link Course}-Enum for specifying which tutorials are requested. Course.ALL will request for every Course.
 	 * @throws IllegalArgumentException if one of the arguments are null
 	 */
 	public void getTutorials(ObserverActivity<Tutorials> observer, Course course) throws IllegalArgumentException;
@@ -38,7 +38,7 @@ public interface Intranet {
 	 * an Asynchronous-call where the ObserverActivity is used as a callback-object.
 	 * 
 	 * @param observer implementation of an {@link ObserverActivity} where the result will be pushed back to the caller.
-	 * @param course an {@link Course}-Enum for specifying which tutorials are requested. {@link Course.ALL} will request for every Course.	
+	 * @param course an {@link Course}-Enum for specifying which tutorials are requested. Course.ALL will request for every Course.	
 	 * @throws IllegalArgumentException if one of the arguments are null
 	 */
 	public void getNewsBoard(ObserverActivity<List<News>> observer, Course course) throws IllegalArgumentException;
