@@ -4,6 +4,10 @@ import java.util.List;
 
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.logical.shared.ResizeEvent;
+import com.google.gwt.event.logical.shared.ResizeHandler;
+import com.google.gwt.user.client.Timer;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.mgwt.dom.client.event.orientation.OrientationChangeEvent;
@@ -38,6 +42,23 @@ public class TileBoard implements IsWidget {
 			}
 	
 		});
+		
+		// if window resizes
+		Window.addResizeHandler(new ResizeHandler() {
+
+			  Timer resizeTimer = new Timer() {  
+			    @Override
+			    public void run() {
+			    	refreshTileBoard();
+			    }
+			  };
+
+			  @Override
+			  public void onResize(ResizeEvent event) {
+			    resizeTimer.cancel();
+			    resizeTimer.schedule(250);
+			  }
+			});
 	}
 	
 	@Override
@@ -84,11 +105,10 @@ public class TileBoard implements IsWidget {
 	/**
 	 * Refresh size of TileBoard Div
 	 */
-	private void refreshTileBoard() {
-		int maxWidth = (int) (Math.rint(Document.get().getClientWidth() / 100) * 100); 
+	private void refreshTileBoard() {		
+		int maxWidth = (int) ((Document.get().getClientWidth() / 100) * 100) - 20;
 		this.width = TileBoardManager.getTiles().size() * 100;
-		
-		if (this.width > maxWidth) this.width = maxWidth;
+		if (this.width > maxWidth) this.width = (maxWidth / 100) * 100;
 		
 		this.tileBoardPanel.setWidth(String.valueOf(this.width) + "px");
 	}

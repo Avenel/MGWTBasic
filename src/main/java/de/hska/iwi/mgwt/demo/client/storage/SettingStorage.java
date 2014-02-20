@@ -60,10 +60,13 @@ public class SettingStorage {
 		// General
 		SettingItemImpl pushMessagesAllowed = new SettingItemImpl(InputType.CHECKBOX, StorageKey.IsSendingPushMessages, "true", "fa-mail-forward", false);
 		
+		SettingItemImpl versionTag = new SettingItemImpl(InputType.CHECKBOX, StorageKey.VERSION, "true", "fa-info", false);
+		
 		settingItemsHome.add(izUserMenu);
 		settingItemsHome.add(mensaSettings);
 		settingItemsHome.add(newsSettings);
 		settingItemsHome.add(pushMessagesAllowed);
+		settingItemsHome.add(versionTag);
 		
 		settingItems.put(SettingMenueName.HOME, settingItemsHome);
 		settingItems.put(SettingMenueName.MENSA, settingItemsMensa);
