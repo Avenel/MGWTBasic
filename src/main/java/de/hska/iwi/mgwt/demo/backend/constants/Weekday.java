@@ -1,7 +1,11 @@
 package de.hska.iwi.mgwt.demo.backend.constants;
 
 import com.google.web.bindery.autobean.shared.AutoBean.PropertyName;
-
+/**
+ * Enum value for the different Weekdays.
+ * @author Nico
+ *
+ */
 public enum Weekday {
 	@PropertyName("-1")
 	NONE(-1, "NONE"),
@@ -29,6 +33,11 @@ public enum Weekday {
 		this.weekDayText = key;
 	}
 	
+	/**
+	 * Factorymethod which creates an Enum for of a given integer value.
+	 * @param key the integer value which represents the enum
+	 * @return The corresponding enum.
+	 */
 	public static Weekday getEnumForKey(int key) {
 		for (Weekday day : Weekday.values()) {
 			if (day.getNumberOfWeekday() == key) {

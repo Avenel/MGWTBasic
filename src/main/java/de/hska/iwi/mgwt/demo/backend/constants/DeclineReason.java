@@ -21,7 +21,11 @@ public enum DeclineReason {
 		this.key = key;
 		this.description = description;
 	}
-	
+	/**
+	 * Converts a integer representation to the corresponding enum value.
+	 * @param key integer representation of the enum. Specified in the API Documentation
+	 * @return the corresponding Enum of the given integer.
+	 */
 	public static DeclineReason getEnumForKey(int key) {
 		for (DeclineReason reason : DeclineReason.values()) {
 			if (reason.getKey() == key) {

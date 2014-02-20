@@ -2,7 +2,11 @@ package de.hska.iwi.mgwt.demo.backend.constants;
 
 import com.google.web.bindery.autobean.shared.AutoBean.PropertyName;
 
-
+/**
+ * Enum value for the differen processes/Event where a student can take place.
+ * @author Nico
+ *
+ */
 public enum WorkflowEvent implements IURLParameterEnum {
 	@PropertyName("academic_writing")
 	ACADEMIC_WRITING,
@@ -27,6 +31,9 @@ public enum WorkflowEvent implements IURLParameterEnum {
 	@PropertyName("thesis_master")
 	THESIS_MASTER;
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String getUrlKey() {
 		return this.toString().toLowerCase();

@@ -37,8 +37,11 @@ public enum FoodAdditive {
 	public int getKey() {
 		return key;
 	}
-
-
+	/**
+	 * Factory method to create an enum by an given integer
+	 * @param key the integer representation of the wanted enum
+	 * @return the corresponding enum of the integer.
+	 */
 	public static FoodAdditive getEnumForKey(int key) {
 		for (FoodAdditive food : FoodAdditive.values()) {
 			if (food.getKey() == key) {

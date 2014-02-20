@@ -1,7 +1,11 @@
 package de.hska.iwi.mgwt.demo.backend.constants;
 
 import com.google.web.bindery.autobean.shared.AutoBean.PropertyName;
-
+/**
+ * Enum value for the different NewsTypes which are specified in the REST-API Documnetation.
+ * @author Nico
+ *
+ */
 public enum NewsType implements IURLParameterEnum {
 	@PropertyName("announcement")
 	ANNOUNCEMENT("announcement"),
@@ -19,12 +23,15 @@ public enum NewsType implements IURLParameterEnum {
 	}
 			
 	/**
-	 * @return the key
+	 * {@inheritDoc}
 	 */
+	@Override
 	public String getUrlKey() {
 		return key;
 	}
-	
+	/**
+	 * @return a String which is used for FontAwesome.
+	 */
 	public String getFontAwesomeIcon() {
 		if (this.getUrlKey().equals("announcement")) {
 			return "fa-bullhorn";

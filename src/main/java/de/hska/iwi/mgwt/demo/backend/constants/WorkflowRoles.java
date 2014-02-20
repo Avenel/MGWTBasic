@@ -1,5 +1,9 @@
 package de.hska.iwi.mgwt.demo.backend.constants;
-
+/**
+ * Enum values for the different Roles which taking place in a WorkflowPhase. Specified in the REST-API.
+ * @author Nico
+ *
+ */
 public enum WorkflowRoles {
 
 	APPLICATION_THROUGH_STUDENT('A', "Anmeldung durch einen Studierenden"),
@@ -15,9 +19,6 @@ public enum WorkflowRoles {
 	MARK_CAN_SEEN_BY_STUDENT('N', "Note kann vom Studierenden eingesehen werden"),
 	APPLICATION_DECLINED('D', "Die Anmeldung wurde abgelehnt."),
 	DEFAULT('-', "No more information");
-//	DOCUMENTS_NOT_YET_CHECKED('O', "Die Dokumente wurden noch nicht geprüft"),
-//	DOCUMENTS_DECLINED('D')
-//	DEFAULT('-', "No more information");
 	
 	private char key;
 	
@@ -28,15 +29,24 @@ public enum WorkflowRoles {
 		this.description = description;
 
 	}
-	
+	/**
+	 * @return the key
+	 */
 	public char getKey() {
-		return this.key;
+		return key;
 	}
-	
+	/**
+	 * @return the description
+	 */
 	public String getDescription() {
-		return this.description;
+		return description;
 	}
-	
+
+	/**
+	 * Factory-method which creates an Enum from a given key.
+	 * @param key the character which shall be referenced by an Enum.
+	 * @return The corresponding Enum which is represented by the given key
+	 */
 	public static WorkflowRoles getEnumForKey(char key) {
 		for (WorkflowRoles role : WorkflowRoles.values()) {
 			if (role.getKey() == key) {

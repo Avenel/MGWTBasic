@@ -1,7 +1,11 @@
 package de.hska.iwi.mgwt.demo.backend.constants;
 
 import com.google.web.bindery.autobean.shared.AutoBean.PropertyName;
-
+/**
+ * Enum values for the different states of an WorkflowStatus
+ * @author Nico
+ *
+ */
 public enum WorkflowStatusEnum {
 	
 	@PropertyName("O")
@@ -21,6 +25,11 @@ public enum WorkflowStatusEnum {
 		this.description = description;
 	}
 
+	/**
+	 * Factory-method which creates an Enum by an given character.
+	 * @param key the character which shall represent the Enum.
+	 * @return the enum represented by the given key
+	 */
 	public static WorkflowStatusEnum getEnumForKey(char key) {
 		for (WorkflowStatusEnum status : WorkflowStatusEnum.values()) {
 			if (status.getKey() == key) {
@@ -43,7 +52,4 @@ public enum WorkflowStatusEnum {
 	public String getDescription() {
 		return description;
 	}
-	
-	
-
 }

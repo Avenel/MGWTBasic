@@ -1,7 +1,11 @@
 package de.hska.iwi.mgwt.demo.backend.constants;
 
 import com.google.web.bindery.autobean.shared.AutoBean.PropertyName;
-
+/**
+ * Enum values for the supported Courses of the IWI-Faculty
+ * @author Nico
+ *
+ */
 public enum Course implements IURLParameterEnum {
 	@PropertyName("INFB")
 	INFORMATIK_BACHELOR("INFB", 7),
@@ -26,6 +30,9 @@ public enum Course implements IURLParameterEnum {
 		return countOfSemester;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String getUrlKey() {
 		return this.key;

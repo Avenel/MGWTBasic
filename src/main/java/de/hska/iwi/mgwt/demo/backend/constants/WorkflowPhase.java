@@ -1,7 +1,11 @@
 package de.hska.iwi.mgwt.demo.backend.constants;
 
 import com.google.web.bindery.autobean.shared.AutoBean.PropertyName;
-
+/**
+ * Enum values for the differen phases, in which a Events can be.
+ * @author Nico
+ *
+ */
 public enum WorkflowPhase implements ITransitions {
 	@PropertyName("0")
 	APPLICATION(0, "Anmeldephase") {
@@ -80,7 +84,9 @@ public enum WorkflowPhase implements ITransitions {
 		this.index = index;
 		this.description = description;
 	}
-	
+	/**
+	 * @return the index
+	 */
 	public int getIndex() {
 		return this.index;
 	}
@@ -101,12 +107,20 @@ public enum WorkflowPhase implements ITransitions {
 	public String getCurrentPhaseDescription() {
 		return phaseDescription;
 	}
-	
+	/**
+	 * Factory-method for creating an Enum by a given String.
+	 * @param key the string which represents the phase
+	 * @return the corresponding enum to the String
+	 */
 	public static WorkflowPhase getEnumForKey(String key) {
 		int intKey = Integer.parseInt(key);
 		return getEnumForKey(intKey);
 	}
-	
+	/**
+	 * Factory-method for creating an Enum by a given integer.
+	 * @param key the integer which represents the phase
+	 * @return the corresponding enum to the integer
+	 */
 	public static WorkflowPhase getEnumForKey(int key) {
 		for (WorkflowPhase phase : WorkflowPhase.values()) {
 			if (phase.getIndex() == key) {
@@ -116,6 +130,9 @@ public enum WorkflowPhase implements ITransitions {
 		return WorkflowPhase.APPLICATION;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public abstract void parseStatus(String status);
 }
