@@ -14,6 +14,7 @@ public class HeaderBackButton implements IsWidget {
 		HeaderButton backButton = new HeaderButton();
 		backButton.setBackButton(true);
 		backButton.setText("");
+		
 
 		// handle history back
 		backButton.addTapHandler(new TapHandler(){

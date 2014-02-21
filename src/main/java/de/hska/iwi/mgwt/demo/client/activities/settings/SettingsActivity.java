@@ -59,7 +59,7 @@ public class SettingsActivity extends MGWTAbstractActivity {
 	    	}
 	    }
 		
-		view.setSettingItems(settingItemWidgets);
+		view.setSettingItems(settingItemWidgets, SettingMenueName.getKey(id).getHumanReadableName());
 		
 		panel.setWidget(view);
 	}

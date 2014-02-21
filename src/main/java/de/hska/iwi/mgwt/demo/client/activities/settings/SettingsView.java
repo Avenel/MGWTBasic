@@ -8,7 +8,7 @@ import com.googlecode.mgwt.ui.client.widget.ScrollPanel;
 
 public interface SettingsView extends IsWidget {
 	
-	public void setSettingItems(List<Widget> settingItems);
+	public void setSettingItems(List<Widget> settingItems, String newTitle);
 	public ScrollPanel getWrapperScrollPanel();
 
 }

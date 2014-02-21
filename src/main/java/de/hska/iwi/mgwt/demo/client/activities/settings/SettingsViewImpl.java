@@ -15,21 +15,25 @@ public class SettingsViewImpl implements SettingsView {
 	private LayoutPanel main;
 	private List<Widget> settingItems;
 	private ScrollPanel panelSettings;
+	private HeaderPanel headerPanel;
+	private String title;
 	
 	public SettingsViewImpl() {
 		this.settingItems = new ArrayList<Widget>();
 		panelSettings = new ScrollPanel();
+		headerPanel = new HeaderPanel();
 	}
 	
-	public void setSettingItems(List<Widget> settingItems) {
+	public void setSettingItems(List<Widget> settingItems, String newTitle) {
 		this.settingItems = settingItems;
+//		this.headerPanel.setCenter(newTitle);
+		this.title = newTitle;
 	}
 	
 	private void init(List<Widget> settingItems) {
 		this.main = new LayoutPanel();
 		
-		HeaderPanel headerPanel = new HeaderPanel();
-		headerPanel.setCenter("App-Einstellungen");
+		headerPanel.setCenter(this.title);
 		this.main.add(headerPanel);
 		
 		HeaderBackButton backButton = new HeaderBackButton();
