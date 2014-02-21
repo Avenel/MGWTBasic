@@ -18,6 +18,7 @@ public class SettingsViewImpl implements SettingsView {
 	
 	public SettingsViewImpl() {
 		this.settingItems = new ArrayList<Widget>();
+		panelSettings = new ScrollPanel();
 	}
 	
 	public void setSettingItems(List<Widget> settingItems) {
@@ -42,7 +43,7 @@ public class SettingsViewImpl implements SettingsView {
 	    	widgetList.add(item);
 	    }
 		
-		panelSettings = new ScrollPanel();
+	    panelSettings.clear();
 		panelSettings.add(widgetList);
 
 		this.main.add(panelSettings);

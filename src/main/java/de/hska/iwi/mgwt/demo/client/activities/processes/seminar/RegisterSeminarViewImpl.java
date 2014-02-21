@@ -28,35 +28,36 @@ import de.hska.iwi.mgwt.demo.client.widget.HeaderBackButton;
  */
 public class RegisterSeminarViewImpl implements RegisterSeminarView {
 
-	private ScrollPanel panel;
-	private LayoutPanel main;
 	private Button registerButton;
 	private AccordionInputWidget professorAccordion;
 	private AccordionInputWidget termAccordion;
 	private MTextBox topicBox;
+	private LayoutPanel main;
+	private ScrollPanel formScrollPanel;
+	private LayoutPanel formLayoutPanel;
 
 	/**
 	 * Constructor that builds all necessary elements
 	 */
 	public RegisterSeminarViewImpl() {
-
-		panel = new ScrollPanel();
-		main = new LayoutPanel();
-		LayoutPanel wrapper = new LayoutPanel();
-
+		this.main = new LayoutPanel();
+		
 		HeaderPanel headerPanel = new HeaderPanel();
 		headerPanel.setCenter("Seminararbeiten");
-		wrapper.add(headerPanel);
+		main.add(headerPanel);
 
 		HeaderBackButton backButton = new HeaderBackButton();
 		headerPanel.setLeftWidget(backButton.asWidget());
-
+		
+		this.formScrollPanel = new ScrollPanel();
+		this.formLayoutPanel = new LayoutPanel();
+	
 		WidgetList widgetList = new WidgetList();
 		widgetList.setRound(true);
 
 		// "Professor"Field and Label
 		professorAccordion = new AccordionInputWidget("Dozent: ", null,
-				SeminarTempStorage.getLecturers(), false, panel);
+				SeminarTempStorage.getLecturers(), false, this.formScrollPanel);
 		widgetList.add(professorAccordion.asWidget());
 
 		// "Topic"Field and Label
@@ -72,20 +73,21 @@ public class RegisterSeminarViewImpl implements RegisterSeminarView {
 
 		// "term"Field and Label
 		termAccordion = new AccordionInputWidget("Semester: ", null,
-				new String[] { "WS13/14", "SS14" }, false, panel);
+				new String[] { "WS13/14", "SS14" }, false, this.formScrollPanel);
 		termAccordion.asWidget().getElement().getStyle()
 				.setProperty("horizontalAlign", "left");
 		widgetList.add(termAccordion.asWidget());
-
+		
+		this.formLayoutPanel.add(widgetList);
+		
 		registerButton = new Button();
 		registerButton.setText("Arbeit anmelden");
 		registerButton.getElement().getStyle()
 				.setProperty("horizontalAlign", "center");
-
-		wrapper.add(widgetList);
-		wrapper.add(registerButton);
-		panel.add(wrapper);
-		main.add(panel);
+		this.formLayoutPanel.add(registerButton);
+		
+		this.formScrollPanel.add(this.formLayoutPanel);
+		this.main.add(this.formScrollPanel);
 	}
 
 	@Override
