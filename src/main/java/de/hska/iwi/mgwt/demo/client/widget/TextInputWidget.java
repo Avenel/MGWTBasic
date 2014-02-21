@@ -82,7 +82,7 @@ public class TextInputWidget implements IsWidget, InputWidget {
 		try {
 			this.textBox.setValue(SettingStorage.getValue(key, false));
 		} catch (Exception e) {
-			this.textBox.setValue("[ERR]");
+			this.textBox.setValue("...");
 		}
 	}
 

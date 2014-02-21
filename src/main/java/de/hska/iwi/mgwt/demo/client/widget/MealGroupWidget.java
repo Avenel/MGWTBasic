@@ -22,6 +22,9 @@ import com.googlecode.mgwt.ui.client.widget.WidgetList;
 import de.hska.iwi.mgwt.demo.backend.constants.FoodAdditive;
 import de.hska.iwi.mgwt.demo.backend.model.Meal;
 import de.hska.iwi.mgwt.demo.backend.model.MealGroup;
+import de.hska.iwi.mgwt.demo.client.model.MensaPriceCategory;
+import de.hska.iwi.mgwt.demo.client.storage.SettingStorage;
+import de.hska.iwi.mgwt.demo.client.storage.StorageKey;
 
 /**
  * This widget represents a Mensa MealGroup.
@@ -168,7 +171,37 @@ public class MealGroupWidget implements IsWidget {
 			
 			// price
 			Label price = new Label();
-			price.setText(NumberFormat.getFormat("#0.00").format(meal.getPriceStudent()).replace(".",  ",") + " €");
+			double priceInEuro = meal.getPriceStudent();
+			
+			// Set price dependent on chosen price category
+			String priceCategory = "";
+			try {
+				priceCategory = SettingStorage.getValue(StorageKey.MENSAPRICECATEGORY, false);
+			} catch (Exception e) {
+				// standard: Student
+				priceCategory = "Student";
+			}
+			
+			MensaPriceCategory priceCategoryEnum = MensaPriceCategory.getByString(priceCategory);
+			
+			switch (priceCategoryEnum) {
+				case STUDENT:
+					priceInEuro = meal.getPriceStudent();
+					break;
+				case EMPLOYEE:
+					priceInEuro = meal.getPriceEmployee();
+					break;
+				case PUPIL:
+					priceInEuro = meal.getPricePupil();
+					break;
+				case GUEST:
+					priceInEuro = meal.getPriceGuest();
+					break;
+				default:
+					priceInEuro = meal.getPriceStudent();
+			}
+			
+			price.setText(NumberFormat.getFormat("#0.00").format(priceInEuro).replace(".",  ",") + " €");
 			price.getElement().addClassName("meal-price");
 			modifierPricePanel.add(price);
 			
