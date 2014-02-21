@@ -14,8 +14,10 @@ import com.googlecode.mgwt.ui.client.widget.ScrollPanel;
 import com.googlecode.mgwt.ui.client.widget.WidgetList;
 
 import de.hska.iwi.mgwt.demo.client.model.SeminarTempStorage;
+import de.hska.iwi.mgwt.demo.client.storage.StorageKey;
 import de.hska.iwi.mgwt.demo.client.widget.AccordionInputWidget;
 import de.hska.iwi.mgwt.demo.client.widget.HeaderBackButton;
+import de.hska.iwi.mgwt.demo.client.widget.TextInputWidget;
 
 /**
  * View to register a new Seminar. This view displays a form for the user to
@@ -40,7 +42,11 @@ public class RegisterSeminarViewImpl implements RegisterSeminarView {
 	 * Constructor that builds all necessary elements
 	 */
 	public RegisterSeminarViewImpl() {
-		this.main = new LayoutPanel();
+	}
+
+	@Override
+	public Widget asWidget() {
+this.main = new LayoutPanel();
 		
 		HeaderPanel headerPanel = new HeaderPanel();
 		headerPanel.setCenter("Seminararbeiten");
@@ -64,13 +70,18 @@ public class RegisterSeminarViewImpl implements RegisterSeminarView {
 		LayoutPanel topicFieldLayout = new LayoutPanel();
 		topicFieldLayout.setHorizontal(true);
 		Label topicLabel = new Label("Thema ");
-		topicLabel.getElement().getStyle().setMarginRight(10, Unit.PX);
+		
+		topicLabel.getElement().getStyle().setProperty("overflow", "hidden");
+		topicLabel.getElement().getStyle().setProperty("whiteSpace", "nowrap");
+		topicLabel.getElement().getStyle().setProperty("textOverflow", "ellipsis");
+		topicLabel.getElement().getStyle().setWidth(35, Unit.PCT);
 		topicFieldLayout.add(topicLabel);
+		
 		topicBox = new MTextBox();
 		topicBox.setName("topic");
 		topicFieldLayout.add(topicBox);
 		widgetList.add(topicFieldLayout);
-
+		
 		// "term"Field and Label
 		termAccordion = new AccordionInputWidget("Semester: ", null,
 				new String[] { "WS13/14", "SS14" }, false, this.formScrollPanel);
@@ -88,10 +99,7 @@ public class RegisterSeminarViewImpl implements RegisterSeminarView {
 		
 		this.formScrollPanel.add(this.formLayoutPanel);
 		this.main.add(this.formScrollPanel);
-	}
-
-	@Override
-	public Widget asWidget() {
+		
 		return main;
 	}
 
