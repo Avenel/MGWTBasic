@@ -10,14 +10,14 @@ import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
 import de.hska.iwi.mgwt.demo.backend.constants.WorkflowPhase;
 import de.hska.iwi.mgwt.demo.client.ClientFactory;
 import de.hska.iwi.mgwt.demo.client.activities.processes.ProcessDetailView;
+import de.hska.iwi.mgwt.demo.client.activities.processes.ProcessDetailViewImpl;
 import de.hska.iwi.mgwt.demo.client.model.ProcessStep;
 import de.hska.iwi.mgwt.demo.client.model.Seminar;
 import de.hska.iwi.mgwt.demo.client.model.SeminarTempStorage;
 
 /**
- * Activity for displaying a seminar Workflow.
- * In this activity, we need to get the statuses, a seminar can be in, from the intranet server.
- * After we got the data, it is cached in the local storage (Not currently).
+ * Activity for displaying a seminar Workflow and the current status.
+ * This activity uses {@link ProcessDetailViewImpl}
  *
  */
 public class ProcessDetailSeminarActivity extends MGWTAbstractActivity	 {
@@ -27,10 +27,18 @@ public class ProcessDetailSeminarActivity extends MGWTAbstractActivity	 {
 	private Seminar seminar;
 	private String id;
 
+	/**
+	 * Setup the activity with a ClientFatory
+	 * @param clientFactory
+	 */
 	public ProcessDetailSeminarActivity(ClientFactory clientFactory) {
 		this.clientFactory = clientFactory;
 
 	}
+	/**
+	 * Setup the activity with a ClientFatoryand id
+	 * @param clientFactory
+	 */
 	public ProcessDetailSeminarActivity(ClientFactory clientFactory, String id) {
 		this.clientFactory = clientFactory;
 		this.id = id;

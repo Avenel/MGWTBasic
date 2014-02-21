@@ -25,6 +25,19 @@ import de.hska.iwi.mgwt.demo.client.storage.SeminarStorage;
 import de.hska.iwi.mgwt.demo.client.storage.SettingStorage;
 import de.hska.iwi.mgwt.demo.client.storage.StorageKey;
 
+/**
+ * Activity for displaying an overview of all current Seminars in a certain way.
+ * This activity uses localStorage to store and load a list of seminars. It also
+ * gets the current seminar of a user from the intranet-Server. If there is a
+ * stored value in the localStorage with the same topic, it is updated with the
+ * values from the server. The activity also stores all seminars in a
+ * non-persistent {@link SeminarTempStorage} for faster and easier access. There
+ * also is the possibility to register a new Seminar. However, this is not
+ * synced with the server yet, but only stored in the localStorage of the client
+ * 
+ * @author Simon
+ * 
+ */
 public class ProcessSeminarActivity extends MGWTAbstractActivity implements
 		ObserverActivity<WorkflowStatus> {
 
@@ -32,6 +45,10 @@ public class ProcessSeminarActivity extends MGWTAbstractActivity implements
 	private ProcessSeminarView view;
 	private List<Seminar> seminarEntries;
 
+	/**
+	 * Setup the activity with the ClientFactory
+	 * @param clientFactory
+	 */
 	public ProcessSeminarActivity(ClientFactory clientFactory) {
 		this.clientFactory = clientFactory;
 	}

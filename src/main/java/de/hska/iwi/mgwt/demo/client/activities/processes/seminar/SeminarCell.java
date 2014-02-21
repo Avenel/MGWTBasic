@@ -6,10 +6,16 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.safehtml.client.SafeHtmlTemplates;
 import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
+import com.googlecode.mgwt.ui.client.widget.CellList;
 import com.googlecode.mgwt.ui.client.widget.celllist.Cell;
 
 import de.hska.iwi.mgwt.demo.client.model.Seminar;
 
+/**
+ * Implements a Cell to represent a {@link Seminar} -Element in a {@link CellList}
+ * @author Simon
+ *
+ */
 public class SeminarCell implements Cell<Seminar> {
 	public String test="";
 

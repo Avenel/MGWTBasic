@@ -6,7 +6,11 @@ import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceTokenizer;
 
 import de.hska.iwi.mgwt.demo.client.model.PlaceJSONObject;
-
+/**
+ * The place for a ProcessDetailActivity. Currently only used with Seminars
+ * @author Simon
+ *
+ */
 public class ProcessDetailPlace extends Place implements PlaceJSONObject {
 	String id;
 	
@@ -17,6 +21,11 @@ public class ProcessDetailPlace extends Place implements PlaceJSONObject {
 	public String getId() {
 		return this.id;
 	}
+	/**
+	 * Tokenizer class for Place
+	 * @author Simon
+	 *
+	 */
 	public static class ProcessDetailPlaceTokenizer implements PlaceTokenizer<ProcessDetailPlace> {
 
 		@Override

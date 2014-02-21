@@ -48,7 +48,10 @@ public class SeminarStorage {
 		
 	}
 	
-	
+	/**
+	 * Overrides all seminars with the given ones
+	 * @param seminars a List of Seminars to store
+	 */
 	public static void setSeminars(List<Seminar> seminars){
 		Storage localStorage=Storage.getLocalStorageIfSupported();
 		localStorage.removeItem(StorageKey.ProcessesSeminarsList.toString());

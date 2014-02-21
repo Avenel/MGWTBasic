@@ -13,6 +13,15 @@ import com.googlecode.mgwt.ui.client.widget.celllist.HasCellSelectedHandler;
 import de.hska.iwi.mgwt.demo.client.model.MenuItem;
 import de.hska.iwi.mgwt.demo.client.widget.HeaderBackButton;
 
+/**
+ * Implements the view for a StudentView. This is more or less just a list of
+ * MenuItems for the user to choose from. In this view only elements of type
+ * "register" are rendered. However, there is the possibility to build a second
+ * menu for "manage" typed MenuItems
+ * 
+ * @author Simon
+ * 
+ */
 public class StudentViewImpl implements StudentView {
 
 	private CellList<MenuItem> cellListStudentLifeMenuItemsRegister;

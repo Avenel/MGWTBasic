@@ -1,7 +1,7 @@
 package de.hska.iwi.mgwt.demo.client.activities.processes.seminar;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.ui.Label;
@@ -17,6 +17,15 @@ import de.hska.iwi.mgwt.demo.client.model.SeminarTempStorage;
 import de.hska.iwi.mgwt.demo.client.widget.AccordionInputWidget;
 import de.hska.iwi.mgwt.demo.client.widget.HeaderBackButton;
 
+/**
+ * View to register a new Seminar. This view displays a form for the user to
+ * fill out and a button to send the data to the client. It uses
+ * {@link AccordionInputWidget} for the professor and term field, and a simple
+ * TextBox for the topic field.
+ * 
+ * @author Simon
+ * 
+ */
 public class RegisterSeminarViewImpl implements RegisterSeminarView {
 
 	private ScrollPanel panel;
@@ -26,6 +35,9 @@ public class RegisterSeminarViewImpl implements RegisterSeminarView {
 	private AccordionInputWidget termAccordion;
 	private MTextBox topicBox;
 
+	/**
+	 * Constructor that builds all necessary elements
+	 */
 	public RegisterSeminarViewImpl() {
 
 		panel = new ScrollPanel();
@@ -38,14 +50,15 @@ public class RegisterSeminarViewImpl implements RegisterSeminarView {
 
 		HeaderBackButton backButton = new HeaderBackButton();
 		headerPanel.setLeftWidget(backButton.asWidget());
-		
+
 		WidgetList widgetList = new WidgetList();
 		widgetList.setRound(true);
-		
+
 		// "Professor"Field and Label
-		professorAccordion= new AccordionInputWidget("Dozent: ", null, SeminarTempStorage.getLecturers(), false, panel);
+		professorAccordion = new AccordionInputWidget("Dozent: ", null,
+				SeminarTempStorage.getLecturers(), false, panel);
 		widgetList.add(professorAccordion.asWidget());
-		
+
 		// "Topic"Field and Label
 		LayoutPanel topicFieldLayout = new LayoutPanel();
 		topicFieldLayout.setHorizontal(true);
@@ -56,17 +69,19 @@ public class RegisterSeminarViewImpl implements RegisterSeminarView {
 		topicBox.setName("topic");
 		topicFieldLayout.add(topicBox);
 		widgetList.add(topicFieldLayout);
-		
+
 		// "term"Field and Label
-		termAccordion= new AccordionInputWidget("Semester: ", null, new String[]{"WS13/14","SS14"}, false, panel);
-		termAccordion.asWidget().getElement().getStyle().setProperty("horizontalAlign", "left");
+		termAccordion = new AccordionInputWidget("Semester: ", null,
+				new String[] { "WS13/14", "SS14" }, false, panel);
+		termAccordion.asWidget().getElement().getStyle()
+				.setProperty("horizontalAlign", "left");
 		widgetList.add(termAccordion.asWidget());
-		
-		registerButton= new Button();
+
+		registerButton = new Button();
 		registerButton.setText("Arbeit anmelden");
-		registerButton.getElement().getStyle().setProperty("horizontalAlign", "center");
-		
-				
+		registerButton.getElement().getStyle()
+				.setProperty("horizontalAlign", "center");
+
 		wrapper.add(widgetList);
 		wrapper.add(registerButton);
 		panel.add(wrapper);
@@ -88,14 +103,16 @@ public class RegisterSeminarViewImpl implements RegisterSeminarView {
 	public Button getRegisterButton() {
 		return registerButton;
 	}
-	
-	public List<String> getInputs(){
-		List<String> retList= new ArrayList<String>();
-		retList.add(professorAccordion.getValue());
-		retList.add(topicBox.getValue());
-		retList.add(termAccordion.getValue());
-		
-		return retList;
+
+	@Override
+	public Map<InputField, String> getInputs() {
+		Map<InputField, String> retMap = new HashMap<InputField, String>();
+		retMap.put(InputField.ProfessorField,
+				professorAccordion.getValue());
+		retMap.put(InputField.TopicField, topicBox.getValue());
+		retMap.put(InputField.TermField, termAccordion.getValue());
+
+		return retMap;
 	}
 
 }

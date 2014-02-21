@@ -58,6 +58,7 @@ public class AccordionInputWidget implements IsWidget, InputWidget {
 		this.currentValueText = new Label();
 		this.currentValueText.setText(values[0]);
 		this.valuePanel.add(currentValueText);
+		value=values[0];
 		
 		this.handler = new ClickHandler() {
 			@Override

@@ -6,8 +6,17 @@ import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceTokenizer;
 
 import de.hska.iwi.mgwt.demo.client.model.PlaceJSONObject;
-
+/**
+ * Place for the RegisterSeminarActivity
+ * @author Simon
+ *
+ */
 public class RegisterSeminarPlace extends Place implements PlaceJSONObject {
+	/**
+	 * Tokenizer for RegistersSeminarActivity
+	 * @author Simon
+	 *
+	 */
 	public static class RegisterSeminarPlaceTokenizer implements PlaceTokenizer<RegisterSeminarPlace> {
 
 		@Override

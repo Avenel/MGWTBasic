@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * Non-persistent storage for faster access. This is used after the local
- * storage was read the first time.
+ * storage was read the first time. To exchange data between activities.
  * 
  * @author Simon
  * 
@@ -54,6 +54,12 @@ public class SeminarTempStorage {
 		return seminarList;
 	}
 
+	/**
+	 * Gets an array of lecturers. This is a temporary implementation and should
+	 * be exchanged with a server-call.
+	 * 
+	 * @return an array of lecturers
+	 */
 	public static String[] getLecturers() {
 		return new String[] { "Bröckl, Ulrich Prof. Dr. rer. nat.",
 				"Ditzinger, Albrecht Prof. Dr.", "Dübon, Karl Prof. Dr.",
