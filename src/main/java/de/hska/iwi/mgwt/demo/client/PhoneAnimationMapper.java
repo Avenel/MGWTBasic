@@ -5,9 +5,7 @@ import com.google.gwt.place.shared.Place;
 import com.googlecode.mgwt.mvp.client.Animation;
 import com.googlecode.mgwt.mvp.client.AnimationMapper;
 
-import de.hska.iwi.mgwt.demo.client.activities.lecture.LecturePlace;
-import de.hska.iwi.mgwt.demo.client.activities.news.NewsPlace;
-import de.hska.iwi.mgwt.demo.client.activities.processes.StudentPlace;
+import de.hska.iwi.mgwt.demo.client.activities.settings.SettingsPlace;
 
 /**
  * Maps Animation <-> Place 
@@ -27,14 +25,11 @@ public class PhoneAnimationMapper implements AnimationMapper {
 		
 		if (oldPlace == null || newPlace == null) return Animation.POP;
 		
-		if (oldPlace.getClass().equals(NewsPlace.class) && 
-				newPlace.getClass().equals(LecturePlace.class)) reverse = true;
+		// TODO the slide animation from settingmenue to another isn't good, because it is the same 
+		// activity. 
+		if (oldPlace.getClass().equals(SettingsPlace.class) && 
+				newPlace.getClass().equals(SettingsPlace.class)) return Animation.SLIDE;
 		
-		if (oldPlace.getClass().equals(StudentPlace.class) && 
-				newPlace.getClass().equals(NewsPlace.class)) reverse = true;
-		
-		if (oldPlace.getClass().equals(LecturePlace.class) && 
-				newPlace.getClass().equals(StudentPlace.class)) reverse = true;
 		
 		if (reverse) return Animation.SLIDE_REVERSE;
 		return Animation.SLIDE;

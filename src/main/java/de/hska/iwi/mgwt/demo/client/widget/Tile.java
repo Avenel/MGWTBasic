@@ -397,6 +397,9 @@ public class Tile implements IsWidget, ObserverTile, TileJSONObject {
 		this.updateCounter = 0;
 		this.updateBubble.setText(String.valueOf(0));
 		this.updateBubble.getElement().getStyle().setDisplay(Display.NONE);
+		
+		// reset backpanel
+		this.createBack();
 	}
 
 	public FocusPanel getFocusPanel() {
