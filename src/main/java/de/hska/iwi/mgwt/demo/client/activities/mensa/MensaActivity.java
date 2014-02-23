@@ -75,7 +75,16 @@ public class MensaActivity extends MGWTAbstractActivity implements ObserverActiv
 			}
 			
 			dueDateString = DateTimeFormat.getFormat("yyyy-MM-dd").format(dueDate);
-			intranetConn.getMensaMenu(this, Canteen.MOLTKE, dueDateString);
+			try {
+				intranetConn.getMensaMenu(this, Canteen.getCanteenByName(SettingStorage.getValue(StorageKey.MENSA, false)), dueDateString);
+			} catch (IllegalArgumentException e) {
+				// load by default mensa moltke
+				intranetConn.getMensaMenu(this, Canteen.MOLTKE, dueDateString);
+			} catch (Exception e) {
+				// load by default mensa moltke
+				intranetConn.getMensaMenu(this, Canteen.MOLTKE, dueDateString);
+			}
+			
 			CalendarUtil.addDaysToDate(dueDate, 1);
 		}
 	}

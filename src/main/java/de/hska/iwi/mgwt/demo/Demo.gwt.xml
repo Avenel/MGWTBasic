@@ -10,7 +10,6 @@
 	<inherits name="com.google.gwt.json.JSON" /> 
 	<inherits name="com.google.gwt.i18n.I18N"/>
 	<inherits name='org.cobogw.gwt.user.User' />
-	<inherits name="de.hska.iwi.mgwt.demo.events.Events"/>
 	<inherits name="com.google.web.bindery.autobean.AutoBean" />
 	<inherits name="com.google.gwt.http.HTTP" />
 	<inherits name="com.googlecode.gwt.crypto.Crypto"/>

@@ -10,6 +10,7 @@ import com.googlecode.gwt.crypto.bouncycastle.DataLengthException;
 import com.googlecode.gwt.crypto.bouncycastle.InvalidCipherTextException;
 import com.googlecode.gwt.crypto.client.TripleDesCipher;
 
+import de.hska.iwi.mgwt.demo.backend.constants.Canteen;
 import de.hska.iwi.mgwt.demo.client.activities.settings.SettingMenueName;
 import de.hska.iwi.mgwt.demo.client.model.InputType;
 import de.hska.iwi.mgwt.demo.client.model.MensaPriceCategory;
@@ -52,10 +53,14 @@ public class SettingStorage {
 		
 		// MenuLink: MENSA
 		List<SettingItem> settingItemsMensa = new ArrayList<SettingItem>();
+		SettingItemImpl mensa = new SettingItemImpl(InputType.ACCORDION, StorageKey.MENSA, Canteen.MOLTKE.getName(), "fa-calendar", false, new String[]{
+						Canteen.MOLTKE.getName(), Canteen.ADENAUERRING.getName(), Canteen.ERZBERGSTRAßE.getName(), Canteen.HOLZGARTENSTRAßE.getName(), 
+						Canteen.SCHLOSS_GOTTESAUE.getName(), Canteen.TIEFENBRONNERSTRAßE.getName() });
 		SettingItemImpl mensaDays = new SettingItemImpl(InputType.ACCORDION, StorageKey.MENSADAYCOUNT, "3", "fa-calendar", false, new String[]{"1", "2", "3", "4", "5"});
 		SettingItemImpl mensaPrice = new SettingItemImpl(InputType.ACCORDION, StorageKey.MENSAPRICECATEGORY, "Student", "fa-calendar", false, new String[]{
 						MensaPriceCategory.STUDENT.getHumanReadableName(), MensaPriceCategory.EMPLOYEE.getHumanReadableName(), MensaPriceCategory.PUPIL.getHumanReadableName(),
 						MensaPriceCategory.GUEST.getHumanReadableName()});
+		settingItemsMensa.add(mensa);
 		settingItemsMensa.add(mensaDays);
 		settingItemsMensa.add(mensaPrice);
 		SettingItemMenueImpl mensaSettings = new SettingItemMenueImpl(SettingMenueName.MENSA, "fa-cutlery", settingItemsMensa);

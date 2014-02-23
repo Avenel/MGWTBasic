@@ -29,6 +29,24 @@ public enum Canteen implements IURLParameterEnum{
 	}
 
 	/**
+	 * Returns canteen instance by name.
+	 * @param name
+	 * @return Canteen instance
+	 */
+	public static Canteen getCanteenByName(String name) {
+		// Moltke by default
+		Canteen returnValue = Canteen.MOLTKE;
+		
+		if (Canteen.ADENAUERRING.name.compareTo(name) == 0) return Canteen.ADENAUERRING;
+		if (Canteen.ERZBERGSTRAßE.name.compareTo(name) == 0) return Canteen.ERZBERGSTRAßE;
+		if (Canteen.HOLZGARTENSTRAßE.name.compareTo(name) == 0) return Canteen.HOLZGARTENSTRAßE;
+		if (Canteen.SCHLOSS_GOTTESAUE.name.compareTo(name) == 0) return Canteen.SCHLOSS_GOTTESAUE;
+		if (Canteen.TIEFENBRONNERSTRAßE.name.compareTo(name) == 0) return Canteen.TIEFENBRONNERSTRAßE;
+		
+		return returnValue;
+	}
+	
+	/**
 	 * {@inheritDoc}
 	 */
 	@Override
