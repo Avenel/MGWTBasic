@@ -14,13 +14,21 @@ import de.hska.iwi.mgwt.demo.backend.model.News;
 import de.hska.iwi.mgwt.demo.client.widget.HeaderBackButton;
 import de.hska.iwi.mgwt.demo.client.widget.HeaderSettingsButton;
 
+/**
+ * Implementation of news view interface. Displays a cell-list with the user filtered news-items in it.
+ * @author Martin
+ *
+ */
 public class NewsViewImpl implements NewsView {
 
 	private LayoutPanel main;
 	private CellList<News> cellListNews;
 	private HeaderSettingsButton settingsButton;
 	
-
+	
+	/**
+	 * Public constructor, setting up header panel, setting button and cell-list widget.
+	 */
 	public NewsViewImpl() {
 		main = new LayoutPanel();
 		

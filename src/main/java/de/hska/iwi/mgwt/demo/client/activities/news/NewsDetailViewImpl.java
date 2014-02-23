@@ -11,6 +11,11 @@ import com.googlecode.mgwt.ui.client.widget.ScrollPanel;
 
 import de.hska.iwi.mgwt.demo.client.widget.HeaderBackButton;
 
+/**
+ * Implementation of the news detail view. Just a simple view, showing news title and its content.
+ * @author Martin
+ *
+ */
 public class NewsDetailViewImpl implements NewsDetailView {
 	
 	private LayoutPanel main;

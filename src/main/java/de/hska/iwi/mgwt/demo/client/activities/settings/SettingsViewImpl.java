@@ -11,6 +11,12 @@ import com.googlecode.mgwt.ui.client.widget.WidgetList;
 
 import de.hska.iwi.mgwt.demo.client.widget.HeaderBackButton;
 
+/**
+ * Implements settings view interface. Displays given setting item widget in a
+ * widgetlist.
+ * @author Martin
+ *
+ */
 public class SettingsViewImpl implements SettingsView {
 	private LayoutPanel main;
 	private List<Widget> settingItems;
@@ -18,18 +24,29 @@ public class SettingsViewImpl implements SettingsView {
 	private HeaderPanel headerPanel;
 	private String title;
 	
+	/**
+	 * Public constructor. Setting up scrollpanel, headerpanel and setting item widget list.
+	 */
 	public SettingsViewImpl() {
 		this.settingItems = new ArrayList<Widget>();
 		panelSettings = new ScrollPanel();
 		headerPanel = new HeaderPanel();
 	}
 	
+	/**
+	 * Setter for setting items and setting title.
+	 * @param List<Widget> settingItems
+	 * @param String newTitle
+	 */
 	public void setSettingItems(List<Widget> settingItems, String newTitle) {
 		this.settingItems = settingItems;
-//		this.headerPanel.setCenter(newTitle);
 		this.title = newTitle;
 	}
 	
+	/**
+	 * Init Settings view, especially setting item widgetlist.
+	 * @param settingItems
+	 */
 	private void init(List<Widget> settingItems) {
 		this.main = new LayoutPanel();
 		

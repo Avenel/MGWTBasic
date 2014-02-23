@@ -10,7 +10,8 @@ import com.googlecode.mgwt.ui.client.widget.celllist.Cell;
 import de.hska.iwi.mgwt.demo.client.model.MenuItem;
 
 /**
- * Maps a the properties of a MenuItem in a Cell for representation in a
+ * Represents a menue item in a menue item cell list. 
+ * Maps properties of a MenuItem in a Cell.
  * {@link CellList}.
  * 
  * @author Simon
@@ -20,6 +21,11 @@ public class MenuItemCell implements Cell<MenuItem> {
 
 	private static Template TEMPLATE = GWT.create(Template.class);
 
+	/**
+	 * Template for menue item cell, maps properties.
+	 * @author Martin
+	 *
+	 */
 	public interface Template extends SafeHtmlTemplates {
 		// {0} specifies the variable
 		@SafeHtmlTemplates.Template("<div style='float:left'><b>{0}</b></div>")

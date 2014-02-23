@@ -19,17 +19,34 @@ import de.hska.iwi.mgwt.demo.client.widget.SettingItemMenuLink;
 import de.hska.iwi.mgwt.demo.client.widget.AccordionInputWidget;
 import de.hska.iwi.mgwt.demo.client.widget.TextInputWidget;
 
+/**
+ * Implements settings activity. It encapsulates all setting menus, also submenus. 
+ * So every settings menu is and should be managed by this activity.
+ * 
+ * @author Martin
+ *
+ */
 public class SettingsActivity extends MGWTAbstractActivity {
 	
 	private final ClientFactory clientFactory;
 	private final String id;
 
+	/**
+	 * Public constructor, setting up clientfactory and setting menu id.
+	 * @param clientFactory
+	 * @param id
+	 */
 	public SettingsActivity(ClientFactory clientFactory, String id) {
 		this.clientFactory = clientFactory;
 		this.id = id;
 	}
 	
-	@Override 
+
+	/**
+	 * Creats setting item widgets, corresponding to the given setting items from the setting storage (by id 
+	 * SettingMenueName). 
+	 */
+	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
 		SettingsView view = this.clientFactory.getSettingsView();
 		

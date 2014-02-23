@@ -8,8 +8,18 @@ import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
 
 import de.hska.iwi.mgwt.demo.client.widget.Tile;
 
+/**
+ * Manages tile updates.
+ * @author Martin
+ *
+ */
 public class TileUpdateManager {
 
+	/**
+	 * Update a specific tile, by place, with given information.
+	 * @param tilePlace
+	 * @param information
+	 */
 	public static void updateTile(Place tilePlace, Label information) {
 		// find corresponding tile (place -> tile)
 		Tile correspondingTile = TileBoardManager.getTileByPlace(tilePlace);
@@ -36,7 +46,8 @@ public class TileUpdateManager {
 		
 		updatePanel.add(updateLabel);
 		
-		correspondingTile.update(2, updatePanel);
+		// TODO: Increase a counter inside the tile class and do not set the amount of updates directly.
+		correspondingTile.update(1, updatePanel);
 	}
 	
 }

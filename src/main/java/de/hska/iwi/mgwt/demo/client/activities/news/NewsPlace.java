@@ -7,8 +7,18 @@ import com.google.gwt.place.shared.PlaceTokenizer;
 
 import de.hska.iwi.mgwt.demo.client.model.PlaceJSONObject;
 
+/**
+ * Place for news activity.
+ * @author Martin
+ *
+ */
 public class NewsPlace extends Place implements PlaceJSONObject {
 
+	/**
+	 * Tokenizer for news place.
+	 * @author Martin
+	 *
+	 */
 	public static class NewsPlaceTokenizer implements PlaceTokenizer<NewsPlace> {
 
 		@Override

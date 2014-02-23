@@ -7,22 +7,45 @@ import com.google.gwt.place.shared.PlaceTokenizer;
 
 import de.hska.iwi.mgwt.demo.client.model.PlaceJSONObject;
 
+/**
+ * Place for settings activity.
+ * @author Martin
+ *
+ */
 public class SettingsPlace extends Place implements PlaceJSONObject {
 	String id;
 
+	/**
+	 * Public constructor, setup place with its id.
+	 * @param id
+	 */
 	public SettingsPlace(String id) {
 		super();
 		this.id = id;
 	}
 
+	/**
+	 * Getter for place id.
+	 * @return String id
+	 */
 	public String getId() {
 		return id;
 	}
 
+	/**
+	 * Setter for place id.
+	 * @param id
+	 */
 	public void setId(String id) {
 		this.id = id;
 	}
 
+	
+	/**
+	 * Tokenzer class for settings place.
+	 * @author Martin
+	 *
+	 */
 	public static class SettingsPlaceTokenizer implements PlaceTokenizer<SettingsPlace> {
 
 		@Override

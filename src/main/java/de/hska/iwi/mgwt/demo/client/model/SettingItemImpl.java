@@ -5,7 +5,8 @@ import de.hska.iwi.mgwt.demo.client.storage.StorageKey;
 
 
 /**
- * Represents a possible setting
+ * Represents a possible setting item.
+ * Use it for following InputTypes: TEXT, CHECKBOX, PASSWORD, ACCORDION
  * @author avenel
  *
  */
@@ -39,7 +40,7 @@ public class SettingItemImpl implements SettingItem {
 	}
 	
 	/**
-	 * Public constructor
+	 * Public constructor for a setting item with more than one value.
 	 * @param inputType
 	 * @param key
 	 * @param value

@@ -2,6 +2,11 @@ package de.hska.iwi.mgwt.demo.client.activities.settings;
 
 import de.hska.iwi.mgwt.demo.client.model.HumanReadableEnum;
 
+/**
+ * Enum for settings menu and each submenu.
+ * @author Martin
+ *
+ */
 public enum SettingMenueName implements HumanReadableEnum {
 	HOME("App-Einstellungen"), IZACCOUNT("IZ Benutzeraccount"), MENSA("Mensa"), NEWS("News");
 	
@@ -21,6 +26,11 @@ public enum SettingMenueName implements HumanReadableEnum {
 		this.humanReadableName = humanReadableName;
 	}
 	
+	/**
+	 * Returns SettingMenueName instance for a given name.
+	 * @param name
+	 * @return SettingMenueName instance of SettingMenueName
+	 */
 	public static SettingMenueName getKey(String name) {
 		if (name.compareTo("HOME") == 0) return HOME;
 		if (name.compareTo("IZACCOUNT") == 0) return IZACCOUNT;

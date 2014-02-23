@@ -11,6 +11,14 @@ import de.hska.iwi.mgwt.demo.client.activities.settings.SettingMenueName;
 import de.hska.iwi.mgwt.demo.client.activities.settings.SettingsPlace;
 import de.hska.iwi.mgwt.demo.client.storage.StorageKey;
 
+/**
+ * Represents a link to a settings menu. It is used like a normal 
+ * setting item, so the setting activity can handle it easily. It also
+ * holds the setting items, which belong to the desired settings menu.
+ * 
+ * @author Martin
+ *
+ */
 public class SettingItemMenueImpl implements SettingItem {
 
 	private InputType inputType;
@@ -23,7 +31,7 @@ public class SettingItemMenueImpl implements SettingItem {
 	 * Public constructor
 	 * @param inputType
 	 * @param key
-	 * @param value
+	 * @param value Setting menue name, equals to target setting place.
 	 * @param fontAwesomeIcon
 	 * @param settingItems
 	 */
@@ -63,22 +71,43 @@ public class SettingItemMenueImpl implements SettingItem {
 		return this.value;
 	}
 
+	/**
+	 * Getter for list of setting items.
+	 * @return List<SettingItem> setting item list
+	 */
 	public List<SettingItem> getSettingItems() {
 		return settingItems;
 	}
-
+	
+	/**
+	 * Setter for setting item list. 
+	 * @param settingItems
+	 */
 	public void setSettingItems(List<SettingItem> settingItems) {
 		this.settingItems = settingItems;
 	}
 
+	/**
+	 * Getter for the targeted setting place.
+	 * @return
+	 */
 	public Place getTargetPlace() {
 		return targetPlace;
 	}
 
+	/**
+	 * Setter for targeted setting place.
+	 * @param targetPlace
+	 */
 	public void setTargetPlace(Place targetPlace) {
 		this.targetPlace = targetPlace;
 	}
 	
+	/**
+	 * Getter for the ClickHandler of this menue link.
+	 * @param clientFactory
+	 * @return ClickHandler handler
+	 */
 	public ClickHandler getHandler(final ClientFactory clientFactory) {
 		ClickHandler handler = new ClickHandler() {
 			
@@ -93,7 +122,6 @@ public class SettingItemMenueImpl implements SettingItem {
 
 	@Override
 	public String[] getValues() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	

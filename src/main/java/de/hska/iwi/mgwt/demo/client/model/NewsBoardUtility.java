@@ -9,19 +9,38 @@ import de.hska.iwi.mgwt.demo.backend.constants.Course;
 import de.hska.iwi.mgwt.demo.backend.model.News;
 import de.hska.iwi.mgwt.demo.client.storage.StorageKey;
 
+/**
+ * This static helper class manage the news items, for example holding and filtering 
+ * news items.
+ * @author Martin
+ *
+ */
 public class NewsBoardUtility {
 
 	private static List<News> unfilteredNewsBoardItems;
 	
+	/**
+	 * Setter for unfilterted news items.
+	 * @param items
+	 */
 	public static void setUnfilteredNewsBoardItems(List<News> items) {
 		unfilteredNewsBoardItems = items;
 	}
 	
+	/**
+	 * Getter for unfiltered news items.
+	 * @return List<News> news item list
+	 */
 	public static List<News> getUnfilteredNewsBoardItems() {
 		if (unfilteredNewsBoardItems == null) unfilteredNewsBoardItems = new ArrayList<News>();
 		return unfilteredNewsBoardItems;
 	}
 	
+	/**
+	 * Getter for a specific news item, by id.
+	 * @param id
+	 * @return News item
+	 */
 	public static News getNewsBoardById(int id) {
 		for (News item : unfilteredNewsBoardItems) {
 			if (item.getId() == id) return item;
@@ -31,8 +50,7 @@ public class NewsBoardUtility {
 	}
 	
 	/**
-	 * WIP: Filters news items.
-	 * @param unfiltered
+	 * Filters news items.
 	 * @return List<News> filtered News items
 	 */
 	public static List<News> getFilteredNews() {

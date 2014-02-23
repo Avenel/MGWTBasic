@@ -1,14 +1,28 @@
 package de.hska.iwi.mgwt.demo.client.model;
 
+/**
+ * Enum for the possible mensa price categories.
+ * @author Martin
+ *
+ */
 public enum MensaPriceCategory implements HumanReadableEnum {
 	STUDENT("Student"), EMPLOYEE("Mitarbeiter"), PUPIL("Schüler"), GUEST("Gast");
 	
 	private String humanReadableName;
 	
+	/**
+	 * Private constructor. Setup human readable name.
+	 * @param humanReadableName
+	 */
 	private MensaPriceCategory(String humanReadableName) {
 		this.humanReadableName = humanReadableName;
 	}
 	
+	/**
+	 * Returns MensaPriceCategory instance for a given category name.
+	 * @param category
+	 * @return MensaPriceCategory instance
+	 */
 	public static MensaPriceCategory getByString(String category) {
 		MensaPriceCategory returnValue = STUDENT;
 		

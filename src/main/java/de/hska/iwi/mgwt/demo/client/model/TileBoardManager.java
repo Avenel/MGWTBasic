@@ -164,14 +164,27 @@ public class TileBoardManager {
 		}
 	}
 	
+	
+	/**
+	 * Getter for isOrganizing state.
+	 * @return boolean isOrganizing
+	 */
 	public static boolean isOrganizing() {
 		return isOrganizing;
 	}
 	
+	/**
+	 * Switches the organizing state. 
+	 */
 	public static void switchIsOrganizing() {
 		isOrganizing = !isOrganizing;
 	}
 	
+	/**
+	 * Getter for a specific tile, by place.
+	 * @param tilePlace
+	 * @return Tile tile
+	 */
 	public static Tile getTileByPlace(Place tilePlace) {
 		if (tiles == null) return null;
 		
