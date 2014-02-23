@@ -1,6 +1,5 @@
 package de.hska.iwi.mgwt.demo.client.widget;
 
-import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.ui.HorizontalPanel;
@@ -13,7 +12,7 @@ import de.hska.iwi.mgwt.demo.client.storage.SettingStorage;
 import de.hska.iwi.mgwt.demo.client.storage.StorageKey;
 
 /**
- * Implements a checkbox widget with its missing text.
+ * Implements a checkbox widget.
  * @author Martin
  *
  */
@@ -24,6 +23,11 @@ public class CheckBoxWidget implements IsWidget, InputWidget {
 	ValueChangeHandler<Boolean> handler;
 	StorageKey key;
 	
+	/**
+	 * Public constructor, setting up checkbox label (name), StorageKey and the widget itself.
+	 * @param text
+	 * @param key
+	 */
 	public CheckBoxWidget(String text, final StorageKey key) {
 		this.text = new Label(text);
 		
@@ -69,10 +73,18 @@ public class CheckBoxWidget implements IsWidget, InputWidget {
 		
 	}
 	
+	/**
+	 * Setter for value of checkbox.
+	 * @param Boolean isChecked
+	 */
 	public void setCheckBox(boolean isChecked) {
 		this.checkbox.setValue(isChecked);
 	}
 	
+	/**
+	 * Adds ValueChanged handler. 
+	 * @param handler
+	 */
 	public void addHandler(ValueChangeHandler<Boolean> handler) {
 		this.checkbox.addValueChangeHandler(handler);
 	}

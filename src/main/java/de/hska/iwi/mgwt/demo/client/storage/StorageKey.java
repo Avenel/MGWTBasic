@@ -17,6 +17,10 @@ public enum StorageKey implements HumanReadableEnum {
 	
 	private String humanReadableName;
 	
+	/**
+	 * Private constructor, setup human readable name.
+	 * @param name
+	 */
 	private StorageKey(String name) {
 		this.humanReadableName = name;
 	}

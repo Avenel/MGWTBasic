@@ -40,6 +40,7 @@ public class PasswordInputWidget implements IsWidget, InputWidget {
 		this.handler = new ValueChangeHandler<String>() {
 			@Override
 			public void onValueChange(ValueChangeEvent<String> event) {
+				// is always secure!
 				SettingStorage.storeValue(key, event.getValue(), true);
 			}
 		};

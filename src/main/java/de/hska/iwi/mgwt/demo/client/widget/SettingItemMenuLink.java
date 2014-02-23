@@ -12,19 +12,31 @@ import com.google.gwt.user.client.ui.Widget;
 
 import de.hska.iwi.mgwt.demo.client.activities.settings.SettingMenueName;
 
+/**
+ * Widget for a setting item menue link. It is a link to another settings (sub) menu.
+ * It consists of a simple label and and arrow icon.
+ * @author Martin
+ *
+ */
 public class SettingItemMenuLink implements IsWidget{
 
 	private String fontAwesomeIcon;
 	private SettingMenueName targetKey;
 	private ClickHandler handler;
 	
+	/**
+	 * Public constructor. Setting up font awesome icon, the target setting menu and its click handler.
+	 * @param fontAwesomeIcon
+	 * @param targetKey
+	 * @param handler
+	 */
 	public SettingItemMenuLink(String fontAwesomeIcon, SettingMenueName targetKey, ClickHandler handler) {
 		this.fontAwesomeIcon = fontAwesomeIcon;
 		this.targetKey = targetKey;
 		this.handler = handler;
 	}
 	
-	
+	@Override
 	public Widget asWidget() {
 		FocusPanel linkPanel = new FocusPanel();
 		Panel layoutPanel = new HorizontalPanel();

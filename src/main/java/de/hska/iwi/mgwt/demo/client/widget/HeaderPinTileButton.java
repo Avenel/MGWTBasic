@@ -8,6 +8,12 @@ import com.googlecode.mgwt.ui.client.widget.HeaderButton;
 
 import de.hska.iwi.mgwt.demo.client.model.TileBoardManager;
 
+/**
+ * Implements header button, which pins a given place to the home screen in form of
+ * a tile.
+ * @author Martin
+ *
+ */
 public class HeaderPinTileButton implements IsWidget {
 
 	TapHandler handler;
@@ -15,7 +21,7 @@ public class HeaderPinTileButton implements IsWidget {
 	Place targetPlace;
 	
 	/**
-	 * Public constructor.
+	 * Public constructor, setting up TapHandler and target place.
 	 * @param handler
 	 */
 	public HeaderPinTileButton(TapHandler handler, Place targetPlace) {
@@ -37,10 +43,19 @@ public class HeaderPinTileButton implements IsWidget {
 		return pinTileButton;
 	}
 
+	/**
+	 * Getter for isPinned (on home screen).
+	 * @return Boolean isPinned
+	 */
 	public boolean isPinned() {
 		return TileBoardManager.isTilePinned(this.targetPlace);
 	}
 
+	
+	/**
+	 * Setter for isPinned (on home screen).
+	 * @param isPinned
+	 */
 	public void setPinned(boolean isPinned) {
 		this.isPinned = isPinned;
 	}

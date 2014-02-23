@@ -29,7 +29,7 @@ import de.hska.iwi.mgwt.demo.client.storage.StorageKey;
 /**
  * This widget represents a Mensa MealGroup.
  * It has for each meal a horizontal line with a food-icon,
- * name and its price.
+ * name, its rating and its price.
  * 
  * @author Martin
  *
@@ -41,6 +41,10 @@ public class MealGroupWidget implements IsWidget {
 	private Label title;
 	private HorizontalPanel titleBar;
 	
+	/**
+	 * Public constructor. Setting up widget with the given meals.
+	 * @param mealgroup
+	 */
 	public MealGroupWidget(MealGroup mealgroup) {
 		this.mealGroup = mealgroup;
 		

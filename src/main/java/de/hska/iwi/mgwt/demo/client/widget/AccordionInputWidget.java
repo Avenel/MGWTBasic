@@ -22,6 +22,11 @@ import com.googlecode.mgwt.ui.client.widget.WidgetList;
 import de.hska.iwi.mgwt.demo.client.storage.SettingStorage;
 import de.hska.iwi.mgwt.demo.client.storage.StorageKey;
 
+/**
+ * Represents an accordion - some kind of drop down list.
+ * @author Martin
+ *
+ */
 public class AccordionInputWidget implements IsWidget, InputWidget {
 
 	Label text;
@@ -31,6 +36,10 @@ public class AccordionInputWidget implements IsWidget, InputWidget {
 	WidgetList valuePanelsWrapper;
 	List<FocusPanel> valuePanels;
 	
+	/**
+	 * It is necessary to know the parent ScrollPanel, because the scroll panel 
+	 * does not refresh its height automatically, if drop down list is visible!
+	 */
 	ScrollPanel parentScrollPanel;
 	
 	StorageKey key;

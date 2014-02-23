@@ -14,7 +14,7 @@ import de.hska.iwi.mgwt.demo.client.storage.SettingStorage;
 import de.hska.iwi.mgwt.demo.client.storage.StorageKey;
 
 /**
- * Implements a checkbox widget with its missing text.
+ * Implements a text input widget.
  * @author Martin
  *
  */
@@ -25,6 +25,11 @@ public class TextInputWidget implements IsWidget, InputWidget {
 	StorageKey key;
 	ValueChangeHandler<String> handler;
 	
+	/**
+	 * Public constructor. Setting up its label and StorageKey.
+	 * @param text
+	 * @param key
+	 */
 	public TextInputWidget(String text, final StorageKey key) {
 		this.text = new Label(text);		
 		
@@ -69,10 +74,10 @@ public class TextInputWidget implements IsWidget, InputWidget {
 		return panel;
 	}
 	
-	public void setCheckBox(String isChecked) {
-		this.textBox.setValue(isChecked);
-	}
-	
+	/**
+	 * Adds a ValueChange handler.
+	 * @param handler
+	 */
 	public void addHandler(ValueChangeHandler<String> handler) {
 		this.textBox.addValueChangeHandler(handler);
 	}

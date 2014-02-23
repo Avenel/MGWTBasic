@@ -4,6 +4,12 @@ import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.ParagraphElement;
 import com.googlecode.mgwt.ui.client.widget.HeaderButton;
 
+/**
+ * Implements a custom Header Button. That means one can set his desired icon
+ * (font awesome icon) on the header button.
+ * @author Martin
+ *
+ */
 public class CustomHeaderButton extends HeaderButton {
 	
 	private ParagraphElement pElement;

@@ -28,6 +28,9 @@ public class TileBoard implements IsWidget {
 	List<ClickHandler> handlers;
 	int width = 0;
 	
+	/**
+	 * Public constructor. Setting up panel and add orientationChanged and windowResized handler.
+	 */
 	public TileBoard() {
 		this.tileBoardPanel = new LayoutPanel();
 		this.tileBoardPanel.getElement().addClassName("tileBoard");
@@ -43,7 +46,7 @@ public class TileBoard implements IsWidget {
 	
 		});
 		
-		// if window resizes
+		// if window resizes, refresh tileboard.
 		Window.addResizeHandler(new ResizeHandler() {
 
 			  Timer resizeTimer = new Timer() {  

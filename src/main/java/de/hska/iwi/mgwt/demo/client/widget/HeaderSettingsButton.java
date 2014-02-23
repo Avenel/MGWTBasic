@@ -5,11 +5,20 @@ import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.mgwt.dom.client.event.tap.TapHandler;
 import com.googlecode.mgwt.ui.client.widget.HeaderButton;
 
+/**
+ * Implements a header button in the upper right corner, which points to a settings menu.
+ * @author Martin
+ *
+ */
 public class HeaderSettingsButton implements IsWidget {
 		
 	private HeaderButton settingsButton;
 	private TapHandler handler;
 
+	/**
+	 * Public constructor, setting up a custom header button with a font awesome
+	 * icon (gear wheels - cogs).
+	 */
 	public HeaderSettingsButton() {
 		settingsButton = new CustomHeaderButton();
 		settingsButton.setRoundButton(true);

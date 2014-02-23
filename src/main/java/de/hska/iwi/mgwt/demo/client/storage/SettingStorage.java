@@ -17,8 +17,15 @@ import de.hska.iwi.mgwt.demo.client.model.SettingItem;
 import de.hska.iwi.mgwt.demo.client.model.SettingItemImpl;
 import de.hska.iwi.mgwt.demo.client.model.SettingItemMenueImpl;
 
+/**
+ * Manages Setting menus, loading and storing values into local storage. 
+ * Includes de and encryption.
+ * @author Martin
+ *
+ */
 public class SettingStorage {
 
+	// TODO: Key should not be here. It should be somewhere safe ;)
 	private static final byte[] GWT_DES_KEY = new byte[]{
         (byte)4,(byte)8,(byte)3,(byte)80,(byte)12,(byte)-9,(byte)-5,(byte)101, 
         (byte)15,(byte)-8,(byte)3,(byte)0,(byte)90,(byte)-9,(byte)55,(byte)-41, 
@@ -26,6 +33,9 @@ public class SettingStorage {
 	
 	private static Map<SettingMenueName, List<SettingItem>> settingItems;
 	
+	/**
+	 * Initialize all setting (sub) menus. If one want to add a menu, do it here.
+	 */
 	public static void init() {
 		settingItems = new HashMap<SettingMenueName, List<SettingItem>>();
 		
@@ -76,6 +86,12 @@ public class SettingStorage {
 		settingItems.put(SettingMenueName.IZACCOUNT, settingItemsIZAccount);
 	}
 	
+	
+	/**
+	 * Getter for setting items
+	 * @param key
+	 * @return List<SettingItem> list of setting items
+	 */
 	public static List<SettingItem> getSettingItems(SettingMenueName key) {
 		if (settingItems == null) {
 			init();
@@ -84,6 +100,13 @@ public class SettingStorage {
 		return settingItems.get(key);
 	}
 	
+	/**
+	 * Getter for a value, by StorageKey. Loads the value from local storage. 
+	 * @param key
+	 * @param isSecure if value is encrypted (=secure), it should decrypt it first
+	 * @return String (decrypted) value
+	 * @throws Exception if sth went wrong, like the key is not available in local storage
+	 */
 	public static String getValue(StorageKey key, boolean isSecure) throws Exception {
 		Storage stockStore = Storage.getLocalStorageIfSupported();
 		
@@ -109,11 +132,17 @@ public class SettingStorage {
 			
 			return returnValue;
 		} else {
-			// TODO find better exception
+			// TODO find better exception, or create some on our own
 			throw new Exception();
 		}
 	}
 	
+	/**
+	 * Stores value, by StorageKey, into local storage. 
+	 * @param key
+	 * @param value
+	 * @param isSecure if it should be secure, encrypt it first
+	 */
 	public static void storeValue(StorageKey key, String value, boolean isSecure) {
 		// store value in local storage
 		Storage stockStore = Storage.getLocalStorageIfSupported();

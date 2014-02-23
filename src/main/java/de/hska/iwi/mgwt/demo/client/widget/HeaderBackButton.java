@@ -7,6 +7,12 @@ import com.googlecode.mgwt.dom.client.event.tap.TapEvent;
 import com.googlecode.mgwt.dom.client.event.tap.TapHandler;
 import com.googlecode.mgwt.ui.client.widget.HeaderButton;
 
+/**
+ * Implements header back button. It is the button in the upper left corner to
+ * navigate back (equal to histroy.back()).
+ * @author Martin
+ *
+ */
 public class HeaderBackButton implements IsWidget {
 
 	@Override

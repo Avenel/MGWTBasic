@@ -36,6 +36,9 @@ import de.hska.iwi.mgwt.demo.client.model.TileJSONObject;
  */
 public class Tile implements IsWidget, ObserverTile, TileJSONObject {
 	
+	/**
+	 *  Necessary to make a tile clickable
+	 */
 	FocusPanel focusPanel;
 	
 	LayoutPanel frontPanel;
@@ -56,7 +59,9 @@ public class Tile implements IsWidget, ObserverTile, TileJSONObject {
 	
 	boolean isFlippable;
 	
-	// defines which page is behind this tile
+	/**
+	 * defines which page is behind this tile
+	 */
 	Place tilePlace;
 
 	AnimationHelper animationHelper;
@@ -64,10 +69,11 @@ public class Tile implements IsWidget, ObserverTile, TileJSONObject {
 	Timer flipTimer;
 	int flipTime;
 
-	// OnClick handler
 	ClickHandler handler;
 	
-	// is customLink
+	/**
+	 * is customLink (is it a default tile or not?)
+	 */
 	boolean isCustomLink;
 	
 	boolean isShakeing;
@@ -356,6 +362,10 @@ public class Tile implements IsWidget, ObserverTile, TileJSONObject {
 		this.handler = null;
 	}
 	
+	/**
+	 * Get TapHandler.
+	 * @return
+	 */
 	public ClickHandler getTapHandler() {
 		return this.handler;
 	}
@@ -402,51 +412,19 @@ public class Tile implements IsWidget, ObserverTile, TileJSONObject {
 		this.createBack();
 	}
 
-	public FocusPanel getFocusPanel() {
-		return focusPanel;
-	}
-
-
-	public void setFocusPanel(FocusPanel focusPanel) {
-		this.focusPanel = focusPanel;
-	}
-
-
-	public AnimationHelper getAnimationHelper() {
-		return animationHelper;
-	}
-
-
-	public void setAnimationHelper(AnimationHelper animationHelper) {
-		this.animationHelper = animationHelper;
-	}
-
-
-	public LayoutPanel getFrontPanel() {
-		return frontPanel;
-	}
-
-
-	public void setFrontPanel(LayoutPanel frontPanel) {
-		this.frontPanel = frontPanel;
-	}
-
-
-	public LayoutPanel getBackPanel() {
-		return backPanel;
-	}
-
-
-	public void setBackPanel(LayoutPanel backPanel) {
-		this.backPanel = backPanel;
-	}
-
-
+	/**
+	 * Getter for place this tile is pointing to. 
+	 * @return Place target place
+	 */
 	public Place getTilePlace() {
 		return tilePlace;
 	}
 
 
+	/**
+	 * Setter for target place.
+	 * @param tilePlace
+	 */
 	public void setTilePlace(Place tilePlace) {
 		this.tilePlace = tilePlace;
 	}
@@ -495,17 +473,27 @@ public class Tile implements IsWidget, ObserverTile, TileJSONObject {
 		return jsonValue;
 	}
 
-
+	/**
+	 * Getter for isCustom link (is it a default tile or not?)
+	 * @return Boolean isCustomLink
+	 */
 	public boolean isCustomLink() {
 		return isCustomLink;
 	}
 
-
+	
+	/**
+	 * Setter for custom link.
+	 * @param isCustomLink
+	 */
 	public void setCustomLink(boolean isCustomLink) {
 		this.isCustomLink = isCustomLink;
 	}
 
-	
+	/**
+	 * Let the tile shake or stop shakeing.
+	 * @param doShake
+	 */
 	public void switchShake(boolean doShake) {
 		this.isShakeing = doShake;
 		
@@ -520,6 +508,9 @@ public class Tile implements IsWidget, ObserverTile, TileJSONObject {
 		}
 	}
 
+	/**
+	 * Flips the tile back to front panel.
+	 */
 	public void flipToFront() {
 		if (this.currentPanel == this.backPanel) { 
 			this.animationHelper.goTo(frontPanel, Animation.FLIP);
