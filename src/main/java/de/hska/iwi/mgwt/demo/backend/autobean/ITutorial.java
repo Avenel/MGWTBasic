@@ -3,7 +3,6 @@ package de.hska.iwi.mgwt.demo.backend.autobean;
 import java.util.List;
 
 import de.hska.iwi.mgwt.demo.backend.constants.Course;
-import de.hska.iwi.mgwt.demo.backend.constants.Weekday;
 
 public interface ITutorial {
 	
@@ -30,7 +29,7 @@ public interface ITutorial {
 	/**
 	 * @return the day
 	 */
-	public Weekday getDay();
+	public int getDay();
 
 	/**
 	 * @return the time
@@ -40,7 +39,7 @@ public interface ITutorial {
 	/**
 	 * @return the room
 	 */
-	public int getRoom();
+	public String getRoom();
 
 	/**
 	 * @return the building
@@ -75,7 +74,7 @@ public interface ITutorial {
 	/**
 	 * @param day the day to set
 	 */
-	public void setDay(Weekday day);
+	public void setDay(int day);
 
 	/**
 	 * @param time the time to set
@@ -85,7 +84,7 @@ public interface ITutorial {
 	/**
 	 * @param room the room to set
 	 */
-	public void setRoom(int room);
+	public void setRoom(String room);
 
 	/**
 	 * @param building the building to set

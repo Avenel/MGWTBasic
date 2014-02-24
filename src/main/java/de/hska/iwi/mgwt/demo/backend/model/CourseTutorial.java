@@ -14,7 +14,7 @@ import de.hska.iwi.mgwt.demo.backend.constants.Weekday;
 public class CourseTutorial implements ITutorial {
 	
 	private int id;
-	private int room;
+	private int day;
 	
 	private List<Course> courseOfStudies;
 	
@@ -23,9 +23,8 @@ public class CourseTutorial implements ITutorial {
 	private String time;
 	private String building;
 	private String startDate;
-	
-	private Weekday day;
-	
+	private String room;
+		
 	/**
 	 * C'tor which created a deep copy of the given interface type.
 	 * @param iTutorial the given interface implementation.
@@ -73,7 +72,7 @@ public class CourseTutorial implements ITutorial {
 	/**
 	 * {@inheritDoc}
 	 */
-	public Weekday getDay() {
+	public int getDay() {
 		return day;
 	}
 
@@ -87,7 +86,7 @@ public class CourseTutorial implements ITutorial {
 	/**
 	 * {@inheritDoc}
 	 */
-	public int getRoom() {
+	public String getRoom() {
 		return room;
 	}
 
@@ -136,7 +135,7 @@ public class CourseTutorial implements ITutorial {
 	/**
 	 * {@inheritDoc}
 	 */
-	public void setDay(Weekday day) {
+	public void setDay(int day) {
 		this.day = day;
 	}
 
@@ -150,7 +149,7 @@ public class CourseTutorial implements ITutorial {
 	/**
 	 * {@inheritDoc}
 	 */
-	public void setRoom(int room) {
+	public void setRoom(String room) {
 		this.room = room;
 	}
 
@@ -167,7 +166,20 @@ public class CourseTutorial implements ITutorial {
 	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
+
+	/**
+	 * @return the int representation as a {@link Weekday}
+	 */
+	public Weekday getWeekDay() {
+		return Weekday.getEnumForKey(this.day);
+	}
 	
-	
+	/**
+	 * Setter for the Weekday
+	 * @param weekDay the day as a {@link Weekday}-Enum
+	 */
+	public void setWeekDay(Weekday weekDay) {
+		this.day = weekDay.getNumberOfWeekday();
+	}
 
 }
