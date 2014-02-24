@@ -6,7 +6,9 @@ import java.util.List;
 import com.google.gwt.storage.client.Storage;
 
 import de.hska.iwi.mgwt.demo.backend.constants.Course;
+import de.hska.iwi.mgwt.demo.backend.constants.NewsType;
 import de.hska.iwi.mgwt.demo.backend.model.News;
+import de.hska.iwi.mgwt.demo.client.storage.SettingStorage;
 import de.hska.iwi.mgwt.demo.client.storage.StorageKey;
 
 /**
@@ -81,15 +83,30 @@ public class NewsBoardUtility {
 						
 		}
 		
-		// If List is empty, inform user to inspect settings
+		// add "no news items" notification
+		String noItemsMessage = "Keine Nachrichten vorhanden";
 		if (filteredNews.size() == 0) {
-			News news = new News();
-			news.setId(1);
-			news.setTitle("Empty List - Perhaps you might want to check your settings.");
-			news.setContent("Perhaps you might want to check your settings.");
-			news.setCourseOfStudies(new ArrayList<Course>());
+			News noItems = new News();
+			try {
+				if (!Boolean.valueOf(SettingStorage.getValue(StorageKey.NewsSettingsFilterIB, false)) &&
+					!Boolean.valueOf(SettingStorage.getValue(StorageKey.NewsSettingsFilterIB, false)) &&
+					!Boolean.valueOf(SettingStorage.getValue(StorageKey.NewsSettingsFilterIB, false))) {
+					
+					noItemsMessage = "Bitte wähle einen Studiengang aus.";
+					
+				} 
+			} catch (Exception e) {
+				// no filters set
+				noItemsMessage = "Bitte wwähle einen Studiengang aus.";
+			}
 			
-			filteredNews.add(news);
+			noItems.setContent("Gehe in die News Einstellungen und überprüfe deine Auswahl.");
+			noItems.setTitle(noItemsMessage);
+			noItems.setType(NewsType.ANNOUNCEMENT);
+			noItems.setId(0);
+			
+			filteredNews.add(noItems);
+			unfilteredNewsBoardItems.add(noItems);
 		}
 		
 		return filteredNews;

@@ -14,7 +14,10 @@ import com.googlecode.mgwt.ui.client.widget.ProgressBar;
 import com.googlecode.mgwt.ui.client.widget.ScrollPanel;
 import com.googlecode.mgwt.ui.client.widget.celllist.HasCellSelectedHandler;
 
+import de.hska.iwi.mgwt.demo.backend.constants.NewsType;
 import de.hska.iwi.mgwt.demo.backend.model.News;
+import de.hska.iwi.mgwt.demo.client.storage.SettingStorage;
+import de.hska.iwi.mgwt.demo.client.storage.StorageKey;
 import de.hska.iwi.mgwt.demo.client.widget.HeaderBackButton;
 import de.hska.iwi.mgwt.demo.client.widget.HeaderSettingsButton;
 
@@ -30,6 +33,7 @@ public class NewsViewImpl implements NewsView {
 	private HeaderSettingsButton settingsButton;
 	private Label loadingLabel;
 	private ProgressBar pBar;
+	private ScrollPanel panelNews;
 	
 	
 	/**
@@ -63,7 +67,7 @@ public class NewsViewImpl implements NewsView {
 		// Create 4 different cellists for each organisation
 		this.cellListNews = new CellList<News>(new NewsCell());
 
-		ScrollPanel panelNews = new ScrollPanel();
+		panelNews = new ScrollPanel();
 		panelNews.add(cellListNews);
 
 		main.add(panelNews);
