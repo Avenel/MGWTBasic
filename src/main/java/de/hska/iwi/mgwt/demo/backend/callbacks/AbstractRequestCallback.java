@@ -3,9 +3,11 @@ package de.hska.iwi.mgwt.demo.backend.callbacks;
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestCallback;
+import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.Response;
 
 import de.hska.iwi.mgwt.demo.backend.autobean.CustomBeanFactory;
+import de.hska.iwi.mgwt.demo.backend.exception.FailedRequestException;
 import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
 /**
  * This class generalizes steps which are necessary for processing a asynchronous API-call and the AutoBean-Creation.
@@ -36,16 +38,16 @@ public abstract class AbstractRequestCallback<T extends ObserverActivity<?>> imp
 	public void onResponseReceived(Request request, Response response) {
 		if (response.getStatusCode() == 200) {
 			handleJson(response.getText());
+		} else {
+			throw new FailedRequestException("Response was not the HTTP-Status 200");
 		}
-		
 	}
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public void onError(Request request, Throwable exception) {
-		System.out.println(exception);
-		
+		throw new FailedRequestException("Something went wrong, while processing the request.");
 	}
 	/**
 	 * Called when processing a request went well and the json is available. Then this json will passed to this method

@@ -22,6 +22,7 @@ import de.hska.iwi.mgwt.demo.backend.callbacks.WorkflowStatusCallback;
 import de.hska.iwi.mgwt.demo.backend.constants.Canteen;
 import de.hska.iwi.mgwt.demo.backend.constants.Course;
 import de.hska.iwi.mgwt.demo.backend.constants.WorkflowEvent;
+import de.hska.iwi.mgwt.demo.backend.exception.FailedRequestException;
 import de.hska.iwi.mgwt.demo.backend.model.BlockCourses;
 import de.hska.iwi.mgwt.demo.backend.model.CompulsoryOptionalSubjects;
 import de.hska.iwi.mgwt.demo.backend.model.ConsultationHours;
@@ -166,8 +167,7 @@ public class IntranetConnection implements Intranet {
 		try {
 			builder.send();
 		} catch (RequestException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new FailedRequestException(e);
 		}
 		
 	}
@@ -214,8 +214,7 @@ public class IntranetConnection implements Intranet {
 		try {
 			builder.send();
 		} catch (RequestException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new FailedRequestException(e);
 		}
 		
 		
