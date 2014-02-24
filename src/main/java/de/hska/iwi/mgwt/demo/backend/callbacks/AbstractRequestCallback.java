@@ -3,7 +3,6 @@ package de.hska.iwi.mgwt.demo.backend.callbacks;
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestCallback;
-import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.Response;
 
 import de.hska.iwi.mgwt.demo.backend.autobean.CustomBeanFactory;

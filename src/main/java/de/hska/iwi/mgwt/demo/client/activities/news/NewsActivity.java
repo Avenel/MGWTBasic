@@ -45,10 +45,6 @@ public class NewsActivity extends MGWTAbstractActivity implements ObserverActivi
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
 		view = this.clientFactory.getNewsView();
-
-		// Get news of all courses
-		Intranet intranetConn = (Intranet) BackendFactory.createIntranetInstance();
-		intranetConn.getNewsBoard(this, Course.ALL);
 		
 		currentModel = new ArrayList<News>();
 		view.render(currentModel);
@@ -77,6 +73,10 @@ public class NewsActivity extends MGWTAbstractActivity implements ObserverActivi
 			}
 			
 		});
+		
+		// Get news of all courses
+		Intranet intranetConn = (Intranet) BackendFactory.createIntranetInstance();
+		intranetConn.getNewsBoard(this, Course.ALL);
 	}
 
 	/**
