@@ -24,7 +24,9 @@ import com.google.gwt.user.client.Window;
 import com.googlecode.mgwt.ui.client.MGWT;
 import com.googlecode.mgwt.ui.client.MGWTSettings;
 import com.googlecode.mgwt.ui.client.MGWTStyle;
+import com.googlecode.mgwt.ui.client.dialog.Dialogs;
 
+import de.hska.iwi.mgwt.demo.backend.exception.FailedRequestException;
 import de.hska.iwi.mgwt.demo.client.model.TileBoardManager;
 import de.hska.iwi.mgwt.demo.client.theme.CustomTheme;
 
@@ -86,12 +88,14 @@ public class MgwtAppEntryPoint implements EntryPoint {
 	public void onModuleLoad() {
 
 		GWT.setUncaughtExceptionHandler(new UncaughtExceptionHandler() {
-
 			@Override
 			public void onUncaughtException(Throwable e) {
-				// TODO put in your own meaninful handler
-				Window.alert("uncaught: " + e.getMessage());
-				e.printStackTrace();
+				if (e instanceof FailedRequestException ) {
+					Dialogs.alert("Verbindungsfehler", e.getMessage(), null);
+				}
+//				// TODO put in your own meaninful handler
+//				Window.alert("uncaught: " + e.getMessage());
+//				e.printStackTrace();
 
 			}
 		});

@@ -20,7 +20,7 @@ public abstract class AbstractRequestCallback<T extends ObserverActivity<?>> imp
 	protected final T observer;
 	
 	protected final CustomBeanFactory factory;
-	
+		
 	/**
 	 * C'tor which initializes the observer Object as well as the AutoBeanFactory.
 	 * @param observer
@@ -38,7 +38,7 @@ public abstract class AbstractRequestCallback<T extends ObserverActivity<?>> imp
 		if (response.getStatusCode() == 200) {
 			handleJson(response.getText());
 		} else {
-			throw new FailedRequestException("Response was not the HTTP-Status 200");
+			throw new FailedRequestException("Anfrage zum Server ist aufgrund von Problemen fehlgeschlagen.");
 		}
 	}
 	/**
@@ -46,7 +46,7 @@ public abstract class AbstractRequestCallback<T extends ObserverActivity<?>> imp
 	 */
 	@Override
 	public void onError(Request request, Throwable exception) {
-		throw new FailedRequestException("Something went wrong, while processing the request.");
+		throw new FailedRequestException("Die Anfrage zum Server konnte aufgrund technischer Probleme nicht korrekt ausgeführt werden.\n Bitte probieren Sie es zu einem späteren Zeitpunkt erneut.");
 	}
 	/**
 	 * Called when processing a request went well and the json is available. Then this json will passed to this method
