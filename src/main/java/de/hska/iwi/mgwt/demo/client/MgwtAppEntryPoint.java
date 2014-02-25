@@ -17,16 +17,13 @@ package de.hska.iwi.mgwt.demo.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.core.client.GWT.UncaughtExceptionHandler;
+import com.google.gwt.place.shared.PlaceChangeEvent;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.gwt.user.client.Timer;
-import com.google.gwt.user.client.Window;
 import com.googlecode.mgwt.ui.client.MGWT;
 import com.googlecode.mgwt.ui.client.MGWTSettings;
 import com.googlecode.mgwt.ui.client.MGWTStyle;
-import com.googlecode.mgwt.ui.client.dialog.Dialogs;
 
-import de.hska.iwi.mgwt.demo.backend.exception.FailedRequestException;
 import de.hska.iwi.mgwt.demo.client.model.TileBoardManager;
 import de.hska.iwi.mgwt.demo.client.theme.CustomTheme;
 
@@ -37,7 +34,10 @@ import de.hska.iwi.mgwt.demo.client.theme.CustomTheme;
  * 
  */
 public class MgwtAppEntryPoint implements EntryPoint {
-
+	
+	private IFakExceptionHandler exceptionHandler;
+	
+	private final ClientFactory clientFactory = new ClientFactoryImpl();
 	/**
 	 * Setup ClientFactory, AppPlaceHistoryMapper and Display.
 	 */
@@ -54,14 +54,14 @@ public class MgwtAppEntryPoint implements EntryPoint {
 		// set viewport and other settings for mobile
 		MGWT.applySettings(MGWTSettings.getAppSetting());
 
-		final ClientFactory clientFactory = new ClientFactoryImpl();
+//		final ClientFactory clientFactory = new ClientFactoryImpl();
 
 		// Start PlaceHistoryHandler with our PlaceHistoryMapper
 		AppPlaceHistoryMapper historyMapper = GWT
 				.create(AppPlaceHistoryMapper.class);
 		final PlaceHistoryHandler historyHandler = new PlaceHistoryHandler(
 				historyMapper);
-
+		
 		historyHandler.register(clientFactory.getPlaceController(),
 				clientFactory.getEventBus(),
 				new de.hska.iwi.mgwt.demo.client.activities.home.HomePlace());
@@ -86,19 +86,31 @@ public class MgwtAppEntryPoint implements EntryPoint {
 	 */
 	@Override
 	public void onModuleLoad() {
-
-		GWT.setUncaughtExceptionHandler(new UncaughtExceptionHandler() {
+		exceptionHandler = new IFakExceptionHandler(clientFactory.getPlaceController());
+		clientFactory.getEventBus().addHandler(PlaceChangeEvent.TYPE, new PlaceChangeEvent.Handler() {
+			private final IFakExceptionHandler exHandler = exceptionHandler;
+			
 			@Override
-			public void onUncaughtException(Throwable e) {
-				if (e instanceof FailedRequestException ) {
-					Dialogs.alert("Verbindungsfehler", e.getMessage(), null);
-				}
-//				// TODO put in your own meaninful handler
-//				Window.alert("uncaught: " + e.getMessage());
-//				e.printStackTrace();
-
+			public void onPlaceChange(PlaceChangeEvent event) {
+				exHandler.notifyOnPlaceChange();
+				
 			}
 		});
+		
+		GWT.setUncaughtExceptionHandler(exceptionHandler);
+
+//		GWT.setUncaughtExceptionHandler(new UncaughtExceptionHandler() {
+//			@Override
+//			public void onUncaughtException(Throwable e) {
+//				if (e instanceof FailedRequestException ) {
+//					Dialogs.alert("Verbindungsfehler", e.getMessage(), null);
+//				}
+////				// TODO put in your own meaninful handler
+////				Window.alert("uncaught: " + e.getMessage());
+////				e.printStackTrace();
+//
+//			}
+//		});
 
 		new Timer() {
 			@Override
