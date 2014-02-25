@@ -29,4 +29,9 @@ public interface MensaView extends IsWidget {
 	 * @param handler
 	 */
 	public void addTapHandlerToSettingsButton(TapHandler handler);
+	
+	/**
+	 * Stops loading bar, displays error message.
+	 */
+	public void displayConnectionError();
 }

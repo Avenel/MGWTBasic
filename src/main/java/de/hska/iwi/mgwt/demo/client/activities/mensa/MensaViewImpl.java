@@ -199,5 +199,20 @@ public class MensaViewImpl implements MensaView {
 	public void addTapHandlerToSettingsButton(TapHandler handler) {
 		this.settingsButton.setTapHandler(handler);
 	}
+
+	@Override
+	public void displayConnectionError() {
+		this.menuCarousel.clear();
+		
+		Label errorMessage = new Label();
+		errorMessage.setText("Der Server ist zur Zeit nicht erreichbar. Versuche es später erneut!");
+		errorMessage.getElement().getStyle().setColor("#DB0134");
+		errorMessage.getElement().getStyle().setTextAlign(TextAlign.CENTER);
+		errorMessage.getElement().getStyle().setWidth(80, Unit.PCT);
+		errorMessage.getElement().getStyle().setProperty("margin", "auto");
+		errorMessage.getElement().getStyle().setMarginTop(40, Unit.PCT);
+		
+		this.menuCarousel.add(errorMessage);
+	}
 	
 }

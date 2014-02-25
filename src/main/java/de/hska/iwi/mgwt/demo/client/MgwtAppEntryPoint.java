@@ -86,7 +86,7 @@ public class MgwtAppEntryPoint implements EntryPoint {
 	 */
 	@Override
 	public void onModuleLoad() {
-		exceptionHandler = new IFakExceptionHandler(clientFactory.getPlaceController());
+		exceptionHandler = new IFakExceptionHandler(clientFactory.getPlaceController(), clientFactory);
 		clientFactory.getEventBus().addHandler(PlaceChangeEvent.TYPE, new PlaceChangeEvent.Handler() {
 			private final IFakExceptionHandler exHandler = exceptionHandler;
 			
