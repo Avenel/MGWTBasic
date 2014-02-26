@@ -56,7 +56,7 @@ public class MensaActivity extends MGWTAbstractActivity implements ObserverActiv
 		
 		// get meals for the next days
 		Intranet intranetConn = (Intranet) BackendFactory.createIntranetInstance();
-		int maxDays = 3;
+		int maxDays = 1;
 		try {
 			maxDays = Integer.valueOf(SettingStorage.getValue(StorageKey.MENSADAYCOUNT, false));
 		} catch (NumberFormatException e) {
