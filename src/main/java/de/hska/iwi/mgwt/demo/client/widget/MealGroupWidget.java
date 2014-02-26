@@ -8,8 +8,11 @@ import com.google.gwt.dom.client.Style;
 import com.google.gwt.dom.client.Style.TextAlign;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.dom.client.Style.VerticalAlign;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.i18n.client.HasDirection.Direction;
 import com.google.gwt.i18n.client.NumberFormat;
+import com.google.gwt.user.client.ui.FocusPanel;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment.HorizontalAlignmentConstant;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.IsWidget;
@@ -22,6 +25,7 @@ import com.googlecode.mgwt.ui.client.widget.WidgetList;
 import de.hska.iwi.mgwt.demo.backend.constants.FoodAdditive;
 import de.hska.iwi.mgwt.demo.backend.model.Meal;
 import de.hska.iwi.mgwt.demo.backend.model.MealGroup;
+import de.hska.iwi.mgwt.demo.client.dialog.MensaRatingDialog;
 import de.hska.iwi.mgwt.demo.client.model.MensaPriceCategory;
 import de.hska.iwi.mgwt.demo.client.storage.SettingStorage;
 import de.hska.iwi.mgwt.demo.client.storage.StorageKey;
@@ -68,6 +72,19 @@ public class MealGroupWidget implements IsWidget {
 		
 		// meals
 		for (Meal meal : this.mealGroup.getMeals()) {
+			FocusPanel wrapperFocusPanel = new FocusPanel();
+			
+			// if user clicks on meal, show rating dialog
+			wrapperFocusPanel.addClickHandler(new ClickHandler() {
+
+				@Override
+				public void onClick(ClickEvent event) {
+					MensaRatingDialog ratingDialog = new MensaRatingDialog();
+					ratingDialog.show();
+				}
+				
+			});
+			
 			HorizontalPanel line = new HorizontalPanel();
 			line.getElement().addClassName("meal-container");
 			
@@ -209,8 +226,11 @@ public class MealGroupWidget implements IsWidget {
 			price.getElement().addClassName("meal-price");
 			modifierPricePanel.add(price);
 			
-			line.add(modifierPricePanel);			
-			lineList.add(line);
+			line.add(modifierPricePanel);	
+			
+			wrapperFocusPanel.add(line);
+			
+			lineList.add(wrapperFocusPanel);
 		}
 		
 		main.add(lineList);
