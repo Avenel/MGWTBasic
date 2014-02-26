@@ -132,7 +132,14 @@ public class ProcessSeminarViewImpl implements ProcessSeminarView {
 	@Override
 	public void setLoading(boolean loading) {
 		loadingProgress.setVisible(loading);
+		loadingLabel.setText("Lade neueste Daten...");
 		loadingLabel.setVisible(loading);
+	}
+	@Override
+	public void displayError(){
+		loadingProgress.setVisible(false);
+		loadingLabel.setText("Der Server ist nicht erreichbar. Versuche es später erneut!");
+		loadingLabel.setVisible(true);
 	}
 
 }

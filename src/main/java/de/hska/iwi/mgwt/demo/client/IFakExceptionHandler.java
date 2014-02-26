@@ -7,6 +7,7 @@ import com.googlecode.mgwt.ui.client.dialog.Dialogs;
 
 import de.hska.iwi.mgwt.demo.backend.exception.FailedRequestException;
 import de.hska.iwi.mgwt.demo.client.activities.mensa.MensaPlace;
+import de.hska.iwi.mgwt.demo.client.activities.processes.seminar.ProcessSeminarPlace;
 
 public class IFakExceptionHandler implements UncaughtExceptionHandler {
 
@@ -30,6 +31,8 @@ public class IFakExceptionHandler implements UncaughtExceptionHandler {
 			// interrupt mensa loading bar 
 			if (controller.getWhere().equals(new MensaPlace())) {
 				clientFactory.getMensaView().displayConnectionError();
+			}if (controller.getWhere().equals(new ProcessSeminarPlace())) {
+				clientFactory.getProcessSeminarView().displayError();
 			}
 		}
 		lastPlace = controller.getWhere();

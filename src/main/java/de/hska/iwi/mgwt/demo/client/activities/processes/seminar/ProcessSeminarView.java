@@ -45,4 +45,5 @@ public interface ProcessSeminarView extends IsWidget {
 	 */
 	void setLoading(boolean loading);
 
+	void displayError();
 }
