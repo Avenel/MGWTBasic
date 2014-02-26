@@ -36,7 +36,7 @@ public class MensaRatingDialog extends PopinDialog {
 		
 		// TODO: find some nasty vector graphics instead of pixel graphics.
 		Rating rating = new Rating(0, 5, Rating.LTR, "assets/icons/rating_full.png", "assets/icons/rating_empty.png", 
-										"assets/icons/rating_hover.png", 51, 50);
+										"assets/icons/rating_hover.png", 52, 50);
 
 		rating.getElement().getStyle().setProperty("textAlign", "-webkit-center");
 		rating.getElement().getStyle().setMarginBottom(25, Unit.PX);
