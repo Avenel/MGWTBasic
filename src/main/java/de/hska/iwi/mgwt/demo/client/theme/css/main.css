@@ -409,6 +409,11 @@ tr > td {
 	-webkit-transform: rotate(180deg);
 }
 
+/* Hide border of last element in list of accordion widget */
+.accordionValuePanelWrapper .mgwt-List-last {
+	border: none;
+}
+
 .mgwt-List-settings > li {
 	border: none!important;
 }

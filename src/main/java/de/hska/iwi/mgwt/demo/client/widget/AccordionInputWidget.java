@@ -6,6 +6,7 @@ import java.util.List;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.ParagraphElement;
 import com.google.gwt.dom.client.Style;
+import com.google.gwt.dom.client.Style.BorderStyle;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -138,10 +139,16 @@ public class AccordionInputWidget implements IsWidget, InputWidget {
 		this.valuePanelsWrapper.setVisible(false);
 		this.valuePanelsWrapper.setWidth("65%");
 		this.valuePanelsWrapper.getElement().getStyle().setFloat(Style.Float.RIGHT);
+		this.valuePanelsWrapper.getElement().getStyle().setBorderStyle(BorderStyle.SOLID);
+		this.valuePanelsWrapper.getElement().getStyle().setBorderWidth(1, Unit.PX);
+		this.valuePanelsWrapper.getElement().getStyle().setBorderColor("#e0e0e0");
+		this.valuePanelsWrapper.getElement().addClassName("accordionValuePanelWrapper");
 		
 		for (FocusPanel p : this.valuePanels) {
 			this.valuePanelsWrapper.add(p);
 		}
+		
+		
 	}
 	
 	@Override
@@ -149,7 +156,7 @@ public class AccordionInputWidget implements IsWidget, InputWidget {
 		VerticalPanel wrapper = new VerticalPanel();
 		wrapper.setHeight("100%");
 		wrapper.setWidth("100%");
-		
+
 		HorizontalPanel panel = new HorizontalPanel();
 		panel.setWidth("100%");
 		panel.add(this.text);
@@ -186,6 +193,7 @@ public class AccordionInputWidget implements IsWidget, InputWidget {
 		
 		wrapper.add(panel);
 		wrapper.add(this.valuePanelsWrapper);
+		
 		return wrapper;
 	}
 	
