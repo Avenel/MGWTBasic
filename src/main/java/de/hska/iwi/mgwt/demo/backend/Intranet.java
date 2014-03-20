@@ -81,7 +81,7 @@ public interface Intranet {
 	 * @param event one of the {@link WorkflowEvent} enums, specifies for which event the information will be gathered.
 	 * @throws IllegalArgumentException if one of the parameters is null
 	 */
-	public void getWorkflowInformation(ObserverActivity<WorkflowInformation> observer, WorkflowEvent event) throws IllegalArgumentException;
+	public void getWorkflowInformation(ObserverActivity<WorkflowInformation> observer, WorkflowEvent event, Course course) throws IllegalArgumentException;
 	
 	/**
 	 * Provides information about the actual Workflow for an given event and the given student. Gathers information what

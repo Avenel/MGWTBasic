@@ -90,8 +90,8 @@ public class UrlBuilderUtil {
 	 * @param workflowEvent the event for which the Information shall be received
 	 * @return the url as a String for the request.
 	 */
-	public static String getWorkflowInformationUrl(WorkflowEvent workflowEvent) {
-		return BASE_URL + WORKFLOW_INFORMATION + workflowEvent.getUrlKey();
+	public static String getWorkflowInformationUrl(WorkflowEvent workflowEvent, Course course) {
+		return BASE_URL + WORKFLOW_INFORMATION + course.getUrlKey() + "/" +  workflowEvent.getUrlKey();
 	}
 	
 	/**

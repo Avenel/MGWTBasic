@@ -97,7 +97,7 @@ public class NewsBoardUtility {
 				} 
 			} catch (Exception e) {
 				// no filters set
-				noItemsMessage = "Bitte wwähle einen Studiengang aus.";
+				noItemsMessage = "Bitte wähle einen Studiengang aus.";
 			}
 			
 			noItems.setContent("Gehe in die News Einstellungen und überprüfe deine Auswahl.");

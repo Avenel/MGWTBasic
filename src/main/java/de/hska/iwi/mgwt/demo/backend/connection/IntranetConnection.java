@@ -126,10 +126,10 @@ public class IntranetConnection implements Intranet {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void getWorkflowInformation(ObserverActivity<WorkflowInformation> observer, WorkflowEvent event) {
+	public void getWorkflowInformation(ObserverActivity<WorkflowInformation> observer, WorkflowEvent event, Course course) {
 		throwIfNull(observer, event);
 		
-		String url = UrlBuilderUtil.getWorkflowInformationUrl(event);
+		String url = UrlBuilderUtil.getWorkflowInformationUrl(event, course);
 		
 		WorkflowInformationCallback cb = new WorkflowInformationCallback(observer);
 		
