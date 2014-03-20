@@ -23,7 +23,7 @@ public class NewsCell implements Cell<News> {
 	 *
 	 */
 	public interface Template extends SafeHtmlTemplates {
-		@SafeHtmlTemplates.Template("<div style='float:left'><i class='fa {0} fa-lg' style='margin-right: 15px'></i><b>{1}</b></div><div style='float:right'><i class='fa fa-chevron-right fa-lg'></i></div>")
+		@SafeHtmlTemplates.Template("<div style='float:left'><i class='fa {0} fa-lg' style='margin-right: 15px'></i><b style='color:grey;'>{1}</b></div><div style='float:right'><i class='fa fa-chevron-right fa-lg'></i></div>")
 		SafeHtml content(String fontAwesomeIcon, String cellContents);
 	}
 		

@@ -1,5 +1,6 @@
 package de.hska.iwi.mgwt.demo.client.activities.news;
 
+import com.google.gwt.dom.client.BaseElement;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.HeadingElement;
 import com.google.gwt.dom.client.Style.Unit;
@@ -45,7 +46,9 @@ public class NewsDetailViewImpl implements NewsDetailView {
 		title.setInnerText(this.title);
 		textPanel.getElement().appendChild(title);
 		
-		Text content = Document.get().createTextNode(this.content);
+		BaseElement content = Document.get().createBaseElement();
+		content.setInnerHTML(this.content);
+		content.getStyle().setColor("grey");
 		textPanel.getElement().appendChild(content);
 		scrollPanel.add(textPanel);
 		
