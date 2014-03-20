@@ -32,7 +32,6 @@ public class NewsCell implements Cell<News> {
 		if (model.getType() != null) {
 			SafeHtml content = TEMPLATE.content(model.getType().getFontAwesomeIcon(), model.getTitle());
 			safeHtmlBuilder.append(content);
-			System.out.println(content.asString());
 		}
 	}
 

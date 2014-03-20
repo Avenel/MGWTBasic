@@ -20,6 +20,8 @@ import de.hska.iwi.mgwt.demo.client.activities.ObserverActivity;
 import de.hska.iwi.mgwt.demo.client.activities.settings.SettingMenueName;
 import de.hska.iwi.mgwt.demo.client.activities.settings.SettingsPlace;
 import de.hska.iwi.mgwt.demo.client.model.NewsBoardUtility;
+import de.hska.iwi.mgwt.demo.client.storage.SettingStorage;
+import de.hska.iwi.mgwt.demo.client.storage.StorageKey;
 
 /**
  * Implements the news activity. 
@@ -55,15 +57,25 @@ public class NewsActivity extends MGWTAbstractActivity implements ObserverActivi
 
 			@Override
 			public void onCellSelected(CellSelectedEvent event) {
-				News selectedNews = currentModel.get(event.getIndex());
-				
-				// make cell inactive, if it is just the loading cell.
-				if (selectedNews.getCourseOfStudies().size() == 0) return;
-				
-				NewsDetailPlace newsDetailPlace = new NewsDetailPlace(String.valueOf(selectedNews.getId()));
-				clientFactory.getPlaceController().goTo(newsDetailPlace);
+				try {
+					// If no filter is set, go to settings
+					if (!Boolean.parseBoolean(SettingStorage.getValue(StorageKey.NewsSettingsFilterIB, false)) &&
+							!Boolean.parseBoolean(SettingStorage.getValue(StorageKey.NewsSettingsFilterIM, false)) &&
+							!Boolean.parseBoolean(SettingStorage.getValue(StorageKey.NewsSettingsFilterMKI, false))) {
+						clientFactory.getPlaceController().goTo(new SettingsPlace(SettingMenueName.NEWS.toString()));
+					} else {
+						News selectedNews = currentModel.get(event.getIndex());
+						
+						// make cell inactive, if it is just the loading cell.
+						if (selectedNews.getCourseOfStudies().size() == 0) return;
+						
+						NewsDetailPlace newsDetailPlace = new NewsDetailPlace(String.valueOf(selectedNews.getId()));
+						clientFactory.getPlaceController().goTo(newsDetailPlace);
+					}
+				} catch (Exception e) {
+					clientFactory.getPlaceController().goTo(new SettingsPlace(SettingMenueName.NEWS.toString()));
+				}
 			}
-
 		}));
 		
 		view.addTapHandlerToSettingsButton(new TapHandler() {
