@@ -84,7 +84,7 @@ public class ProcessSeminarActivity extends MGWTAbstractActivity implements
 		SeminarTempStorage.setSeminars(seminarEntries);
 
 		// get the seminar from hska intranet
-		intranetConn.getWorkflowStatus(this, WorkflowEvent.SEMINAR_MASTER,
+		intranetConn.getWorkflowStatus(this, WorkflowEvent.SEMINAR,
 				credentials);
 
 		view.render(seminarEntries);

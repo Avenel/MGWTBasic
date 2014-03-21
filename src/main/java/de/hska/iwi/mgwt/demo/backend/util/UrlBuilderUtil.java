@@ -101,6 +101,7 @@ public class UrlBuilderUtil {
 	 * @return the url as a String for the request.
 	 */
 	public static String getWorkflowStatusUrl(WorkflowEvent workflowEvent) {
+		System.out.println(BASE_URL_SECURE + WORKFLOW_STATUS + workflowEvent.getUrlKey());
 		return BASE_URL_SECURE + WORKFLOW_STATUS + workflowEvent.getUrlKey();
 	}
 

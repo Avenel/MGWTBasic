@@ -10,10 +10,8 @@ import com.google.web.bindery.autobean.shared.AutoBean.PropertyName;
 public enum WorkflowEvent implements IURLParameterEnum {
 	@PropertyName("academic_writing")
 	ACADEMIC_WRITING,
-	@PropertyName("seminar_bachelor")
-	SEMINAR_BACHELOR,
-	@PropertyName("seminar_master")
-	SEMINAR_MASTER,
+	@PropertyName("seminar")
+	SEMINAR,
 	@PropertyName("thesis_bachelor_po_3")
 	THESIS_BACHELOR_PO_3,
 	@PropertyName("thesis_bachelor")
