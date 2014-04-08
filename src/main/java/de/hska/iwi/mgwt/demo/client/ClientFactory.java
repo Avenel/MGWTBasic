@@ -124,5 +124,6 @@ public interface ClientFactory {
 	 * @return AnimatingActivityManager
 	 */
 	public AnimatingActivityManager getAnimatingActivityManager();
+	
 
 }

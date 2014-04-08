@@ -32,10 +32,9 @@ public class HomeActivity extends MGWTAbstractActivity {
 	}
 	
 	@Override 
-	public void start(AcceptsOneWidget panel, EventBus eventBus) {
-		this.view = this.clientFactory.getHomeView();
+	public void start(final AcceptsOneWidget panel, EventBus eventBus) {
+		view = clientFactory.getHomeView();
 		panel.setWidget(view);
-		
 		addTapHandlers();
 	}
 	

@@ -71,7 +71,6 @@ public class ClientFactoryImpl implements ClientFactory {
 	private PhoneAnimationMapper appAnimationMapper;
 	private AnimatingActivityManager activityManager;
 	
-	
 
 	/**
 	 * Public constructor. Initializes eventbus, display, placeController, mapper 
@@ -192,12 +191,11 @@ public class ClientFactoryImpl implements ClientFactory {
 
 	@Override
 	public SettingsView getSettingsView() {
-		if (settingsView == null) {
+		//if (settingsView == null) {
 			settingsView = new SettingsViewImpl();
-		}
+		//}
 		return settingsView;
 	}
-
 	
 
 }

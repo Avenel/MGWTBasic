@@ -60,7 +60,8 @@ public class ProcessSeminarActivity extends MGWTAbstractActivity implements
 
 		Intranet intranetConn = (Intranet) BackendFactory
 				.createIntranetInstance();
-		// TODO Get Username and password from settings
+
+		
 		String username;
 		String pWord=null;
 		

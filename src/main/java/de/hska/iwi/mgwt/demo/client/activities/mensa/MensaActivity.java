@@ -2,12 +2,8 @@ package de.hska.iwi.mgwt.demo.client.activities.mensa;
 
 import java.util.Date;
 
-import org.apache.bcel.verifier.structurals.ExceptionHandler;
-import org.apache.bcel.verifier.structurals.ExceptionHandlers;
-
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.i18n.client.DateTimeFormat;
-import com.google.gwt.thirdparty.guava.common.util.concurrent.UncaughtExceptionHandlers;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.datepicker.client.CalendarUtil;
 import com.googlecode.mgwt.dom.client.event.tap.TapEvent;

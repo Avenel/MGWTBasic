@@ -155,7 +155,6 @@ public class IntranetConnection implements Intranet {
 		try {
 			auth = new String(Base64.encode(authString.getBytes(CHARSET)));
 		} catch (UnsupportedEncodingException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
